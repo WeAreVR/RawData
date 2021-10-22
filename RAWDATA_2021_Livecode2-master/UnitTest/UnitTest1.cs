@@ -1,7 +1,7 @@
 using System;
 using Xunit;
 
-namespace Client
+namespace UnitTest
 {
     public class UnitTest1
     {

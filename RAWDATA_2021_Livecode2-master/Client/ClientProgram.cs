@@ -7,24 +7,27 @@ using System.IO;
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Xunit;
 
 namespace Client
 {
-    
+
 
     class ClientProgram
     {
         static void Main(string[] args)
         {
-            //test
-            
+
+
             /*
             var client = new NetworkClient();
+
             client.Connect("localhost", 5000);
+
             var message = "hello";
             client.Write(message);
+
             var response = client.Read();
+
             Console.WriteLine($"Server response '{response}'");
             */
         }
@@ -57,14 +60,14 @@ namespace Client
             var verifyRequest = new
             {
                 Method = "delete",
-               // Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
+                // Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
                 Date = UnixTimestamp()
             };
 
             client.SendRequest(verifyRequest.ToJson());
             //response = client.ReadResponse();
 
-           // Assert.Contains("1 ok", response.Status.ToLower());
+            // Assert.Contains("1 ok", response.Status.ToLower());
             static TcpClient Connect()
             {
                 var client = new TcpClient();
@@ -104,7 +107,9 @@ namespace Client
                 {
                     bytesread = strm.Read(resp, 0, resp.Length);
                     memStream.Write(resp, 0, bytesread);
+
                 } while (bytesread == 2048);
+
                 var responseData = Encoding.UTF8.GetString(memStream.ToArray());
                 return JsonSerializer.Deserialize<Response>(responseData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             }

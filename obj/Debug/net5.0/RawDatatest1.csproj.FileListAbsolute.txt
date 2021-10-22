@@ -3,3 +3,8 @@ C:\Users\thoma\source\repos\RawDatatest1\obj\Debug\net5.0\RawDatatest1.Generated
 C:\Users\thoma\source\repos\RawDatatest1\obj\Debug\net5.0\RawDatatest1.AssemblyInfoInputs.cache
 C:\Users\thoma\source\repos\RawDatatest1\obj\Debug\net5.0\RawDatatest1.AssemblyInfo.cs
 C:\Users\thoma\source\repos\RawDatatest1\obj\Debug\net5.0\RawDatatest1.csproj.CoreCompileInputs.cache
+c:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\obj\Debug\net5.0\RawDatatest1.csproj.AssemblyReference.cache
+c:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\obj\Debug\net5.0\RawDatatest1.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\obj\Debug\net5.0\RawDatatest1.AssemblyInfoInputs.cache
+c:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\obj\Debug\net5.0\RawDatatest1.AssemblyInfo.cs
+c:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\obj\Debug\net5.0\RawDatatest1.csproj.CoreCompileInputs.cache
