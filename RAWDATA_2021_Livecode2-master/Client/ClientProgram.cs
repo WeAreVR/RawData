@@ -17,19 +17,22 @@ namespace Client
         static void Main(string[] args)
         {
 
-
-            /*
+            Console.WriteLine("TestMain");
+            
             var client = new NetworkClient();
 
             client.Connect("localhost", 5000);
 
-            var message = "hello";
-            client.Write(message);
+            Request_DeleteCategoryWithValidId_RemoveCategory();
+            //var message = "hello";
+            //client.Write(message);
+            
+            //client.Write("test1");
 
             var response = client.Read();
 
             Console.WriteLine($"Server response '{response}'");
-            */
+            
         }
         public class Category
         {
@@ -42,8 +45,9 @@ namespace Client
         {
             return DateTimeOffset.Now.ToUnixTimeSeconds().ToString();
         }
-        public void Request_DeleteCategoryWithValidId_RemoveCategory()
+        static public void Request_DeleteCategoryWithValidId_RemoveCategory()
         {
+            Console.WriteLine("test1");
             var client = Connect();
             var request = new
             {
@@ -52,6 +56,7 @@ namespace Client
                 Date = UnixTimestamp(),
                 Body = (new { name = "TestingDeleteCategory" }).ToJson()
             };
+            Console.WriteLine(request);
 
             client.SendRequest(request.ToJson());
             //var response = client.ReadResponse();
@@ -71,6 +76,7 @@ namespace Client
             static TcpClient Connect()
             {
                 var client = new TcpClient();
+                Console.WriteLine("5000");
                 client.Connect(IPAddress.Loopback, 5000);
                 return client;
             }
@@ -79,6 +85,7 @@ namespace Client
     }
     public static class Util
     {
+        
         public static string ToJson(this object data)
         {
             return JsonSerializer.Serialize(data, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -93,6 +100,7 @@ namespace Client
         {
             var msg = Encoding.UTF8.GetBytes(request);
             client.GetStream().Write(msg, 0, msg.Length);
+            Console.WriteLine("test2");
         }
 
         /*public static Response ReadResponse(this TcpClient client)

@@ -20,10 +20,11 @@ namespace Server
                 Console.WriteLine("Client accepted");
 
                 var message = client.Read();
-
+                if(message != "hello"){
                 Console.WriteLine($"Client message '{message}'");
 
                 client.Write(message.ToUpper());
+                }
             }
 
         }
