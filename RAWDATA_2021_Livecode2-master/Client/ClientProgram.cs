@@ -15,10 +15,7 @@ namespace Client
     class ClientProgram
     {
         static void Main(string[] args)
-        {
-
-            Console.WriteLine("TestMain");
-            
+        {           
             //var client = new NetworkClient();
 
             //client.Connect("localhost", 3500);
@@ -47,14 +44,13 @@ namespace Client
         }
         static public void Request_DeleteCategoryWithValidId_RemoveCategory()
         {
-            Console.WriteLine("test1");
             var client = Connect();
             var request = new
             {
                 Method = "create",
                 Path = "/api/categories",
-                Date = UnixTimestamp(),
-                Body = (new { name = "TestingDeleteCategory" }).ToJson()
+                Date = UnixTimestamp()
+                //Body = (new { name = "TestingDeleteCategory" }).ToJson()
             };
             Console.WriteLine(request);
             

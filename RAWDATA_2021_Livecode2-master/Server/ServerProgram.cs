@@ -3,6 +3,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Utillities;
+using System.Text.Json;
+using System.IO;
 
 
 namespace Server
@@ -26,23 +28,35 @@ namespace Server
 
                 var response = new
             {
-                Status = 3,
-                Body = "SPurgT"
+                Status = "3",
+                Body = JsonSerializer.Serialize("Rene")
             };
-                client.Write(response.Body);
+                //ToJson(response);
+                //string jsonString = JsonSerializer.Serialize(response);
+                var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                client.Write(JsonResponse);
+                Console.WriteLine(JsonResponse);
                 }
-                Console.WriteLine(Response.Body);
+                
             }
 
 
         }
+        
+        
+    }
+    public static class util{
+        public static string ToJson(this object data)
+        {
+            return JsonSerializer.Serialize(data, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        }
+        
         /*public static void SendResponse(this TcpClient client, string response)
         {
             var msg = Encoding.UTF8.GetBytes(response);
             client.GetStream().Write(msg, 0, msg.Length);
             Console.WriteLine("vi har sendt response!!!!");
         }*/
-        
     }
     public class Response
     {
