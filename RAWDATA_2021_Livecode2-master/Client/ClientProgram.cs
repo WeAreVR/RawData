@@ -49,8 +49,8 @@ namespace Client
             {
                 Method = "create",
                 Path = "/api/categories",
-                Date = UnixTimestamp()
-                //Body = (new { name = "TestingDeleteCategory" }).ToJson()
+                Date = UnixTimestamp(),
+                Body = (new { name = "TestingDeleteCategory" }).ToJson()
             };
             Console.WriteLine(request);
             

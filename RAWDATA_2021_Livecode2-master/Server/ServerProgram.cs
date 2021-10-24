@@ -5,6 +5,7 @@ using System.Text;
 using Utillities;
 using System.Text.Json;
 using System.IO;
+using System.Text.Json.Serialization;
 
 
 namespace Server
@@ -25,13 +26,14 @@ namespace Server
                 var message = client.Read();
                 if(message != "hello"){
                 Console.WriteLine($"Client message '{message}'");
-
+                var deMessage = JsonSerializer.Deserialize<Request>(message, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                Console.WriteLine($"det her er deMessage {deMessage.Method}");
                 var response = new
             {
                 Status = "3",
                 Body = JsonSerializer.Serialize("Rene")
             };
-                //ToJson(response);
+                //request.FromJson<>();
                 //string jsonString = JsonSerializer.Serialize(response);
                 //client.Write(ToJson(response));
                 var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -43,12 +45,41 @@ namespace Server
 
 
         }
+        public class responseClass{
+            public int status {get; set;}
+            public String body {get; set;}
+        }
     }
 
-    public static class util{
+    public static class Util{
         public static string ToJson(this object data)
         {
             return JsonSerializer.Serialize(data, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        }
+        public static T FromJson<T>(this string element)
+        {
+            return JsonSerializer.Deserialize<T>(element, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        }
+        public static Request ReadRequest(this TcpClient client)
+        {
+            var strm = client.GetStream();
+            //strm.ReadTimeout = 250;
+            byte[] resp = new byte[2048];
+            using (var memStream = new MemoryStream())
+            {
+                int bytesread = 0;
+                do
+                {
+                    bytesread = strm.Read(resp, 0, resp.Length);
+                    memStream.Write(resp, 0, bytesread);
+
+                } while (bytesread == 2048);
+
+                var requestData = Encoding.UTF8.GetString(memStream.ToArray());
+                //Console.WriteLine($"Server says: {responseData}");
+                return JsonSerializer.Deserialize<Request>(requestData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                
+            }
         }
         
         /*public static void SendResponse(this TcpClient client, string response)
@@ -63,5 +94,11 @@ namespace Server
     {
         public string Status { get; set; }
         public string Body { get; set; }
+    }
+    public class Request{
+        public string Method{get; set;}
+        public string Path{get; set;}
+        public string Date{get; set;}
+        public string Body {get; set;}
     }
 }
