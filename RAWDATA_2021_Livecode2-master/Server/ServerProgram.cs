@@ -24,10 +24,11 @@ namespace Server
                 Console.WriteLine("Client accepted");
 
                 var message = client.Read();
-                if(message != "hello"){
+                
                 Console.WriteLine($"Client message '{message}'");
                 var deMessage = JsonSerializer.Deserialize<Request>(message, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 Console.WriteLine($"det her er deMessage {deMessage.Method}");
+                if(deMessage.Method =="create"){
                 var response = new
             {
                 Status = "3",

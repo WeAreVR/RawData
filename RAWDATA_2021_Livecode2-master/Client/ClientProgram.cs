@@ -16,20 +16,8 @@ namespace Client
     {
         static void Main(string[] args)
         {           
-            //var client = new NetworkClient();
-
-            //client.Connect("localhost", 3500);
-            
+ 
             Request_DeleteCategoryWithValidId_RemoveCategory();
-            //var message = "hello";
-            //client.Write(message);
-            
-            //client.Write("test1");
-
-            //var response = client.Read();
-
-            //Console.WriteLine($"Server response '{response}'");
-            
         }
         public class Category
         {
@@ -56,21 +44,8 @@ namespace Client
             
             client.SendRequest(request.ToJson());
             var response = client.ReadResponse();
-            Console.WriteLine($"Server says: {response}");
+            Console.WriteLine($"Server says: {response.Body}");
 
-            //client = Connect();
-            /*
-            var verifyRequest = new
-            {
-                Method = "delete",
-                Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
-                Date = UnixTimestamp()
-            };
-            */
-
-            //client.SendRequest(verifyRequest.ToJson());
-
-            //Assert.Contains("1 ok", response.Status.ToLower());
             static TcpClient Connect()
             {
                 var client = new TcpClient();
@@ -122,7 +97,6 @@ namespace Client
                 } while (bytesread == 2048);
 
                 var responseData = Encoding.UTF8.GetString(memStream.ToArray());
-                //Console.WriteLine($"Server says: {responseData}");
                 return JsonSerializer.Deserialize<Response>(responseData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 
             }
