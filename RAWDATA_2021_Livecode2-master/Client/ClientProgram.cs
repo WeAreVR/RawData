@@ -19,19 +19,19 @@ namespace Client
 
             Console.WriteLine("TestMain");
             
-            var client = new NetworkClient();
+            //var client = new NetworkClient();
 
-            client.Connect("localhost", 5000);
-
+            //client.Connect("localhost", 3500);
+            
             Request_DeleteCategoryWithValidId_RemoveCategory();
             //var message = "hello";
             //client.Write(message);
             
             //client.Write("test1");
 
-            var response = client.Read();
+            //var response = client.Read();
 
-            Console.WriteLine($"Server response '{response}'");
+            //Console.WriteLine($"Server response '{response}'");
             
         }
         public class Category
@@ -57,22 +57,22 @@ namespace Client
                 Body = (new { name = "TestingDeleteCategory" }).ToJson()
             };
             Console.WriteLine(request);
-
+            
             client.SendRequest(request.ToJson());
-            //var response = client.ReadResponse();
+            var response = client.ReadResponse();
 
             //client = Connect();
             var verifyRequest = new
             {
                 Method = "delete",
-                // Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
+                Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
                 Date = UnixTimestamp()
             };
 
             client.SendRequest(verifyRequest.ToJson());
-            //response = client.ReadResponse();
+            response = client.ReadResponse();
 
-            // Assert.Contains("1 ok", response.Status.ToLower());
+            //Assert.Contains("1 ok", response.Status.ToLower());
             static TcpClient Connect()
             {
                 var client = new TcpClient();
@@ -82,6 +82,11 @@ namespace Client
             }
         }
 
+    }
+    public class Response
+    {
+        public string Status { get; set; }
+        public string Body { get; set; }
     }
     public static class Util
     {
@@ -103,7 +108,7 @@ namespace Client
             Console.WriteLine("test2");
         }
 
-        /*public static Response ReadResponse(this TcpClient client)
+        public static Response ReadResponse(this TcpClient client)
         {
             var strm = client.GetStream();
             //strm.ReadTimeout = 250;
@@ -121,6 +126,6 @@ namespace Client
                 var responseData = Encoding.UTF8.GetString(memStream.ToArray());
                 return JsonSerializer.Deserialize<Response>(responseData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
             }
-        }*/
+        }
     }
 }

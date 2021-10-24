@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using Utillities;
 
+
 namespace Server
 {
     class ServerProgram
@@ -23,10 +24,29 @@ namespace Server
                 if(message != "hello"){
                 Console.WriteLine($"Client message '{message}'");
 
-                client.Write(message.ToUpper());
+                var response = new
+            {
+                Status = 3,
+                Body = "SPurgT"
+            };
+                client.Write(response.Body);
                 }
+                Console.WriteLine(Response.Body);
             }
 
+
         }
+        /*public static void SendResponse(this TcpClient client, string response)
+        {
+            var msg = Encoding.UTF8.GetBytes(response);
+            client.GetStream().Write(msg, 0, msg.Length);
+            Console.WriteLine("vi har sendt response!!!!");
+        }*/
+        
+    }
+    public class Response
+    {
+        public string Status { get; set; }
+        public string Body { get; set; }
     }
 }
