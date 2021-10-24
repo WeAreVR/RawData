@@ -33,7 +33,7 @@ namespace Server
             };
                 //ToJson(response);
                 //string jsonString = JsonSerializer.Serialize(response);
-                client.Write(ToJson(response));
+                //client.Write(ToJson(response));
                 var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 client.Write(JsonResponse);
                 Console.WriteLine(JsonResponse);

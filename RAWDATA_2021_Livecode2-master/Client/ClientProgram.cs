@@ -56,17 +56,19 @@ namespace Client
             
             client.SendRequest(request.ToJson());
             var response = client.ReadResponse();
+            Console.WriteLine($"Server says: {response}");
 
             //client = Connect();
+            /*
             var verifyRequest = new
             {
                 Method = "delete",
                 Path = "/api/categories/" + response.Body.FromJson<Category>().Id,
                 Date = UnixTimestamp()
             };
+            */
 
-            client.SendRequest(verifyRequest.ToJson());
-            response = client.ReadResponse();
+            //client.SendRequest(verifyRequest.ToJson());
 
             //Assert.Contains("1 ok", response.Status.ToLower());
             static TcpClient Connect()
@@ -120,7 +122,9 @@ namespace Client
                 } while (bytesread == 2048);
 
                 var responseData = Encoding.UTF8.GetString(memStream.ToArray());
+                //Console.WriteLine($"Server says: {responseData}");
                 return JsonSerializer.Deserialize<Response>(responseData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                
             }
         }
     }
