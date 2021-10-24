@@ -33,6 +33,7 @@ namespace Server
             };
                 //ToJson(response);
                 //string jsonString = JsonSerializer.Serialize(response);
+                client.Write(ToJson(response));
                 var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 client.Write(JsonResponse);
                 Console.WriteLine(JsonResponse);
@@ -42,9 +43,8 @@ namespace Server
 
 
         }
-        
-        
     }
+
     public static class util{
         public static string ToJson(this object data)
         {
@@ -58,6 +58,7 @@ namespace Server
             Console.WriteLine("vi har sendt response!!!!");
         }*/
     }
+   
     public class Response
     {
         public string Status { get; set; }
