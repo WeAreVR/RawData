@@ -6,14 +6,22 @@ using Utillities;
 using System.Text.Json;
 using System.IO;
 using System.Text.Json.Serialization;
-
+using System.Collections.Generic;
 
 namespace Server
 {
     class ServerProgram
     {
+
         static void Main(string[] args)
         {
+            
+            List<Category> categories = new List<Category>{
+                new Category(1,"Beverages"),
+                new Category(2,"Condiments"),
+                new Category(3,"Confections")
+            };
+
             var server = new TcpListener(IPAddress.Loopback, 5000);
             server.Start();
             Console.WriteLine("Server started");
@@ -46,11 +54,23 @@ namespace Server
 
 
         }
-        public class responseClass{
+        /*public class responseClass{
             public int status {get; set;}
             public String body {get; set;}
-        }
+        }*/
     }
+
+    public class Category
+        {
+            [JsonPropertyName("cid")]
+            public int cid { get; set; }
+            [JsonPropertyName("name")]
+            public string name { get; set; }
+            public Category( int cid, String name){
+
+            }
+
+        }
 
     public static class Util{
         public static string ToJson(this object data)
@@ -103,3 +123,4 @@ namespace Server
         public string Body {get; set;}
     }
 }
+
