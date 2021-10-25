@@ -15,8 +15,8 @@ namespace Client
     class ClientProgram
     {
         static void Main(string[] args)
-        {           
- 
+        {
+
             Request_DeleteCategoryWithValidId_RemoveCategory();
         }
         public class Category
@@ -35,13 +35,15 @@ namespace Client
             var client = Connect();
             var request = new
             {
-                Method = "create",
-                Path = "/api/categories",
+                Method = "update",
+                Path = "testing",
                 Date = UnixTimestamp(),
-                Body = (new { name = "TestingDeleteCategory" }).ToJson()
+                Body = (new { cid = 1, Name = "Beverages" }).ToJson()
             };
+
+
             Console.WriteLine(request);
-            
+
             client.SendRequest(request.ToJson());
             var response = client.ReadResponse();
             Console.WriteLine($"Server says: {response.Body}");
@@ -63,9 +65,10 @@ namespace Client
     }
     public static class Util
     {
-        
+
         public static string ToJson(this object data)
         {
+
             return JsonSerializer.Serialize(data, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
         }
 
@@ -98,7 +101,7 @@ namespace Client
 
                 var responseData = Encoding.UTF8.GetString(memStream.ToArray());
                 return JsonSerializer.Deserialize<Response>(responseData, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-                
+
             }
         }
     }
