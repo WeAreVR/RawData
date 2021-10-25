@@ -21,7 +21,7 @@ namespace Server
                 new Category(2,"Condiments"),
                 new Category(3,"Confections")
             };
-
+            
             var server = new TcpListener(IPAddress.Loopback, 5000);
             server.Start();
             Console.WriteLine("Server started");
@@ -39,7 +39,7 @@ namespace Server
 
                 var deMessage = JsonSerializer.Deserialize<Request>(message, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 Console.WriteLine($"det her er deMessage {deMessage.Method}");
-                var temp = deMessage.Body.FromJson<Category>();
+                //var temp = deMessage.Body.FromJson<Category>();
                 Console.WriteLine(deMessage.Body);
                 Console.WriteLine(deMessage.Body.GetType());
                 Console.WriteLine(DateTimeOffset.Now.ToUnixTimeSeconds());
@@ -96,15 +96,43 @@ namespace Server
                         client.Write(JsonResponse);
                         Console.WriteLine(JsonResponse);
                     }
+                     else {
+                     var response = new
+                    {
+                        Status = "1 Ok",
+                        Body = JsonSerializer.Serialize(deMessage.Body)
+                        
+                    };
+                    Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
+                    };
+
                 }
 
                 if (deMessage.Path == null)
                 {
                     var response = new
                     {
-                        Status = "Wrong Path",
+                        Status = "4 Bad request",
                         Body = JsonSerializer.Serialize("Missing path")
                     };
+                    Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
+                }
+                else if(!deMessage.Path.StartsWith("/api/categories")){
+                    var response = new
+                    {
+                        Status = "4 Bad request",
+                        Body = JsonSerializer.Serialize("Invalid path")
+                    };
+                    Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
                 }
                 else if (deMessage.Method == "read")
                 {
@@ -144,8 +172,8 @@ namespace Server
                         {
                             var response = new
                             {
-                                Status = "4 Bad Request",
-                                //Body = JsonSerializer.Serialize("Bad Request")
+                                Status = "5 Not found",
+                                Body = JsonSerializer.Serialize("Invalid Id")
                             };
                             Console.WriteLine(response);
                             var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -185,6 +213,21 @@ namespace Server
                         client.Write(JsonResponse);
                         Console.WriteLine(JsonResponse);
                     }
+                    else{
+                        var temp = deMessage.Body.FromJson<Bodybody>();
+                        int length = categories.Count;
+                        categories.Add(new Category{2,"temp.name"});
+                         var response = new
+                        {
+                            Status = "4 Bad request",
+                            Body = JsonSerializer.Serialize("pølse")
+                        };
+                        Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
+
+                    }
                 }
                 else if (deMessage.Method == "update")
                 {
@@ -200,13 +243,74 @@ namespace Server
                         client.Write(JsonResponse);
                         Console.WriteLine(JsonResponse);
                     }
-                    else if (deMessage.Body == "test")
+                    else if (deMessage.Path == "/api/categories" )
                     {
+                         var response = new
+                        {
+                            Status = "4 Bad request",
+                            Body = JsonSerializer.Serialize("Missing Path Id")
+                        };
+                        Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
 
                     }
+                    
+                    
+                    else {
+                        var catiId = new List<string>(deMessage.Path.Split('/'));
+                        var sub = catiId[catiId.Count - 1];
+                        var lastValue = int.Parse(sub);
+                        var temp = deMessage.Body.FromJson<Category>();
+                        if (lastValue >= 1 && lastValue <= categories.Count - 1)
+                        {
+                         
+                        categories[temp.cid-1].name = temp.name;
+                        Console.WriteLine("update 32432432");
+
+                        var response = new
+                        {
+                            Status = "3 Updated",
+                            Body = JsonSerializer.Serialize(categories[temp.cid-1])
+                        };
+
+                        Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
+                        }
+                        else
+                        {
+                            var response = new
+                            {
+                                Status = "5 Not found",
+                                Body = JsonSerializer.Serialize("Invalid Id")
+                            };
+                            Console.WriteLine(response);
+                            var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                            client.Write(JsonResponse);
+                            Console.WriteLine(JsonResponse);
+
+                        
+                    }
+                    }
+                    
                 }
                 else if (deMessage.Method == "delete")
                 {
+                    if (deMessage.Path == "/api/categories" )
+                    {
+                         var response = new
+                        {
+                            Status = "4 Bad request",
+                            Body = JsonSerializer.Serialize("Missing Path Id")
+                        };
+                        Console.WriteLine(response);
+                        var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                        client.Write(JsonResponse);
+                        Console.WriteLine(JsonResponse);
+                    }
                 }
                 else
                 {
@@ -236,16 +340,20 @@ namespace Server
         public int cid { get; set; }
         //[JsonPropertyName("name")]
         public string name { get; set; }
-        public Category(int cid, String name)
+        public Category(int cid1, String name1)
         {
-            this.cid = cid;
-            this.name = name;
+            cid = cid1;
+            name = name1;
         }
         public override string ToString()
         {
             return cid + " " + name;
         }
 
+    }
+
+    public class Bodybody{
+        public string name;
     }
 
     public static class Util

@@ -35,10 +35,10 @@ namespace Client
             var client = Connect();
             var request = new
             {
-                Method = "update",
-                Path = "testing",
+               Method = "create",
+                Path = "/api/categories",
                 Date = UnixTimestamp(),
-                Body = (new { cid = 1, Name = "Beverages" }).ToJson()
+                Body = (new { name = "Testing" }).ToJson()
             };
 
 
