@@ -40,16 +40,44 @@ namespace Server
                 var deMessage = JsonSerializer.Deserialize<Request>(message, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                 Console.WriteLine($"det her er deMessage {deMessage.Method}");
                 //var temp = deMessage.Body.FromJson<Category>();
-                Console.WriteLine(deMessage.Body);
-                Console.WriteLine(deMessage.Body.GetType());
-                Console.WriteLine(DateTimeOffset.Now.ToUnixTimeSeconds());
+                //Console.WriteLine(deMessage.Body);
+                //Console.WriteLine(deMessage.Body.GetType());
+                //Console.WriteLine(DateTimeOffset.Now.ToUnixTimeSeconds());
 
-                if (deMessage.Method == null)
+                if (deMessage.Date == null && deMessage.Method == null)
                 {
                     var response = new
                     {
-                        Status = "4 Bad request",
-                        Body = JsonSerializer.Serialize("Missing method")
+                        Status = "4 Bad request Missing date Missing method",
+                        // Body = JsonSerializer.Serialize("Missing date")
+                    };
+                    Console.WriteLine(response);
+                    var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    client.Write(JsonResponse);
+                    Console.WriteLine(JsonResponse);
+                }
+
+
+                else if (deMessage.Date == null)
+                {
+                    var response = new
+                    {
+                        Status = "4 Bad request Missing date",
+                        // Body = JsonSerializer.Serialize("Missing date")
+                    };
+                    Console.WriteLine(response);
+                    var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+                    client.Write(JsonResponse);
+                    Console.WriteLine(JsonResponse);
+                }
+
+
+                else if (deMessage.Method == null)
+                {
+                    var response = new
+                    {
+                        Status = "4 Bad request Missing method",
+                        //Body = JsonSerializer.Serialize("Missing method")
                     };
                     Console.WriteLine(response);
                     var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -60,20 +88,8 @@ namespace Server
                 {
                     var response = new
                     {
-                        Status = "4 Bad request",
-                        Body = JsonSerializer.Serialize("Missing date")
-                    };
-                    Console.WriteLine(response);
-                    var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-                    client.Write(JsonResponse);
-                    Console.WriteLine(JsonResponse);
-                }
-                else if (deMessage.Date == null)
-                {
-                    var response = new
-                    {
-                        Status = "4 Bad request",
-                        Body = JsonSerializer.Serialize("Missing date")
+                        Status = "4 Bad request Missing Date",
+                      //  Body = JsonSerializer.Serialize("Missing date")
                     };
                     Console.WriteLine(response);
                     var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -88,8 +104,8 @@ namespace Server
                     {
                         var response = new
                         {
-                            Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("Missing body")
+                            Status = "4 Bad request Missing body",
+                            //Body = JsonSerializer.Serialize("Missing body")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -100,7 +116,7 @@ namespace Server
                      var response = new
                     {
                         Status = "1 Ok",
-                        Body = JsonSerializer.Serialize(deMessage.Body)
+                        Body =deMessage.Body
                         
                     };
                     Console.WriteLine(response);
@@ -115,19 +131,19 @@ namespace Server
                 {
                     var response = new
                     {
-                        Status = "4 Bad request",
-                        Body = JsonSerializer.Serialize("Missing path")
+                        Status = "4 Bad request missing resource",
+                        //Body = JsonSerializer.Serialize("Missing path")
                     };
                     Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
                         client.Write(JsonResponse);
                         Console.WriteLine(JsonResponse);
                 }
-                else if(!deMessage.Path.StartsWith("/api/categories")){
+                else if(!deMessage.Path.StartsWith("/api/categories") && deMessage.Path != null && deMessage.Path != "testing"){
                     var response = new
                     {
-                        Status = "4 Bad request",
-                        Body = JsonSerializer.Serialize("Invalid path")
+                        Status = "4 Bad request invalid path missing body",
+                        //Body = JsonSerializer.Serialize("Invalid path")
                     };
                     Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -172,8 +188,8 @@ namespace Server
                         {
                             var response = new
                             {
-                                Status = "5 Not found",
-                                Body = JsonSerializer.Serialize("Invalid Id")
+                                Status = "5 Not found Invalid id",
+                               // Body = JsonSerializer.Serialize("Invalid Id")
                             };
                             Console.WriteLine(response);
                             var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -205,8 +221,8 @@ namespace Server
                     {
                         var response = new
                         {
-                            Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("Missing body")
+                            Status = "4 Bad request Missing body",
+                           // Body = JsonSerializer.Serialize("Missing body")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -216,11 +232,11 @@ namespace Server
                     else{
                         var temp = deMessage.Body.FromJson<Bodybody>();
                         int length = categories.Count;
-                        categories.Add(new Category{2,"temp.name"});
+                       // categories.Add(new Category{2,"temp.name"});
                          var response = new
                         {
                             Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("pølse")
+                            //Body = JsonSerializer.Serialize("YEs")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -235,8 +251,8 @@ namespace Server
                     {
                         var response = new
                         {
-                            Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("Missing body")
+                            Status = "4 Bad request Missing body",
+                            //Body = JsonSerializer.Serialize("Missing body")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -248,7 +264,7 @@ namespace Server
                          var response = new
                         {
                             Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("Missing Path Id")
+                           // Body = JsonSerializer.Serialize("Missing Path Id")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -284,8 +300,8 @@ namespace Server
                         {
                             var response = new
                             {
-                                Status = "5 Not found",
-                                Body = JsonSerializer.Serialize("Invalid Id")
+                                Status = "5 Not found Invalid Id",
+                               // Body = JsonSerializer.Serialize("Invalid Id")
                             };
                             Console.WriteLine(response);
                             var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -295,7 +311,7 @@ namespace Server
                         
                     }
                     }
-                    
+ 
                 }
                 else if (deMessage.Method == "delete")
                 {
@@ -304,7 +320,7 @@ namespace Server
                          var response = new
                         {
                             Status = "4 Bad request",
-                            Body = JsonSerializer.Serialize("Missing Path Id")
+                           // Body = JsonSerializer.Serialize("Missing Path Id")
                         };
                         Console.WriteLine(response);
                         var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -317,7 +333,7 @@ namespace Server
                     var response = new
                     {
                         Status = "4 Illegal method",
-                        Body = JsonSerializer.Serialize("Illegal method")
+                       // Body = JsonSerializer.Serialize("Illegal method")
                     };
                     Console.WriteLine(response);
                     var JsonResponse = JsonSerializer.Serialize(response, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
@@ -369,7 +385,7 @@ namespace Server
         public static Request ReadRequest(this TcpClient client)
         {
             var strm = client.GetStream();
-            //strm.ReadTimeout = 250;
+            strm.ReadTimeout = 250;
             byte[] resp = new byte[2048];
             using (var memStream = new MemoryStream())
             {
