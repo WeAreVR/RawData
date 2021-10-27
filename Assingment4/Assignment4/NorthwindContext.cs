@@ -4,8 +4,10 @@ using Assignment4.Domain;
 
 namespace Assignment4
 {
+    
     public class NorthwindContext : DbContext
     {
+        
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
 
@@ -15,7 +17,7 @@ namespace Assignment4
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=northwind;uid=bulskov;pwd=henrik");
+            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
