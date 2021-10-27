@@ -1,5 +1,0 @@
-C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\RAWDATA_2021_Livecode2\Client\obj\Debug\net5.0\Client.csproj.AssemblyReference.cache
-C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\RAWDATA_2021_Livecode2\Client\obj\Debug\net5.0\Client.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\RAWDATA_2021_Livecode2\Client\obj\Debug\net5.0\Client.AssemblyInfoInputs.cache
-C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\RAWDATA_2021_Livecode2\Client\obj\Debug\net5.0\Client.AssemblyInfo.cs
-C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\RAWDATA_2021_Livecode2\Client\obj\Debug\net5.0\Client.csproj.CoreCompileInputs.cache
