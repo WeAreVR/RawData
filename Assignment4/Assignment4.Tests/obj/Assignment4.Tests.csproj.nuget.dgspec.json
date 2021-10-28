@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4.Tests\\Assignment4.Tests.csproj": {}
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4.Tests\\Assignment4.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4.Tests\\Assignment4.Tests.csproj": {
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4.Tests\\Assignment4.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4.Tests\\Assignment4.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4.Tests\\Assignment4.Tests.csproj",
         "projectName": "Assignment4.Tests",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4.Tests\\Assignment4.Tests.csproj",
-        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4.Tests\\obj\\",
+        "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4.Tests\\Assignment4.Tests.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj": {
-                "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj"
+              "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj": {
+                "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj"
               }
             }
           }
@@ -102,17 +102,17 @@
         }
       }
     },
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj": {
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj",
         "projectName": "Assignment4",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj",
-        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\obj\\",
+        "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

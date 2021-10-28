@@ -681,19 +681,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\louis\\.nuget\\packages\\": {}
+    "C:\\Users\\thoma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj",
+      "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj",
       "projectName": "Assignment4",
-      "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\Assignment4.csproj",
-      "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assingment4\\Assignment4\\obj\\",
+      "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\Assignment4.csproj",
+      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Assignment4\\Assignment4\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

@@ -26,7 +26,7 @@ namespace Assignment4.Tests
             Assert.Equal(8, categories.Count);
             Assert.Equal("Beverages", categories.First().Name);
         }
-        /*
+        
         [Fact]
         public void GetCategory_ValidId_ReturnsCategoryObject()
         {
@@ -34,7 +34,7 @@ namespace Assignment4.Tests
             var category = service.GetCategory(1);
             Assert.Equal("Beverages", category.Name);
         }
-        
+        /*
         [Fact]
         public void CreateCategory_ValidData_CreteCategoryAndRetunsNewObject()
         {
@@ -115,7 +115,7 @@ namespace Assignment4.Tests
             Assert.Equal("Chai", product.Name);
             Assert.Equal("Beverages", product.Category.Name);
         }
-
+        */
         [Fact]
         public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()
         {
@@ -126,7 +126,7 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First().CategoryName);
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
-
+        /*
         [Fact]
         public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
         {
@@ -135,7 +135,7 @@ namespace Assignment4.Tests
             Assert.Equal(4, products.Count);
             Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName);
             Assert.Equal("Flotemysost", products.Last().ProductName);
-        }*/
+        }
 
         /* orders *//*
         [Fact]

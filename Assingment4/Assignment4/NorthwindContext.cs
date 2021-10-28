@@ -17,7 +17,7 @@ namespace Assignment4
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=ctj66yjr");
+            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
