@@ -85,7 +85,7 @@ namespace Assignment4
             }
             return products.ToList();
         }
-        public orders GetOrder(int orderId)
+        public IList<orders> GetOrder(int orderId)
         {
             var ctx = new NorthwindContext();
             Product result = ctx.Products.Find(orderId);

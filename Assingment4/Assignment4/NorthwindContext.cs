@@ -35,6 +35,25 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");
 
+            modelBuilder.Entity<Order>().Property(x => x.orderId).HasColumnName("orderid");
+            modelBuilder.Entity<Order>().Property(x => x.customerId).HasColumnName("customerid");
+            modelBuilder.Entity<Order>().Property(x => x.employeeId).HasColumnName("employeeid");
+            modelBuilder.Entity<Order>().Property(x => x.orderDate).HasColumnName("orderdate");
+            modelBuilder.Entity<Order>().Property(x => x.requiredDate).HasColumnName("requireddate");
+            modelBuilder.Entity<Order>().Property(x => x.shippedDate).HasColumnName("shippeddate");
+            modelBuilder.Entity<Order>().Property(x => x.freight).HasColumnName("freight");
+            modelBuilder.Entity<Order>().Property(x => x.shipName).HasColumnName("shipname");
+            modelBuilder.Entity<Order>().Property(x => x.shipAddress).HasColumnName("shipaddress");
+            modelBuilder.Entity<Order>().Property(x => x.shipCountry).HasColumnName("shipcountry");
+            modelBuilder.Entity<Order>().Property(x => x.shipPostalCode).HasColumnName("shippostalcode");
+            modelBuilder.Entity<Order>().Property(x => x.shipCity).HasColumnName("shipcity");
+
+
+            modelBuilder.Entity<OrderDetails>().Property(x => x.orderId).HasColumnName("orderid");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.productId).HasColumnName("productid");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.unitPrice).HasColumnName("unitprice");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.quantity).HasColumnName("quantity");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.discount).HasColumnName("discount");
         }
     }
 }
