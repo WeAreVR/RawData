@@ -17,6 +17,7 @@ namespace Assignment4
         public bool DeleteCategory(int categoryId);
 
         public bool UpdateCategory(int categoryId, string updateName, string updateDescription);
+        public bool UpdateCategory(Category cat);
         IList<Product> GetProducts();
         Product GetProduct(int productID);
         public IList<Product> GetProductByCategory(int categoryId);
@@ -62,6 +63,17 @@ namespace Assignment4
             return ctx.SaveChanges() > 0;
         }
 
+        public bool UpdateCategory(Category cat)
+        {
+            var ctx = new NorthwindContext();
+            Category temp = ctx.Categories.Find(cat.Id);
+
+            temp.Name = cat.Name;
+            temp.Description = cat.Description;
+            ctx.SaveChanges();
+            return ctx.SaveChanges() > 0;
+        }
+
         public IList<Product> GetProducts()
         {
             var ctx = new NorthwindContext();
@@ -79,12 +91,11 @@ namespace Assignment4
             var products = from p in ctx.Products
                            where p.CategoryId == categoryId
                            select p;
-            foreach (var product in products)
-            {
-                product.CategoryName = GetCategory(product.CategoryId).Name;
-            }
+
             return products.ToList();
         }
+
+        /*
         public IList<Order> GetOrders()
         {
             var ctx = new NorthwindContext();
@@ -96,7 +107,7 @@ namespace Assignment4
             Order result = ctx.Orders.Find(orderId);
             return result;
         }
-        /*
+        
          Vi skal bruge noget info
         public IList<Order> GetOrderByShippingName(string shippingName)
         {
@@ -104,7 +115,7 @@ namespace Assignment4
             Order result = ctx.Orders.Find(shippingName);
             return result;
         }
-        */
+        
 
         //Vi mangler at få product name har kun ID i orderdetails
         public OrderDetails getOrderDetails(int orderId)
@@ -113,22 +124,23 @@ namespace Assignment4
             OrderDetails result = ctx.OrderDetails.Find(orderId);
             return result;
         }
+        
         public IList<OrderDetails> getOrderDetailsForProduct(int productId)
         {
             var ctx = new NorthwindContext();
             var orderdetails = from p in ctx.OrderDetails where p.productId
         }
+        
+
         public IList<Product> GetProductByCategory(int categoryId)
         {
             var ctx = new NorthwindContext();
             var products = from p in ctx.Products
                            where p.CategoryId == categoryId
                            select p;
-            foreach (var product in products)
-            {
-                product.CategoryName = GetCategory(product.CategoryId).Name;
-            }
+           
             return products.ToList();
-        }
+        }*/
+    }
 }
 

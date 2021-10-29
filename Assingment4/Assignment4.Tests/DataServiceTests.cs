@@ -3,11 +3,39 @@ using System.Linq;
 using Assignment4.Domain;
 using Xunit;
 
+using System.Collections.Generic;
+
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+
+
 namespace Assignment4.Tests
 {
     public class DataServiceTests
+
     {
         /* Categories */
+        private const string CategoriesApi = "http://localhost:5001/api/categories";
+        private const string ProductsApi = "http://localhost:5001/api/products";
+
+        /* /api/categories */
+
+        [Fact]
+        public void ApiCategories_GetWithNoArguments_OkAndAllCategories()
+        {
+            var (data, statusCode) = GetArray(CategoriesApi);
+
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(8, data.Count);
+            Assert.Equal("Beverages", data.First()["name"]);
+            Assert.Equal("Seafood", data.Last()["name"]);
+        }
+
 
         [Fact]
         public void Category_Object_HasIdNameAndDescription()
@@ -106,6 +134,7 @@ namespace Assignment4.Tests
             Assert.Null(product.QuantityPerUnit);
             Assert.Equal(0, product.UnitsInStock);
         }
+        */
 
         [Fact]
         public void GetProduct_ValidId_ReturnsProductWithCategory()
@@ -115,7 +144,7 @@ namespace Assignment4.Tests
             Assert.Equal("Chai", product.Name);
             Assert.Equal("Beverages", product.Category.Name);
         }
-        */
+        
         [Fact]
         public void GetProductsByCategory_ValidId_ReturnsProductWithCategory()
         {
@@ -205,5 +234,51 @@ namespace Assignment4.Tests
             Assert.Equal(3, orderDetails.First().Quantity);
         }
         */
+        (JArray, HttpStatusCode) GetArray(string url)
+        {
+            var client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            return ((JArray)JsonConvert.DeserializeObject(data), response.StatusCode);
+        }
+
+        (JObject, HttpStatusCode) GetObject(string url)
+        {
+            var client = new HttpClient();
+            var response = client.GetAsync(url).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            return ((JObject)JsonConvert.DeserializeObject(data), response.StatusCode);
+        }
+
+        (JObject, HttpStatusCode) PostData(string url, object content)
+        {
+            var client = new HttpClient();
+            var requestContent = new StringContent(
+                JsonConvert.SerializeObject(content),
+                Encoding.UTF8,
+                "application/json");
+            var response = client.PostAsync(url, requestContent).Result;
+            var data = response.Content.ReadAsStringAsync().Result;
+            return ((JObject)JsonConvert.DeserializeObject(data), response.StatusCode);
+        }
+
+        HttpStatusCode PutData(string url, object content)
+        {
+            var client = new HttpClient();
+            var response = client.PutAsync(
+                url,
+                new StringContent(
+                    JsonConvert.SerializeObject(content),
+                    Encoding.UTF8,
+                    "application/json")).Result;
+            return response.StatusCode;
+        }
+
+        HttpStatusCode DeleteData(string url)
+        {
+            var client = new HttpClient();
+            var response = client.DeleteAsync(url).Result;
+            return response.StatusCode;
+        }
     }
 }
