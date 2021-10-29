@@ -85,12 +85,50 @@ namespace Assignment4
             }
             return products.ToList();
         }
-        public IList<orders> GetOrder(int orderId)
+        public IList<Order> GetOrders()
         {
             var ctx = new NorthwindContext();
-            Product result = ctx.Products.Find(orderId);
+            return ctx.Orders.ToList();
+        }
+        public Order GetOrder(int orderId)
+        {
+            var ctx = new NorthwindContext();
+            Order result = ctx.Orders.Find(orderId);
             return result;
         }
-    }
+        /*
+         Vi skal bruge noget info
+        public IList<Order> GetOrderByShippingName(string shippingName)
+        {
+            var ctx = new NorthwindContext();
+            Order result = ctx.Orders.Find(shippingName);
+            return result;
+        }
+        */
+
+        //Vi mangler at få product name har kun ID i orderdetails
+        public OrderDetails getOrderDetails(int orderId)
+        {
+            var ctx = new NorthwindContext();
+            OrderDetails result = ctx.OrderDetails.Find(orderId);
+            return result;
+        }
+        public IList<OrderDetails> getOrderDetailsForProduct(int productId)
+        {
+            var ctx = new NorthwindContext();
+            var orderdetails = from p in ctx.OrderDetails where p.productId
+        }
+        public IList<Product> GetProductByCategory(int categoryId)
+        {
+            var ctx = new NorthwindContext();
+            var products = from p in ctx.Products
+                           where p.CategoryId == categoryId
+                           select p;
+            foreach (var product in products)
+            {
+                product.CategoryName = GetCategory(product.CategoryId).Name;
+            }
+            return products.ToList();
+        }
 }
 

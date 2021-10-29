@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Assignment4.Domain
 {
-    class OrderDetails
+    public class OrderDetails
     {
         public string orderId { get; set; }
         public string productId { get; set; }

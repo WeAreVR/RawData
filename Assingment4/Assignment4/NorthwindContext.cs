@@ -10,6 +10,8 @@ namespace Assignment4
         
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +37,7 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");
 
+            modelBuilder.Entity<Order>().ToTable("orders");
             modelBuilder.Entity<Order>().Property(x => x.orderId).HasColumnName("orderid");
             modelBuilder.Entity<Order>().Property(x => x.customerId).HasColumnName("customerid");
             modelBuilder.Entity<Order>().Property(x => x.employeeId).HasColumnName("employeeid");
@@ -48,7 +51,7 @@ namespace Assignment4
             modelBuilder.Entity<Order>().Property(x => x.shipPostalCode).HasColumnName("shippostalcode");
             modelBuilder.Entity<Order>().Property(x => x.shipCity).HasColumnName("shipcity");
 
-
+            modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
             modelBuilder.Entity<OrderDetails>().Property(x => x.orderId).HasColumnName("orderid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.productId).HasColumnName("productid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.unitPrice).HasColumnName("unitprice");
