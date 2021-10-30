@@ -18,9 +18,7 @@ namespace Assignment4.Domain
         [NotMapped]
         public string CategoryName { get; set; }
 
-        public Product() {
-            Category = new Category();
-        }
+
 
         public override string ToString()
         {

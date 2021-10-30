@@ -82,17 +82,25 @@ namespace Assignment4
         public Product GetProduct(int productId)
         {
             var ctx = new NorthwindContext();
+            
             Product result = ctx.Products.Find(productId);
+            ctx.Products.Include(x => x.Category);
+
             return result;
         }
         public IList<Product> GetProductByCategory(int categoryId)
         {
             var ctx = new NorthwindContext();
-            var products = from p in ctx.Products
+            /*var products = from p in ctx.Products
                            where p.CategoryId == categoryId
-                           select p;
+                           select p;*/
 
-            return products.ToList();
+            var products = ctx.Products
+                       .Where(p => p.CategoryId == categoryId)
+                       .Include(x => x.Category)
+                       .ToList();
+
+            return products;
         }
 
         /*

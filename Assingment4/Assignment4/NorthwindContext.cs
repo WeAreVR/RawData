@@ -37,7 +37,9 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.Id).HasColumnName("productid");
             modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");
-          
+           // modelBuilder.Entity<Product>().HasOne(q => q.Category).WithOne().IsRequired();
+
+
 
             /*
             modelBuilder.Entity<Order>().ToTable("orders");

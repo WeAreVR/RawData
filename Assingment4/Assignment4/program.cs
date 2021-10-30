@@ -11,11 +11,15 @@ namespace Assignment4
         static void Main(string[] args)
         {
             var dataService = new DataService();
+            
+            var pp = dataService.GetProduct(2);
+            Console.WriteLine("Her er en tom Category :) " + pp);
 
-            foreach (var category in dataService.GetCategories())
+            /*
+            foreach (var p in dataService.GetProducts())
             {
-                Console.WriteLine(category);
-            }
+                Console.WriteLine(p);
+            }*/
         }
 
 
