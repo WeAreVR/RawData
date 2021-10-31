@@ -11,16 +11,33 @@ namespace Assignment4
 {
         public interface IDataService
     {
+        //Orders
+        public Order GetOrder(int orderId);
+        public IList<Order> GetOrderByShippingName(string shippingName);
+        public IList<Order> GetOrders();
+
+        //OrderDetails
+        public OrderDetails GetOrderDetailsByOrderId(int orderId);
+        public IList<OrderDetails> GetOrderDetailsByProductId(int productId);
+
+        //Products
+        Product GetProduct(int productID);
+        IList<Product> GetProducts();
+        public IList<Product> GetProductByCategory(int categoryId);
+
+        //Categories
+        Category GetCategory(int categoryId);
         IList<Category> GetCategories();
         bool CreateCategory(Category category);
-        Category GetCategory(int categoryId);
+       
         public bool DeleteCategory(int categoryId);
 
         public bool UpdateCategory(int categoryId, string updateName, string updateDescription);
         public bool UpdateCategory(Category cat);
-        IList<Product> GetProducts();
-        Product GetProduct(int productID);
-        public IList<Product> GetProductByCategory(int categoryId);
+       
+        
+        
+        
     }
 
     public class DataService : IDataService
@@ -103,45 +120,55 @@ namespace Assignment4
             return products;
         }
 
-        /*
+        
         public IList<Order> GetOrders()
         {
             var ctx = new NorthwindContext();
+            ctx.Orders.Include(x => x.OrderDetails);
             return ctx.Orders.ToList();
         }
+
         public Order GetOrder(int orderId)
         {
             var ctx = new NorthwindContext();
             Order result = ctx.Orders.Find(orderId);
+            ctx.Orders.Include(x => x.OrderDetails);
             return result;
         }
-        */
-         //Vi skal bruge noget info
+   
         public IList<Order> GetOrderByShippingName(string shippingName)
         {
             var ctx = new NorthwindContext();
-            var order = ctx.order
-                       .Where(p => p.shippingName == shippingName)
-                       .Include(x => x.Order)
+            var order = ctx.Orders
+                       .Where(p => p.ShipName == shippingName)
+                       .Include(x => x.OrderDetails)
                        .ToList();
             return order;
         }
         
-        /*
+        
         //Vi mangler at få product name har kun ID i orderdetails
-        public OrderDetails getOrderDetails(int orderId)
+        public OrderDetails GetOrderDetailsByOrderId(int orderId)
         {
             var ctx = new NorthwindContext();
             OrderDetails result = ctx.OrderDetails.Find(orderId);
+            ctx.OrderDetails.Include(x => x.Product);
+
             return result;
         }
         
-        public IList<OrderDetails> getOrderDetailsForProduct(int productId)
+        
+        public IList<OrderDetails> GetOrderDetailsByProductId(int productId)
         {
             var ctx = new NorthwindContext();
-            var orderdetails = from p in ctx.OrderDetails where p.productId
+            var orderDetails = ctx.OrderDetails
+                       .Where(p => p.Product.Id == productId)
+                       .Include(x => x.Product)
+                       .ToList();
+            return orderDetails;
         }
         
+        /*
 
         public IList<Product> GetProductByCategory(int categoryId)
         {

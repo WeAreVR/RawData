@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +11,6 @@ namespace Assignment4.Domain
         public string UnitPrice { get; set; }
         public string Quantity { get; set; }
         public string Discount { get; set; }
+        public Product Product { get; set; }
     }
 }
-   */

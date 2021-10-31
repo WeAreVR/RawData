@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,20 +6,20 @@ namespace Assignment4.Domain
 {
     public class Order
     {
-        public int OrderId { get; set; }
-        public string customerId { get; set; }
+        public int Id { get; set; }
+        public string CustomerId { get; set; }
         public int EmployeeId { get; set; }
-        public string orderDate { get; set; }
-        public string requiredDate { get; set; }
-        public string shippedDate { get; set; }
-        public int freight { get; set; }
-        public string shipName { get; set; }
-        public string shipAddress { get; set; }
-        public string shipCity { get; set; }
-        public string shipCountry { get; set; }
-        public string shipPostalCode { get; set; }
+        public DateTime Date { get; set; }
+        public DateTime Required { get; set; }
+        public DateTime Shipped { get; set; }
+        public int Freight { get; set; }
+        public string ShipName { get; set; }
+        public string ShipAddress { get; set; }
+        public string ShipCity { get; set; }
+        public string ShipCountry { get; set; }
+        public string ShipPostalCode { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
 
 
     }
 }
-*/

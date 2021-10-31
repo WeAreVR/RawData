@@ -24,7 +24,7 @@ namespace Assignment4.Tests
         private const string ProductsApi = "http://localhost:5001/api/products";
 
         /* /api/categories */
-
+        /*
         [Fact]
         public void ApiCategories_GetWithNoArguments_OkAndAllCategories()
         {
@@ -34,7 +34,7 @@ namespace Assignment4.Tests
             Assert.Equal(8, data.Count);
             Assert.Equal("Beverages", data.First()["name"]);
             Assert.Equal("Seafood", data.Last()["name"]);
-        }
+        }*/
 
 
         [Fact]
@@ -166,7 +166,7 @@ namespace Assignment4.Tests
             Assert.Equal("Flotemysost", products.Last().ProductName);
         }
 
-        /* orders *//*
+        /* orders */
         [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
         {
@@ -179,6 +179,7 @@ namespace Assignment4.Tests
             Assert.Null(order.ShipCity);
         }
 
+        
         [Fact]
         public void GetOrder_ValidId_ReturnsCompleteOrder()
         {
@@ -195,7 +196,7 @@ namespace Assignment4.Tests
             var service = new DataService();
             var orders = service.GetOrders();
             Assert.Equal(830, orders.Count);
-        }*/
+        }
 
 
         /* orderdetails *//*
@@ -233,7 +234,7 @@ namespace Assignment4.Tests
             Assert.Equal(21, orderDetails.First().UnitPrice);
             Assert.Equal(3, orderDetails.First().Quantity);
         }
-        */
+        
         (JArray, HttpStatusCode) GetArray(string url)
         {
             var client = new HttpClient();
@@ -279,6 +280,6 @@ namespace Assignment4.Tests
             var client = new HttpClient();
             var response = client.DeleteAsync(url).Result;
             return response.StatusCode;
-        }
+        }*/
     }
 }
