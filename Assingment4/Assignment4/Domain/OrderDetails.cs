@@ -6,11 +6,12 @@ namespace Assignment4.Domain
 {
     public class OrderDetails
     {
-        public string OrderId { get; set; }
-        public string ProductId { get; set; }
-        public string UnitPrice { get; set; }
-        public string Quantity { get; set; }
-        public string Discount { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int UnitPrice { get; set; }
+        public int Quantity { get; set; }
+        public int Discount { get; set; }
         public Product Product { get; set; }
+        public Order Order { get; set; }
     }
 }

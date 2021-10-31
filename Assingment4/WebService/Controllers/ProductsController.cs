@@ -48,7 +48,23 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        
+
+        // api/products/name/substring
+        [HttpGet("name/{substring}", Name = nameof(GetProductByName))]
+        public IActionResult GetProductByName(string substring)
+        {
+            var products = _dataService.GetProductByName(substring);
+
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(products.Select(x => GetProductViewModel(x)));
+        }
+
+
         private ProductViewModel GetProductViewModel(Assignment4.Domain.Product product)
         {
             return new ProductViewModel

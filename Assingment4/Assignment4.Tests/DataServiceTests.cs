@@ -23,20 +23,6 @@ namespace Assignment4.Tests
         private const string CategoriesApi = "http://localhost:5001/api/categories";
         private const string ProductsApi = "http://localhost:5001/api/products";
 
-        /* /api/categories */
-        /*
-        [Fact]
-        public void ApiCategories_GetWithNoArguments_OkAndAllCategories()
-        {
-            var (data, statusCode) = GetArray(CategoriesApi);
-
-            Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal(8, data.Count);
-            Assert.Equal("Beverages", data.First()["name"]);
-            Assert.Equal("Seafood", data.Last()["name"]);
-        }*/
-
-
         [Fact]
         public void Category_Object_HasIdNameAndDescription()
         {
@@ -62,7 +48,7 @@ namespace Assignment4.Tests
             var category = service.GetCategory(1);
             Assert.Equal("Beverages", category.Name);
         }
-        /*
+        
         [Fact]
         public void CreateCategory_ValidData_CreteCategoryAndRetunsNewObject()
         {
@@ -102,6 +88,7 @@ namespace Assignment4.Tests
             var category = service.CreateCategory("TestingUpdate", "UpdateCategory_NewNameAndDescription_UpdateWithNewValues");
 
             var result = service.UpdateCategory(category.Id, "UpdatedName", "UpdatedDescription");
+  
             Assert.True(result);
 
             category = service.GetCategory(category.Id);
@@ -119,10 +106,10 @@ namespace Assignment4.Tests
             var service = new DataService();
             var result = service.UpdateCategory(-1, "UpdatedName", "UpdatedDescription");
             Assert.False(result);
-        }*/
+        }
 
 
-        /* products *//*
+        /* products */
 
         [Fact]
         public void Product_Object_HasIdNameUnitPriceQuantityPerUnitAndUnitsInStock()
@@ -134,7 +121,7 @@ namespace Assignment4.Tests
             Assert.Null(product.QuantityPerUnit);
             Assert.Equal(0, product.UnitsInStock);
         }
-        */
+        
 
         [Fact]
         public void GetProduct_ValidId_ReturnsProductWithCategory()
@@ -155,15 +142,15 @@ namespace Assignment4.Tests
             Assert.Equal("Beverages", products.First().CategoryName);
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
-        /*
+        
         [Fact]
         public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
         {
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName);
-            Assert.Equal("Flotemysost", products.Last().ProductName);
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name);
+            Assert.Equal("Flotemysost", products.Last().Name);
         }
 
         /* orders */
@@ -199,7 +186,7 @@ namespace Assignment4.Tests
         }
 
 
-        /* orderdetails *//*
+        /* orderdetails */
         [Fact]
         public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
         {
@@ -234,52 +221,5 @@ namespace Assignment4.Tests
             Assert.Equal(21, orderDetails.First().UnitPrice);
             Assert.Equal(3, orderDetails.First().Quantity);
         }
-        
-        (JArray, HttpStatusCode) GetArray(string url)
-        {
-            var client = new HttpClient();
-            var response = client.GetAsync(url).Result;
-            var data = response.Content.ReadAsStringAsync().Result;
-            return ((JArray)JsonConvert.DeserializeObject(data), response.StatusCode);
-        }
-
-        (JObject, HttpStatusCode) GetObject(string url)
-        {
-            var client = new HttpClient();
-            var response = client.GetAsync(url).Result;
-            var data = response.Content.ReadAsStringAsync().Result;
-            return ((JObject)JsonConvert.DeserializeObject(data), response.StatusCode);
-        }
-
-        (JObject, HttpStatusCode) PostData(string url, object content)
-        {
-            var client = new HttpClient();
-            var requestContent = new StringContent(
-                JsonConvert.SerializeObject(content),
-                Encoding.UTF8,
-                "application/json");
-            var response = client.PostAsync(url, requestContent).Result;
-            var data = response.Content.ReadAsStringAsync().Result;
-            return ((JObject)JsonConvert.DeserializeObject(data), response.StatusCode);
-        }
-
-        HttpStatusCode PutData(string url, object content)
-        {
-            var client = new HttpClient();
-            var response = client.PutAsync(
-                url,
-                new StringContent(
-                    JsonConvert.SerializeObject(content),
-                    Encoding.UTF8,
-                    "application/json")).Result;
-            return response.StatusCode;
-        }
-
-        HttpStatusCode DeleteData(string url)
-        {
-            var client = new HttpClient();
-            var response = client.DeleteAsync(url).Result;
-            return response.StatusCode;
-        }*/
     }
 }
