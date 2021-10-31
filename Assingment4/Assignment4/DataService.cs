@@ -115,16 +115,19 @@ namespace Assignment4
             Order result = ctx.Orders.Find(orderId);
             return result;
         }
-        
-         Vi skal bruge noget info
+        */
+         //Vi skal bruge noget info
         public IList<Order> GetOrderByShippingName(string shippingName)
         {
             var ctx = new NorthwindContext();
-            Order result = ctx.Orders.Find(shippingName);
-            return result;
+            var order = ctx.order
+                       .Where(p => p.shippingName == shippingName)
+                       .Include(x => x.Order)
+                       .ToList();
+            return order;
         }
         
-
+        /*
         //Vi mangler at få product name har kun ID i orderdetails
         public OrderDetails getOrderDetails(int orderId)
         {
