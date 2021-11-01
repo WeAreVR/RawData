@@ -65,6 +65,22 @@ namespace WebService.Controllers
         }
 
 
+        // api/products/category/categoryId
+        [HttpGet("category/{categoryId}", Name = nameof(GetProductByCategory))]
+        public IActionResult GetProductByCategory(int categoryId)
+        {
+            var products = _dataService.GetProductByCategory(categoryId);
+
+            if (products == null)
+            {
+                return NotFound();
+            }
+
+
+            return Ok(products.Select(x => GetProductViewModel(x)));
+        }
+
+
         private ProductViewModel GetProductViewModel(Assignment4.Domain.Product product)
         {
             return new ProductViewModel

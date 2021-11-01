@@ -82,11 +82,13 @@ namespace WebService.Controllers
 
         [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
+
         {
             if(!_dataService.DeleteCategory(id))
             {
                 return NotFound();
             }
+     
             return NoContent();
         }
 

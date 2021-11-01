@@ -69,12 +69,12 @@ namespace Assignment4
         public IList<Category> GetCategories()
         {
             var ctx = new NorthwindContext();
-            return ctx.Categories.ToList();
+            return ctx.Categories.Include(x => x.Products).ToList();
         }
         public Category GetCategory(int categoryId)
         {
             var ctx = new NorthwindContext();
-            Category result = ctx.Categories.Find(categoryId);
+            Category result = ctx.Categories.Include(x => x.Products).FirstOrDefault(x => x.Id == categoryId);
             return result;
         }
         public bool DeleteCategory(int categoryId)
@@ -116,7 +116,7 @@ namespace Assignment4
         public IList<Product> GetProducts()
         {
             var ctx = new NorthwindContext();
-            return ctx.Products.ToList();
+            return ctx.Products.Include(x => x.Category).ToList();
         }
         public Product GetProduct(int productId)
         {
