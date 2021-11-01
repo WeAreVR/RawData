@@ -76,7 +76,6 @@ namespace WebService.Controllers
                 return NotFound();
             }
 
-
             return Ok(products.Select(x => GetProductViewModel(x)));
         }
 

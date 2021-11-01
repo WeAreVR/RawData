@@ -170,7 +170,7 @@ namespace Assignment4.Tests
             var (products, statusCode) = GetArray($"{ProductsApi}/category/1000001");
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
-            Assert.Equal(0, products.Count);
+            Assert.Empty(products);
         }
 
         [Fact]
@@ -180,8 +180,8 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuﬂ-Nougat-Creme", products.First()["productName"]);
-            Assert.Equal("Flotemysost", products.Last()["productName"]);
+            Assert.Equal("NuNuCa Nuﬂ-Nougat-Creme", products.First()["name"]);
+            Assert.Equal("Flotemysost", products.Last()["name"]);
         }
 
         [Fact]

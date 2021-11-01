@@ -122,9 +122,8 @@ namespace Assignment4
         {
             var ctx = new NorthwindContext();
 
-            // Product result = ctx.Products.Find(productId);
             Product result = ctx.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == productId);
-            //ctx.Products.Include(x => x.Category);
+            
 
             return result;
         }
