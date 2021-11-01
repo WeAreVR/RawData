@@ -42,10 +42,6 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.UnitsInStock).HasColumnName("unitsinstock");
 
 
-            // modelBuilder.Entity<Product>().HasOne(q => q.Category).WithOne().IsRequired();
-
-
-
 
             modelBuilder.Entity<Order>().ToTable("orders");
             modelBuilder.Entity<Order>().Property(x => x.Id).HasColumnName("orderid");

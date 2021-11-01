@@ -11,7 +11,7 @@ namespace Assignment4.Domain
         public int EmployeeId { get; set; }
         public DateTime Date { get; set; }
         public DateTime Required { get; set; }
-        public DateTime Shipped { get; set; }
+        public DateTime? Shipped { get; set; }
         public int Freight { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }

@@ -121,9 +121,10 @@ namespace Assignment4
         public Product GetProduct(int productId)
         {
             var ctx = new NorthwindContext();
-            
-            Product result = ctx.Products.Find(productId);
-            ctx.Products.Include(x => x.Category);
+
+            // Product result = ctx.Products.Find(productId);
+            Product result = ctx.Products.Include(x => x.Category).FirstOrDefault(x => x.Id == productId);
+            //ctx.Products.Include(x => x.Category);
 
             return result;
         }
@@ -132,9 +133,10 @@ namespace Assignment4
             var ctx = new NorthwindContext();
 
             var products = ctx.Products
-                       .Where(p => p.CategoryId == categoryId)
                        .Include(x => x.Category)
-                       .ToList();
+                       .Where(p => p.CategoryId == categoryId)
+                       .ToList()
+                       ;
 
             return products;
         }
@@ -145,8 +147,8 @@ namespace Assignment4
             var ctx = new NorthwindContext();
 
             var products = ctx.Products
-                       .Where(p => p.Name.Contains(input))
                        .Include(x => x.Category)
+                       .Where(p => p.Name.Contains(input))
                        .ToList();
 
             return products;
@@ -164,8 +166,12 @@ namespace Assignment4
         public Order GetOrder(int orderId)
         {
             var ctx = new NorthwindContext();
-            Order result = ctx.Orders.Find(orderId);
-            ctx.Orders.Include(x => x.OrderDetails);
+            Order result = ctx.Orders
+                           .Include(x => x.OrderDetails)
+                           .ThenInclude(p => p.Product)
+                           .ThenInclude(c => c.Category)
+                           .FirstOrDefault(x => x.Id == orderId);
+
             return result;
         }
 
@@ -174,8 +180,10 @@ namespace Assignment4
         {
             var ctx = new NorthwindContext();
             var order = ctx.Orders
-                       .Where(p => p.ShipName == shippingName)
                        .Include(x => x.OrderDetails)
+                       .ThenInclude(p => p.Product)
+                       .ThenInclude(c => c.Category)
+                       .Where(p => p.ShipName == shippingName)
                        .ToList();
             return order;
         }
@@ -186,8 +194,9 @@ namespace Assignment4
             var ctx = new NorthwindContext();
 
             var orderDetails = ctx.OrderDetails
-                       .Where(o => o.OrderId == orderId)
                        .Include(x => x.Product)
+                       .ThenInclude(c => c.Category)
+                       .Where(o => o.OrderId == orderId)
                        .ToList();
 
             return orderDetails;
@@ -198,8 +207,10 @@ namespace Assignment4
         {
             var ctx = new NorthwindContext();
             var orderDetails = ctx.OrderDetails
-                       .Where(p => p.Product.Id == productId)
                        .Include(x => x.Product)
+                       .ThenInclude(c => c.Category)
+                       .Include(o => o.Order)
+                       .Where(p => p.Product.Id == productId)
                        .ToList();
             return orderDetails;
         }
