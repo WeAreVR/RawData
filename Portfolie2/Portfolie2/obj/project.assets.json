@@ -8,19 +8,19 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\louis\\.nuget\\packages\\": {}
+    "C:\\Users\\thoma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
+      "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
       "projectName": "WebService",
-      "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
-      "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\obj\\",
+      "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
+      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
