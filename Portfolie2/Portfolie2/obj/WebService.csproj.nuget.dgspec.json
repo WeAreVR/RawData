@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\Portfolie2.csproj": {}
+    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {}
   },
   "projects": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\Portfolie2.csproj": {
+    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\Portfolie2.csproj",
-        "projectName": "Portfolie2",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\Portfolie2.csproj",
+        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
+        "projectName": "WebService",
+        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
         "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\obj\\",
         "projectStyle": "PackageReference",
