@@ -7,7 +7,8 @@ namespace Assignment4
     
     public class NorthwindContext : DbContext
     {
-        
+     
+        public Db
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -19,7 +20,7 @@ namespace Assignment4
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=ctj66yjr");
+            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
