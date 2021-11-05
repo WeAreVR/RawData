@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-	public class TitleAkas
+	public class TitleAka
 	{
 		public string TitleId { get; set; }
 		public int Ordering { get; set; }

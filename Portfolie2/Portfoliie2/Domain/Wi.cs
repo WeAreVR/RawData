@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-	public class Wi2
+	public class Wi
 	{
 		public int TitleId { get; set; }
 		public string Word { get; set; }

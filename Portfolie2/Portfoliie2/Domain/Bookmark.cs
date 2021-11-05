@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-    public class Bookmarks
+    public class Bookmark
     {
         public string Username { get; set; }
         public int TitleId { get; set; }

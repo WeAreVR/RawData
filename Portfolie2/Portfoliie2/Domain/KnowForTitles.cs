@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-	public class KnownForTitles
+	public class KnownForTitle
 	{
 		public string NameId { get; set; }
 		public string TitleId { get; set; }

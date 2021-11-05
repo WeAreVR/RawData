@@ -10,8 +10,8 @@ namespace Portfolie2.Domain
 {
 	public class Plays
 	{
-		public string NameID { get; set; }
-		public string TitleID { get; set; }
-		public String Character { get; set; }
+		public string NameId { get; set; }
+		public string TitleId { get; set; }
+		public string Character { get; set; }
 	}
 }

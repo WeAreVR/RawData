@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-    public class Comments
+    public class Comment
     {
         public string Username { get; set; }
 

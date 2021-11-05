@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Portfolie2.Domain
 {
-	public class TitleRatings
+	public class TitleRating
 	{
-		public string Id { get; set; }
+		public string TitleId { get; set; }
 		public decimal AvgRating { get; set; }
 		public int NumVotes { get; set; }
 	}

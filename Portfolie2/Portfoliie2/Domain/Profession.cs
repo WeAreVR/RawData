@@ -9,8 +9,8 @@ namespace Portfolie2.Domain
 {
 	public class Profession
 	{
-		public string nameId { get; set; }
-		public int ordering { get; set; }
-		public string profession { get; set; }
+		public string NameId { get; set; }
+		public int Ordering { get; set; }
+		public string ProfessionName { get; set; }
 	}
 }
