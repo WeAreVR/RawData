@@ -1,0 +1,8 @@
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.csproj.AssemblyReference.cache
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.AssemblyInfoInputs.cache
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.AssemblyInfo.cs
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.csproj.CoreCompileInputs.cache
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.RazorAssemblyInfo.cache
+C:\Users\Mathi\Documents\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.RazorAssemblyInfo.cs

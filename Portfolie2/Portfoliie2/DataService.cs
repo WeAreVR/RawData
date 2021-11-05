@@ -11,7 +11,7 @@ namespace Portfolie2
 {
     public interface IDataService
     {
-        //TitleBasics
+        //TitleBasics CRUD
         public TitleBasic GetTitleBasic(string titleId);
         public bool CreateTitleBasic(TitleBasic titleBasic);
         public bool UpdateTitleBasic(TitleBasic titleBasic);
