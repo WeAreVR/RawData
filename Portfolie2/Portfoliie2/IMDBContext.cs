@@ -2,7 +2,7 @@
 using System;
 using Portfolie2.Domain;
 
-namespace Assignment4
+namespace Portfolie2
 {
     
     public class IMDBContext : DbContext
@@ -76,7 +76,7 @@ namespace Assignment4
 
 
             modelBuilder.Entity<TitleBasic>().ToTable("title_basics2");
-            modelBuilder.Entity<TitleBasic>().Property(x => x.TitleId).HasColumnName("title_id");
+            modelBuilder.Entity<TitleBasic>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleBasic>().Property(x => x.TitleType).HasColumnName("title_type");
             modelBuilder.Entity<TitleBasic>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
             modelBuilder.Entity<TitleBasic>().Property(x => x.OriginalTitle).HasColumnName("original_title");
