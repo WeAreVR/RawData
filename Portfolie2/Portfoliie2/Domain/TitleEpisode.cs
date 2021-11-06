@@ -13,5 +13,6 @@ namespace Portfolie2.Domain
 		public string ParentTitleId { get; set; }
 		public int SeasonNumber { get; set; }
 		public int EpisodeNumber { get; set; }
+		public TitleBasic TitleBasics { get; set; }
 	}
 }

@@ -14,6 +14,7 @@ namespace Portfolie2
         //TitleBasics CRUD
         public TitleBasic GetTitleBasic(string titleId);
         public bool CreateTitleBasic(TitleBasic titleBasic);
+        public TitleBasic CreateTitleBasic(string id, string primarytitle, bool isadult);
         public bool UpdateTitleBasic(TitleBasic titleBasic);
         public bool DeleteTitleBasic(string titleId);
 
@@ -32,9 +33,25 @@ namespace Portfolie2
         public bool CreateTitleBasic(TitleBasic titleBasic)
         {
             var ctx = new IMDBContext();
+            //FIX THIS
             titleBasic.Id = ctx.TitleBasics.Max(x => x.Id) + 1;
             ctx.Add(titleBasic);
             return ctx.SaveChanges() > 0;
+        }
+
+        public TitleBasic CreateTitleBasic(string id, string primarytitle, bool isadult)
+        {
+            var ctx = new IMDBContext();
+
+            TitleBasic titlebasic = new TitleBasic();
+            titlebasic.Id = id;
+            titlebasic.PrimaryTitle = primarytitle;
+            titlebasic.IsAdult = isadult;
+
+            ctx.Add(titlebasic);
+            ctx.SaveChanges();
+
+            return titlebasic;
         }
 
         public bool UpdateTitleBasic(TitleBasic titleBasic)

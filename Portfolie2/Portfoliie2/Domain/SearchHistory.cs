@@ -12,5 +12,6 @@ namespace Portfolie2.Domain
 		public string Username { get; set; }
 		public string SearchInput { get; set; }
 		public DateTime TimeStamp { get; set; }
+		public User User { get; set; }
 	}
 }

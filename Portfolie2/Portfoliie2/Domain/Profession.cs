@@ -12,5 +12,6 @@ namespace Portfolie2.Domain
 		public string NameId { get; set; }
 		public int Ordering { get; set; }
 		public string ProfessionName { get; set; }
+		public NameBasic NameBasic { get; set; }
 	}
 }

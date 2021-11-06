@@ -13,5 +13,7 @@ namespace Portfolie2.Domain
 		public string NameId { get; set; }
 		public string TitleId { get; set; }
 		public string Character { get; set; }
+		public NameBasic NameBasic { get; set; }
+		public TitleBasic TitleBasic { get; set; }
 	}
 }

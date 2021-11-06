@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Portfoliie2
+namespace Portfolie2
 {
     class Program
     {

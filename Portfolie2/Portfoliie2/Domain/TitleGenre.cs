@@ -11,5 +11,7 @@ namespace Portfolie2.Domain
     {
         public int TitleId { get; set; }
         public string Genre { get; set; }
+        public ICollection<TitleBasic> TitleBasics { get; set; }
+
     }
 }

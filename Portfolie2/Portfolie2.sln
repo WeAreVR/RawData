@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "Portfolie2\WebService.csproj", "{038BE4C3-3317-4165-925A-D61FDDB2F88C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolie2", "Portfoliie2\Portfolie2.csproj", "{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolie2", "Portfoliie2\Portfolie2.csproj", "{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServiceTests", "DataServiceTests\DataServiceTests.csproj", "{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

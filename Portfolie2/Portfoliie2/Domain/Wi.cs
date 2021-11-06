@@ -13,6 +13,7 @@ namespace Portfolie2.Domain
 		public string Word { get; set; }
 		public string Field { get; set; }
 		public string Lexeme { get; set; }
+		public TitleBasic TitleBasic { get; set; }
 	}
 }
 

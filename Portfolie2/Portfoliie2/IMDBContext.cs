@@ -32,7 +32,7 @@ namespace Portfolie2
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=Northwind;uid=postgres;pwd=");
+            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,16 +42,19 @@ namespace Portfolie2
             modelBuilder.Entity<Award>().ToTable("awards");
             modelBuilder.Entity<Award>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Award>().Property(x => x.AwardName).HasColumnName("award");
+            modelBuilder.Entity<Award>().HasKey(c => new { c.TitleId});
 
             modelBuilder.Entity<Bookmark>().ToTable("bookmarks");
             modelBuilder.Entity<Bookmark>().Property(x => x.Username).HasColumnName("user_name");
             modelBuilder.Entity<Bookmark>().Property(x => x.TitleId).HasColumnName("title_id");
+            modelBuilder.Entity<Bookmark>().HasKey(c => new { c.TitleId, c.Username });
 
             modelBuilder.Entity<Comment>().ToTable("comments");
             modelBuilder.Entity<Comment>().Property(x => x.Username).HasColumnName("user_name");
             modelBuilder.Entity<Comment>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Comment>().Property(x => x.Content).HasColumnName("content");
             modelBuilder.Entity<Comment>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
+            modelBuilder.Entity<Comment>().HasKey(c => new { c.TitleId, c.Username });
 
             modelBuilder.Entity<TitleEpisode>().ToTable("episode2");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.Id).HasColumnName("title_id");
@@ -63,6 +66,7 @@ namespace Portfolie2
             modelBuilder.Entity<KnownForTitle>().ToTable("know_for_titles");
             modelBuilder.Entity<KnownForTitle>().Property(x => x.NameId).HasColumnName("name_id");
             modelBuilder.Entity<KnownForTitle>().Property(x => x.TitleId).HasColumnName("title_id");
+            modelBuilder.Entity<KnownForTitle>().HasKey(c => new { c.TitleId, c.NameId });
 
             modelBuilder.Entity<TitleAka>().ToTable("title_akas2");
             modelBuilder.Entity<TitleAka>().Property(x => x.TitleId).HasColumnName("title_id");
@@ -73,6 +77,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleAka>().Property(x => x.Types).HasColumnName("types");
             modelBuilder.Entity<TitleAka>().Property(x => x.Attributes).HasColumnName("attributes");
             modelBuilder.Entity<TitleAka>().Property(x => x.IsOriginalTitle).HasColumnName("is_original_title");
+            modelBuilder.Entity<TitleAka>().HasKey(c => new { c.TitleId, c.Ordering });
 
 
             modelBuilder.Entity<TitleBasic>().ToTable("title_basics2");
@@ -86,6 +91,9 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().Property(x => x.Runtime).HasColumnName("runtime_minutes");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Plot).HasColumnName("plot");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Poster).HasColumnName("poster");
+            modelBuilder.Entity<TitleBasic>()
+        .HasOne(a => a.TitleRating).WithOne(b => b.TitleBasic)
+        .HasForeignKey<TitleRating>(e => e.TitleId);
 
 
             modelBuilder.Entity<NameBasic>().ToTable("name_basics2");
@@ -101,10 +109,12 @@ namespace Portfolie2
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.NameId).HasColumnName("name_id");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.Category).HasColumnName("category");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.Job).HasColumnName("job");
+            modelBuilder.Entity<TitlePrincipal>().HasKey(c => new { c.TitleId, c.NameId, c.Ordering });
 
             modelBuilder.Entity<TitleGenre>().ToTable("title_genre");
             modelBuilder.Entity<TitleGenre>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<TitleGenre>().Property(x => x.Genre).HasColumnName("genre");
+            modelBuilder.Entity<TitleGenre>().HasKey(c => new { c.TitleId, c.Genre });
 
 
             modelBuilder.Entity<Wi>().ToTable("wi2");
@@ -112,33 +122,39 @@ namespace Portfolie2
             modelBuilder.Entity<Wi>().Property(x => x.Word).HasColumnName("word");
             modelBuilder.Entity<Wi>().Property(x => x.Field).HasColumnName("field");
             modelBuilder.Entity<Wi>().Property(x => x.Lexeme).HasColumnName("lexeme");
+            modelBuilder.Entity<Wi>().HasKey(c => new { c.TitleId, c.Word, c.Field });
 
             modelBuilder.Entity<TitleRating>().ToTable("title_ratings2");
             modelBuilder.Entity<TitleRating>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<TitleRating>().Property(x => x.AvgRating).HasColumnName("avg_rating");
             modelBuilder.Entity<TitleRating>().Property(x => x.NumVotes).HasColumnName("num_votes");
-             
+            modelBuilder.Entity<TitleRating>().HasKey(c => new { c.TitleId });
+
 
             modelBuilder.Entity<User>().ToTable("users");
             modelBuilder.Entity<User>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<User>().Property(x => x.Password).HasColumnName("password");
+            modelBuilder.Entity<User>().HasKey(c => new { c.Username });
 
 
             modelBuilder.Entity<Plays>().ToTable("plays");
             modelBuilder.Entity<Plays>().Property(x => x.NameId).HasColumnName("name_id");
             modelBuilder.Entity<Plays>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Plays>().Property(x => x.Character).HasColumnName("character");
+            modelBuilder.Entity<Plays>().HasKey(c => new { c.TitleId, c.NameId, c.Character });
 
             modelBuilder.Entity<Profession>().ToTable("profession");
             modelBuilder.Entity<Profession>().Property(x => x.NameId).HasColumnName("name_id");
             modelBuilder.Entity<Profession>().Property(x => x.Ordering).HasColumnName("ordering");
             modelBuilder.Entity<Profession>().Property(x => x.ProfessionName).HasColumnName("profession");
+            modelBuilder.Entity<Profession>().HasKey(c => new { c.NameId, c.Ordering });
 
             modelBuilder.Entity<RatingHistory>().ToTable("rating_history");
             modelBuilder.Entity<RatingHistory>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<RatingHistory>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<RatingHistory>().Property(x => x.Rating).HasColumnName("rating");
             modelBuilder.Entity<RatingHistory>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
+            modelBuilder.Entity<RatingHistory>().HasKey(c => new { c.TitleId, c.Username });
 
 
 
@@ -146,6 +162,7 @@ namespace Portfolie2
             modelBuilder.Entity<SearchHistory>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<SearchHistory>().Property(x => x.SearchInput).HasColumnName("search_input");
             modelBuilder.Entity<SearchHistory>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
+            modelBuilder.Entity<SearchHistory>().HasKey(c => new { c.Username, c.TimeStamp });
 
 
         }
