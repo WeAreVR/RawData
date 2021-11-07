@@ -89,7 +89,6 @@ C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Deb
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.AssemblyInfoInputs.cache
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.AssemblyInfo.cs
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.csproj.CoreCompileInputs.cache
-C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.csproj.CopyComplete
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.dll
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.pdb
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.genruntimeconfig.cache

@@ -32,7 +32,7 @@ namespace Portfolie2
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
+            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=Anders18");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
