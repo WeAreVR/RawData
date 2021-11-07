@@ -18,6 +18,13 @@ namespace Portfolie2
         public bool UpdateTitleBasic(TitleBasic titleBasic);
         public bool DeleteTitleBasic(string titleId);
 
+        //NameBasic CRUD
+        public NameBasic GetNameBasic(string nameId);
+        public bool CreateNameBasic(NameBasic nameBasic);
+        public NameBasic CreateNameBasic(string nameId, string primaryName);
+        public bool UpdateNameBasic(NameBasic nameBasic);
+        public bool DeleteNameBasic(string nameId);
+
 
     }
 
@@ -77,6 +84,64 @@ namespace Portfolie2
             try
             {
                 ctx.TitleBasics.Remove(ctx.TitleBasics.Find(titleId));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
+            return ctx.SaveChanges() > 0;
+        }
+        //Name CRUD
+        public NameBasic GetNameBasic(string nameId)
+        {
+            var ctx = new IMDBContext();
+            NameBasic result = ctx.NameBasics.FirstOrDefault(x => x.Id == nameId);
+            return result;
+        }
+
+        public bool CreateNameBasic(NameBasic nameBasic)
+        {
+            var ctx = new IMDBContext();
+            //FIX THIS
+            nameBasic.Id = ctx.NameBasics.Max(x => x.Id) + 1;
+            ctx.Add(nameBasic);
+            return ctx.SaveChanges() > 0;
+        }
+
+        public NameBasic CreateNameBasic(string nameId, string primaryName)
+        {
+            var ctx = new IMDBContext();
+
+            NameBasic namebasic = new NameBasic();
+            namebasic.Id = nameId;
+            namebasic.PrimaryName = primaryName;
+
+            ctx.Add(namebasic);
+            ctx.SaveChanges();
+
+            return namebasic;
+        }
+
+        public bool UpdateNameBasic(NameBasic nameBasic)
+        {
+            var ctx = new IMDBContext();
+            NameBasic temp = ctx.NameBasics.Find(nameBasic.Id);
+
+            temp.Id = nameBasic.Id;
+            temp.PrimaryName = nameBasic.PrimaryName;
+            temp.BirthYear = nameBasic.BirthYear;
+            temp.DeathYear = nameBasic.DeathYear;
+            temp.Rating = nameBasic.Rating;
+            return ctx.SaveChanges() > 0;
+        }
+
+        public bool DeleteNameBasic(string nameId)
+        {
+            var ctx = new IMDBContext();
+            try
+            {
+                ctx.NameBasics.Remove(ctx.NameBasics.Find(nameId));
             }
             catch (Exception e)
             {
