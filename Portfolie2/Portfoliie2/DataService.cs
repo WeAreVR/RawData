@@ -92,7 +92,8 @@ namespace Portfolie2
 
             return ctx.SaveChanges() > 0;
         }
-        //Name CRUD
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Name CRUD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         public NameBasic GetNameBasic(string nameId)
         {
             var ctx = new IMDBContext();

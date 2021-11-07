@@ -17,7 +17,7 @@ namespace Portfolie2.DataServiceTests
     public class DataServiceTests
 
     {
-        /* Categories */
+        /* Title */
 
         [Fact]
         public void Category_Object_HasIdNameAndDescription()
@@ -41,7 +41,15 @@ namespace Portfolie2.DataServiceTests
             // cleanup
             //service.DeleteTitleBasic(titlebasic.Id);
         }
+       /*
+        [Fact]
+        public void UpdateTitle()
+        {
+            var service = new DataService();
+            var titlebasic = service.CreateTitleBasic();
+        }
 
+        */
         [Fact]
         public void DeleteCategory_ValidId_RemoveTheCategory()
         {
@@ -51,6 +59,18 @@ namespace Portfolie2.DataServiceTests
             Assert.True(result);
             titlebasic = service.GetTitleBasic(titlebasic.Id);
             Assert.Null(titlebasic);
+        }
+        [Fact]
+        public void CreateNameBasic_ValidData_CreateNameBasicAndRetunsNewObject()
+        {
+            var service = new DataService();
+            var namebasic = service.CreateNameBasic("TESTID", "TestName");
+            Assert.True(namebasic.Id != null);
+            Assert.Equal("TestName", namebasic.PrimaryName);
+            Assert.Equal("TESTID", namebasic.Id);
+
+            // cleanup
+            //service.DeleteTitleBasic(titlebasic.Id);
         }
     }
 }
