@@ -81,14 +81,19 @@ namespace Portfolie2
         public bool DeleteTitleBasic(string titleId)
         {
             var ctx = new IMDBContext();
-            try
-            {
-                ctx.TitleBasics.Remove(ctx.TitleBasics.Find(titleId));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+            /* try
+             {
+                 ctx.TitleBasics.Remove(ctx.TitleBasics.Find(titleId));
+             }
+             catch (Exception e)
+             {
+                 Console.WriteLine(e);
+             }*/
+
+            TitleBasic titlebasic = new TitleBasic() { Id = titleId };
+            ctx.TitleBasics.Attach(titlebasic);
+            ctx.TitleBasics.Remove(ctx.TitleBasics.Find(titleId));
+            //ctx.SaveChanges();
 
             return ctx.SaveChanges() > 0;
         }

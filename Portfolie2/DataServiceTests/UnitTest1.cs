@@ -39,17 +39,17 @@ namespace Portfolie2.DataServiceTests
             Assert.False(titlebasic.IsAdult);
 
             // cleanup
-            //service.DeleteTitleBasic(titlebasic.Id);
+            service.DeleteTitleBasic(titlebasic.Id);
         }
-       /*
-        [Fact]
-        public void UpdateTitle()
-        {
-            var service = new DataService();
-            var titlebasic = service.CreateTitleBasic();
-        }
+        /*
+         [Fact]
+         public void UpdateTitle()
+         {
+             var service = new DataService();
+             var titlebasic = service.CreateTitleBasic();
+         }
 
-        */
+         */
         [Fact]
         public void DeleteCategory_ValidId_RemoveTheCategory()
         {
@@ -70,7 +70,7 @@ namespace Portfolie2.DataServiceTests
             Assert.Equal("TESTID", namebasic.Id);
 
             // cleanup
-            //service.DeleteTitleBasic(titlebasic.Id);
+            service.DeleteNameBasic(namebasic.Id);
         }
     }
 }

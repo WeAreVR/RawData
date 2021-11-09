@@ -17,8 +17,8 @@ namespace WebService.Controllers
     public class TitleBasicController : Controller
     {
 
-        IDataService _dataService;
-        LinkGenerator _linkGenerator;
+        private readonly IDataService _dataService;
+        private readonly LinkGenerator  _linkGenerator;
         private readonly IMapper _mapper;
 
         public TitleBasicController(IDataService dataService, LinkGenerator linkGenerator, IMapper mapper)
@@ -38,19 +38,21 @@ namespace WebService.Controllers
                 return NotFound();
             }
 
-            TitleBasicViewModel model = GetTitleViewModel(titleBasic);
+            TitleBasicViewModel model = GetTitleBasicViewModel(titleBasic);
 
             return Ok(model);
         }
-        private TitleBasicViewModel GetTitleViewModel(Portfolie2.Domain.TitleBasic titleBasic)
-        {
-            return new TitleBasicViewModel
-            {
 
-                //Url = GetUrl(TitleBasicViewModel),
-                PrimaryTitle = titleBasic.PrimaryTitle,
-                //CategoryId = product.CategoryId
-            };
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTitleBasic(string id)
+        {
+            /*if (!_dataService.DeleteTitleBasic(id))
+            {
+                return NotFound();
+            }*/
+            _dataService.DeleteTitleBasic(id);
+            return NoContent();
         }
 
         [HttpPost]
@@ -62,6 +64,20 @@ namespace WebService.Controllers
 
             return Created(GetUrl(title), CreateTitleBasicViewModel(title));
         }
+
+
+        private TitleBasicViewModel GetTitleBasicViewModel(Portfolie2.Domain.TitleBasic titleBasic)
+        {
+            return new TitleBasicViewModel
+            {
+
+                //Url = GetUrl(TitleBasicViewModel),
+                PrimaryTitle = titleBasic.PrimaryTitle,
+                //CategoryId = product.CategoryId
+            };
+        }
+
+        
         private TitleBasicViewModel CreateTitleBasicViewModel(TitleBasic title)
         {
             var model = _mapper.Map<TitleBasicViewModel>(title);
@@ -73,5 +89,8 @@ namespace WebService.Controllers
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
         }
+
+
+
     }
 }
