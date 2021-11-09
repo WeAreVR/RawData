@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebService.ViewModels;
+using AutoMapper;
 
 namespace WebService.Controllers
 {
@@ -17,11 +18,13 @@ namespace WebService.Controllers
 
         IDataService _dataService;
         LinkGenerator _linkGenerator;
+        private readonly IMapper _mapper;
 
-        public TitleBasicController(IDataService dataService, LinkGenerator linkGenerator)
+        public TitleBasicController(IDataService dataService, LinkGenerator linkGenerator, IMapper mapper)
         {
             _dataService = dataService;
             _linkGenerator = linkGenerator;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -52,6 +55,13 @@ namespace WebService.Controllers
         private string GetUrl(Portfolie2.Domain.TitleBasic titleBasic)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
+        }
+        private TitleTestViewModel CreateTitleListViewModel(Portfolie2.Domain.TitleBasic title)
+        {
+            var model = _mapper.Map<TitleTestViewModel>(title);
+            model.Url = GetUrl(title);
+            model.Id = title.Id;
+            return model;
         }
     }
 }
