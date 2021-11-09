@@ -1,4 +1,5 @@
 ﻿using Portfolie2;
+using Portfolie2.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
@@ -52,16 +53,25 @@ namespace WebService.Controllers
             };
         }
 
-        private string GetUrl(Portfolie2.Domain.TitleBasic titleBasic)
+        [HttpPost]
+        public IActionResult CreateTitleBasic(CreateTitleBasicViewModel model)
         {
-            return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
+            var title = _mapper.Map<TitleBasic>(model);
+
+            _dataService.CreateTitleBasic(title);
+
+            return Created(GetUrl(title), CreateTitleBasicViewModel(title));
         }
-        private TitleTestViewModel CreateTitleListViewModel(Portfolie2.Domain.TitleBasic title)
+        private TitleBasicViewModel CreateTitleBasicViewModel(TitleBasic title)
         {
-            var model = _mapper.Map<TitleTestViewModel>(title);
+            var model = _mapper.Map<TitleBasicViewModel>(title);
             model.Url = GetUrl(title);
             model.Id = title.Id;
             return model;
+        }
+        private string GetUrl(Portfolie2.Domain.TitleBasic titleBasic)
+        {
+            return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
         }
     }
 }

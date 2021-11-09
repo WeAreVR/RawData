@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +7,7 @@ using Portfolie2.Domain;
 
 namespace WebService.ViewModels
 {
-    public class TitleBasicViewModel
+    public class CreateTitleBasicViewModel
     {
 		public string Url { get; set; }
 		public string Id { get; set; }

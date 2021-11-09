@@ -148,3 +148,4 @@ C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\obj\Debu
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.dll
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.pdb
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.genruntimeconfig.cache
+C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
