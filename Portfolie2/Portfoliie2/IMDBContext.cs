@@ -21,7 +21,7 @@ namespace Portfolie2
         public DbSet<TitleBasic> TitleBasics { get; set; }
         public DbSet<TitleEpisode> TitleEpisodes { get; set; }
         public DbSet<TitleGenre> TitleGenres { get; set; }
-        public DbSet<TitlePrincipal> TitlePrincipalss { get; set; }
+        public DbSet<TitlePrincipal> TitlePrincipals { get; set; }
         public DbSet<TitleRating> TitleRating { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Wi> Wi{ get; set; }
