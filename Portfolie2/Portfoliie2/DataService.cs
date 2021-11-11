@@ -68,7 +68,8 @@ namespace Portfolie2
         public bool DeleteTitlePrincipal(string titleId, int ordering, string nameId);
 
         //titleEpisode CRUD
-        public TitleEpisode GetTitleEpisode(string titleId);
+        public TitleEpisode GetTitleEpisode(int Id);
+        public IList<TitleEpisode> GetTitleEpisodesByTitleId(int page, int pageSize);          
         public bool CreateTitleEpisode(TitleEpisode titleEpisode);
         public TitleEpisode CreateTitleEpisode(string id, string parentTitleId, int seasonNumber, int episodeNumber);
         public bool UpdateTitleEpisode(TitleEpisode titleEpisode);
@@ -94,9 +95,15 @@ namespace Portfolie2
     public class DataService : IDataService
     {
         //---------------------------Award CRUD----------------------------------
-        public Award GetAward(string titleId, string awardName) {
+        public Award GetAward(string titleId, string awardName, int page, int pageSize) {
             var ctx = new IMDBContext();
             Award result = ctx.Awards.FirstOrDefault(x => x.TitleId == titleId && x.AwardName == awardName);
+
+            /*result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize); 
+            */
+
             return result;
         }
 
@@ -548,7 +555,7 @@ namespace Portfolie2
         }
 
         //-------------------------------Title Episode CRUD--------------------------------
-        public TitleEpisode GetTitleEpisode(string titleId)
+        public TitleEpisode GetTitleEpisode(string titleId, int page, int pageSize)
         {
             var ctx = new IMDBContext();
             TitleEpisode result = ctx.TitleEpisodes.FirstOrDefault(x => x.Id == titleId);
