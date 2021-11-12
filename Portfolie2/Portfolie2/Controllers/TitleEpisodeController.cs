@@ -46,9 +46,10 @@ namespace WebService.Controllers
         [HttpGet]
         public IActionResult GetTitleEpisodesByParentTitleId(int parentTitleId)
         {
-            var titleEpisode = _dataService.GetTitleEpisodesByParentTitleId("tt7880766");
+            var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId("tt7880766");
 
-            TitleEpisodeViewModel model = GetTitleEpisodeViewModel(titleEpisode);
+            //TitleEpisodeViewModel model = GetTitleEpisodeViewModel(titleEpisode);
+            var model = titleEpisodes.Select(GetTitleEpisodeViewModel);
 
             return Ok(model);
         }
@@ -77,7 +78,7 @@ namespace WebService.Controllers
         }
 
 
-        private TitleEpisodeViewModel GetTitleEpisodeViewModel(Portfolie2.Domain.TitleEpisode titleEpisode)
+        private TitleEpisodeViewModel GetTitleEpisodeViewModel(TitleEpisode titleEpisode)
         {
             return new TitleEpisodeViewModel
             {
@@ -96,7 +97,7 @@ namespace WebService.Controllers
             model.Id = title.Id;
             return model;
         }
-        private string GetUrl(Portfolie2.Domain.TitleEpisode titleEpisode)
+        private string GetUrl(TitleEpisode titleEpisode)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleEpisode), new { titleEpisode.Id });
         }
