@@ -70,7 +70,7 @@ namespace Portfolie2
 
         //titleEpisode CRUD
         public TitleEpisode GetTitleEpisode(string id);
-        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId);          
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, int page, int pageSize);          
         public bool CreateTitleEpisode(TitleEpisode titleEpisode);
         public TitleEpisode CreateTitleEpisode(string id, string parentTitleId, int seasonNumber, int episodeNumber);
         public bool UpdateTitleEpisode(TitleEpisode titleEpisode);
@@ -564,15 +564,19 @@ namespace Portfolie2
         }
 
 
-        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId)
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, int page, int pageSize)
         {
             var ctx = new IMDBContext();
             var titleEpisode = ctx.TitleEpisodes
             .Where(p => p.ParentTitleId == parentTitleId)
+            .Include(x=>x.TitleBasic)
             .ToList()
             ;
 
-            return titleEpisode;
+            return titleEpisode
+                .Skip(page* pageSize)
+                .Take(pageSize)
+                .ToList();
         }
 
         public bool CreateTitleEpisode(TitleEpisode titleEpisode)

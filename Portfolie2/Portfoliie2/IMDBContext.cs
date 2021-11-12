@@ -32,7 +32,7 @@ namespace Portfolie2
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=");
+            optionsBuilder.UseNpgsql("host=localhost;db=imdb_database;uid=postgres;pwd=");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -56,11 +56,13 @@ namespace Portfolie2
             modelBuilder.Entity<Comment>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
             modelBuilder.Entity<Comment>().HasKey(c => new { c.TitleId, c.Username });
 
-            modelBuilder.Entity<TitleEpisode>().ToTable("episode2");
+            modelBuilder.Entity<TitleEpisode>().ToTable("title_episode2");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.ParentTitleId).HasColumnName("parent_title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.SeasonNumber).HasColumnName("season_number");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.EpisodeNumber).HasColumnName("episode_number");
+            modelBuilder.Entity<TitleEpisode>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.TitleEpisodes)
+            .HasForeignKey(s => s.ParentTitleId);
 
 
             modelBuilder.Entity<KnownForTitle>().ToTable("know_for_titles");
@@ -102,6 +104,7 @@ namespace Portfolie2
             modelBuilder.Entity<NameBasic>().Property(x => x.BirthYear).HasColumnName("birth_year");
             modelBuilder.Entity<NameBasic>().Property(x => x.DeathYear).HasColumnName("death_year");
             modelBuilder.Entity<NameBasic>().Property(x => x.Rating).HasColumnName("rating");
+
 
             modelBuilder.Entity<TitlePrincipal>().ToTable("title_principals2");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.TitleId).HasColumnName("title_id");

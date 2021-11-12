@@ -6569,19 +6569,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\louis\\.nuget\\packages\\": {}
+    "C:\\Users\\thoma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\DataServiceTests.csproj",
+      "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\DataServiceTests.csproj",
       "projectName": "DataServiceTests",
-      "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\DataServiceTests.csproj",
-      "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\obj\\",
+      "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\DataServiceTests.csproj",
+      "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -6595,8 +6595,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
-              "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
+            "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
+              "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
             }
           }
         }
