@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Portfolie2.Domain;
+using Portfolie2;
 
 namespace Portfolie2
 {
@@ -68,8 +69,8 @@ namespace Portfolie2
         public bool DeleteTitlePrincipal(string titleId, int ordering, string nameId);
 
         //titleEpisode CRUD
-        public TitleEpisode GetTitleEpisode(int Id);
-        public IList<TitleEpisode> GetTitleEpisodesByTitleId(int page, int pageSize);          
+        public TitleEpisode GetTitleEpisode(string id);
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId);          
         public bool CreateTitleEpisode(TitleEpisode titleEpisode);
         public TitleEpisode CreateTitleEpisode(string id, string parentTitleId, int seasonNumber, int episodeNumber);
         public bool UpdateTitleEpisode(TitleEpisode titleEpisode);
@@ -95,7 +96,7 @@ namespace Portfolie2
     public class DataService : IDataService
     {
         //---------------------------Award CRUD----------------------------------
-        public Award GetAward(string titleId, string awardName, int page, int pageSize) {
+        public Award GetAward(string titleId, string awardName) {
             var ctx = new IMDBContext();
             Award result = ctx.Awards.FirstOrDefault(x => x.TitleId == titleId && x.AwardName == awardName);
 
@@ -555,11 +556,23 @@ namespace Portfolie2
         }
 
         //-------------------------------Title Episode CRUD--------------------------------
-        public TitleEpisode GetTitleEpisode(string titleId, int page, int pageSize)
+        public TitleEpisode GetTitleEpisode(string titleId)
         {
             var ctx = new IMDBContext();
             TitleEpisode result = ctx.TitleEpisodes.FirstOrDefault(x => x.Id == titleId);
             return result;
+        }
+
+
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId)
+        {
+            var ctx = new IMDBContext();
+            var titleEpisode = ctx.TitleEpisodes
+            .Where(p => p.ParentTitleId == parentTitleId)
+            .ToList()
+            ;
+
+            return titleEpisode;
         }
 
         public bool CreateTitleEpisode(TitleEpisode titleEpisode)

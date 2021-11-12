@@ -29,9 +29,9 @@ namespace WebService.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTitleEpisode(int page = 0, int pageSize = 10)
+        public IActionResult GetTitleEpisode()
         {
-            var titleEpisode = _dataService.GetTitleEpisode("tt7880766", page, pageSize);
+            var titleEpisode = _dataService.GetTitleEpisode("tt10850888");
 
             if (titleEpisode == null)
             {
@@ -42,6 +42,17 @@ namespace WebService.Controllers
 
             return Ok(model);
         }
+
+        [HttpGet]
+        public IActionResult GetTitleEpisodesByParentTitleId(int parentTitleId)
+        {
+            var titleEpisode = _dataService.GetTitleEpisodesByParentTitleId("tt7880766");
+
+            TitleEpisodeViewModel model = GetTitleEpisodeViewModel(titleEpisode);
+
+            return Ok(model);
+        }
+
 
 
         [HttpDelete("{id}")]
