@@ -70,11 +70,13 @@ namespace Portfolie2
 
         //titleEpisode CRUD
         public TitleEpisode GetTitleEpisode(string id);
-        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, int page, int pageSize);          
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, QueryString queryString);          
         public bool CreateTitleEpisode(TitleEpisode titleEpisode);
         public TitleEpisode CreateTitleEpisode(string id, string parentTitleId, int seasonNumber, int episodeNumber);
         public bool UpdateTitleEpisode(TitleEpisode titleEpisode);
         public bool DeleteTitleEpisode(string titleId);
+        int NumberOfEpisodes(IList<TitleEpisode> episodes);
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId);
 
         //TitleBasics CRUD
         public TitleBasic GetTitleBasic(string titleId);
@@ -562,21 +564,34 @@ namespace Portfolie2
             TitleEpisode result = ctx.TitleEpisodes.FirstOrDefault(x => x.Id == titleId);
             return result;
         }
+        public int NumberOfEpisodes(IList<TitleEpisode> episodes)
+        {
+            return episodes.Count();
+        }
 
 
-        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, int page, int pageSize)
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId, QueryString queryString)
+        {
+            var ctx = new IMDBContext();
+            var result = ctx.TitleEpisodes
+            .Where(p => p.ParentTitleId == parentTitleId)
+            .Include(x=>x.TitleBasic).AsEnumerable()
+            ;
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+            return result.ToList();
+        }
+        public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId)
         {
             var ctx = new IMDBContext();
             var titleEpisode = ctx.TitleEpisodes
             .Where(p => p.ParentTitleId == parentTitleId)
-            .Include(x=>x.TitleBasic)
+            .Include(x => x.TitleBasic)
             .ToList()
             ;
 
-            return titleEpisode
-                .Skip(page* pageSize)
-                .Take(pageSize)
-                .ToList();
+            return titleEpisode;   
         }
 
         public bool CreateTitleEpisode(TitleEpisode titleEpisode)

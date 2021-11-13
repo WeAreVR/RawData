@@ -92,3 +92,35 @@ C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Deb
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.dll
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.pdb
 C:\Users\thoma\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.genruntimeconfig.cache
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.exe
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.deps.json
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.runtimeconfig.json
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.runtimeconfig.dev.json
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Portfolie2.pdb
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Npgsql.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.csproj.AssemblyReference.cache
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.AssemblyInfoInputs.cache
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.AssemblyInfo.cs
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.csproj.CoreCompileInputs.cache
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.csproj.CopyComplete
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.pdb
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfoliie2\obj\Debug\netcoreapp3.1\Portfolie2.genruntimeconfig.cache

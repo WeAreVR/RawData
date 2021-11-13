@@ -12,6 +12,7 @@ using AutoMapper;
 
 namespace WebService.Controllers
 {
+    
     [ApiController]
     [Route("api/titleepisode")]
     public class TitleEpisodeController : Controller
@@ -43,15 +44,18 @@ namespace WebService.Controllers
             return Ok(model);
         }
         
-        [HttpGet("gettitleepisodepage/{id}/{page}", Name = nameof(GetTitleEpisode))]
-        public IActionResult GetTitleEpisodesByParentTitleId(string id, int page)
+        [HttpGet("gettitleepisodepage/{id}", Name = nameof(GetTitleEpisode))]
+        public IActionResult GetTitleEpisodesByParentTitleId(string id, [FromQuery] QueryString queryString)
         {
-            var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id, page, 4);
+            var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id, queryString);
+            var allTitleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id);
 
-            //TitleEpisodeViewModel model = GetTitleEpisodeViewModel(titleEpisode);
-            var model = titleEpisodes.Select(GetTitleEpisodeViewModel);
+            var items = titleEpisodes.Select(GetTitleEpisodeViewModel);
+            var result = CreateResultModel(queryString, _dataService.NumberOfEpisodes(allTitleEpisodes), items);
 
-            return Ok(model);
+
+          
+            return Ok(result);
         }
 
 
@@ -74,36 +78,74 @@ namespace WebService.Controllers
 
             _dataService.CreateTitleEpisode(title);
 
-            return Created(GetUrl(title), CreateTitleEpisodeViewModel(title));
+            return Created(GetTitleEpisodeUrl(title), CreateTitleEpisodeViewModel(title));
         }
 
 
         private TitleEpisodeViewModel GetTitleEpisodeViewModel(TitleEpisode titleEpisode)
         {
-            return new TitleEpisodeViewModel
-            {
-
-                //Url = GetUrl(TitleEpisodeViewModel),
-                ParentTitleId = titleEpisode.Id
-                //CategoryId = product.CategoryId
-            };
+            var model = _mapper.Map<TitleEpisodeViewModel>(titleEpisode);
+            model.Url = GetTitleEpisodeUrl(titleEpisode);
+            return model;
         }
+            
+        
 
 
         private TitleEpisodeViewModel CreateTitleEpisodeViewModel(TitleEpisode title)
         {
             var model = _mapper.Map<TitleEpisodeViewModel>(title);
-            model.Url = GetUrl(title);
+            model.Url = GetTitleEpisodeUrl(title);
             model.Id = title.Id;
             return model;
+            
         }
 
-        private string GetUrl(TitleEpisode titleEpisode)
+        private string GetTitleEpisodeUrl(TitleEpisode titleEpisode)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleEpisode), new { titleEpisode.Id });
+
+        }
+        private string GetTitleEpisodeUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetTitleEpisode),
+                new { page, pageSize });
         }
 
 
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleEpisodeViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetTitleEpisodeUrl(queryString.Page + 1, queryString.PageSize);
+        }
 
+
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetTitleEpisodeUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
+        }
     }
 }
