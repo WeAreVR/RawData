@@ -285,3 +285,7 @@ C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Por
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.dll
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.pdb
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\obj\Debug\netcoreapp3.1\WebService.genruntimeconfig.cache
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

@@ -12,6 +12,13 @@ namespace Portfolie2
 {
     public interface IDataService
     {
+
+
+        //Users
+        public User GetUser(string username);
+        public User CreateUser(string name, string username, string password = null, string salt = null);
+        public User GetUser(int id);
+
         //Award CRUD
         public Award GetAward(string titleId, string award);
         public IList<Award> GetAwardsByTitleId(string titleId);
@@ -97,6 +104,70 @@ namespace Portfolie2
 
     public class DataService : IDataService
     {
+
+
+        //---------------------------Users ----------------------------------\\
+
+        public User GetUser(string username)
+        {
+            var ctx = new IMDBContext();
+
+            User result = ctx.Users.FirstOrDefault(x => x.Username == username);
+
+            return result;
+
+        }
+
+        public User GetUser(int id)
+        {
+            var ctx = new IMDBContext();
+
+            User result = ctx.Users.FirstOrDefault(x => x.Id == id);
+            return result;
+
+        }
+        public User CreateUser(string name, string username, string password = null, string salt = null)
+        {
+            // Test meget vigtig
+            var ctx = new IMDBContext();
+            User user = new User();
+            user.Name = name;
+            user.Username = username;
+            user.Password = password;
+            user.Salt = salt;
+
+            user.Id = ctx.Users
+                .Where(x => x.Id == user.Id)
+                .Max(x => x.Id) + 1; ;
+           
+            ctx.Add(user);
+            ctx.SaveChanges();
+
+            return user;
+            /*
+            User result = ctx.Users
+                .FirstOrDefault(
+                x => x.Username == username &&
+                x.Name == name &&
+                x.Password == password &&
+                x.Salt == salt)
+                .Max(x => x.id) + 1;
+
+          
+
+            User user = new User();
+            //user.Name = name;
+            user.Username = username;
+
+            ctx.Add(user);
+            ctx.SaveChanges();
+
+            return user;
+            */
+
+           
+        }
+
         //---------------------------Award CRUD----------------------------------
         public Award GetAward(string titleId, string awardName) {
             var ctx = new IMDBContext();

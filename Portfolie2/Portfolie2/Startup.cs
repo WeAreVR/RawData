@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebService.Middleware;
 
 namespace WebService
 {
@@ -33,6 +34,8 @@ namespace WebService
             }
 
             app.UseRouting();
+
+            app.UseJwtAuth();
 
             app.UseCors(x => x
             .AllowAnyMethod()
