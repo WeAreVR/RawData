@@ -18,7 +18,7 @@ namespace WebService.Controllers
     {
 
         private readonly IDataService _dataService;
-        private readonly LinkGenerator  _linkGenerator;
+        private readonly LinkGenerator _linkGenerator;
         private readonly IMapper _mapper;
 
         public TitleBasicController(IDataService dataService, LinkGenerator linkGenerator, IMapper mapper)
@@ -85,7 +85,7 @@ namespace WebService.Controllers
             model.Id = title.Id;
             return model;
         }
-        private string GetUrl(Portfolie2.Domain.TitleBasic titleBasic)
+        private string GetUrl(TitleBasic titleBasic)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
         }

@@ -8,7 +8,7 @@ using Portfolie2.Domain;
 namespace WebService.ViewModels
 {
     public class TitleBasicViewModel
-    {
+	{
 		public string Url { get; set; }
 		public string Id { get; set; }
 		public string TitleType { get; set; }

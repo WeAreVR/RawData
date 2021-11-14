@@ -13,6 +13,21 @@ namespace Portfolie2
     public interface IDataService
     {
 
+        // Comments
+        public Comment GetComment(string username, string titleId);
+        // public IList<Comment> GetCommentByTitleId(string username, string titleId);
+        public bool CreateComment(Comment comment);
+        public Comment CreateComment(string username, string titleId, string content);
+        public bool UpdateComment(Comment comment);
+        public bool DeleteComment(string username, string titleId);
+
+
+        //RatingHistory
+        public RatingHistory GetRatingHistory(string username, string titleId);
+        public bool DeleteRatingHistory(string username, string titleId);
+        public bool CreateRatingHistory(RatingHistory history);
+        public RatingHistory CreateRatingHistory(string username, string titleId, int rating);
+
 
         //Users
         public User GetUser(string username);
@@ -104,7 +119,111 @@ namespace Portfolie2
 
     public class DataService : IDataService
     {
+        //---------------------------Comment ----------------------------------\\
 
+        public Comment GetComment(string username, string titleId)
+        {
+            var ctx = new IMDBContext();
+            Comment result = ctx.Comments.FirstOrDefault(x => x.TitleId == titleId && x.Username == username);
+            return result;
+        }
+        /*
+            public Comment GetComment(string username, string titleId)
+            {
+                var ctx = new IMDBContext();
+
+                var comment = ctx.Comments
+                           .Include(x => x.TitleBasic)
+                           .Where(p => p.TitleId == titleId)
+                           .ToList();
+
+                return comment;
+            }
+        */
+
+        public bool CreateComment(Comment comment)
+        {
+            var ctx = new IMDBContext();
+            ctx.Add(comment);
+            return ctx.SaveChanges() > 0;
+        }
+
+        public Comment CreateComment(string username, string titleId, string content)
+        {
+            var ctx = new IMDBContext();
+
+            Comment comment = new Comment();
+            comment.TitleId = titleId;
+            comment.Username = username;
+            comment.Content = content;
+
+            ctx.Add(comment);
+            ctx.SaveChanges();
+
+            return comment;
+        }
+
+        public bool UpdateComment(Comment comment)
+        {
+            var ctx = new IMDBContext();
+            Comment temp = ctx.Comments.Find(comment.TitleId, comment.Username);
+
+            temp.Content = comment.Content;
+            return ctx.SaveChanges() > 0;
+        }
+
+        public bool DeleteComment(string username, string titleId)
+        {
+            var ctx = new IMDBContext();
+
+            Comment comment = new Comment() { TitleId = titleId, Username = username };
+            ctx.Comments.Attach(comment);
+            ctx.Comments.Remove(ctx.Comments.Find(titleId, username));
+
+            return ctx.SaveChanges() > 0;
+        }
+
+        //---------------------------RatingHistory ----------------------------------\\
+
+
+        public RatingHistory GetRatingHistory(string username, string titleId)
+        {
+            var ctx = new IMDBContext();
+            RatingHistory result = ctx.RatingHistorys.FirstOrDefault(x => x.Username == username && x.TitleId == titleId);
+            return result;
+        }
+
+        public bool DeleteRatingHistory(string username, string titleId)
+        {
+            var ctx = new IMDBContext();
+
+            RatingHistory ratingHistory = new RatingHistory() { Username = username, TitleId = titleId };
+            ctx.RatingHistorys.Attach(ratingHistory);
+            ctx.RatingHistorys.Remove(ctx.RatingHistorys.Find(username, titleId));
+
+            return ctx.SaveChanges() > 0;
+        }
+        public bool CreateRatingHistory(RatingHistory history) {
+
+            var ctx = new IMDBContext();
+
+            ctx.Add(history);
+            return ctx.SaveChanges() > 0;
+        }
+        public RatingHistory CreateRatingHistory(string username, string titleid, int rating) {
+            
+            var ctx = new IMDBContext();
+
+            RatingHistory ratingHistory = new RatingHistory();
+           
+            ratingHistory.Username = username;
+            ratingHistory.TitleId = titleid;
+            ratingHistory.Rating = rating;
+            ctx.Add(ratingHistory);
+            ctx.SaveChanges();
+
+            return ratingHistory;
+        }
 
         //---------------------------Users ----------------------------------\\
 
