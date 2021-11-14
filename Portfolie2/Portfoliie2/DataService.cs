@@ -34,6 +34,12 @@ namespace Portfolie2
         public bool CreateRatingHistory(RatingHistory history);
         public RatingHistory CreateRatingHistory(string username, string titleId, int rating);
 
+        // SearchHistory
+        public SearchHistory GetSearchHistory(string searchInput, DateTime timeStamp);
+        public bool DeleteSearchHistory(string searchInput, DateTime timeStamp);
+        public bool CreateSearchHistory(SearchHistory searchHistory);
+
+
 
         //Users
         public User GetUser(string username);
