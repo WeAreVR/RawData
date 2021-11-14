@@ -13,6 +13,12 @@ namespace Portfolie2
     public interface IDataService
     {
 
+        // Bookmark
+        public Bookmark GetBookmark(string username);
+        public bool DeleteBookMark(string titleId);
+        public bool CreateBookMark(Bookmark titleId);
+        public Bookmark CreateBookMark(string titleId);
+
         // Comments
         public Comment GetComment(string username, string titleId);
         // public IList<Comment> GetCommentByTitleId(string username, string titleId);
@@ -119,6 +125,51 @@ namespace Portfolie2
 
     public class DataService : IDataService
     {
+
+        //---------------------------Bookmark ----------------------------------\\
+
+
+        public Bookmark GetBookmark(string userName)
+        {
+            var ctx = new IMDBContext();
+            Bookmark result = ctx.Bookmarks.FirstOrDefault(x => x.Username == userName);
+            return result;
+        }
+        public bool DeleteBookMark(string titleId)
+        {
+            var ctx = new IMDBContext();
+            try
+            {
+                //Need a user aswell
+                ctx.Bookmarks.Remove(ctx.Bookmarks.Find(titleId));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            return ctx.SaveChanges() > 0;
+        }
+        public bool CreateBookMark(Bookmark bookmark)
+        {
+            var ctx = new IMDBContext();
+
+            bookmark.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
+            ctx.Add(bookmark);
+            return ctx.SaveChanges() > 0;
+        }
+        public Bookmark CreateBookMark(string titleId)
+        {
+            var ctx = new IMDBContext();
+
+            Bookmark bookmark = new Bookmark();
+            bookmark.TitleId = titleId;
+
+            ctx.Add(bookmark);
+            ctx.SaveChanges();
+
+            return bookmark;
+        }
+
         //---------------------------Comment ----------------------------------\\
 
         public Comment GetComment(string username, string titleId)

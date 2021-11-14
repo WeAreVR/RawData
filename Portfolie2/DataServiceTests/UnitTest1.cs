@@ -20,7 +20,7 @@ namespace Portfolie2.DataServiceTests
         /* Title */
 
         [Fact]
-        public void Category_Object_HasIdNameAndDescription()
+        public void TitleBasic_Object_HasPrimaryTitleAndOriginalTitle()
         {
             var titlebasic = new TitleBasic();
             Assert.Equal(0, titlebasic.Runtime);
@@ -71,6 +71,35 @@ namespace Portfolie2.DataServiceTests
 
             // cleanup
             service.DeleteNameBasic(namebasic.Id);
+        }
+        [Fact]
+        public void Create_Bookmark_ValidData()
+        {
+            var service = new DataService();
+            Bookmark bookmark = new Bookmark()
+            {
+                Username = "Per",
+                TitleId = "something"
+            };
+            var testBookmark = service.CreateBookMark(bookmark);
+            Assert.True(bookmark.Username != null);
+            Assert.Equal("Per", bookmark.Username);
+            Assert.Equal("something", bookmark.TitleId);
+        }
+        [Fact]
+        public void DeleteBookmark_ValidId_RemoveTheBookmark()
+        {
+            var service = new DataService();
+            Bookmark bookmark = new Bookmark()
+            {
+                Username = "per",
+                TitleId = "something"
+            };
+            var testBookmark = service.CreateBookMark(bookmark);
+            var result = service.DeleteTitleBasic(bookmark.TitleId);
+            Assert.True(result);
+            bookmark = service.GetBookmark(bookmark.Username);
+            Assert.Null(bookmark);
         }
     }
 }
