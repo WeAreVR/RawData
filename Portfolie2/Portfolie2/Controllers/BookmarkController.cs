@@ -30,12 +30,12 @@ namespace WebService.Controllers
         [HttpGet]
         public IActionResult getBookmark()
         {
-            var bookmark = _dataService.GetBookmark("per");
+            var bookmark = _dataService.GetBookmark("fakeuser123", "tt0926084");
             if (bookmark == null)
             {
                 return NotFound();
             }
-            BookmarkViewModel model = GetBookmarkViewModel(bookmark);
+            BookmarkViewModel model = CreateBookmarkViewModel(bookmark);
             return Ok(model);
         }
 
@@ -43,7 +43,7 @@ namespace WebService.Controllers
         {
             return new BookmarkViewModel
             {
-                TileId = bookmark.TitleId
+                TitleId = bookmark.TitleId
             };
         }
 
@@ -61,15 +61,16 @@ namespace WebService.Controllers
 
             _dataService.CreateBookMark(bookmark);
 
-            return Created(GetUrl(bookmark), CreateBookMarkViewModel(bookmark));
+            return Created(GetUrl(bookmark), CreateBookmarkViewModel(bookmark));
         }
-        private BookmarkViewModel CreateBookMarkViewModel(Bookmark bookmark)
+        private BookmarkViewModel CreateBookmarkViewModel(Bookmark bookmark)
         {
             var model = _mapper.Map<BookmarkViewModel>(bookmark);
-            model.TileId = bookmark.TitleId;
+            model.Url = GetUrl(bookmark);
+            model.TitleId = bookmark.TitleId;
             return model;
         }
-        private string GetUrl(Portfolie2.Domain.Bookmark bookmark)
+        private string GetUrl(Bookmark bookmark)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(getBookmark), new { bookmark.TitleId });
         }

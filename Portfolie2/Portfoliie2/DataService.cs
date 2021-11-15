@@ -14,7 +14,8 @@ namespace Portfolie2
     {
 
         // Bookmark
-        public Bookmark GetBookmark(string username);
+        public IList<Bookmark> GetBookmarks(string username);
+        public Bookmark GetBookmark(string username, string titleId);
         public bool DeleteBookMark(string titleId);
         public bool CreateBookMark(Bookmark titleId);
         public Bookmark CreateBookMark(string titleId);
@@ -164,12 +165,28 @@ namespace Portfolie2
         //---------------------------Bookmark ----------------------------------\\
 
 
-        public Bookmark GetBookmark(string userName)
+        public IList<Bookmark> GetBookmarks(string userName)
         {
             var ctx = new IMDBContext();
-            Bookmark result = ctx.Bookmarks.FirstOrDefault(x => x.Username == userName);
+            
+            /*Bookmark result = ctx.Bookmarks
+                .Include(x => x.TitleBasic)
+                .FirstOrDefault(x => x.Username == userName);*/
+
+            var result = ctx.Bookmarks
+                           .Include(x => x.TitleBasic)
+                           .Where(p => p.Username == userName)
+                           .ToList();
+
             return result;
         }
+
+        public Bookmark GetBookmark(string username, string titleId) {
+            var ctx = new IMDBContext();
+            Bookmark result = ctx.Bookmarks.FirstOrDefault(x => x.Username == username && x.TitleId == titleId);
+            return result;
+        }
+
         public bool DeleteBookMark(string titleId)
         {
             var ctx = new IMDBContext();
@@ -188,7 +205,7 @@ namespace Portfolie2
         {
             var ctx = new IMDBContext();
 
-            bookmark.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
+            //bookmark.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
@@ -210,7 +227,10 @@ namespace Portfolie2
         public Comment GetComment(string username, string titleId)
         {
             var ctx = new IMDBContext();
-            Comment result = ctx.Comments.FirstOrDefault(x => x.TitleId == titleId && x.Username == username);
+            Comment result = ctx.Comments
+                .Include(y => y.TitleBasic)
+                //.Include(u => u.Username)
+                .FirstOrDefault(x => x.TitleId == titleId && x.Username == username);
             return result;
         }
         /*

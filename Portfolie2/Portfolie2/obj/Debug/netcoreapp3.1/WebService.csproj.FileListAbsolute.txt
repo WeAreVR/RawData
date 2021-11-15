@@ -289,3 +289,8 @@ C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Por
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\tobia\Desktop\Part 3 - Recurrent Neural Networks\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\louis\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\louis\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\louis\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\louis\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\louis\OneDrive\Dokumenter\GitHub\RawData\Portfolie2\Portfolie2\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll

@@ -32,7 +32,7 @@ namespace Portfolie2
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=postgres;uid=postgres;pwd=nfd49s39");
+            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,10 +44,14 @@ namespace Portfolie2
             modelBuilder.Entity<Award>().Property(x => x.AwardName).HasColumnName("award");
             modelBuilder.Entity<Award>().HasKey(c => new { c.TitleId});
 
-            modelBuilder.Entity<Bookmark>().ToTable("bookmarks");
+            modelBuilder.Entity<Bookmark>().ToTable("bookmark");
             modelBuilder.Entity<Bookmark>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<Bookmark>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Bookmark>().HasKey(c => new { c.TitleId, c.Username });
+            modelBuilder.Entity<Bookmark>().HasOne<User>(s => s.User).WithMany(g => g.Bookmarks)
+            .HasForeignKey(s => s.TitleId);
+            modelBuilder.Entity<Bookmark>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.Bookmarks)
+            .HasForeignKey(s => s.TitleId);
 
             modelBuilder.Entity<Comment>().ToTable("comments");
             modelBuilder.Entity<Comment>().Property(x => x.Username).HasColumnName("username");
@@ -55,8 +59,10 @@ namespace Portfolie2
             modelBuilder.Entity<Comment>().Property(x => x.Content).HasColumnName("context");
             modelBuilder.Entity<Comment>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
             modelBuilder.Entity<Comment>().HasKey(c => new { c.TitleId, c.Username });
+            modelBuilder.Entity<Comment>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.Comments)
+            .HasForeignKey(s => s.TitleId);
 
-            modelBuilder.Entity<TitleEpisode>().ToTable("episode2");
+            modelBuilder.Entity<TitleEpisode>().ToTable("title_episode2");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.ParentTitleId).HasColumnName("parent_title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.SeasonNumber).HasColumnName("season_number");
@@ -94,7 +100,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().Property(x => x.Plot).HasColumnName("plot");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Poster).HasColumnName("poster");
             modelBuilder.Entity<TitleBasic>()
-        .HasOne(a => a.TitleRating).WithOne(b => b.TitleBasic)
+        .HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic)
         .HasForeignKey<TitleRating>(e => e.TitleId);
 
 

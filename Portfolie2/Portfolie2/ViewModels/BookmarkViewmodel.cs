@@ -9,7 +9,7 @@ namespace WebService.ViewModels
 {
     public class BookmarkViewModel
     {
-        public string TileId { get; set; }
+        public string TitleId { get; set; }
         public string Url { get; set; }
     }
 }

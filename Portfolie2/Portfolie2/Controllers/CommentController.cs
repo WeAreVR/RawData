@@ -32,7 +32,7 @@ namespace WebService.Controllers
         [HttpGet]
         public IActionResult GetComment()
         {
-            var comment = _dataService.GetComment("tt10850888","test");
+            var comment = _dataService.GetComment("fakeuser123", "tt0926084 ");
 
             if (comment == null)
             {
