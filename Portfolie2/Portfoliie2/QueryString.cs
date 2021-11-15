@@ -10,7 +10,7 @@ namespace Portfolie2
 
         public const int MaxPageSize = 25;
 
-        public int Page { get; set; } = 1;
+        public int Page { get; set; } = 0;
 
         public int PageSize
         {

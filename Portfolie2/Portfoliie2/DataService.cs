@@ -273,6 +273,7 @@ namespace Portfolie2
             return result.ToList();
         }
 
+
         public bool CreateComment(Comment comment)
         {
             var ctx = new IMDBContext();

@@ -13,6 +13,7 @@ namespace WebService.ViewModels
         public string Url { get; set; }
 
         public string Username { get; set; }
+        public string PrimaryTitle { get; set; }
 
         public string TitleId { get; set; }
         
