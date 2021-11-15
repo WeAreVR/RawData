@@ -14,7 +14,7 @@ using AutoMapper;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/comment")]
+    [Route("api/comments")]
     public class CommentController : Controller
     {
 
@@ -29,19 +29,23 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult GetComment()
+        [HttpGet("{titleId}", Name = nameof(GetComments))]
+        public IActionResult GetComments(string titleId, [FromQuery] QueryString queryString)
         {
-            var comment = _dataService.GetComment("fakeuser123", "tt0926084 ");
-
-            if (comment == null)
+            var comments = _dataService.GetCommentsByTitleId(titleId, queryString);
+            
+            if (comments == null)
             {
                 return NotFound();
             }
 
-            CommentViewModel model = GetCommentViewModel(comment);
+            var numberOfComments = comments.Count();
 
-            return Ok(model);
+            var items = comments.Select(GetCommentViewModel);
+            var result = CreateResultModel(queryString, numberOfComments, items);
+
+            return Ok(result);
+            
         }
 
 
@@ -63,22 +67,14 @@ namespace WebService.Controllers
 
             _dataService.CreateComment(title);   // titles ??
 
-            return Created(GetUrl(title), CreateCommentViewModel(title));
+            return Created(GetUrl(title), GetCommentViewModel(title));
         }
+
+
+        //Helper methods
 
 
         private CommentViewModel GetCommentViewModel(Comment comment)
-        {
-            return new CommentViewModel
-            {
-                Username = comment.Username,
-                TitleId = comment.TitleId,
-                Content = comment.Content
-            };
-        }
-
-
-        private CommentViewModel CreateCommentViewModel(Comment comment)
         {
             var model = _mapper.Map<CommentViewModel>(comment);
             model.Url = GetUrl(comment);
@@ -87,10 +83,50 @@ namespace WebService.Controllers
         }
         private string GetUrl(Comment comment)
         {
-            return _linkGenerator.GetUriByName(HttpContext, nameof(GetComment), new { comment.TitleId });
+            return _linkGenerator.GetUriByName(HttpContext, nameof(GetComments), new { comment.TitleId });
+        }
+
+        private string GetUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetComments),
+                new { page, pageSize });
         }
 
 
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<CommentViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
 
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
+        }
     }
 }

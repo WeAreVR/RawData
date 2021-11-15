@@ -14,15 +14,15 @@ namespace Portfolie2
     {
 
         // Bookmark
-        public IList<Bookmark> GetBookmarks(string username);
+        public IList<Bookmark> GetBookmarks(string username, QueryString queryString);
         public Bookmark GetBookmark(string username, string titleId);
         public bool DeleteBookMark(string username, string titleId);
         public bool CreateBookMark(Bookmark titleId);
-        public Bookmark CreateBookMark(string titleId);
+        public Bookmark CreateBookMark(string username, string titleId);
 
         // Comments
         public Comment GetComment(string username, string titleId);
-        // public IList<Comment> GetCommentByTitleId(string username, string titleId);
+        public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString);
         public bool CreateComment(Comment comment);
         public Comment CreateComment(string username, string titleId, string content);
         public bool UpdateComment(Comment comment);
@@ -39,8 +39,6 @@ namespace Portfolie2
         public SearchHistory GetSearchHistory(string searchInput);
         public bool DeleteSearchHistory(string searchInput, DateTime timestamp);
         public bool CreateSearchHistory(SearchHistory searchHistory);
-
-
 
         //Users
         public User GetUser(string username);
@@ -176,20 +174,21 @@ namespace Portfolie2
         //---------------------------Bookmark ----------------------------------\\
 
 
-        public IList<Bookmark> GetBookmarks(string userName)
+        public IList<Bookmark> GetBookmarks(string username, QueryString queryString)
         {
             var ctx = new IMDBContext();
-            
-            /*Bookmark result = ctx.Bookmarks
-                .Include(x => x.TitleBasic)
-                .FirstOrDefault(x => x.Username == userName);*/
 
             var result = ctx.Bookmarks
-                           .Include(x => x.TitleBasic)
-                           .Where(p => p.Username == userName)
-                           .ToList();
+                    .Where(p => p.Username == username)
+                    .Include(x => x.TitleBasic)
+                    .AsEnumerable();
 
-            return result;
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+
+
+            return result.ToList();
         }
 
         public Bookmark GetBookmark(string username, string titleId) {
@@ -202,9 +201,7 @@ namespace Portfolie2
         {
             var ctx = new IMDBContext();
             try
-            {
-                //Need a user aswell
-                
+            {                
                 ctx.Bookmarks.Remove(ctx.Bookmarks.Find(username, titleId));
             }
             catch (Exception e)
@@ -217,16 +214,16 @@ namespace Portfolie2
         {
             var ctx = new IMDBContext();
 
-            //bookmark.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
-        public Bookmark CreateBookMark(string titleId)
+        public Bookmark CreateBookMark(string username, string titleId)
         {
             var ctx = new IMDBContext();
 
             Bookmark bookmark = new Bookmark();
             bookmark.TitleId = titleId;
+            bookmark.Username = username;
 
             ctx.Add(bookmark);
             ctx.SaveChanges();
@@ -257,6 +254,24 @@ namespace Portfolie2
                 return comment;
             }
         */
+
+
+        public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString)
+        {
+            var ctx = new IMDBContext();
+
+            var result = ctx.Comments
+                    .Where(p => p.TitleId == titleId)
+                    .Include(x => x.TitleBasic)
+                    .AsEnumerable();
+
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+
+
+            return result.ToList();
+        }
 
         public bool CreateComment(Comment comment)
         {

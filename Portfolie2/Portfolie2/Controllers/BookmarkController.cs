@@ -30,33 +30,28 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [Authorization]
-        [HttpGet]
-        public IActionResult getBookmark()
+        //[Authorization]
+        [HttpGet("{username}", Name = nameof(GetBookmarks))]
+        public IActionResult GetBookmarks(string username, [FromQuery] QueryString queryString)
         {
-            try {
-               // var user = Request.HttpContext.Items["User"] as User;
-                var bookmark = _dataService.GetBookmark("havemanden", "tt10850402");
-            if (bookmark == null)
+
+            //var user = Request.HttpContext.Items["User"] as User;
+            //var bookmarks = _dataService.GetBookmarks(username);
+            var bookmarks = _dataService.GetBookmarks(username, queryString);
+            if (bookmarks == null)
             {
                 return NotFound();
             }
-            BookmarkViewModel model = CreateBookmarkViewModel(bookmark);
-            return Ok(model);
-        }
-            catch(Exception)
-            {
-                return Unauthorized();
-            }
-    }
 
-        private BookmarkViewModel GetBookmarkViewModel(Bookmark bookmark)
-        {
-            return new BookmarkViewModel
-            {
-                TitleId = bookmark.TitleId
-            };
-        }
+            var numberOfBookmarks = bookmarks.Count();
+
+            var items = bookmarks.Select(GetBookmarkViewModel);
+            var result = CreateResultModel(queryString, numberOfBookmarks, items);
+            //BookmarkViewModel model = CreateBookmarkViewModel(bookmarks);
+            return Ok(result);
+        }  
+            
+           
 
         [HttpDelete("{username}/{titleId}")]
         public IActionResult DeleteBookMark(string username, string titleId)
@@ -72,9 +67,15 @@ namespace WebService.Controllers
 
             _dataService.CreateBookMark(bookmark);
 
-            return Created(GetUrl(bookmark), CreateBookmarkViewModel(bookmark));
+            return Created(GetUrl(bookmark), GetBookmarkViewModel(bookmark));
         }
-        private BookmarkViewModel CreateBookmarkViewModel(Bookmark bookmark)
+
+
+
+
+        //Helper methods
+ 
+        private BookmarkViewModel GetBookmarkViewModel(Bookmark bookmark)
         {
             var model = _mapper.Map<BookmarkViewModel>(bookmark);
             model.Url = GetUrl(bookmark);
@@ -83,7 +84,50 @@ namespace WebService.Controllers
         }
         private string GetUrl(Bookmark bookmark)
         {
-            return _linkGenerator.GetUriByName(HttpContext, nameof(getBookmark), new { bookmark.TitleId });
+            return _linkGenerator.GetUriByName(HttpContext, nameof(GetBookmarks), new { bookmark.TitleId });
+        }
+
+        private string GetUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetBookmarks),
+                new { page, pageSize });
+        }
+
+
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<BookmarkViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
         }
     }
 }

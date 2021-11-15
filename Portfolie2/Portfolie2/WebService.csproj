@@ -17,6 +17,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Portfoliie2\Portfolie2.csproj" />
   </ItemGroup>
+
+  
 	
 
 </Project>
