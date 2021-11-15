@@ -28,15 +28,18 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult GetSearchHistory()
+        [HttpGet("getsearchhistory/{input}")]
+        public IActionResult GetSearchHistory(string input, DateTime timeStamp)
         {
-            var searchHistory = _dataService.GetSearchHistory("tt10850888");
-
-            if (searchHistory == null)
+            if (input == null)
             {
                 return NotFound();
             }
+            SearchHistory searchHistory = new SearchHistory()
+            {
+                SearchInput = input,
+                TimeStamp = timeStamp
+            };
 
             SearchHistoryViewModel model = GetSearchHistoryViewModel(searchHistory);
 
@@ -53,24 +56,27 @@ namespace WebService.Controllers
             };
         }
         [HttpDelete("{id}")]
-        public IActionResult DeleteSearchHistory(string id)
+        public IActionResult DeleteSearchHistory(string id, DateTime date)
         {
-            /*if (!_dataService.DeleteTitleBasic(id))
+            /*
+            if (!_dataService.DeleteTitleBasic(id))
             {
                 return NotFound();
-            }*/
-            _dataService.DeleteSearchHistory(id);
+            }
+            */
+            
+            _dataService.DeleteSearchHistory(id, date);
             return NoContent();
         }
 
         [HttpPost]
-        public IActionResult CreateSearchHistory(CreateSearchHistoryViewModel model)
+        public IActionResult CreateSearchHistory(SearchHistoryViewModel model)
         {
             var searchHistory = _mapper.Map<SearchHistory>(model);
 
-            _dataService.CreateTitleBasic(searchHistory);
+            _dataService.CreateSearchHistory(searchHistory);
 
-            return Created(GetUrl(searchHistory), CreateTitleBasicViewModel(searchHistory));
+            return Created(GetUrl(searchHistory), CreateSearchHistoryViewModel(searchHistory));
         }
 
 

@@ -44,7 +44,7 @@ namespace WebService.Controllers
             return Ok(model);
         }
         
-        [HttpGet("gettitleepisodepage/{id}", Name = nameof(GetTitleEpisode))]
+        [HttpGet("{id}", Name = nameof(GetTitleEpisode))]
         public IActionResult GetTitleEpisodesByParentTitleId(string id, [FromQuery] QueryString queryString)
         {
             var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id, queryString);

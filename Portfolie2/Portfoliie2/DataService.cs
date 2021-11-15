@@ -35,8 +35,8 @@ namespace Portfolie2
         public RatingHistory CreateRatingHistory(string username, string titleId, int rating);
 
         // SearchHistory
-        public SearchHistory GetSearchHistory(string searchInput, DateTime timeStamp);
-        public bool DeleteSearchHistory(string searchInput, DateTime timeStamp);
+        public SearchHistory GetSearchHistory(string searchInput);
+        public bool DeleteSearchHistory(string searchInput, DateTime timestamp);
         public bool CreateSearchHistory(SearchHistory searchHistory);
 
 
@@ -131,6 +131,35 @@ namespace Portfolie2
 
     public class DataService : IDataService
     {
+
+        //---------------------------SearchHistory--------------------------
+        public SearchHistory GetSearchHistory(string input)
+        {
+            var ctx = new IMDBContext();
+            SearchHistory result = ctx.SearchHistorys.FirstOrDefault(x => x.SearchInput == input);
+            return result;
+        }
+        public bool DeleteSearchHistory(string input, DateTime timestamp)
+        {
+            /*
+            var ctx = new IMDBContext();
+            SearchHistory searchHistory = new SearchHistory() { SearchInput = input, TimeStamp = timestamp };
+            ctx.SearchHistorys.Attach(searchHistory);
+            ctx.SearchHistorys.Remove(ctx.SearchHistorys.Find(input, timestamp));
+            return ctx.SaveChanges() > 0;            
+            */
+            return true;
+        }
+        public bool CreateSearchHistory(SearchHistory searchHistory)
+        {
+                var ctx = new IMDBContext();
+            /*
+                searchHistory.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
+                ctx.Add(bookmark);
+            */
+                return ctx.SaveChanges() > 0;
+        }
+
 
         //---------------------------Bookmark ----------------------------------\\
 
