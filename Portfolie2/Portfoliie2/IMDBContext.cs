@@ -11,6 +11,7 @@ namespace Portfolie2
         public DbSet<Award> Awards{ get; set; }
         public DbSet<Bookmark> Bookmarks{ get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<TitleRating> TitleRatings { get; set; }
         public DbSet<KnownForTitle> KnownForTitles { get; set; }
         public DbSet<NameBasic> NameBasics { get; set; }
         public DbSet<Plays> Plays{ get; set; }
@@ -99,9 +100,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().Property(x => x.Runtime).HasColumnName("runtime_minutes");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Plot).HasColumnName("plot");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Poster).HasColumnName("poster");
-            modelBuilder.Entity<TitleBasic>()
-        .HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic)
-        .HasForeignKey<TitleRating>(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic).HasForeignKey<TitleRating>(e => e.TitleId);
 
 
             modelBuilder.Entity<NameBasic>().ToTable("name_basics2");

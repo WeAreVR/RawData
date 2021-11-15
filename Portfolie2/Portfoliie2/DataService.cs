@@ -127,11 +127,22 @@ namespace Portfolie2
         public bool UpdateNameBasic(NameBasic nameBasic);
         public bool DeleteNameBasic(string nameId);
 
+        //TitleRating CRUD
+        public TitleRating GetTitleRating(string titleId);
+
 
     }
 
     public class DataService : IDataService
     {
+        //---------------------------TitleRating---------------------------
+        public TitleRating GetTitleRating(string titleId) {
+            var ctx = new IMDBContext();
+            TitleRating result = ctx.TitleRatings
+                .Include(x => x.TitleBasic)
+                .FirstOrDefault(x => x.TitleId == titleId);
+            return result;
+        }
 
         //---------------------------SearchHistory--------------------------
         public SearchHistory GetSearchHistory(string input)
@@ -229,7 +240,6 @@ namespace Portfolie2
             var ctx = new IMDBContext();
             Comment result = ctx.Comments
                 .Include(y => y.TitleBasic)
-                //.Include(u => u.Username)
                 .FirstOrDefault(x => x.TitleId == titleId && x.Username == username);
             return result;
         }

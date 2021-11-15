@@ -13,7 +13,7 @@ namespace Portfolie2.Domain
 		public decimal AvgRating { get; set; }
 		public int NumVotes { get; set; }
 
-		[ForeignKey("TitleId")]
+		//[ForeignKey("TitleId")]
 		public string TitleId { get; set; }
 		public TitleBasic TitleBasic { get; set; }
 	}
