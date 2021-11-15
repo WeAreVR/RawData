@@ -28,12 +28,12 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult GetTitleBasic()
+        [HttpGet("{id}")]
+        public IActionResult GetTitleBasic(string id)
         {
-            var titleBasic = _dataService.GetTitleBasic("tt10850888");
+            var titleBasic = _dataService.GetTitleBasic(id);
 
-            if (titleBasic == null)
+            if (id == null)
             {
                 return NotFound();
             }
