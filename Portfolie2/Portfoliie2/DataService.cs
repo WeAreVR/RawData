@@ -16,7 +16,7 @@ namespace Portfolie2
         // Bookmark
         public IList<Bookmark> GetBookmarks(string username);
         public Bookmark GetBookmark(string username, string titleId);
-        public bool DeleteBookMark(string titleId);
+        public bool DeleteBookMark(string username, string titleId);
         public bool CreateBookMark(Bookmark titleId);
         public Bookmark CreateBookMark(string titleId);
 
@@ -44,7 +44,7 @@ namespace Portfolie2
 
         //Users
         public User GetUser(string username);
-        public User CreateUser(string name, string username, string password = null, string salt = null);
+        public User CreateUser( string username, string password = null, string salt = null);
         public User GetUser(int id);
 
         //Award CRUD
@@ -198,13 +198,14 @@ namespace Portfolie2
             return result;
         }
 
-        public bool DeleteBookMark(string titleId)
+        public bool DeleteBookMark(string username, string titleId)
         {
             var ctx = new IMDBContext();
             try
             {
                 //Need a user aswell
-                ctx.Bookmarks.Remove(ctx.Bookmarks.Find(titleId));
+                
+                ctx.Bookmarks.Remove(ctx.Bookmarks.Find(username, titleId));
             }
             catch (Exception e)
             {
@@ -361,19 +362,15 @@ namespace Portfolie2
             return result;
 
         }
-        public User CreateUser(string name, string username, string password = null, string salt = null)
+        public User CreateUser( string username, string password = null, string salt = null)
         {
             // Test meget vigtig
             var ctx = new IMDBContext();
             User user = new User();
-            user.Name = name;
+            
             user.Username = username;
             user.Password = password;
             user.Salt = salt;
-
-            user.Id = ctx.Users
-                .Where(x => x.Id == user.Id)
-                .Max(x => x.Id) + 1; ;
            
             ctx.Add(user);
             ctx.SaveChanges();

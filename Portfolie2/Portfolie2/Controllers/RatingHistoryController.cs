@@ -27,10 +27,10 @@ namespace WebService.Controllers
             _linkGenerator = linkGenerator;
             _mapper = mapper;
         }
-        [HttpGet]
-        public IActionResult GetRatingHistory()
+        [HttpGet("{username}/{titleId}")]
+        public IActionResult GetRatingHistory(string username, string titleId)
         {
-            var ratingHistory = _dataService.GetRatingHistory("test","tt10850888");
+            var ratingHistory = _dataService.GetRatingHistory(username, titleId);
 
             if (ratingHistory == null)
             {
@@ -42,11 +42,11 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("{username}/{id}")]
-        public IActionResult DeleteRatingHistory(string username,string id)
+        [HttpDelete("{username}/{titleId}")]
+        public IActionResult DeleteRatingHistory(string username,string titleId)
         {
             
-            _dataService.DeleteRatingHistory(username,id);
+            _dataService.DeleteRatingHistory(username, titleId);
             return NoContent();
         }
 

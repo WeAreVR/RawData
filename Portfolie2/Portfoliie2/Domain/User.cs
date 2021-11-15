@@ -12,7 +12,6 @@ namespace Portfolie2.Domain
 		public int Id { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }
-		public string Name { get; set; }
 		public string Salt { get; set; }
 		public ICollection<Bookmark> Bookmarks { get; set; }
 		public ICollection<Comment> Comments { get; set; }

@@ -13,7 +13,7 @@ using AutoMapper;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/titlebasic")]
+    [Route("api/searchhistory")]
     public class SearchHistoryController : Controller
     {
 

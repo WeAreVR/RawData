@@ -45,7 +45,7 @@ namespace WebService.Controllers
             var salt = PasswordService.GenerateSalt(pwdSize);
             var pwd = PasswordService.HashPassword(dto.Password, salt, pwdSize);
             
-            _dataService.CreateUser(dto.Name, dto.Username, pwd, salt);
+            _dataService.CreateUser(dto.Username, pwd, salt);
 
             return CreatedAtRoute(null, new { dto.Username });
         }

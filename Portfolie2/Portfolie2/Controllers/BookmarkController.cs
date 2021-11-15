@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WebService.ViewModels;
 using AutoMapper;
+using WebService.Attributes;
+
 
 namespace WebService.Controllers
 {
@@ -27,10 +29,14 @@ namespace WebService.Controllers
             _linkGenerator = linkGenerator;
             _mapper = mapper;
         }
+
+        [Authorization]
         [HttpGet]
         public IActionResult getBookmark()
         {
-            var bookmark = _dataService.GetBookmark("fakeuser123", "tt0926084");
+            try {
+               // var user = Request.HttpContext.Items["User"] as User;
+                var bookmark = _dataService.GetBookmark("havemanden", "tt10850402");
             if (bookmark == null)
             {
                 return NotFound();
@@ -38,6 +44,11 @@ namespace WebService.Controllers
             BookmarkViewModel model = CreateBookmarkViewModel(bookmark);
             return Ok(model);
         }
+            catch(Exception)
+            {
+                return Unauthorized();
+            }
+    }
 
         private BookmarkViewModel GetBookmarkViewModel(Bookmark bookmark)
         {
@@ -47,10 +58,10 @@ namespace WebService.Controllers
             };
         }
 
-        [HttpDelete("{titleId}")]
-        public IActionResult DeleteBookMark(string titleId)
+        [HttpDelete("{username}/{titleId}")]
+        public IActionResult DeleteBookMark(string username, string titleId)
         {
-            _dataService.DeleteBookMark(titleId);
+            _dataService.DeleteBookMark(username,titleId);
             return NoContent();
         }
 
