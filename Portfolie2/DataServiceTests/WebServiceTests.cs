@@ -55,7 +55,8 @@ namespace DataServiceTests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
 
-
+        //old create test ikke mock
+        /*
         [Fact]
         public void ApiComment_PostWithComment_Created()
         {
@@ -71,7 +72,7 @@ namespace DataServiceTests
             Assert.Equal(HttpStatusCode.Created, statusCode);
 
             DeleteData($"{CommentsApi}");
-        }
+        }*/
 
 
         [Fact]
@@ -132,10 +133,13 @@ namespace DataServiceTests
             _dataServiceMock.Verify(r => r.DeleteComment(comment));
         }
 
+        [Fact]
+        
 
-        // Helpers
 
-        (JArray, HttpStatusCode) GetArray(string url)
+            // Helpers
+
+            (JArray, HttpStatusCode) GetArray(string url)
         {
             var client = new HttpClient();
             var response = client.GetAsync(url).Result;

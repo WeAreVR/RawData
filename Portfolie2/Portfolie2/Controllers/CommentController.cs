@@ -108,7 +108,7 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<CommentViewModel>(comment);
             model.Url = GetUrl(comment);
-            //model.PrimaryTitle = comment.TitleBasic.PrimaryTitle;
+            model.PrimaryTitle = comment.TitleBasic.PrimaryTitle;
             return model;
         }
 
