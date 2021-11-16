@@ -80,6 +80,7 @@ namespace WebService.Controllers
             var model = _mapper.Map<BookmarkViewModel>(bookmark);
             model.Url = GetUrl(bookmark);
             model.TitleId = bookmark.TitleId;
+            model.PrimaryTitle = bookmark.TitleBasic.PrimaryTitle;
             return model;
         }
         private string GetUrl(Bookmark bookmark)

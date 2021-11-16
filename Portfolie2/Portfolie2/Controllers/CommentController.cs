@@ -49,25 +49,44 @@ namespace WebService.Controllers
         }
 
 
-        [HttpDelete("{username}/{id}")]
-        public IActionResult DeleteComment(string username, string id)
+        [HttpDelete("{titleId}/{username}")]
+        public IActionResult DeleteComment(string titleId, string username)
         {
-            /*if (!_dataService.DeleteTitleBasic(id))
+            /*if (!_dataService.DeleteTitleBasic(username, titleId))
             {
                 return NotFound();
             }*/
-            _dataService.DeleteComment(username,id);
+            _dataService.DeleteComment(username, titleId);
             return NoContent();
         }
 
         [HttpPost]
         public IActionResult CreateComment(CreateCommentViewModel model)
         {
-            var title = _mapper.Map<Comment>(model);
+            var comment = _mapper.Map<Comment>(model);
 
-            _dataService.CreateComment(title);   // titles ??
+            _dataService.CreateComment(comment);
 
-            return Created(GetUrl(title), GetCommentViewModel(title));
+            return Created(GetUrl(comment), GetCommentViewModel(comment));
+        }
+
+        [HttpPut("{TitleId}/{username}")]
+        public IActionResult UpdateComment(string titleId, string username, CreateCommentViewModel model)
+        {
+            var comment = new Comment
+            {
+                Username = username,
+                TitleId = titleId,
+                Content = model.Content,
+                TimeStamp = DateTime.Now
+            };
+
+            if (!_dataService.UpdateComment(comment))
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
 
 
@@ -78,7 +97,6 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<CommentViewModel>(comment);
             model.Url = GetUrl(comment);
-            model.TitleId = comment.TitleId;
             model.PrimaryTitle = comment.TitleBasic.PrimaryTitle;
             return model;
         }

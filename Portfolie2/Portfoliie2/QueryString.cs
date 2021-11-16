@@ -6,7 +6,7 @@ namespace Portfolie2
 {
     public class QueryString
     {
-        private int _pageSize = 5;
+        private int _pageSize = 10;
 
         public const int MaxPageSize = 25;
 

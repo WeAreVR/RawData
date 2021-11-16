@@ -13,7 +13,7 @@ using AutoMapper;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/rating")]
+    [Route("api/ratinghistory")]
     public class RatingHistoryController : Controller
     {
 
@@ -40,6 +40,24 @@ namespace WebService.Controllers
             RatingHistoryViewModel model = GetRatingHistoryViewModel(ratingHistory);
 
             return Ok(model);
+        }
+
+        [HttpGet("{username}")]
+        public IActionResult GetRatingHistory(string username, [FromQuery] QueryString queryString)
+        {
+            var ratings = _dataService.GetRatingHistoryByUsername(username, queryString);
+
+            if (ratings == null)
+            {
+                return NotFound();
+            }
+
+            var numberOfRatings = ratings.Count();
+
+            var items = ratings.Select(GetRatingHistoryViewModel);
+            var result = CreateResultModel(queryString, numberOfRatings, items);
+
+            return Ok(result);
         }
 
         [HttpDelete("{username}/{titleId}")]
@@ -69,8 +87,6 @@ namespace WebService.Controllers
                 Username = ratingHistory.Username,
                 TitleId = ratingHistory.TitleId,
                 Rating = ratingHistory.Rating,
-
-                //CategoryId = product.CategoryId
             };
         }
         private RatingHistoryViewModel CreateRatingHistoryViewModel(RatingHistory ratingHistory)
@@ -84,6 +100,48 @@ namespace WebService.Controllers
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetRatingHistory), new { ratingHistory.Rating });
         }
 
+        private string GetUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetRatingHistory),
+                new { page, pageSize });
+        }
+
+
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<RatingHistoryViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
+        }
     }
 
 }
