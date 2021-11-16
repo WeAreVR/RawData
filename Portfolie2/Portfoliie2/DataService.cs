@@ -27,6 +27,7 @@ namespace Portfolie2
         public Comment CreateComment(string username, string titleId, string content, DateTime timeStamp);
         public bool UpdateComment(Comment comment);
         public bool DeleteComment(string username, string titleId, DateTime timeStamp);
+        public bool DeleteComment(Comment comment);
 
 
         //RatingHistory
@@ -313,6 +314,16 @@ namespace Portfolie2
             Comment comment = new Comment() { TitleId = titleId, Username = username, TimeStamp = timeStamp };
             ctx.Comments.Attach(comment);
             ctx.Comments.Remove(ctx.Comments.Find(username, titleId, timeStamp));
+
+            return ctx.SaveChanges() > 0;
+        }
+
+        public bool DeleteComment(Comment comment)
+        {
+            var ctx = new IMDBContext();
+
+            ctx.Comments.Attach(comment);
+            ctx.Comments.Remove(ctx.Comments.Find(comment.Username, comment.TitleId, comment.TimeStamp));
 
             return ctx.SaveChanges() > 0;
         }

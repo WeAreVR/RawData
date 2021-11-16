@@ -48,14 +48,25 @@ namespace WebService.Controllers
             
         }
 
+        [HttpDelete]
+        public IActionResult DeleteComment(Comment comment)
+        {
+            if (!_dataService.DeleteComment(comment))
+            {
+                return NotFound();
+            }
+            _dataService.DeleteComment(comment);
+            return NoContent();
+        }
+
 
         [HttpDelete("{username}/{titleId}/{timeStamp}")]
         public IActionResult DeleteComment(string titleId, string username, DateTime timeStamp)
         {
-            /*if (!_dataService.DeleteTitleBasic(username, titleId))
+            if (!_dataService.DeleteComment(username, titleId, timeStamp))
             {
                 return NotFound();
-            }*/
+            }
             _dataService.DeleteComment(username, titleId, timeStamp);
             return NoContent();
         }

@@ -55,6 +55,25 @@ namespace DataServiceTests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
 
+
+        [Fact]
+        public void ApiComment_PostWithComment_Created()
+        {
+            var newComment = new
+            {
+                Username = "Fakeuser123",
+                TitleId = "tt0926084",
+                Content = "A test comment :)",
+                TimeStamp = DateTime.Now,
+            };
+            var (comment, statusCode) = PostData(CommentsApi, newComment);
+
+            Assert.Equal(HttpStatusCode.Created, statusCode);
+
+            DeleteData($"{CommentsApi}");
+        }
+
+
         [Fact]
         public void CreateComment_ValidNewComment_DataServiceCreateCommentMustBeCalledOnce()
         {
@@ -80,103 +99,38 @@ namespace DataServiceTests
 
         }
 
-
-
-        /*
-
-
         [Fact]
-        public void ApiComments_PostWithComment_Created()
+        public void DeleteComment()
         {
-            var newComment = new
+            // arrange
+            var comment = new Comment
             {
-                Username = "Fakeuser123",
-                TitleId = "12345678",
-                Content = "Test comment.",
+                Username = "fakeuser123",
+                TitleId = "tt0926084",
+                Content = "Test comment",
                 TimeStamp = DateTime.Now
-
-            };
-            var (comment, statusCode) = PostData(CommentsApi, newComment);
-
-            Assert.Equal(HttpStatusCode.Created, statusCode);
-
-            //DeleteData($"{CommentsApi}/{comment["username"]}/{comment["titleId"]}/{comment["timeStamp"]}");
-        }
-        
-        [Fact]
-        public void ApiCategories_PutWithValidCategory_Ok()
-        {
-
-            var data = new
-            {
-                Name = "Created",
-                Description = "Created"
-            };
-            var (category, _) = PostData($"{CategoriesApi}", data);
-
-            var update = new
-            {
-                Id = category["id"],
-                Name = category["name"] + "Updated",
-                Description = category["description"] + "Updated"
             };
 
-            var statusCode = PutData($"{CategoriesApi}/{category["id"]}", update);
+            var ctrl = new CommentController(_dataServiceMock.Object, _linkGeneratorMock.Object, _mapperMock.Object);
+            ctrl.ControllerContext = new ControllerContext();
+            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
 
-            Assert.Equal(HttpStatusCode.OK, statusCode);
+            // set up the repository’s Delete call
+            _linkGeneratorMock.Setup(x => x.GetUriByAddress(
+                    It.IsAny<HttpContext>(),
+                    It.IsAny<string>(),
+                    It.IsAny<RouteValueDictionary>(),
+                    default, default, default, default, default, default))
+                .Returns("");
 
-            var (cat, _) = GetObject($"{CategoriesApi}/{category["id"]}");
+            // act
+            ctrl.DeleteComment(comment);
 
-            Assert.Equal(category["name"] + "Updated", cat["name"]);
-            Assert.Equal(category["description"] + "Updated", cat["description"]);
-
-            DeleteData($"{CategoriesApi}/{category["id"]}");
+            // assert
+            // verify that the Delete method we set up above was called
+            // with the comment as the first argument
+            _dataServiceMock.Verify(r => r.DeleteComment(comment));
         }
-
-        [Fact]
-        public void ApiCategories_PutWithInvalidCategory_NotFound()
-        {
-            var update = new
-            {
-                Id = -1,
-                Name = "Updated",
-                Description = "Updated"
-            };
-
-            var statusCode = PutData($"{CategoriesApi}/-1", update);
-
-            Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        }
-
-        [Fact]
-        public void ApiCategories_DeleteWithValidId_Ok()
-        {
-
-            var data = new
-            {
-                Name = "Created",
-                Description = "Created"
-            };
-            var (category, _) = PostData($"{CategoriesApi}", data);
-
-            var statusCode = DeleteData($"{CategoriesApi}/{category["id"]}");
-
-            Assert.Equal(HttpStatusCode.OK, statusCode);
-        }
-
-        [Fact]
-        public void ApiCategories_DeleteWithInvalidId_NotFound()
-        {
-
-            var statusCode = DeleteData($"{CategoriesApi}/-1");
-
-            Assert.Equal(HttpStatusCode.NotFound, statusCode);
-        }
-
-
-
-
-        */
 
 
         // Helpers
