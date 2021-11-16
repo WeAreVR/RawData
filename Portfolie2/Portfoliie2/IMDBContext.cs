@@ -180,6 +180,8 @@ namespace Portfolie2
             modelBuilder.Entity<SearchHistory>().Property(x => x.SearchInput).HasColumnName("search_input");
             modelBuilder.Entity<SearchHistory>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
             modelBuilder.Entity<SearchHistory>().HasKey(c => new { c.Username, c.TimeStamp });
+            modelBuilder.Entity<SearchHistory>().HasOne<User>(s => s.User).WithMany(g => g.SearchHistories)
+            .HasForeignKey(s => s.Username);
         }
     }
 }

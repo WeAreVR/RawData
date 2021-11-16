@@ -46,6 +46,24 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
+        [HttpGet("{username}")]
+        public IActionResult GetSearchHistory(string username, [FromQuery] QueryString queryString)
+        {
+            var searches = _dataService.GetSearchHistoryByUsername(username, queryString);
+
+            if (searches == null)
+            {
+                return NotFound();
+            }
+
+            var numberOfSearches = searches.Count();
+
+            var items = searches.Select(GetSearchHistoryViewModel);
+            var result = CreateResultModel(queryString, numberOfSearches, items);
+
+            return Ok(result);
+        }
+
         private SearchHistoryViewModel GetSearchHistoryViewModel(SearchHistory searchHistory)
         {
             return new SearchHistoryViewModel
@@ -84,10 +102,8 @@ namespace WebService.Controllers
         {
             return new SearchHistoryViewModel
             {
-
-                //Url = GetUrl(TitleBasicViewModel),
-                TimeStamp = searchHistory.TimeStamp,
-                //CategoryId = product.CategoryId
+                SearchInput = searchHistory.SearchInput,
+                TimeStamp = searchHistory.TimeStamp
             };
         }
 
@@ -104,6 +120,48 @@ namespace WebService.Controllers
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetSearchHistory), new { searchHistory.TimeStamp });
         }
 
+        private string GetUrl(int page, int pageSize)
+        {
+            return _linkGenerator.GetUriByName(
+                HttpContext,
+                nameof(GetSearchHistory),
+                new { page, pageSize });
+        }
+
+
+        private object CreateResultModel(QueryString queryString, int total, IEnumerable<SearchHistoryViewModel> model)
+        {
+            return new
+            {
+                total,
+                prev = CreateNextPageLink(queryString),
+                cur = CreateCurrentPageLink(queryString),
+                next = CreateNextPageLink(queryString, total),
+                items = model
+            };
+        }
+
+        private string CreateNextPageLink(QueryString queryString, int total)
+        {
+            var lastPage = GetLastPage(queryString.PageSize, total);
+            return queryString.Page >= lastPage ? null : GetUrl(queryString.Page + 1, queryString.PageSize);
+        }
+
+
+        private string CreateCurrentPageLink(QueryString queryString)
+        {
+            return GetUrl(queryString.Page, queryString.PageSize);
+        }
+
+        private string CreateNextPageLink(QueryString queryString)
+        {
+            return queryString.Page <= 0 ? null : GetUrl(queryString.Page - 1, queryString.PageSize);
+        }
+
+        private static int GetLastPage(int pageSize, int total)
+        {
+            return (int)Math.Ceiling(total / (double)pageSize) - 1;
+        }
 
 
     }

@@ -15,6 +15,7 @@ namespace Portfolie2.Domain
 		public string Salt { get; set; }
 		public ICollection<Bookmark> Bookmarks { get; set; }
 		public ICollection<Comment> Comments { get; set; }
+		public ICollection<SearchHistory> SearchHistories { get; set; }
 
 	}
 }
