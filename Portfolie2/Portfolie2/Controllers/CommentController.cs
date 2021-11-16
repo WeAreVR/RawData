@@ -33,7 +33,7 @@ namespace WebService.Controllers
         public IActionResult GetComments(string titleId, [FromQuery] QueryString queryString)
         {
             var comments = _dataService.GetCommentsByTitleId(titleId, queryString);
-            
+
             if (comments.Count == 0)
             {
                 return NotFound();
@@ -45,7 +45,7 @@ namespace WebService.Controllers
             var result = CreateResultModel(queryString, numberOfComments, items);
 
             return Ok(result);
-            
+
         }
 
         [HttpDelete]
@@ -81,13 +81,16 @@ namespace WebService.Controllers
             return Created(GetUrl(comment), GetCommentViewModel(comment));
         }
 
-        [HttpPut("{TitleId}/{username}")]
-        public IActionResult UpdateComment(string titleId, string username, CreateCommentViewModel model)
+
+      
+
+        [HttpPut]
+        public IActionResult UpdateComment(CommentViewModel model)
         {
             var comment = new Comment
             {
-                Username = username,
-                TitleId = titleId,
+                Username = model.Username,
+                TitleId = model.TitleId,
                 Content = model.Content,
                 TimeStamp = DateTime.Now
             };

@@ -134,12 +134,45 @@ namespace DataServiceTests
         }
 
         [Fact]
-        
+        public void UpdateComment()
+        {
+            //_mapperMock.Setup(x => x.Map<Comment>(It.IsAny<CreateCommentViewModel>())).Returns(new Comment());
+            //_mapperMock.Setup(x => x.Map<CommentViewModel>(It.IsAny<Comment>())).Returns(new CommentViewModel());
+            // arrange
+            var comment = new Comment
+            {
+                Username = "fakeuser123",
+                TitleId = "tt0926084",
+                Content = "Test comment",
+                TimeStamp = DateTime.Now
+            };
+
+            var ctrl = new CommentController(_dataServiceMock.Object, _linkGeneratorMock.Object, _mapperMock.Object);
+            ctrl.ControllerContext = new ControllerContext();
+            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            // set up the repository’s Delete call
+            _linkGeneratorMock.Setup(x => x.GetUriByAddress(
+                    It.IsAny<HttpContext>(),
+                    It.IsAny<string>(),
+                    It.IsAny<RouteValueDictionary>(),
+                    default, default, default, default, default, default))
+                .Returns("");
+
+            // act
+            ctrl.UpdateComment(new CommentViewModel());
+
+            // assert
+            // verify that the Delete method we set up above was called
+            // with the comment as the first argument
+            _dataServiceMock.Verify(r => r.UpdateComment(It.IsAny<Comment>()), Times.Once);
+        }
 
 
-            // Helpers
 
-            (JArray, HttpStatusCode) GetArray(string url)
+        // Helpers
+
+        (JArray, HttpStatusCode) GetArray(string url)
         {
             var client = new HttpClient();
             var response = client.GetAsync(url).Result;
