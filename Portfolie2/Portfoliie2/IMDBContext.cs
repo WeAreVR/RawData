@@ -16,8 +16,8 @@ namespace Portfolie2
         public DbSet<NameBasic> NameBasics { get; set; }
         public DbSet<Plays> Plays{ get; set; }
         public DbSet<Profession> Professions { get; set; }
-        public DbSet<RatingHistory> RatingHistorys { get; set; }
-        public DbSet<SearchHistory> SearchHistorys { get; set; }
+        public DbSet<RatingHistory> RatingHistories { get; set; }
+        public DbSet<SearchHistory> SearchHistories { get; set; }
         public DbSet<TitleAka> TitleAkas { get; set; }
         public DbSet<TitleBasic> TitleBasics { get; set; }
         public DbSet<TitleEpisode> TitleEpisodes { get; set; }
@@ -105,6 +105,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic).HasForeignKey<TitleRating>(e => e.TitleId);
 
 
+
             modelBuilder.Entity<NameBasic>().ToTable("name_basics2");
             modelBuilder.Entity<NameBasic>().Property(x => x.Id).HasColumnName("name_id");
             modelBuilder.Entity<NameBasic>().Property(x => x.PrimaryName).HasColumnName("primary_name");
@@ -170,6 +171,8 @@ namespace Portfolie2
             modelBuilder.Entity<RatingHistory>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<RatingHistory>().Property(x => x.Rating).HasColumnName("rating");
             modelBuilder.Entity<RatingHistory>().HasKey(c => new { c.TitleId, c.Username });
+            modelBuilder.Entity<RatingHistory>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.RatingHistories)
+            .HasForeignKey(s => s.TitleId);
 
 
             modelBuilder.Entity<SearchHistory>().ToTable("search_history");

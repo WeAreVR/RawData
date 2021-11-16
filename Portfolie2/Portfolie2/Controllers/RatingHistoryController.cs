@@ -83,12 +83,14 @@ namespace WebService.Controllers
         {
             return new RatingHistoryViewModel
             {
-
-                Username = ratingHistory.Username,
-                TitleId = ratingHistory.TitleId,
+                Url = GetUrl(ratingHistory),
                 Rating = ratingHistory.Rating,
+                Username = ratingHistory.Username,
+                PrimaryTitle = ratingHistory.TitleBasic.PrimaryTitle
             };
         }
+
+
         private RatingHistoryViewModel CreateRatingHistoryViewModel(RatingHistory ratingHistory)
         {
             var model = _mapper.Map<RatingHistoryViewModel>(ratingHistory);

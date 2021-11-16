@@ -24,7 +24,7 @@ namespace Portfolie2
         public Comment GetComment(string username, string titleId);
         public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString);
         public bool CreateComment(Comment comment);
-        public Comment CreateComment(string username, string titleId, string content);
+        public Comment CreateComment(string username, string titleId, string content, DateTime timeStamp);
         public bool UpdateComment(Comment comment);
         public bool DeleteComment(string username, string titleId);
 
@@ -147,7 +147,7 @@ namespace Portfolie2
         public SearchHistory GetSearchHistory(string input)
         {
             var ctx = new IMDBContext();
-            SearchHistory result = ctx.SearchHistorys.FirstOrDefault(x => x.SearchInput == input);
+            SearchHistory result = ctx.SearchHistories.FirstOrDefault(x => x.SearchInput == input);
             return result;
         }
 
@@ -155,7 +155,7 @@ namespace Portfolie2
         {
             var ctx = new IMDBContext();
 
-            var result = ctx.SearchHistorys
+            var result = ctx.SearchHistories
                     .Where(p => p.Username == username)
                     .AsEnumerable();
 
@@ -170,8 +170,8 @@ namespace Portfolie2
             var ctx = new IMDBContext();
             SearchHistory searchHistory = new SearchHistory() { Username = username, TimeStamp = timestamp };
             
-            ctx.SearchHistorys.Attach(searchHistory);
-            ctx.SearchHistorys.Remove(ctx.SearchHistorys.Find(username, timestamp));
+            ctx.SearchHistories.Attach(searchHistory);
+            ctx.SearchHistories.Remove(ctx.SearchHistories.Find(username, timestamp));
 
             return ctx.SaveChanges() > 0;
         }
@@ -322,7 +322,7 @@ namespace Portfolie2
         public RatingHistory GetRatingHistory(string username, string titleId)
         {
             var ctx = new IMDBContext();
-            RatingHistory result = ctx.RatingHistorys.FirstOrDefault(x => x.Username == username && x.TitleId == titleId);
+            RatingHistory result = ctx.RatingHistories.FirstOrDefault(x => x.Username == username && x.TitleId == titleId);
             return result;
         }
 
@@ -330,7 +330,7 @@ namespace Portfolie2
         {            
             var ctx = new IMDBContext();
 
-            var result = ctx.RatingHistorys
+            var result = ctx.RatingHistories
                     .Where(p => p.Username == username)
                     .Include(x => x.TitleBasic)
                     .AsEnumerable();
@@ -346,8 +346,8 @@ namespace Portfolie2
             var ctx = new IMDBContext();
 
             RatingHistory ratingHistory = new RatingHistory() { Username = username, TitleId = titleId };
-            ctx.RatingHistorys.Attach(ratingHistory);
-            ctx.RatingHistorys.Remove(ctx.RatingHistorys.Find(username, titleId));
+            ctx.RatingHistories.Attach(ratingHistory);
+            ctx.RatingHistories.Remove(ctx.RatingHistories.Find(username, titleId));
 
             return ctx.SaveChanges() > 0;
         }
