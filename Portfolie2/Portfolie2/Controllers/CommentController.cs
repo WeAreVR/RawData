@@ -34,7 +34,7 @@ namespace WebService.Controllers
         {
             var comments = _dataService.GetCommentsByTitleId(titleId, queryString);
             
-            if (comments == null)
+            if (comments.Count == 0)
             {
                 return NotFound();
             }
@@ -49,14 +49,14 @@ namespace WebService.Controllers
         }
 
 
-        [HttpDelete("{titleId}/{username}")]
-        public IActionResult DeleteComment(string titleId, string username)
+        [HttpDelete("{username}/{titleId}/{timeStamp}")]
+        public IActionResult DeleteComment(string titleId, string username, DateTime timeStamp)
         {
             /*if (!_dataService.DeleteTitleBasic(username, titleId))
             {
                 return NotFound();
             }*/
-            _dataService.DeleteComment(username, titleId);
+            _dataService.DeleteComment(username, titleId, timeStamp);
             return NoContent();
         }
 
@@ -97,9 +97,17 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<CommentViewModel>(comment);
             model.Url = GetUrl(comment);
-            model.PrimaryTitle = comment.TitleBasic.PrimaryTitle;
+            //model.PrimaryTitle = comment.TitleBasic.PrimaryTitle;
             return model;
         }
+
+        private CommentViewModel CreateCommentViewModel(Comment comment)
+        {
+            var model = _mapper.Map<CommentViewModel>(comment);
+            model.Url = GetUrl(comment);
+            return model;
+        }
+
         private string GetUrl(Comment comment)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetComments), new { comment.TitleId });

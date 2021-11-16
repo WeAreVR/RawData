@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebService", "Portfolie2\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolie2", "Portfoliie2\Portfolie2.csproj", "{CDEF9148-1A90-4EF0-8D7B-924E0C09F190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServiceTests", "DataServiceTests\DataServiceTests.csproj", "{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "DataServiceTests\Tests.csproj", "{3D43203F-3CB1-48DC-BB54-A7D7C1097CDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
