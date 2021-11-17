@@ -23,7 +23,7 @@ namespace Portfolie2.DataServiceTests
         public void TitleBasic_Object_HasPrimaryTitleAndOriginalTitle()
         {
             var titlebasic = new TitleBasic();
-            Assert.Equal(0, titlebasic.Runtime);
+            Assert.Equal(0, titlebasic.TitleRating.AvgRating);
             Assert.Null(titlebasic.PrimaryTitle);
             Assert.Null(titlebasic.OriginalTitle);
         }

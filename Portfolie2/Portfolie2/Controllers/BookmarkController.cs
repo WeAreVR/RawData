@@ -36,9 +36,10 @@ namespace WebService.Controllers
         {
 
             //var user = Request.HttpContext.Items["User"] as User;
-            //var bookmarks = _dataService.GetBookmarks(username);
+      
             var bookmarks = _dataService.GetBookmarks(username, queryString);
-            if (bookmarks == null)
+            
+            if (bookmarks.Count() == 0)
             {
                 return NotFound();
             }

@@ -9,7 +9,13 @@ namespace Portfolie2.Domain
 {
 	public class TitleBasic
 	{
-		public string Id { get; set; }
+        public TitleBasic()
+        {
+			TitleRating = new TitleRating();
+
+        }
+
+        public string Id { get; set; }
 		public string? TitleType { get; set; }
 		public string? PrimaryTitle { get; set; }
 		public string? OriginalTitle { get; set; }
@@ -31,10 +37,6 @@ namespace Portfolie2.Domain
 		public ICollection<TitlePrincipal>? TitlePrincipals { get; set; }
 		public TitleRating? TitleRating { get; set; }
 		public ICollection<Wi>? Wis { get; set; }
-
-
-
-
 
 	}
 }

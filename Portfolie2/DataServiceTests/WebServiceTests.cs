@@ -177,17 +177,17 @@ namespace DataServiceTests
         [Fact]
         public void ApiBookmark_GetWithValidTitleId_OkAndBookmark()
         {
-            var (bookmark, statusCode) = GetObject($"{BookmarkApi}/tt0926084");
+            var (bookmark, statusCode) = GetObject($"{BookmarkApi}/fakeuser123");
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
-            Assert.Equal(8, bookmark["items"].Count());
+            Assert.Equal(10, bookmark["items"].Count());
             Assert.Equal("Harry Potter and the Deathly Hallows: Part 1", bookmark["items"].First()["primaryTitle"]);
         }
 
         [Fact]
         public void ApiBookmark_GetWithInvalidTitleyId_NotFound()
         {
-            var (_, statusCode) = GetObject($"{BookmarkApi}/0");
+            var (_, statusCode) = GetObject($"{BookmarkApi}/realuser321");
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
