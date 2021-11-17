@@ -14,8 +14,8 @@ namespace Portfolie2.Domain
 		public string Title { get; set; }
 		public string Region { get; set; }
 		public string Language { get; set; }
-		public string Types { get; set; }
-		public string Attributes { get; set; }
+		public string Type { get; set; }
+		public string Attribute { get; set; }
 		public bool IsOriginalTitle { get; set; }
 		public TitleBasic TitleBasic { get; set; }
 	}

@@ -44,6 +44,7 @@ namespace Portfolie2
             modelBuilder.Entity<Award>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Award>().Property(x => x.AwardName).HasColumnName("award");
             modelBuilder.Entity<Award>().HasKey(c => new { c.TitleId});
+            
 
             modelBuilder.Entity<Bookmark>().ToTable("bookmark");
             modelBuilder.Entity<Bookmark>().Property(x => x.Username).HasColumnName("username");
@@ -85,8 +86,8 @@ namespace Portfolie2
             modelBuilder.Entity<TitleAka>().Property(x => x.Title).HasColumnName("title");
             modelBuilder.Entity<TitleAka>().Property(x => x.Region).HasColumnName("region");
             modelBuilder.Entity<TitleAka>().Property(x => x.Language).HasColumnName("language");
-            modelBuilder.Entity<TitleAka>().Property(x => x.Types).HasColumnName("types");
-            modelBuilder.Entity<TitleAka>().Property(x => x.Attributes).HasColumnName("attributes");
+            modelBuilder.Entity<TitleAka>().Property(x => x.Type).HasColumnName("type");
+            modelBuilder.Entity<TitleAka>().Property(x => x.Attribute).HasColumnName("attribute");
             modelBuilder.Entity<TitleAka>().Property(x => x.IsOriginalTitle).HasColumnName("is_original_title");
             modelBuilder.Entity<TitleAka>().HasKey(c => new { c.TitleId, c.Ordering });
 
@@ -104,7 +105,15 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().Property(x => x.Poster).HasColumnName("poster");
             modelBuilder.Entity<TitleBasic>().HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic)
                 .HasForeignKey<TitleRating>(e => e.TitleId);
-         
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.Awards).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.TitlePrincipals).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.TitleAkas).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.TitleGenres).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
+
 
             modelBuilder.Entity<NameBasic>().ToTable("name_basics2");
             modelBuilder.Entity<NameBasic>().Property(x => x.Id).HasColumnName("name_id");
@@ -112,6 +121,8 @@ namespace Portfolie2
             modelBuilder.Entity<NameBasic>().Property(x => x.BirthYear).HasColumnName("birth_year");
             modelBuilder.Entity<NameBasic>().Property(x => x.DeathYear).HasColumnName("death_year");
             modelBuilder.Entity<NameBasic>().Property(x => x.Rating).HasColumnName("rating");
+            modelBuilder.Entity<NameBasic>().HasMany(a => a.TitlePrincipals).WithOne(x => x.NameBasic)
+                .HasForeignKey(e => e.NameId);
 
 
             modelBuilder.Entity<TitlePrincipal>().ToTable("title_principals2");
@@ -142,8 +153,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleRating>().Property(x => x.AvgRating).HasColumnName("avg_rating");
             modelBuilder.Entity<TitleRating>().Property(x => x.NumVotes).HasColumnName("num_votes");
             modelBuilder.Entity<TitleRating>().HasKey(c => new { c.TitleId });
-            modelBuilder.Entity<TitleRating>().HasOne<TitleBasic>(a => a.TitleBasic).WithOne(b => b.TitleRating)
-           .HasForeignKey<TitleBasic>(c => c.Id);
+            
 
 
             modelBuilder.Entity<User>().ToTable("users");

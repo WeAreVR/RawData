@@ -523,8 +523,8 @@ namespace Portfolie2
             temp.Title = titleAka.Title;
             temp.Region = titleAka.Region;
             temp.Language = titleAka.Language;
-            temp.Types = titleAka.Types;
-            temp.Attributes = titleAka.Attributes;
+            temp.Type = titleAka.Type;
+            temp.Attribute = titleAka.Attribute;
             temp.IsOriginalTitle = titleAka.IsOriginalTitle;
             
             return ctx.SaveChanges() > 0;
@@ -749,7 +749,7 @@ namespace Portfolie2
             var ctx = new IMDBContext();
 
             var titleGenres = ctx.TitleGenres
-                       .Include(x => x.TitleBasics)
+                       .Include(x => x.TitleBasic)
                        .Where(y => y.TitleId == titleId)
                        .ToList();
 

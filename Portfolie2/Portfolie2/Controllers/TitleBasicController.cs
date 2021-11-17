@@ -48,10 +48,10 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<TitleBasicViewModel>(titleBasic);
             model.Awards = titleBasic.Awards;
-            model.AvgRating = titleBasic.TitleRating.AvgRating;
-            model.TitleGenres = titleBasic.TitleGenres;
-            model.TitleAkas = titleBasic.TitleAkas;
-            model.TitlePrincipals = titleBasic.TitlePrincipals;
+            //model.AvgRating = titleBasic.TitleRating.AvgRating;
+            //model.TitleGenres = titleBasic.TitleGenres;
+            //model.TitleAkas = titleBasic.TitleAkas;
+            //model.TitlePrincipals = titleBasic.TitlePrincipals;
 
             return model;
         }
