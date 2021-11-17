@@ -27,6 +27,8 @@ namespace DataServiceTests
         private readonly Mock<LinkGenerator> _linkGeneratorMock;
 
         private const string CommentsApi = "http://localhost:5001/api/comments";
+        private const string BookmarkApi = "http://localhost:5001/api/bookmark";
+
 
         /* /api/comments */
 
@@ -168,7 +170,83 @@ namespace DataServiceTests
             _dataServiceMock.Verify(r => r.UpdateComment(It.IsAny<Comment>()), Times.Once);
         }
 
+        /// <summary>
+        /// BOOKMARK TEST
+        /// </summary>
 
+        [Fact]
+        public void ApiBookmark_GetWithValidTitleId_OkAndBookmark()
+        {
+            var (bookmark, statusCode) = GetObject($"{BookmarkApi}/tt0926084");
+
+            Assert.Equal(HttpStatusCode.OK, statusCode);
+            Assert.Equal(8, bookmark["items"].Count());
+            Assert.Equal("Harry Potter and the Deathly Hallows: Part 1", bookmark["items"].First()["primaryTitle"]);
+        }
+
+        [Fact]
+        public void ApiBookmark_GetWithInvalidTitleyId_NotFound()
+        {
+            var (_, statusCode) = GetObject($"{BookmarkApi}/0");
+
+            Assert.Equal(HttpStatusCode.NotFound, statusCode);
+        }
+
+        [Fact]
+        public void CreateBookmark_ValidNewBookmark_DataServiceCreateBookmarkMustBeCalledOnce()
+        {
+
+            _mapperMock.Setup(x => x.Map<Bookmark>(It.IsAny<BookmarkViewModel>())).Returns(new Bookmark());
+            _mapperMock.Setup(x => x.Map<BookmarkViewModel>(It.IsAny<Bookmark>())).Returns(new BookmarkViewModel());
+
+            _linkGeneratorMock.Setup(x => x.GetUriByAddress(
+                    It.IsAny<HttpContext>(),
+                    It.IsAny<string>(),
+                    It.IsAny<RouteValueDictionary>(),
+                    default, default, default, default, default, default))
+                .Returns("");
+
+            var ctrl = new BookmarkController(_dataServiceMock.Object, _linkGeneratorMock.Object, _mapperMock.Object);
+            ctrl.ControllerContext = new ControllerContext();
+            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
+
+
+            ctrl.CreateBookMark(new BookmarkViewModel());
+
+            _dataServiceMock.Verify(x => x.CreateBookMark(It.IsAny<Bookmark>()), Times.Once);
+        }
+        [Fact]
+        public void DeleteBookmarkTest()
+        {
+            // arrange
+            var bookmark = new Bookmark
+            {
+                Username = "fakeuser123",
+                TitleId = "tt0926084"
+            };
+
+            var ctrl = new BookmarkController(_dataServiceMock.Object, _linkGeneratorMock.Object, _mapperMock.Object);
+            ctrl.ControllerContext = new ControllerContext();
+            ctrl.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            // set up the repository’s Delete call
+            _linkGeneratorMock.Setup(x => x.GetUriByAddress(
+                    It.IsAny<HttpContext>(),
+                    It.IsAny<string>(),
+                    It.IsAny<RouteValueDictionary>(),
+                    default, default, default, default, default, default))
+                .Returns("");
+
+            // act
+            ctrl.DeleteBookMark(bookmark.Username,bookmark.TitleId);
+
+            // assert
+            // verify that the Delete method we set up above was called
+            // with the comment as the first argument
+            _dataServiceMock.Verify(r => r.DeleteBookMark(bookmark.Username, bookmark.TitleId));
+        }
+        /// <param name="url"></param>
+        /// <returns></returns>
 
         // Helpers
 
