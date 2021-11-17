@@ -28,12 +28,12 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetTitleBasic(string id)
+        [HttpGet("{titleId}")]
+        public IActionResult GetTitleBasic(string titleId)
         {
-            var titleBasic = _dataService.GetTitleBasic(id);
+            var titleBasic = _dataService.GetTitleBasic(titleId);
 
-            if (id == null)
+            if (titleId == null)
             {
                 return NotFound();
             }
@@ -44,37 +44,16 @@ namespace WebService.Controllers
         }
 
 
-        [HttpDelete("{id}")]
-        public IActionResult DeleteTitleBasic(string id)
+        private TitleBasicViewModel GetTitleBasicViewModel(TitleBasic titleBasic)
         {
-            /*if (!_dataService.DeleteTitleBasic(id))
-            {
-                return NotFound();
-            }*/
-            _dataService.DeleteTitleBasic(id);
-            return NoContent();
-        }
+            var model = _mapper.Map<TitleBasicViewModel>(titleBasic);
+            model.Awards = titleBasic.Awards;
+            model.AvgRating = titleBasic.TitleRating.AvgRating;
+            model.TitleGenres = titleBasic.TitleGenres;
+            model.TitleAkas = titleBasic.TitleAkas;
+            model.TitlePrincipals = titleBasic.TitlePrincipals;
 
-        [HttpPost]
-        public IActionResult CreateTitleBasic(CreateTitleBasicViewModel model)
-        {
-            var title = _mapper.Map<TitleBasic>(model);
-
-            _dataService.CreateTitleBasic(title);
-
-            return Created(GetUrl(title), CreateTitleBasicViewModel(title));
-        }
-
-
-        private TitleBasicViewModel GetTitleBasicViewModel(Portfolie2.Domain.TitleBasic titleBasic)
-        {
-            return new TitleBasicViewModel
-            {
-
-                //Url = GetUrl(TitleBasicViewModel),
-                PrimaryTitle = titleBasic.PrimaryTitle,
-                //CategoryId = product.CategoryId
-            };
+            return model;
         }
 
         
@@ -83,14 +62,12 @@ namespace WebService.Controllers
             var model = _mapper.Map<TitleBasicViewModel>(title);
             model.Url = GetUrl(title);
             model.Id = title.Id;
+           
             return model;
         }
         private string GetUrl(TitleBasic titleBasic)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
         }
-
-
-
     }
 }

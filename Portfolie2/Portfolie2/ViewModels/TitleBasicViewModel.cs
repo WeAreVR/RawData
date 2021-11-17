@@ -7,7 +7,7 @@ using Portfolie2.Domain;
 
 namespace WebService.ViewModels
 {
-    public class TitleBasicViewModel
+	public class TitleBasicViewModel
 	{
 		public string Url { get; set; }
 		public string Id { get; set; }
@@ -20,5 +20,11 @@ namespace WebService.ViewModels
 		public int Runtime { get; set; }
 		public string Plot { get; set; }
 		public string Poster { get; set; }
+		public decimal AvgRating { get; set; }
+		public ICollection<Award> Awards { get; set; }
+		public ICollection<TitleAka> TitleAkas {get; set;}
+		public ICollection<TitleGenre> TitleGenres { get; set; }
+		public ICollection<TitlePrincipal> TitlePrincipals { get; set; }
+
 	}
 }

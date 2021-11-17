@@ -28,16 +28,17 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("getsearchhistory/{input}")]
-        public IActionResult GetSearchHistory(string input, DateTime timeStamp)
+        [HttpGet("{username}/{timestamp}")]
+        public IActionResult GetSearchHistory(string username, DateTime timeStamp)
         {
-            if (input == null)
+            if (username == null)
             {
                 return NotFound();
             }
+
             SearchHistory searchHistory = new SearchHistory()
             {
-                SearchInput = input,
+                SearchInput = username,
                 TimeStamp = timeStamp
             };
 
@@ -47,7 +48,7 @@ namespace WebService.Controllers
         }
 
         [HttpGet("{username}")]
-        public IActionResult GetSearchHistory(string username, [FromQuery] QueryString queryString)
+        public IActionResult GetSearchHistoryByUsername(string username, [FromQuery] QueryString queryString)
         {
             var searches = _dataService.GetSearchHistoryByUsername(username, queryString);
 

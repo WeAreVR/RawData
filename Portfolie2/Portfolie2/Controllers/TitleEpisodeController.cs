@@ -29,10 +29,10 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
         
-        [HttpGet]
-        public IActionResult GetTitleEpisode()
+        [HttpGet("{id}")]
+        public IActionResult GetTitleEpisode(string id)
         {
-            var titleEpisode = _dataService.GetTitleEpisode("tt10850888");
+            var titleEpisode = _dataService.GetTitleEpisode(id);
 
             if (titleEpisode == null)
             {
@@ -44,11 +44,11 @@ namespace WebService.Controllers
             return Ok(model);
         }
         
-        [HttpGet("{id}", Name = nameof(GetTitleEpisode))]
-        public IActionResult GetTitleEpisodesByParentTitleId(string id, [FromQuery] QueryString queryString)
+        [HttpGet("allepisodes/{parentTitleId}", Name = nameof(GetTitleEpisode))]
+        public IActionResult GetTitleEpisodesByParentTitleId(string parentTitleId, [FromQuery] QueryString queryString)
         {
-            var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id, queryString);
-            var allTitleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(id);
+            var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId, queryString);
+            var allTitleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId);
 
             var items = titleEpisodes.Select(GetTitleEpisodeViewModel);
             var result = CreateResultModel(queryString, _dataService.NumberOfEpisodes(allTitleEpisodes), items);
@@ -63,10 +63,10 @@ namespace WebService.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteTitleEpisode(string id)
         {
-            /*if (!_dataService.DeleteTitleEpisode(id))
+            if (!_dataService.DeleteTitleEpisode(id))
             {
                 return NotFound();
-            }*/
+            }
             _dataService.DeleteTitleEpisode(id);
             return NoContent();
         }
