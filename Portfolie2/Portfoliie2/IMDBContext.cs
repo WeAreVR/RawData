@@ -33,7 +33,12 @@ namespace Portfolie2
 
             optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information);
             optionsBuilder.EnableSensitiveDataLogging();
-            optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
+            
+            //Localhost
+            //optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
+            
+            //RUC host
+            optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -66,7 +71,7 @@ namespace Portfolie2
             .HasForeignKey(s => s.TitleId);
 
 
-            modelBuilder.Entity<TitleEpisode>().ToTable("title_episode2");
+            modelBuilder.Entity<TitleEpisode>().ToTable("title_episode");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.ParentTitleId).HasColumnName("parent_title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.SeasonNumber).HasColumnName("season_number");
@@ -80,7 +85,7 @@ namespace Portfolie2
             modelBuilder.Entity<KnownForTitle>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<KnownForTitle>().HasKey(c => new { c.TitleId, c.NameId });
 
-            modelBuilder.Entity<TitleAka>().ToTable("title_akas2");
+            modelBuilder.Entity<TitleAka>().ToTable("title_akas");
             modelBuilder.Entity<TitleAka>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<TitleAka>().Property(x => x.Ordering).HasColumnName("ordering");
             modelBuilder.Entity<TitleAka>().Property(x => x.Title).HasColumnName("title");
@@ -92,7 +97,7 @@ namespace Portfolie2
             modelBuilder.Entity<TitleAka>().HasKey(c => new { c.TitleId, c.Ordering });
 
 
-            modelBuilder.Entity<TitleBasic>().ToTable("title_basics2");
+            modelBuilder.Entity<TitleBasic>().ToTable("title_basics");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleBasic>().Property(x => x.TitleType).HasColumnName("title_type");
             modelBuilder.Entity<TitleBasic>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
@@ -115,7 +120,7 @@ namespace Portfolie2
                 .HasForeignKey(e => e.TitleId);
 
 
-            modelBuilder.Entity<NameBasic>().ToTable("name_basics2");
+            modelBuilder.Entity<NameBasic>().ToTable("name_basics");
             modelBuilder.Entity<NameBasic>().Property(x => x.Id).HasColumnName("name_id");
             modelBuilder.Entity<NameBasic>().Property(x => x.PrimaryName).HasColumnName("primary_name");
             modelBuilder.Entity<NameBasic>().Property(x => x.BirthYear).HasColumnName("birth_year");
@@ -125,7 +130,7 @@ namespace Portfolie2
                 .HasForeignKey(e => e.NameId);
 
 
-            modelBuilder.Entity<TitlePrincipal>().ToTable("title_principals2");
+            modelBuilder.Entity<TitlePrincipal>().ToTable("title_principals");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.Ordering).HasColumnName("ordering");
             modelBuilder.Entity<TitlePrincipal>().Property(x => x.NameId).HasColumnName("name_id");
@@ -148,7 +153,7 @@ namespace Portfolie2
             modelBuilder.Entity<Wi>().HasKey(c => new { c.TitleId, c.Word, c.Field });
 
 
-            modelBuilder.Entity<TitleRating>().ToTable("title_ratings2");
+            modelBuilder.Entity<TitleRating>().ToTable("title_ratings");
             modelBuilder.Entity<TitleRating>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<TitleRating>().Property(x => x.AvgRating).HasColumnName("avg_rating");
             modelBuilder.Entity<TitleRating>().Property(x => x.NumVotes).HasColumnName("num_votes");

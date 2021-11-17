@@ -47,8 +47,9 @@ namespace WebService.Controllers
         private TitleBasicViewModel GetTitleBasicViewModel(TitleBasic titleBasic)
         {
             var model = _mapper.Map<TitleBasicViewModel>(titleBasic);
+
             model.Awards = titleBasic.Awards;
-            //model.AvgRating = titleBasic.TitleRating.AvgRating;
+            model.AvgRating = titleBasic.TitleRating.AvgRating;
             //model.TitleGenres = titleBasic.TitleGenres;
             //model.TitleAkas = titleBasic.TitleAkas;
             //model.TitlePrincipals = titleBasic.TitlePrincipals;
