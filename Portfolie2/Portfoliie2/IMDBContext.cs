@@ -51,7 +51,7 @@ namespace Portfolie2
             modelBuilder.Entity<Award>().HasKey(c => new { c.TitleId});
             
 
-            modelBuilder.Entity<Bookmark>().ToTable("bookmark");
+            modelBuilder.Entity<Bookmark>().ToTable("bookmarks");
             modelBuilder.Entity<Bookmark>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<Bookmark>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Bookmark>().HasKey(c => new { c.TitleId, c.Username });
@@ -65,8 +65,7 @@ namespace Portfolie2
             modelBuilder.Entity<Comment>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<Comment>().Property(x => x.Content).HasColumnName("context");
             modelBuilder.Entity<Comment>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
-            modelBuilder.Entity<Comment>().HasKey(c => new { c.TitleId, c.Username });
-            modelBuilder.Entity<Comment>().HasKey(c => new { c.TitleId, c.Username, c.Content });
+            modelBuilder.Entity<Comment>().HasKey(c => new { c.Username, c.TitleId, c.TimeStamp });
             modelBuilder.Entity<Comment>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.Comments)
             .HasForeignKey(s => s.TitleId);
 

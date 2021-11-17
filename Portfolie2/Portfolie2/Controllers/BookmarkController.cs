@@ -57,7 +57,7 @@ namespace WebService.Controllers
         [HttpDelete("{username}/{titleId}")]
         public IActionResult DeleteBookMark(string username, string titleId)
         {
-            _dataService.DeleteBookMark(username,titleId);
+            _dataService.DeleteBookmark(username,titleId);
             return NoContent();
         }
 
@@ -66,7 +66,7 @@ namespace WebService.Controllers
         {
             var bookmark = _mapper.Map<Bookmark>(model);
 
-            _dataService.CreateBookMark(bookmark);
+            _dataService.CreateBookmark(bookmark);
 
             return Created(GetUrl(bookmark), GetBookmarkViewModel(bookmark));
         }

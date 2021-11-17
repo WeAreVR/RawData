@@ -28,63 +28,21 @@ namespace Portfolie2.DataServiceTests
             Assert.Null(titlebasic.OriginalTitle);
         }
 
-        [Fact]
-        public void CreateTitleBasic_ValidData_CreateTitleBasicAndRetunsNewObject()
-        {
-            var service = new DataService();
-            var titlebasic = service.CreateTitleBasic("TESTID", "TestTitle", false);
-            Assert.True(titlebasic.Id != null);
-            Assert.Equal("TestTitle", titlebasic.PrimaryTitle);
-            Assert.Equal("TESTID", titlebasic.Id);
-            Assert.False(titlebasic.IsAdult);
-
-            // cleanup
-            service.DeleteTitleBasic(titlebasic.Id);
-        }
-        /*
-         [Fact]
-         public void UpdateTitle()
-         {
-             var service = new DataService();
-             var titlebasic = service.CreateTitleBasic();
-         }
-
-         */
-        [Fact]
-        public void DeleteCategory_ValidId_RemoveTheCategory()
-        {
-            var service = new DataService();
-            var titlebasic = service.CreateTitleBasic("TestIDD", "DeleteTest", true);
-            var result = service.DeleteTitleBasic(titlebasic.Id);
-            Assert.True(result);
-            titlebasic = service.GetTitleBasic(titlebasic.Id);
-            Assert.Null(titlebasic);
-        }
-        [Fact]
-        public void CreateNameBasic_ValidData_CreateNameBasicAndRetunsNewObject()
-        {
-            var service = new DataService();
-            var namebasic = service.CreateNameBasic("TESTID", "TestName");
-            Assert.True(namebasic.Id != null);
-            Assert.Equal("TestName", namebasic.PrimaryName);
-            Assert.Equal("TESTID", namebasic.Id);
-
-            // cleanup
-            service.DeleteNameBasic(namebasic.Id);
-        }
+   
+       
         [Fact]
         public void Create_Bookmark_ValidData()
         {
             var service = new DataService();
             Bookmark bookmark = new Bookmark()
             {
-                Username = "Per",
-                TitleId = "something"
+                Username = "testuser",
+                TitleId = "tt7890244 "
             };
-            var testBookmark = service.CreateBookMark(bookmark);
-            Assert.True(bookmark.Username != null);
-            Assert.Equal("Per", bookmark.Username);
-            Assert.Equal("something", bookmark.TitleId);
+            var testBookmark = service.GetBookmark(bookmark.Username, bookmark.TitleId);
+            Assert.True(testBookmark.Username != null);
+            Assert.Equal("testuser", testBookmark.Username);
+            Assert.Equal("tt7890244 ", testBookmark.TitleId);
         }
         [Fact]
         public void DeleteBookmark_ValidId_RemoveTheBookmark()
@@ -92,31 +50,33 @@ namespace Portfolie2.DataServiceTests
             var service = new DataService();
             Bookmark bookmark = new Bookmark()
             {
-                Username = "per",
-                TitleId = "something"
+                Username = "testuser",
+                TitleId = "tt7890244 "
             };
-            var testBookmark = service.CreateBookMark(bookmark);
-            var result = service.DeleteTitleBasic(bookmark.TitleId);
+            service.CreateBookmark(bookmark);
+            var result = service.DeleteBookmark(bookmark.Username, bookmark.TitleId);
             Assert.True(result);
-            bookmark = service.GetBookmark(bookmark.Username, "tt0926084");
+            bookmark = service.GetBookmark(bookmark.Username, bookmark.TitleId);
             Assert.Null(bookmark);
         }
+
         [Fact]
         public void CreateRating_ValidData()
         {
             var service = new DataService();
             RatingHistory ratingHistory = new RatingHistory()
             {
-                Username = "Per",
-                TitleId = "something",
+                Username = "testuser",
+                TitleId = "tt7890244 ",
                 Rating = 5,
                 TitleBasic = null,
                 User = null
             };
-            var testRatingHistory = service.CreateRatingHistory(ratingHistory);
+            
+            service.CreateRatingHistory(ratingHistory);
             Assert.True(ratingHistory.Username != null);
-            Assert.Equal("Per", ratingHistory.Username);
-            Assert.Equal("something", ratingHistory.TitleId);
+            Assert.Equal("testuser", ratingHistory.Username);
+            Assert.Equal("tt7890244 ", ratingHistory.TitleId);
             Assert.Equal(5, ratingHistory.Rating);
         }
         [Fact]
@@ -125,13 +85,11 @@ namespace Portfolie2.DataServiceTests
             var service = new DataService();
             RatingHistory ratingHistory = new RatingHistory()
             {
-                Username = "Per",
-                TitleId = "something",
-                Rating = 5,
-                TitleBasic = null,
-                User = null
+                Username = "testuser",
+                TitleId = "tt7890244 ",
+                Rating = 5
             };
-            var testRatingHistory = service.CreateRatingHistory(ratingHistory);
+             service.CreateRatingHistory(ratingHistory);
             var result = service.DeleteRatingHistory(ratingHistory.Username, ratingHistory.TitleId);
             Assert.True(result);
             ratingHistory = service.GetRatingHistory(ratingHistory.Username, ratingHistory.TitleId);
@@ -144,23 +102,25 @@ namespace Portfolie2.DataServiceTests
         public void CreateComment()
         {
             var service = new DataService();
-            Comment comment = new Comment()
+            Comment testComment = new Comment()
             {
-                Username = "Per",
-                TitleId = "something",
-                Content = "test Tekst",
-                TimeStamp = new DateTime(),
-                TitleBasic = null,
-                User = null
+                Username = "testuser",
+                TitleId = "tt7890244 ",
+                Content = "test comment",
+                TimeStamp = new DateTime()
             };
-            var testComment = service.CreateComment(comment);
+            service.CreateComment(testComment);
+            Comment comment = service.GetComment(testComment.Username, testComment.TitleId, testComment.TimeStamp);
+
             Assert.True(comment.Username != null);
-            Assert.Equal("Per", comment.Username);
-            Assert.Equal("something", comment.TitleId);
-            Assert.Equal("test Tekst", comment.Content);
-            Assert.Equal(new DateTime(), comment.TimeStamp);
+            Assert.Equal("testuser", comment.Username);
+            Assert.Equal("tt7890244 ", comment.TitleId);
+            Assert.Equal("test comment", comment.Content);
+            Assert.Equal(comment.TimeStamp, comment.TimeStamp);
             Assert.Equal(null, comment.TitleBasic);
             Assert.Equal(null, comment.User);
+
+            service.DeleteComment(comment);
         }
         [Fact]
         public void DeleteComment_test()
@@ -168,17 +128,15 @@ namespace Portfolie2.DataServiceTests
             var service = new DataService();
             Comment comment = new Comment()
             {
-                Username = "Per",
-                TitleId = "something",
-                Content = "test Tekst",
-                TimeStamp = new DateTime(),
-                TitleBasic = null,
-                User = null
+                Username = "testuser",
+                TitleId = "tt7890244",
+                Content = "test comment",
+                TimeStamp = DateTime.Now
             };
             service.CreateComment(comment);
             var result = service.DeleteComment(comment.Username, comment.TitleId, comment.TimeStamp);
             Assert.True(result);
-            comment = service.GetComment(comment.Username, comment.TitleId);
+            comment = service.GetComment(comment.Username, comment.TitleId, comment.TimeStamp);
             Assert.Null(comment);
         }
         /// <summary>

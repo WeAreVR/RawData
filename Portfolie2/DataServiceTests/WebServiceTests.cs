@@ -108,7 +108,7 @@ namespace DataServiceTests
             // arrange
             var comment = new Comment
             {
-                Username = "fakeuser123",
+                Username = "testuser",
                 TitleId = "tt0926084",
                 Content = "Test comment",
                 TimeStamp = DateTime.Now
@@ -143,7 +143,7 @@ namespace DataServiceTests
             // arrange
             var comment = new Comment
             {
-                Username = "fakeuser123",
+                Username = "testuser",
                 TitleId = "tt0926084",
                 Content = "Test comment",
                 TimeStamp = DateTime.Now
@@ -177,7 +177,7 @@ namespace DataServiceTests
         [Fact]
         public void ApiBookmark_GetWithValidTitleId_OkAndBookmark()
         {
-            var (bookmark, statusCode) = GetObject($"{BookmarkApi}/fakeuser123");
+            var (bookmark, statusCode) = GetObject($"{BookmarkApi}/testuser");
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(10, bookmark["items"].Count());
@@ -213,7 +213,7 @@ namespace DataServiceTests
 
             ctrl.CreateBookMark(new BookmarkViewModel());
 
-            _dataServiceMock.Verify(x => x.CreateBookMark(It.IsAny<Bookmark>()), Times.Once);
+            _dataServiceMock.Verify(x => x.CreateBookmark(It.IsAny<Bookmark>()), Times.Once);
         }
         [Fact]
         public void DeleteBookmarkTest()
@@ -221,7 +221,7 @@ namespace DataServiceTests
             // arrange
             var bookmark = new Bookmark
             {
-                Username = "fakeuser123",
+                Username = "testuser",
                 TitleId = "tt0926084"
             };
 
@@ -243,7 +243,7 @@ namespace DataServiceTests
             // assert
             // verify that the Delete method we set up above was called
             // with the comment as the first argument
-            _dataServiceMock.Verify(r => r.DeleteBookMark(bookmark.Username, bookmark.TitleId));
+            _dataServiceMock.Verify(r => r.DeleteBookmark(bookmark.Username, bookmark.TitleId));
         }
         /// <param name="url"></param>
         /// <returns></returns>

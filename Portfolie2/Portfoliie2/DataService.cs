@@ -16,12 +16,12 @@ namespace Portfolie2
         // Bookmark
         public IList<Bookmark> GetBookmarks(string username, QueryString queryString);
         public Bookmark GetBookmark(string username, string titleId);
-        public bool DeleteBookMark(string username, string titleId);
-        public bool CreateBookMark(Bookmark titleId);
-        public Bookmark CreateBookMark(string username, string titleId);
+        public bool DeleteBookmark(string username, string titleId);
+        public bool CreateBookmark(Bookmark titleId);
+        public Bookmark CreateBookmark(string username, string titleId);
 
         // Comments
-        public Comment GetComment(string username, string titleId);
+        public Comment GetComment(string username, string titleId, DateTime timeStamp);
         public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString);
         public bool CreateComment(Comment comment);
         public Comment CreateComment(string username, string titleId, string content, DateTime timeStamp);
@@ -51,10 +51,6 @@ namespace Portfolie2
         //Award CRUD
         public Award GetAward(string titleId, string award);
         public IList<Award> GetAwardsByTitleId(string titleId);
-        public bool CreateAward(Award award);
-        public Award CreateAward(string titleId, string awardName);
-        public bool UpdateAward(Award award);
-        public bool DeleteAward(string titleId, string award);
 
         //TitleAkas CRUD
         public IList<TitleAka> GetTitleAkasByTitleId(string titleId);
@@ -213,27 +209,25 @@ namespace Portfolie2
             return result;
         }
 
-        public bool DeleteBookMark(string username, string titleId)
+        public bool DeleteBookmark(string username, string titleId)
         {
+
             var ctx = new IMDBContext();
-            try
-            {                
-                ctx.Bookmarks.Remove(ctx.Bookmarks.Find(username, titleId));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+
+            Bookmark bookmark = new Bookmark() { Username = username, TitleId = titleId };
+            ctx.Bookmarks.Attach(bookmark);
+            ctx.Bookmarks.Remove(ctx.Bookmarks.Find(username, titleId));
+
             return ctx.SaveChanges() > 0;
         }
-        public bool CreateBookMark(Bookmark bookmark)
+        public bool CreateBookmark(Bookmark bookmark)
         {
             var ctx = new IMDBContext();
 
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
-        public Bookmark CreateBookMark(string username, string titleId)
+        public Bookmark CreateBookmark(string username, string titleId)
         {
             var ctx = new IMDBContext();
 
@@ -249,12 +243,12 @@ namespace Portfolie2
 
         //---------------------------Comment ----------------------------------\\
 
-        public Comment GetComment(string username, string titleId)
+        public Comment GetComment(string username, string titleId, DateTime timeStamp)
         {
             var ctx = new IMDBContext();
             Comment result = ctx.Comments
                 .Include(y => y.TitleBasic)
-                .FirstOrDefault(x => x.TitleId == titleId && x.Username == username);
+                .FirstOrDefault(x => x.TitleId == titleId && x.Username == username && x.TimeStamp == timeStamp);
             return result;
         }
 
