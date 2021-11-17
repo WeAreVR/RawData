@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj": {}
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj": {
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj",
         "projectName": "Tests",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj",
-        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\obj\\",
+        "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\Tests.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\DataServiceTests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,11 +28,11 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {
-                "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj"
+              "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {
+                "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj"
               },
-              "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
-                "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
+              "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
+                "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
               }
             }
           }
@@ -99,17 +99,17 @@
         }
       }
     },
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
         "projectName": "WebService",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
-        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\obj\\",
+        "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\WebService.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfolie2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -123,8 +123,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
-                "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
+              "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
+                "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj"
               }
             }
           }
@@ -190,17 +190,17 @@
         }
       }
     },
-    "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
+    "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj",
+        "projectUniqueName": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj",
         "projectName": "Portfolie2",
-        "projectPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj",
-        "packagesPath": "C:\\Users\\louis\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\louis\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\obj\\",
+        "projectPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\Portfolie2.csproj",
+        "packagesPath": "C:\\Users\\thoma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thoma\\OneDrive\\Dokumenter\\GitHub\\RawData\\Portfolie2\\Portfoliie2\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\louis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thoma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
