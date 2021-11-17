@@ -57,12 +57,13 @@ namespace WebService.Controllers
         }
 
         
-        private TitleBasicViewModel CreateTitleBasicViewModel(TitleBasic title)
+        private TitleBasicViewModel CreateeTitleBasicViewModel(TitleBasic title)
         {
             var model = _mapper.Map<TitleBasicViewModel>(title);
             model.Url = GetUrl(title);
             model.Id = title.Id;
-           
+
+
             return model;
         }
         private string GetUrl(TitleBasic titleBasic)

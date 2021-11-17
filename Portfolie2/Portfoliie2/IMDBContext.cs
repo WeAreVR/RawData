@@ -102,9 +102,9 @@ namespace Portfolie2
             modelBuilder.Entity<TitleBasic>().Property(x => x.Runtime).HasColumnName("runtime_minutes");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Plot).HasColumnName("plot");
             modelBuilder.Entity<TitleBasic>().Property(x => x.Poster).HasColumnName("poster");
-            modelBuilder.Entity<TitleBasic>().HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic).HasForeignKey<TitleRating>(e => e.TitleId);
-
-
+            modelBuilder.Entity<TitleBasic>().HasOne(a => a.TitleRating).WithOne(x => x.TitleBasic)
+                .HasForeignKey<TitleRating>(e => e.TitleId);
+         
 
             modelBuilder.Entity<NameBasic>().ToTable("name_basics2");
             modelBuilder.Entity<NameBasic>().Property(x => x.Id).HasColumnName("name_id");
@@ -142,6 +142,8 @@ namespace Portfolie2
             modelBuilder.Entity<TitleRating>().Property(x => x.AvgRating).HasColumnName("avg_rating");
             modelBuilder.Entity<TitleRating>().Property(x => x.NumVotes).HasColumnName("num_votes");
             modelBuilder.Entity<TitleRating>().HasKey(c => new { c.TitleId });
+            modelBuilder.Entity<TitleRating>().HasOne<TitleBasic>(a => a.TitleBasic).WithOne(b => b.TitleRating)
+           .HasForeignKey<TitleBasic>(c => c.Id);
 
 
             modelBuilder.Entity<User>().ToTable("users");
