@@ -1,46 +1,33 @@
 define(["knockout", "dataService"], function (ko, ds) {
     let currentView = ko.observable("list");
+    
+    let episodes = ko.observableArray([]);
 
-    let categories = ko.observableArray([]);
 
-    let deleteCategory = category => {
-        console.log(category);
-        categories.remove(category);
-        ds.deleteCategory(category);
-    }
+    let selectId = ko.observable();
 
-    let selectName = ko.observable();
-    let selectDescription = ko.observable();
 
-    let addCategory = () => {
-        console.log("addCategory");
-        let category = { name: selectName(), description: selectDescription() };
-        ds.createCategory(category, newCategory => {
-            categories.push(newCategory);
+    ds.getTitleEpisodes(selectId,data => {
+        console.log(data);
+        episodes(data);
+
+    });
+
+    let searchTitleEpisodes = () => {
+        console.log("searchTitleEpisodes");
+        ds.getTitleEpisodes(selectId(), data => {
+            console.log(data);
+            episodes(data);
+
         });
         currentView("list");
-        selectName("");
-        selectDescription("");
+        selectId("");
     }
-
-    let addCategoryView = () => currentView("add");
-
-    let cancelAddCategory = () => currentView("list");
-
-
-    ds.getCategories(data => {
-        console.log(data);
-        categories(data);
-    });
 
     return {
         currentView,
-        addCategoryView,
-        cancelAddCategory,
-        categories,
-        deleteCategory,
-        addCategory,
-        selectName,
-        selectDescription
+        episodes,
+        searchTitleEpisodes,
+        selectId
     }
 });

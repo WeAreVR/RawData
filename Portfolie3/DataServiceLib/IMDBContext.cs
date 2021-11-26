@@ -35,10 +35,10 @@ namespace DataServiceLib
             optionsBuilder.EnableSensitiveDataLogging();
             
             //Localhost
-            //optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=ctj66yjr");
+            optionsBuilder.UseNpgsql("host=localhost;db=university;uid=postgres;pwd=nfd49s39");
             
             //RUC host
-            optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
+            //optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

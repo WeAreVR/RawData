@@ -1,4 +1,4 @@
-﻿/// <reference path="lib/jquery/dist/jquery.min.js" />
+﻿/// <reference path="lib/jquery/dist/jquery.js" />
 /// <reference path="lib/knockout/build/output/knockout-latest.debug.js" />
 
 

@@ -8,6 +8,7 @@
     <None Include="wwwroot\js\lib\jquery\dist\jquery.js" />
     <None Include="wwwroot\js\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\js\lib\jquery\dist\jquery.min.map" />
+	<Folder Include="wwwroot\js\lib\" />
   </ItemGroup>
 
   <ItemGroup>
