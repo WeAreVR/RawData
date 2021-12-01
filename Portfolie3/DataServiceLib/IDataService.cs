@@ -110,6 +110,7 @@ namespace DataServiceLib
         public TitleBasic CreateTitleBasic(string id, string primarytitle, bool isadult);
         public bool UpdateTitleBasic(TitleBasic titleBasic);
         public bool DeleteTitleBasic(string titleId);
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString);
 
         //NameBasic CRUD
         public NameBasic GetNameBasic(string nameId);

@@ -26,6 +26,8 @@ namespace DataServiceLib
         public DbSet<TitleRating> TitleRating { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Wi> Wi{ get; set; }
+        public DbSet<TitleBasicSearchResult> TitleBasicSearchResults { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,15 +37,21 @@ namespace DataServiceLib
             optionsBuilder.EnableSensitiveDataLogging();
             
             //Localhost
-            optionsBuilder.UseNpgsql("host=localhost;db=university;uid=postgres;pwd=nfd49s39");
+            //optionsBuilder.UseNpgsql("host=localhost;db=imdb;uid=postgres;pwd=");
             
             //RUC host
-            //optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
+            optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+
+            modelBuilder.Entity<TitleBasicSearchResult>().HasNoKey();
+            modelBuilder.Entity<TitleBasicSearchResult>().Property(x => x.Id).HasColumnName("title_id");
+            modelBuilder.Entity<TitleBasicSearchResult>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
+
 
             modelBuilder.Entity<Award>().ToTable("awards");
             modelBuilder.Entity<Award>().Property(x => x.TitleId).HasColumnName("title_id");
@@ -70,7 +78,7 @@ namespace DataServiceLib
             .HasForeignKey(s => s.TitleId);
 
 
-            modelBuilder.Entity<TitleEpisode>().ToTable("title_episode");
+            modelBuilder.Entity<TitleEpisode>().ToTable("episode");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.ParentTitleId).HasColumnName("parent_title_id");
             modelBuilder.Entity<TitleEpisode>().Property(x => x.SeasonNumber).HasColumnName("season_number");

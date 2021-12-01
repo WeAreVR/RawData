@@ -857,6 +857,28 @@ namespace DataServiceLib
             return result;
         }
 
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString)
+        {
+            var ctx = new IMDBContext();
+
+            var searchResult = ctx.TitleBasicSearchResults
+                .FromSqlInterpolated($"select * from simple_search({"Harry Potter"})");
+            //.AsEnumerable;
+            IEnumerable<TitleBasic> result = new List<TitleBasic>();
+
+            foreach (var TitleBasicSearchResult in searchResult)
+            {
+                var temp = GetTitleBasic(TitleBasicSearchResult.Id);
+                Console.WriteLine("  HARRY POTTER   HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER" + temp + TitleBasicSearchResult.Id);
+                  result = result.Append(temp);
+            }
+
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+            return result.ToList();
+        }
+
         public bool CreateTitleBasic(TitleBasic titleBasic)
         {
             var ctx = new IMDBContext();
@@ -909,7 +931,7 @@ namespace DataServiceLib
             return ctx.SaveChanges() > 0;
         }
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Name CRUD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //-------------------------NameBasic CRUD--------------------------
         public NameBasic GetNameBasic(string nameId)
         {
             var ctx = new IMDBContext();
