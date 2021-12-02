@@ -846,6 +846,8 @@ namespace DataServiceLib
         //---------------------------Title Basic CRUD----------------------------------
         public TitleBasic GetTitleBasic(string titleId)
         {
+            var trim = titleId.Trim();
+
             var ctx = new IMDBContext();
             TitleBasic result = ctx.TitleBasics
                 .Include(x => x.TitleRating)
@@ -853,7 +855,7 @@ namespace DataServiceLib
                 //.Include(x => x.TitleAkas)
                 //.Include(x => x.TitleGenres)
                 //.Include(x => x.TitlePrincipals)
-                .FirstOrDefault(x => x.Id == titleId);
+                .FirstOrDefault(x => x.Id == trim);
             return result;
         }
 
@@ -868,9 +870,11 @@ namespace DataServiceLib
 
             foreach (var TitleBasicSearchResult in searchResult)
             {
+                
                 var temp = GetTitleBasic(TitleBasicSearchResult.Id);
-                Console.WriteLine("  HARRY POTTER   HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER" + temp + TitleBasicSearchResult.Id);
-                  result = result.Append(temp);
+
+                //Console.WriteLine("  HARRY POTTER   HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER" + temp + TitleBasicSearchResult.Id);
+                result = result.Append(temp);
             }
 
             result = result
