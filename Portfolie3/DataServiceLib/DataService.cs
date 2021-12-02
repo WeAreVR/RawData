@@ -872,8 +872,6 @@ namespace DataServiceLib
             {
                 
                 var temp = GetTitleBasic(TitleBasicSearchResult.Id);
-
-                //Console.WriteLine("  HARRY POTTER   HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER  HARRY POTTER" + temp + TitleBasicSearchResult.Id);
                 result = result.Append(temp);
             }
 
