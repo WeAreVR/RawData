@@ -1,8 +1,75 @@
-﻿20 lines (16 sloc)  599 Bytes
+﻿
+<h1>Episodes</h1>
 
-﻿<h1>Episodes</h1>
+<!-- 10:30 min inde i videoen-->
+<button class="btn btn-primary" data-bind="click: create">Add Category</button>
 
-<button class="btn btn-primary" data-bind="click: create">Add titleEpisode</button>
+
+<table class="table">
+    <thead>
+        <tr><th>Url</th><th>Name</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody data-bind="foreach: categories">
+        <tr>
+            <td data-bind="text: url"></td>
+            <td data-bind="text: name"></td>
+            <td data-bind="text: description"></td>
+            <td><button class="btn btn-danger btn-sm" data-bind="click: $parent.del">Del</button></td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+    <h1>TitleEpisodes</h1>
+
+    
+    <div class="col-6">
+        Search: <input class="form-control" data-bind="value: selectId" required />
+        <button data-bind="click: searchTitleEpisodes">Search</button>
+    </div>
+
+    <div data-bind="foreach: episodes">
+        <table class="table">
+            <thead>
+                <tr><th>titleId</th><th>seasonNumber</th><th>episodeNumber</th><th></th></tr>
+            </thead>
+            <tbody data-bind="foreach: items">
+                <tr>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: seasonNumber"></td>
+                    <td data-bind="text: episodeNumber"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button class="btn btn-primary" data-bind="click: create">Add titleEpisode</button>
 
 
 <table class="table">
@@ -18,3 +85,4 @@
         </tr>
     </tbody>
 </table>
+    -->

@@ -8,7 +8,6 @@
     <None Include="wwwroot\js\lib\jquery\dist\jquery.js" />
     <None Include="wwwroot\js\lib\jquery\dist\jquery.min.js" />
     <None Include="wwwroot\js\lib\jquery\dist\jquery.min.map" />
-	<Folder Include="wwwroot\js\lib\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.14.1" />
+    <PackageReference Include="RequireJS.Text" Version="2.0.7" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.14.1" />
   </ItemGroup>
 
