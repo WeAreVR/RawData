@@ -1,0 +1,73 @@
+﻿
+<h1>Episodes</h1>
+
+<!-- 10:30 min inde i videoen-->
+<button class="btn btn-primary" data-bind="click: create">Add Category</button>
+
+
+
+    <h1>Titles</h1>
+
+    
+    <div class="col-6">
+        Search: <input class="form-control" data-bind="value: selectId" required />
+        <button data-bind="click: searchTitleBasics">Search</button>
+    </div>
+
+    <div data-bind="foreach: titlebasics">
+        <table class="table">
+            <thead>
+                <tr><th>titleId</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
+            </thead>
+            <tbody data-bind="foreach: items">
+                <tr>
+                    <td data-bind="text: id"></td>
+                    <td data-bind="text: primaryTitle"></td>
+                    <td data-bind="text: startYear"></td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <button class="btn btn-primary" data-bind="click: create">Add titleEpisode</button>
+
+
+<table class="table">
+    <thead>
+        <tr><th>1</th><th>2</th><th>3</th><th></th></tr>
+    </thead>
+    <tbody data-bind="foreach: titleEpisodes">
+        <tr>
+            <td data-bind="text: 1"></td>
+            <td data-bind="text: 2"></td>
+            <td data-bind="text: 3"></td>
+            <td><button class="btn btn-danger btn-sm" data-bind="click: $parent.del">Del</button></td>
+        </tr>
+    </tbody>
+</table>
+    -->
