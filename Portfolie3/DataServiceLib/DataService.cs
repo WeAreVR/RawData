@@ -864,7 +864,7 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             var searchResult = ctx.TitleBasicSearchResults
-                .FromSqlInterpolated($"select * from simple_search({"Harry Potter"})");
+                .FromSqlInterpolated($"select * from simple_search({searchInput})");
             //.AsEnumerable;
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
