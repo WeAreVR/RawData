@@ -6,7 +6,8 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let getTitleBasicsBySearch = (searchInput,callback) => {
+
+    let getTitleBasics = (searchInput, callback) => {
         fetch("api/titlebasic/search/" + searchInput)
             .then(response => response.json())
             .then(json => callback(json));
@@ -15,6 +16,6 @@ define([], () => {
 
     return {
         getTitleEpisodes,
-        getTitleBasicsBySearch
+        getTitleBasics
     }
 });

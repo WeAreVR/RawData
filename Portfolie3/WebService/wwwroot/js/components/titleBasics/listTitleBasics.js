@@ -5,21 +5,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let currentView = ko.observable("list-titles");
 
         let titleBasics = ko.observableArray([]);
-        let searchInput = ko.observable();
+        let selectId= ko.observable();
 
-        ds.getTitleBasicsBySearch(searchInput, data => {
+        ds.getTitleEpisodes(selectId, data => {
             console.log(data);
             titleBasics(data);
         });
 
         let searchTitleBasics = () => {
-            console.log("searchTitleBasics");
-            ds.getTitleBasicsBySearch(searchInput(), data => {
+            console.log("searchTitleBasics TEST");
+            ds.getTitleBasics(selectId(), data => {
                 console.log(data);
                 titleBasics(data);
             });
             currentView("list");
-            searchInput("");
+            selectId("");
         }
 
 
@@ -29,7 +29,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentView,
             titleBasics,
             searchTitleBasics,
-            searchInput
+            selectId
         }
     };
 });

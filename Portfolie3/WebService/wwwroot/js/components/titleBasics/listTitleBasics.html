@@ -1,66 +1,48 @@
 ﻿
-<h1>Titlestestestestest</h1>
+<!--
 
-    
-    <div class="col-6">
-        Search: <input class="form-control" data-bind="value: searchInput" required />
-        <button data-bind="click: searchTitleBasics">Search</button>
-    </div>
+<h1>Titles</h1>
 
-    <div data-bind="foreach: titleBasics">
-        <table class="table">
-            <thead>
-                <tr><th>Id</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
-            </thead>
-            <tbody data-bind="foreach: items">
-                <tr>
-                    <td data-bind="text: id"></td>
-                    <td data-bind="text: primaryTitle"></td>
-                    <td data-bind="text: startYear"></td>
-                </tr>
-            </tbody>
+<div class="col-6">
+    Search: <input class="form-control" data-bind="value: searchInput" required />
+    <button data-bind="click: searchTitleBasics">Search</button>
+</div>
 
-        </table>
-    </div>
+<div data-bind="foreach: titleBasics">
+    <table class="table">
+        <thead>
+            <tr><th>Id</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: primaryTitle"></td>
+                <td data-bind="text: startYear"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-
-
-
+-->
 
 
+<div class="col-6">
+    Search: <input class="form-control" data-bind="value: selectId" required />
+    <button data-bind="click: searchTitleBasics">Search</button>
+</div>
 
+<div data-bind="foreach: titleBasics">
+    <table class="table">
+        <thead>
+            <tr><th>titleId</th><th>seasonNumber</th><th>episodeNumber</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: seasonNumber"></td>
+                <td data-bind="text: episodeNumber"></td>
+            </tr>
+        </tbody>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <button class="btn btn-primary" data-bind="click: create">Add titleEpisode</button>
-
-
-<table class="table">
-    <thead>
-        <tr><th>1</th><th>2</th><th>3</th><th></th></tr>
-    </thead>
-    <tbody data-bind="foreach: titleEpisodes">
-        <tr>
-            <td data-bind="text: 1"></td>
-            <td data-bind="text: 2"></td>
-            <td data-bind="text: 3"></td>
-            <td><button class="btn btn-danger btn-sm" data-bind="click: $parent.del">Del</button></td>
-        </tr>
-    </tbody>
-</table>
-    -->
+    </table>
+</div>
