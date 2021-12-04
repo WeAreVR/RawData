@@ -1,23 +1,16 @@
 ﻿
-<h1>Episodes</h1>
-
-<!-- 10:30 min inde i videoen-->
-<button class="btn btn-primary" data-bind="click: create">Add Category</button>
-
-
-
-    <h1>Titles</h1>
+<h1>Titlestestestestest</h1>
 
     
     <div class="col-6">
-        Search: <input class="form-control" data-bind="value: selectId" required />
+        Search: <input class="form-control" data-bind="value: searchInput" required />
         <button data-bind="click: searchTitleBasics">Search</button>
     </div>
 
-    <div data-bind="foreach: titlebasics">
+    <div data-bind="foreach: titleBasics">
         <table class="table">
             <thead>
-                <tr><th>titleId</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
+                <tr><th>Id</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
             </thead>
             <tbody data-bind="foreach: items">
                 <tr>

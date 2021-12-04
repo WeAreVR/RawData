@@ -6,8 +6,8 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let getTitleBasicsBySearch = (searchInput, callback) => {
-        fetch("api/titlebasic/search/" + id)
+    let getTitleBasicsBySearch = (searchInput,callback) => {
+        fetch("api/titlebasic/search/" + searchInput)
             .then(response => response.json())
             .then(json => callback(json));
     };
