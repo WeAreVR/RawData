@@ -1,10 +1,9 @@
 ﻿
-<!--
 
 <h1>Titles</h1>
 
 <div class="col-6">
-    Search: <input class="form-control" data-bind="value: searchInput" required />
+    Search: <input class="form-control" data-bind="value: selectId" required />
     <button data-bind="click: searchTitleBasics">Search</button>
 </div>
 
@@ -23,26 +22,6 @@
     </table>
 </div>
 
--->
 
 
-<div class="col-6">
-    Search: <input class="form-control" data-bind="value: selectId" required />
-    <button data-bind="click: searchTitleBasics">Search</button>
-</div>
 
-<div data-bind="foreach: titleBasics">
-    <table class="table">
-        <thead>
-            <tr><th>titleId</th><th>seasonNumber</th><th>episodeNumber</th><th></th></tr>
-        </thead>
-        <tbody data-bind="foreach: items">
-            <tr>
-                <td data-bind="text: id"></td>
-                <td data-bind="text: seasonNumber"></td>
-                <td data-bind="text: episodeNumber"></td>
-            </tr>
-        </tbody>
-
-    </table>
-</div>
