@@ -49,7 +49,6 @@ namespace WebService.Controllers
         {
             var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId, queryString);
             var allTitleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId);
-
             var items = titleEpisodes.Select(GetTitleEpisodeViewModel);
             var result = CreateResultModel(queryString, _dataService.NumberOfEpisodes(allTitleEpisodes), items);
 
