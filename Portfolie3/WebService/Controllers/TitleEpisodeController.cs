@@ -29,7 +29,7 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
         
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = nameof(GetTitleEpisode))]
         public IActionResult GetTitleEpisode(string id)
         {
             var titleEpisode = _dataService.GetTitleEpisode(id);
@@ -44,7 +44,7 @@ namespace WebService.Controllers
             return Ok(model);
         }
         
-        [HttpGet("allepisodes/{parentTitleId}", Name = nameof(GetTitleEpisode))]
+        [HttpGet("allepisodes/{parentTitleId}", Name = nameof(GetTitleEpisodesByParentTitleId))]
         public IActionResult GetTitleEpisodesByParentTitleId(string parentTitleId, [FromQuery] QueryString queryString)
         {
             var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId, queryString);
@@ -87,9 +87,7 @@ namespace WebService.Controllers
             model.Url = GetTitleEpisodeUrl(titleEpisode);
             return model;
         }
-            
-        
-
+          
 
         private TitleEpisodeViewModel CreateTitleEpisodeViewModel(TitleEpisode title)
         {
@@ -105,12 +103,14 @@ namespace WebService.Controllers
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleEpisode), new { titleEpisode.Id });
 
         }
+       
+
         private string GetTitleEpisodeUrl(int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
-                nameof(GetTitleEpisode),
-                new { page, pageSize });
+                nameof(GetTitleEpisodesByParentTitleId),
+                new {page, pageSize});
         }
 
 
@@ -119,7 +119,7 @@ namespace WebService.Controllers
             return new
             {
                 total,
-                prev = CreateNextPageLink(queryString),
+                prev = CreatePreviousPageLink(queryString),
                 cur = CreateCurrentPageLink(queryString),
                 next = CreateNextPageLink(queryString, total),
                 items = model
@@ -137,7 +137,7 @@ namespace WebService.Controllers
             return GetTitleEpisodeUrl(queryString.Page, queryString.PageSize);
         }
 
-        private string CreateNextPageLink(QueryString queryString)
+        private string CreatePreviousPageLink(QueryString queryString)
         {
             return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(queryString.Page - 1, queryString.PageSize);
         }

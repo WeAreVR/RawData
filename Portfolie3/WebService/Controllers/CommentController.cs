@@ -14,7 +14,7 @@ using AutoMapper;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/comments")]
+    [Route("api/comment")]
     public class CommentController : Controller
     {
 

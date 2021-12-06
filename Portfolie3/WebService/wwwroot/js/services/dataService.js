@@ -12,10 +12,17 @@ define([], () => {
             .then(response => response.json())
             .then(json => callback(json));
     };
-    
+
+
+    let getComments = (id, callback) => {
+        fetch("api/comment/" + id)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
 
     return {
         getTitleEpisodes,
-        getTitleBasics
+        getTitleBasics,
+        getComments
     }
 });

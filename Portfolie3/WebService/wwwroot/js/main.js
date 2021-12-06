@@ -24,6 +24,10 @@ require(['knockout'], (ko) => {
         template: { require: "text!components/titleBasics/listTitleBasics.html" }
     });
 
+    ko.components.register("list-comments", {
+        viewModel: { require: "components/comments/listComments" },
+        template: { require: "text!components/comments/listComments.html" }
+    });
 });
 
 

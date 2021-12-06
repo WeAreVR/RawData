@@ -13,7 +13,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         });
 
         let searchTitleBasics = () => {
-            console.log("searchTitleBasics TEST");
+            console.log("searchTitleBasics");
             ds.getTitleBasics(selectId(), data => {
                 console.log(data);
                 titleBasics(data);
@@ -22,6 +22,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             selectId("");
         }
 
+        let commentSection = () => postman.publish("changeView", "list-episodes");
+
 
 
         return {
@@ -29,7 +31,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentView,
             titleBasics,
             searchTitleBasics,
-            selectId
+            selectId,
+            commentSection
         }
     };
 });
