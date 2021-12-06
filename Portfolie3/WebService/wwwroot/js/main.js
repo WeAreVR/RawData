@@ -30,7 +30,7 @@ require(['knockout'], (ko) => {
     });
     ko.components.register("list-bookmarks", {
         viewModel: { require: "components/bookmarks/listBookmarks" },
-        template: { require: "text!components/bookmark/listBookmarks.html" }
+        template: { require: "text!components/bookmarks/listBookmarks.html" }
     });
 });
 
