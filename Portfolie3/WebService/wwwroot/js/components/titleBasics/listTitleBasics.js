@@ -22,7 +22,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             selectId("");
         }
 
-        let commentSection = () => postman.publish("changeView", "list-episodes");
+        let commentSection = () => postman.publish("changeView", "list-comments");
 
 
 
