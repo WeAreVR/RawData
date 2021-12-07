@@ -864,9 +864,17 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             string[] searchWords = searchInput.Split(" ");
+            List<string> listlist = new List<string>(searchWords);
+
+
+
+
+            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
+            Console.WriteLine(finalSearch);
+            var sidste = "select * from bestmatch(" + finalSearch + ")";
 
             var searchResult = ctx.TitleBasicSearchResults
-                .FromSqlInterpolated($"select * from simple_search({searchInput})");
+                .FromSqlRaw("select * from bestmatch(" + finalSearch+ ")");
             //.AsEnumerable;
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
