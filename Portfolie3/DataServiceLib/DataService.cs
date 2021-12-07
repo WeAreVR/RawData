@@ -863,6 +863,8 @@ namespace DataServiceLib
         {
             var ctx = new IMDBContext();
 
+            string[] searchWords = searchInput.Split(" ");
+
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlInterpolated($"select * from simple_search({searchInput})");
             //.AsEnumerable;

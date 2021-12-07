@@ -44,13 +44,13 @@ namespace WebService.Controllers
             return Ok(model);
         }
         
-        [HttpGet("allepisodes/{parentTitleId}", Name = nameof(GetTitleEpisodesByParentTitleId))]
+        [HttpGet("allepisodes", Name = nameof(GetTitleEpisodesByParentTitleId))]
         public IActionResult GetTitleEpisodesByParentTitleId(string parentTitleId, [FromQuery] QueryString queryString)
         {
             var titleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId, queryString);
             var allTitleEpisodes = _dataService.GetTitleEpisodesByParentTitleId(parentTitleId);
             var items = titleEpisodes.Select(GetTitleEpisodeViewModel);
-            var result = CreateResultModel(queryString, _dataService.NumberOfEpisodes(allTitleEpisodes), items);
+            var result = CreateResultModel(parentTitleId, queryString, _dataService.NumberOfEpisodes(allTitleEpisodes), items);
 
 
           
@@ -105,41 +105,41 @@ namespace WebService.Controllers
         }
        
 
-        private string GetTitleEpisodeUrl(int page, int pageSize)
+        private string GetTitleEpisodeUrl(string pid, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
                 nameof(GetTitleEpisodesByParentTitleId),
-                new {page, pageSize});
+                new {pid, page, pageSize});
         }
 
 
-        private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleEpisodeViewModel> model)
+        private object CreateResultModel(string pid, QueryString queryString, int total, IEnumerable<TitleEpisodeViewModel> model)
         {
             return new
             {
                 total,
-                prev = CreatePreviousPageLink(queryString),
-                cur = CreateCurrentPageLink(queryString),
-                next = CreateNextPageLink(queryString, total),
+                prev = CreatePreviousPageLink(pid, queryString),
+                cur = CreateCurrentPageLink(pid, queryString),
+                next = CreateNextPageLink(pid, queryString, total),
                 items = model
             };
         }
-        private string CreateNextPageLink(QueryString queryString, int total)
+        private string CreateNextPageLink(string pid, QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetTitleEpisodeUrl(queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetTitleEpisodeUrl(pid, queryString.Page + 1, queryString.PageSize);
         }
 
 
-        private string CreateCurrentPageLink(QueryString queryString)
+        private string CreateCurrentPageLink(string pid, QueryString queryString)
         {
-            return GetTitleEpisodeUrl(queryString.Page, queryString.PageSize);
+            return GetTitleEpisodeUrl(pid, queryString.Page, queryString.PageSize);
         }
 
-        private string CreatePreviousPageLink(QueryString queryString)
+        private string CreatePreviousPageLink(string pid, QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(pid, queryString.Page - 1, queryString.PageSize);
         }
 
         private static int GetLastPage(int pageSize, int total)

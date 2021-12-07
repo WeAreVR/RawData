@@ -43,8 +43,8 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        [HttpGet("search/{searchInput}")]
-        public IActionResult GetTitleBasicInput(string searchInput, [FromQuery] QueryString queryString)
+        [HttpGet("search", Name = nameof(GetTitleBasicsSearch))]
+        public IActionResult GetTitleBasicsSearch(string searchInput, [FromQuery] QueryString queryString)
         {
             var titleBasics = _dataService.GetTitleBasicsBySearch(searchInput, queryString);
 
@@ -55,7 +55,7 @@ namespace WebService.Controllers
             }
 
             var items = titleBasics.Select(GetTitleBasicViewModel);
-            var result = CreateResultModel(queryString, 10, items);
+            var result = CreateResultModel(searchInput, queryString, 10, items);
             //TitleBasicViewModel model = GetTitleBasicViewModel(titleBasic);
 
             return Ok(result);
@@ -76,7 +76,7 @@ namespace WebService.Controllers
         }
 
         
-        private TitleBasicViewModel CreateeTitleBasicViewModel(TitleBasic title)
+        private TitleBasicViewModel CreateTitleBasicViewModel(TitleBasic title)
         {
             var model = _mapper.Map<TitleBasicViewModel>(title);
             model.Url = GetUrl(title);
@@ -85,44 +85,46 @@ namespace WebService.Controllers
 
             return model;
         }
+
         private string GetUrl(TitleBasic titleBasic)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleBasic), new { titleBasic.Id });
         }
-        private string GetTitleBasicUrl(int page, int pageSize)
+        private string GetTitleBasicsSearchUrl(string searchInput, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
-                nameof(GetTitleBasic),
-                new { page, pageSize });
+                nameof(GetTitleBasicsSearch),
+                new {searchInput, page, pageSize });
         }
 
-        private object CreateResultModel(QueryString queryString, int total, IEnumerable<TitleBasicViewModel> model)
+        private object CreateResultModel(string searchInput, QueryString queryString, int total, IEnumerable<TitleBasicViewModel> model)
         {
             return new
             {
                 total,
-                prev = CreateNextPageLink(queryString),
-                cur = CreateCurrentPageLink(queryString),
-                next = CreateNextPageLink(queryString, total),
+                prev = CreatePreviousPageLink(searchInput, queryString),
+                cur = CreateCurrentPageLink(searchInput, queryString),
+                next = CreateNextPageLink(searchInput, queryString, total),
                 items = model
             };
         }
-        private string CreateNextPageLink(QueryString queryString, int total)
+
+        private string CreateNextPageLink(string searchInput, QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetTitleBasicUrl(queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetTitleBasicsSearchUrl(searchInput, queryString.Page + 1, queryString.PageSize);
         }
 
 
-        private string CreateCurrentPageLink(QueryString queryString)
+        private string CreateCurrentPageLink(string searchInput, QueryString queryString)
         {
-            return GetTitleBasicUrl(queryString.Page, queryString.PageSize);
+            return GetTitleBasicsSearchUrl(searchInput, queryString.Page, queryString.PageSize);
         }
 
-        private string CreateNextPageLink(QueryString queryString)
+        private string CreatePreviousPageLink(string searchInput, QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetTitleBasicUrl(queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetTitleBasicsSearchUrl(searchInput, queryString.Page - 1, queryString.PageSize);
         }
 
         private static int GetLastPage(int pageSize, int total)

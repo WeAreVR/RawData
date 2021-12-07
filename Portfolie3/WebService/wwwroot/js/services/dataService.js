@@ -1,14 +1,14 @@
 define([], () => {
 
     let getTitleEpisodes = (id,callback) => {
-        fetch("api/titleepisode/allepisodes/"+ id)
+        fetch("api/titleepisode/allepisodes/"+ "?parentTitleId=" + id)
             .then(response => response.json())
             .then(json => callback(json));
     };
 
 
     let getTitleBasics = (searchInput, callback) => {
-        fetch("api/titlebasic/search/" + searchInput)
+        fetch("api/titlebasic/search/" + "?searchInput=" + searchInput)
             .then(response => response.json())
             .then(json => callback(json));
     };
