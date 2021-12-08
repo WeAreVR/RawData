@@ -1,5 +1,6 @@
 define([], () => {
 
+    const titleBasicApiUrl = "api/titlebasic";
     let getTitleEpisodes = (id,callback) => {
         fetch("api/titleepisode/allepisodes/"+ "?parentTitleId=" + id)
             .then(response => response.json())
@@ -20,9 +21,12 @@ define([], () => {
             .then(json => callback(json));
     };
 
+   // let getTitleBasicsWithPageSize = size => titleBasicApiUrl + "?pageSize=" + size;
+
     return {
         getTitleEpisodes,
         getTitleBasics,
         getComments
+       // getTitleBasicsWithPageSize
     }
 });
