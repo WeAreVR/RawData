@@ -1,12 +1,9 @@
-﻿//const { data } = require("jquery");
-
-//const { get } = require("jquery");
-
+﻿
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
         let pageSize = [5, 10, 15, 100];
-        let selectedPageSize = ko.observable([10]);
+        let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-titles");
         let prev = ko.observable();
         let next = ko.observable();
@@ -19,28 +16,37 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             titleBasics(data);
         });
 
-        let getData = url => {
-            ds.getTitleBasics(url, data => {
-                prev(data.prev || undefined);
-                next(data.next || undefined);
-                titleBasics(data.items)
-            })
-        }
-        let showPrev = titleBasics => {
-            console.log(prev());
-            getData(prev());
-        }
+       
         let enablePrev = ko.observable(() => prev() !== undefined);
-        let showNext = titleBasics => {
+
+        let showNext = () =>
+        {
             console.log(next());
-            getData(next());
+            ds.getTitleBasicsUrl(next(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    titleBasics(data);
+            });
         }
+        let showPrev = () => {
+            console.log(next());
+            ds.getTitleBasicsUrl(prev(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    titleBasics(data);
+            });
+        }
+
         let enableNext = ko.observable(() => next() !== undefined);
 
         let searchTitleBasics = () => {
             console.log("searchTitleBasics");
             ds.getTitleBasics(selectId(), data => {
                 console.log(data);
+                prev(data.prev),
+                next(data.next),
                 titleBasics(data);
             });
             currentView("list");
@@ -48,13 +54,12 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let commentSection = () => postman.publish("changeView", "list-comments");
-
+        
         selectedPageSize.subscribe(() => {
             var size = selectedPageSize()[0];
-            getData(ds.getTitleBasicsWithPageSize(size));
+            searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
         });
-
-        getData();
+        
 
         return {
             enableNext,
