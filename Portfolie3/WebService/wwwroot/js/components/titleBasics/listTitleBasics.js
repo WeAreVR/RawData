@@ -2,6 +2,7 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
+        let pageSize = [5, 10, 15, 100];
         let currentView = ko.observable("list-titles");
 
         let titleBasics = ko.observableArray([]);
@@ -27,6 +28,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
 
         return {
+            pageSize,
             currentComponent,
             currentView,
             titleBasics,
