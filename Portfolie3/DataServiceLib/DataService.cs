@@ -770,8 +770,10 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             var result = ctx.TitleEpisodes
             .Where(p => p.ParentTitleId == parentTitleId)
-            .Include(x=>x.TitleBasic).AsEnumerable()
-            ;
+            .Include(x=>x.TitleBasic).AsEnumerable();
+
+            result = result.OrderBy(x => x.SeasonNumber).ThenBy(x => x.EpisodeNumber);
+
             result = result
                 .Skip(queryString.Page * queryString.PageSize)
                 .Take(queryString.PageSize);
@@ -780,13 +782,12 @@ namespace DataServiceLib
         public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId)
         {
             var ctx = new IMDBContext();
-            var titleEpisode = ctx.TitleEpisodes
+            var titleEpisodes = ctx.TitleEpisodes
             .Where(p => p.ParentTitleId == parentTitleId)
             .Include(x => x.TitleBasic)
-            .ToList()
-            ;
+            .ToList();
 
-            return titleEpisode;   
+            return titleEpisodes;   
         }
 
         public bool CreateTitleEpisode(TitleEpisode titleEpisode)
