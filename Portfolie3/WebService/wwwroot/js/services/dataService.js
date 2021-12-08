@@ -21,12 +21,12 @@ define([], () => {
             .then(json => callback(json));
     };
 
-   // let getTitleBasicsWithPageSize = size => titleBasicApiUrl + "?pageSize=" + size;
+    let getTitleBasicsWithPageSize = size => titleBasicApiUrl + "?pageSize=" + size;
 
     return {
         getTitleEpisodes,
         getTitleBasics,
-        getComments
-       // getTitleBasicsWithPageSize
+        getComments,
+       getTitleBasicsWithPageSize
     }
 });

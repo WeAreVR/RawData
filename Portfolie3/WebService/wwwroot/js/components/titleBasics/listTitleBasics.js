@@ -1,4 +1,6 @@
-﻿const { data } = require("jquery");
+﻿//const { data } = require("jquery");
+
+//const { get } = require("jquery");
 
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
@@ -10,12 +12,30 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let next = ko.observable();
 
         let titleBasics = ko.observableArray([]);
-        let selectId= ko.observable();
+        let selectId = ko.observable();
 
         ds.getTitleEpisodes(selectId, data => {
             console.log(data);
             titleBasics(data);
         });
+
+        let getData = url => {
+            ds.getTitleBasics(url, data => {
+                prev(data.prev || undefined);
+                next(data.next || undefined);
+                titleBasics(data.items)
+            })
+        }
+        let showPrev = titleBasics => {
+            console.log(prev());
+            getData(prev());
+        }
+        let enablePrev = ko.observable(() => prev() !== undefined);
+        let showNext = titleBasics => {
+            console.log(next());
+            getData(next());
+        }
+        let enableNext = ko.observable(() => next() !== undefined);
 
         let searchTitleBasics = () => {
             console.log("searchTitleBasics");
@@ -28,23 +48,19 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let commentSection = () => postman.publish("changeView", "list-comments");
-        
-        let getData = url => {
-            dataService.getTitleBasics(url, data => {
-                prev(data.prev || undefined);
-                next(data.next || undefined);
-                titleBasics(data.items)
-            })
-        }
 
         selectedPageSize.subscribe(() => {
             var size = selectedPageSize()[0];
-            getData(dataService.getTitleBasicsWithPageSize(size));
+            getData(ds.getTitleBasicsWithPageSize(size));
         });
 
         getData();
 
         return {
+            enableNext,
+            enablePrev,
+            showNext,
+            showPrev,
             prev,
             next,
             selectedPageSize,
