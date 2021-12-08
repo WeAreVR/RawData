@@ -759,9 +759,9 @@ namespace DataServiceLib
             TitleEpisode result = ctx.TitleEpisodes.FirstOrDefault(x => x.Id == titleId);
             return result;
         }
-        public int NumberOfEpisodes(IList<TitleEpisode> episodes)
+        public int NumberOfElements(IList<TitleEpisode> elements)
         {
-            return episodes.Count();
+            return elements.Count();
         }
 
 
@@ -859,6 +859,38 @@ namespace DataServiceLib
             return result;
         }
 
+        public int NumberOfElements(IList<TitleBasic> elements)
+        {
+            return elements.Count();
+        }
+
+
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput)
+        {
+            var ctx = new IMDBContext();
+
+            string[] searchWords = searchInput.Split(" ");
+            List<string> listlist = new List<string>(searchWords);
+
+            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
+
+
+
+            var searchResult = ctx.TitleBasicSearchResults
+                .FromSqlRaw("select * from bestmatch(" + finalSearch + ")");
+
+            IEnumerable<TitleBasic> result = new List<TitleBasic>();
+
+            searchResult = searchResult.OrderBy(x => x.rank);
+
+            foreach (var TitleBasicSearchResult in searchResult)
+            {
+                var temp = GetTitleBasic(TitleBasicSearchResult.Id);
+                result = result.Append(temp);
+            }
+            return result.ToList();
+        }
+
         public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString)
         {
             var ctx = new IMDBContext();
@@ -866,24 +898,23 @@ namespace DataServiceLib
             string[] searchWords = searchInput.Split(" ");
             List<string> listlist = new List<string>(searchWords);
 
-
-
-
             var finalSearch = "'" + string.Join("', '", searchWords) + "'";
-            Console.WriteLine(finalSearch);
-            var sidste = "select * from bestmatch(" + finalSearch + ")";
+      
+            
 
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch+ ")");
-            //.AsEnumerable;
+          
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
+            searchResult = searchResult.OrderBy(x => x.rank);
+
             foreach (var TitleBasicSearchResult in searchResult)
-            {
-                
+            { 
                 var temp = GetTitleBasic(TitleBasicSearchResult.Id);
                 result = result.Append(temp);
             }
+
 
             result = result
                 .Skip(queryString.Page * queryString.PageSize)
