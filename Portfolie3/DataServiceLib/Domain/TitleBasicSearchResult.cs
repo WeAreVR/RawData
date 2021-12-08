@@ -10,5 +10,6 @@ namespace DataServiceLib.Domain
     {
         public string Id { get; set; }
         public string PrimaryTitle { get; set; }
+        public int rank { get; set; }
     }
 }

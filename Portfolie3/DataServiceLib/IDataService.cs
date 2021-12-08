@@ -101,7 +101,8 @@ namespace DataServiceLib
         public TitleEpisode CreateTitleEpisode(string id, string parentTitleId, int seasonNumber, int episodeNumber);
         public bool UpdateTitleEpisode(TitleEpisode titleEpisode);
         public bool DeleteTitleEpisode(string titleId);
-        int NumberOfEpisodes(IList<TitleEpisode> episodes);
+        int NumberOfElements(IList<TitleEpisode> elements);
+        int NumberOfElements(IList<TitleBasic> elements);
         public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId);
 
         //TitleBasics CRUD
@@ -110,6 +111,7 @@ namespace DataServiceLib
         public TitleBasic CreateTitleBasic(string id, string primarytitle, bool isadult);
         public bool UpdateTitleBasic(TitleBasic titleBasic);
         public bool DeleteTitleBasic(string titleId);
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput);
         public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString);
 
         //NameBasic CRUD

@@ -47,6 +47,7 @@ namespace WebService.Controllers
         public IActionResult GetTitleBasicsSearch(string searchInput, [FromQuery] QueryString queryString)
         {
             var titleBasics = _dataService.GetTitleBasicsBySearch(searchInput, queryString);
+            var allTitleBasics = _dataService.GetTitleBasicsBySearch(searchInput);
 
 
             if (searchInput == null)
@@ -55,8 +56,7 @@ namespace WebService.Controllers
             }
 
             var items = titleBasics.Select(GetTitleBasicViewModel);
-            var result = CreateResultModel(searchInput, queryString, 10, items);
-            //TitleBasicViewModel model = GetTitleBasicViewModel(titleBasic);
+            var result = CreateResultModel(searchInput, queryString, _dataService.NumberOfElements(allTitleBasics), items);
 
             return Ok(result);
         }
