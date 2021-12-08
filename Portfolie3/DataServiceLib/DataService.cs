@@ -870,8 +870,6 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             string[] searchWords = searchInput.Split(" ");
-            List<string> listlist = new List<string>(searchWords);
-
             var finalSearch = "'" + string.Join("', '", searchWords) + "'";
 
 
@@ -879,9 +877,9 @@ namespace DataServiceLib
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch + ")");
 
+            searchResult = searchResult.OrderBy(x => x.rank);
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
-            searchResult = searchResult.OrderBy(x => x.rank);
 
             foreach (var TitleBasicSearchResult in searchResult)
             {
@@ -896,18 +894,14 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             string[] searchWords = searchInput.Split(" ");
-            List<string> listlist = new List<string>(searchWords);
-
             var finalSearch = "'" + string.Join("', '", searchWords) + "'";
-      
-            
+     
 
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch+ ")");
-          
-            IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
-            searchResult = searchResult.OrderBy(x => x.rank);
+            searchResult = searchResult.OrderByDescending(x => x.rank);
+            IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
             foreach (var TitleBasicSearchResult in searchResult)
             { 
