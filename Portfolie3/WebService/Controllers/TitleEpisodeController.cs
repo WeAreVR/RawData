@@ -105,41 +105,41 @@ namespace WebService.Controllers
         }
        
 
-        private string GetTitleEpisodeUrl(string pid, int page, int pageSize)
+        private string GetTitleEpisodeUrl(string parentTitleId, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
                 nameof(GetTitleEpisodesByParentTitleId),
-                new {pid, page, pageSize});
+                new { parentTitleId, page, pageSize});
         }
 
 
-        private object CreateResultModel(string pid, QueryString queryString, int total, IEnumerable<TitleEpisodeViewModel> model)
+        private object CreateResultModel(string parentTitleId, QueryString queryString, int total, IEnumerable<TitleEpisodeViewModel> model)
         {
             return new
             {
                 total,
-                prev = CreatePreviousPageLink(pid, queryString),
-                cur = CreateCurrentPageLink(pid, queryString),
-                next = CreateNextPageLink(pid, queryString, total),
+                prev = CreatePreviousPageLink(parentTitleId, queryString),
+                cur = CreateCurrentPageLink(parentTitleId, queryString),
+                next = CreateNextPageLink(parentTitleId, queryString, total),
                 items = model
             };
         }
-        private string CreateNextPageLink(string pid, QueryString queryString, int total)
+        private string CreateNextPageLink(string parentTitleId, QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetTitleEpisodeUrl(pid, queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetTitleEpisodeUrl(parentTitleId, queryString.Page + 1, queryString.PageSize);
         }
 
 
-        private string CreateCurrentPageLink(string pid, QueryString queryString)
+        private string CreateCurrentPageLink(string parentTitleId, QueryString queryString)
         {
-            return GetTitleEpisodeUrl(pid, queryString.Page, queryString.PageSize);
+            return GetTitleEpisodeUrl(parentTitleId, queryString.Page, queryString.PageSize);
         }
 
-        private string CreatePreviousPageLink(string pid, QueryString queryString)
+        private string CreatePreviousPageLink(string parentTitleId, QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(pid, queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetTitleEpisodeUrl(parentTitleId, queryString.Page - 1, queryString.PageSize);
         }
 
         private static int GetLastPage(int pageSize, int total)

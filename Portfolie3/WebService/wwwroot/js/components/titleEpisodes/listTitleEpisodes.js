@@ -12,29 +12,44 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let toEpisodeList = () => postman.publish("changeView", "list-episodes");
 
+        let enablePrev = ko.observable(() => prev() !== undefined);
+        let enableNext = ko.observable(() => next() !== undefined);
+
         let searchTitleEpisodes = () => {
             console.log("searchTitleEpisodes");
             ds.getTitleEpisodes(selectId(), data => {
                 console.log(data);
                 episodes(data.items);
                 prev(data.prev);
-
+                next(data.next);
 
             });
             currentView("list");
             selectId("");
         }
 
-        let showPrev = episode => {
-            console.log(prev);
-
+        let showNext = () => {
+            console.log(next());
+            ds.getTitleBasicsUrl(next(), data => {
+                console.log(data);
+                prev(data.prev),
+                next(data.next),
+                episodes(data.items);
+            });
         }
-        let showNext = episode => {
-            console.log(episode);
-
+        let showPrev = () => {
+            console.log(next());
+            ds.getTitleBasicsUrl(prev(), data => {
+                console.log(data);
+                prev(data.prev),
+                next(data.next),
+                episodes(data.items);
+            });
         }
 
         return {
+            enablePrev,
+            enableNext,
             showPrev,
             showNext,
             currentComponent,

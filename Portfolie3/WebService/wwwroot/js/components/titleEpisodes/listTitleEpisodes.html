@@ -1,33 +1,31 @@
 ﻿<h1>TitleEpisodess</h1>
 <!--<button class="btn btn-primary" data-bind="click: searchTitle">Search for title</button>-->
 
-
 <div class="col-6">
     Search: <input class="form-control" data-bind="value: selectId" required />
     <button data-bind="click: searchTitleEpisodes">Search</button>
 </div>
 
-    <table class="table">
-        <thead>
-            <tr><th>titleId</th><th>seasonNumber</th><th>episodeNumber</th><th></th></tr>
-        </thead>
-        <tbody data-bind="foreach: episodes">
-            <tr>
-                <td data-bind="text: id"></td>
-                <td data-bind="text: seasonNumber"></td>
-                <td data-bind="text: episodeNumber"></td>
-            </tr>
-        </tbody>
+<table class="table">
+    <thead>
+        <tr><th>titleId</th><th>seasonNumber</th><th>episodeNumber</th><th></th></tr>
+    </thead>
+    <tbody data-bind="foreach: episodes">
+        <tr>
+            <td data-bind="text: id"></td>
+            <td data-bind="text: seasonNumber"></td>
+            <td data-bind="text: episodeNumber"></td>
+        </tr>
+    </tbody>
 
-    </table>
+</table>
 
 <div>
-    <button data-bind="click: showPrev">Previous  page</button>
+    <button data-bind="click: showPrev, enable: enablePrev">Previous page</button>
 </div>
 <div>
-    <button data-bind="click: showNext">Next page</button>
+    <button data-bind="click: showNext, enable: enableNext">Next page</button>
 </div>
-
 
 
 
