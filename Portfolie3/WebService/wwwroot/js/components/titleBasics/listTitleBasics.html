@@ -6,7 +6,7 @@
     <button data-bind="click: searchTitleBasics">Search</button>
 </div>
 <div>
-    Page size: <section data-bind="options: pageSize">  </section>
+    Page size: <select data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
 </div>
 <div data-bind="foreach: titleBasics">
     <table class="table">
