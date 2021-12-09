@@ -977,6 +977,62 @@ namespace DataServiceLib
             return result;
         }
 
+        public IList<NameBasic> GetNameBasicsBySearch(string searchInput, QueryString queryString)
+        {
+            var ctx = new IMDBContext();
+
+            string[] searchWords = searchInput.Split(" ");
+            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
+
+
+            var searchResult = ctx.NameBasicSearchResults
+                .FromSqlRaw("select * from bestmatchActor(" + finalSearch + ")");
+
+            searchResult = searchResult.OrderByDescending(x => x.rank);
+            IEnumerable<NameBasic> result = new List<NameBasic>();
+
+            foreach (var NameBasicSearchResult in searchResult)
+            {
+                var temp = GetNameBasic(NameBasicSearchResult.Id);
+                result = result.Append(temp);
+            }
+
+
+            result = result
+                .Skip(queryString.Page * queryString.PageSize)
+                .Take(queryString.PageSize);
+            return result.ToList();
+        }
+
+
+        public IList<NameBasic> GetNameBasicsBySearch(string searchInput)
+        {
+            var ctx = new IMDBContext();
+
+            string[] searchWords = searchInput.Split(" ");
+            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
+
+
+            var searchResult = ctx.NameBasicSearchResults
+                .FromSqlRaw("select * from bestmatchActor(" + finalSearch + ")");
+
+            searchResult = searchResult.OrderByDescending(x => x.rank);
+            IEnumerable<NameBasic> result = new List<NameBasic>();
+
+            foreach (var NameBasicSearchResult in searchResult)
+            {
+                var temp = GetNameBasic(NameBasicSearchResult.Id);
+                result = result.Append(temp);
+            }
+
+            return result.ToList();
+        }
+
+        public int NumberOfElements(IList<NameBasic> elements)
+        {
+            return elements.Count();
+        }
+
         public bool CreateNameBasic(NameBasic nameBasic)
         {
             var ctx = new IMDBContext();

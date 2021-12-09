@@ -27,6 +27,13 @@ define([], () => {
             .then(json => callback(json));
     };
 
+
+    let getNameBasics = (searchInput, callback) => {
+        fetch("api/namebasic/search/" + "?searchInput=" + searchInput)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     let getTitleBasicsWithPageSize = size => titleBasicApiUrl +  "?pageSize=" + size;
     //http://localhost:5001/api/titlebasic/search?searchInput=5&page=1&pageSize=10
     return {
@@ -34,6 +41,7 @@ define([], () => {
         getTitleBasicsUrl,
         getTitleBasics,
         getComments,
-       getTitleBasicsWithPageSize
+        getTitleBasicsWithPageSize,
+        getNameBasics
     }
 });

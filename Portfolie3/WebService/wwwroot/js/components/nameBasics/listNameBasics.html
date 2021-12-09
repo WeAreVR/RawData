@@ -1,0 +1,36 @@
+﻿
+<h1>People!</h1>
+
+<div class="col-6">
+    Search: <input class="form-control" data-bind="value: selectId" required />
+    <button data-bind="click: searchNameBasics">Search</button>
+</div>
+<div>
+ Page size: <select data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
+</div>
+<div data-bind="foreach: nameBasics">
+    <table class="table">
+        <thead>
+            <tr><th>Id</th><th>Name</th><th>Rating</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: items">
+            <tr>
+                <td data-bind="text: id"></td>
+                <td data-bind="text: primaryName"></td>
+                <td data-bind="text: rating"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <button data-bind="click: showPrev, enable: enablePrev">Previous page</button>
+</div>
+<div>
+    <button data-bind="click: showNext, enable: enableNext">Next page</button>
+</div>
+
+
+
+

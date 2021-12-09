@@ -27,6 +27,7 @@ namespace DataServiceLib
         public DbSet<User> Users { get; set; }
         public DbSet<Wi> Wi{ get; set; }
         public DbSet<TitleBasicSearchResult> TitleBasicSearchResults { get; set; }
+        public DbSet<NameBasicSearchResult> NameBasicSearchResults { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -50,6 +51,10 @@ namespace DataServiceLib
             modelBuilder.Entity<TitleBasicSearchResult>().HasNoKey();
             modelBuilder.Entity<TitleBasicSearchResult>().Property(x => x.Id).HasColumnName("title_id");
             modelBuilder.Entity<TitleBasicSearchResult>().Property(x => x.PrimaryTitle).HasColumnName("primary_title");
+
+            modelBuilder.Entity<NameBasicSearchResult>().HasNoKey();
+            modelBuilder.Entity<NameBasicSearchResult>().Property(x => x.Id).HasColumnName("name_id");
+            modelBuilder.Entity<NameBasicSearchResult>().Property(x => x.PrimaryName).HasColumnName("primary_name");
 
 
             modelBuilder.Entity<Award>().ToTable("awards");

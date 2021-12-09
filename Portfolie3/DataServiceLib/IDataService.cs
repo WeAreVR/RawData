@@ -103,6 +103,7 @@ namespace DataServiceLib
         public bool DeleteTitleEpisode(string titleId);
         int NumberOfElements(IList<TitleEpisode> elements);
         int NumberOfElements(IList<TitleBasic> elements);
+        public int NumberOfElements(IList<NameBasic> elements);
         public IList<TitleEpisode> GetTitleEpisodesByParentTitleId(string parentTitleId);
 
         //TitleBasics CRUD
@@ -120,6 +121,9 @@ namespace DataServiceLib
         public NameBasic CreateNameBasic(string nameId, string primaryName);
         public bool UpdateNameBasic(NameBasic nameBasic);
         public bool DeleteNameBasic(string nameId);
+        public IList<NameBasic> GetNameBasicsBySearch(string searchInput, QueryString queryString);
+        public IList<NameBasic> GetNameBasicsBySearch(string searchInput);
+       
 
         //TitleRating CRUD
         public TitleRating GetTitleRating(string titleId);

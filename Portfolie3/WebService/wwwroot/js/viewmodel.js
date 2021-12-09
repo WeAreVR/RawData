@@ -3,7 +3,7 @@ define(["knockout", "postman"], function (ko, postman) {
     let menuItems = [
         { title: "Search", component: "list-titles" },
         { title: "Bookmark", component: "list-bookmarks" },
-        { title: "Episodes", component: "list-episodes" }
+        { title: "People", component: "list-names" }
 
     ];
 
