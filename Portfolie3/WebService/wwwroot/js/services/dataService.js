@@ -15,6 +15,12 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let getTitleBasic = (id, callback) => {
+        fetch("api/titlebasic/" + id)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     let getTitleBasicsUrl = (url, callback) => {
         fetch(url)
             .then(response => response.json())
@@ -37,6 +43,12 @@ define([], () => {
 
 
     //searchHistory
+    let getSearchHistory = (callback) => {
+        fetch("api/searchhistory")
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     let getSearchHistoryUrl = (url, callback) => {
         fetch(url)
             .then(response => response.json())
@@ -56,7 +68,9 @@ define([], () => {
         getComments,
         getTitleBasicsWithPageSize,
         getNameBasics,
+        getSearchHistory,
         getSearchHistoryUrl,
-        getSearchHistoryWithPageSize
+        getSearchHistoryWithPageSize,
+        getTitleBasic
     }
 });

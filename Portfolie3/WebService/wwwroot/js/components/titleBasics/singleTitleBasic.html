@@ -1,0 +1,22 @@
+﻿
+<h1 data-bind="text: titleBasic['primaryTitle']"></h1>
+
+<div>
+    <table class="table">
+        <thead>
+            <tr><th></th><th>Primary Title</th><th>Release Year</th><th>Rating</th><th></th></tr>
+        </thead>
+        <tbody data-bind="with: titleBasic, as: 't'">
+            <tr>
+                <td><img data-bind="attr: { src: t.poster, alt: 'here is picture' }"></td>
+                <td data-bind="text: t.primaryTitle"></td>
+                <td data-bind="text: t.startYear"></td>
+                <td data-bind="text: t.avgRating"></td>
+                <!--<td><button class="btn btn-primary" data-bind="click: commentSection">Comments</button></td>-->
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
