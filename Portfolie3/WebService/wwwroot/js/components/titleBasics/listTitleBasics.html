@@ -11,13 +11,13 @@
 <div data-bind="foreach: titleBasics">
     <table class="table">
         <thead>
-            <tr><th>Id</th><th>Primary Title</th><th>Release Year</th><th></th></tr>
+            <tr><th>Primary Title</th><th>Release Year</th><th>Rating</th><th></th></tr>
         </thead>
         <tbody data-bind="foreach: items">
             <tr>
-                <td data-bind="text: id"></td>
                 <td data-bind="text: primaryTitle"></td>
                 <td data-bind="text: startYear"></td>
+                <td data-bind="text: avgRating"></td>
                 <td><button class="btn btn-primary" data-bind="click: $parents[1].commentSection">Comments</button></td>
             </tr>
         </tbody>

@@ -10,12 +10,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let titleBasics = ko.observableArray([]);
         let selectId = ko.observable();
-
-        ds.getTitleEpisodes(selectId, data => {
-            console.log(data);
-            titleBasics(data);
-        });
-
        
         let enablePrev = ko.observable(() => prev() !== undefined);
 

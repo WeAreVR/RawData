@@ -1,17 +1,73 @@
-Import System.Runtime.InteropServices
 
-' In SDK-style projects such as this one, several assembly attributes that were historically
-' defined in this file are now automatically added during build and populated with
-' values defined in project properties. For details of which attributes are included
-' and how to customise this process see: https://aka.ms/assembly-info-properties
+define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
+    return function (params) {
+        let currentComponent = ko.observable("list");
+        let pageSize = [5, 10, 15, 100];
+        let selectedPageSize = ko.observableArray([10]);
+        let currentView = ko.observable("list-searchHistory");
+        let prev = ko.observable();
+        let next = ko.observable();
+
+        let searchHistory = ko.observableArray([]);
+        let selectId = ko.observable();
+
+        let enablePrev = ko.observable(() => prev() !== undefined);
+
+        let showNext = () => {
+            console.log(next());
+            ds.getSearchHistoryUrl(next(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    searchHistory(data);
+            });
+        }
+        let showPrev = () => {
+            console.log(next());
+            ds.getSearchHistoryUrl(prev(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    searchHistory(data);
+            });
+        }
+
+        let enableNext = ko.observable(() => next() !== undefined);
+
+        let findSearchHistory = () => {
+            console.log("findSearchHistory");
+            ds.getSearchHistory(selectId(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    searchHistory(data);
+            });
+            currentView("list");
+            selectId("");
+        }
 
 
-' Setting ComVisible to false makes the types in this assembly not visible to COM
-' components.  If you need to access a type in this assembly from COM, set the ComVisible
-' attribute to true on that type.
+        selectedPageSize.subscribe(() => {
+            var size = selectedPageSize()[0];
+            getSearchHistory(ds.getSearchHistoryWithPageSize(size));
+        });
 
-<Assembly: ComVisible(False)> 
 
-' The following GUID is for the ID of the typelib if this project is exposed to COM.
+        findSearchHistory();
 
-<Assembly: Guid("af0c490d-0d6a-4eff-8753-348501e52058")> 
+        return {
+            enableNext,
+            enablePrev,
+            showNext,
+            showPrev,
+            prev,
+            next,
+            selectedPageSize,
+            pageSize,
+            currentComponent,
+            currentView,
+            searchHistory,
+            findSearchHistory
+        }
+    };
+});

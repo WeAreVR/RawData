@@ -986,7 +986,7 @@ namespace DataServiceLib
 
 
             var searchResult = ctx.NameBasicSearchResults
-                .FromSqlRaw("select * from bestmatchActor(" + finalSearch + ")");
+                .FromSqlRaw("select * from bestmatchactor(" + finalSearch + ")");
 
             searchResult = searchResult.OrderByDescending(x => x.rank);
             IEnumerable<NameBasic> result = new List<NameBasic>();
@@ -1014,7 +1014,7 @@ namespace DataServiceLib
 
 
             var searchResult = ctx.NameBasicSearchResults
-                .FromSqlRaw("select * from bestmatchActor(" + finalSearch + ")");
+                .FromSqlRaw("select * from bestmatchactor(" + finalSearch + ")");
 
             searchResult = searchResult.OrderByDescending(x => x.rank);
             IEnumerable<NameBasic> result = new List<NameBasic>();

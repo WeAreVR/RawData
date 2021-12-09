@@ -28,24 +28,6 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{username}/{timestamp}")]
-        public IActionResult GetSearchHistory(string username, DateTime timeStamp)
-        {
-            if (username == null)
-            {
-                return NotFound();
-            }
-
-            SearchHistory searchHistory = new SearchHistory()
-            {
-                SearchInput = username,
-                TimeStamp = timeStamp
-            };
-
-            SearchHistoryViewModel model = GetSearchHistoryViewModel(searchHistory);
-
-            return Ok(model);
-        }
 
         [HttpGet("{username}")]
         public IActionResult GetSearchHistoryByUsername(string username, [FromQuery] QueryString queryString)
@@ -65,15 +47,46 @@ namespace WebService.Controllers
             return Ok(result);
         }
 
-        private SearchHistoryViewModel GetSearchHistoryViewModel(SearchHistory searchHistory)
-        {
-            return new SearchHistoryViewModel
-            {
-                SearchInput = searchHistory.SearchInput,
-                TimeStamp = searchHistory.TimeStamp
 
+        [HttpGet("{username}/{timestamp}")]
+        public IActionResult GetSearchHistory(string username, DateTime timeStamp)
+        {
+            if (username == null)
+            {
+                return NotFound();
+            }
+
+            SearchHistory searchHistory = new SearchHistory()
+            {
+                SearchInput = username,
+                TimeStamp = timeStamp
             };
+
+            SearchHistoryViewModel model = GetSearchHistoryViewModel(searchHistory);
+
+            return Ok(model);
         }
+
+        [HttpGet()]
+        public IActionResult GetSearchHistory([FromQuery] QueryString queryString)
+        {
+            var user = Request.HttpContext.Items["User"] as User;
+            var searches = _dataService.GetSearchHistoryByUsername(user.Username, queryString);
+
+            if (searches == null)
+            {
+                return NotFound();
+            }
+
+            var numberOfSearches = searches.Count();
+
+            var items = searches.Select(GetSearchHistoryViewModel);
+            var result = CreateResultModel(queryString, numberOfSearches, items);
+
+            return Ok(result);
+        }
+
+        
         [HttpDelete("{id}")]
         public IActionResult DeleteSearchHistory(string id, DateTime date)
         {
@@ -99,7 +112,17 @@ namespace WebService.Controllers
         }
 
 
-        private SearchHistoryViewModel GetTitleBasicViewModel(DataServiceLib.Domain.SearchHistory searchHistory)
+        private SearchHistoryViewModel GetSearchHistoryViewModel(SearchHistory searchHistory)
+        {
+            return new SearchHistoryViewModel
+            {
+                SearchInput = searchHistory.SearchInput,
+                TimeStamp = searchHistory.TimeStamp
+
+            };
+        }
+
+        private SearchHistoryViewModel GetTitleBasicViewModel(SearchHistory searchHistory)
         {
             return new SearchHistoryViewModel
             {

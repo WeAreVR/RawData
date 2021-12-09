@@ -1,9 +1,11 @@
 define(["knockout", "postman"], function (ko, postman) {
 
     let menuItems = [
-        { title: "Search", component: "list-titles" },
+        { title: "Find titles", component: "list-titles" },
+        { title: "Find people", component: "list-names" },
         { title: "Bookmark", component: "list-bookmarks" },
-        { title: "People", component: "list-names" }
+        { title: "Search history", component: "list-searchHistory" }
+        
 
     ];
 

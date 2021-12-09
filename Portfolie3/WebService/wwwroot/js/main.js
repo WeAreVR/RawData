@@ -38,6 +38,11 @@ require(['knockout'], (ko) => {
         viewModel: { require: "components/nameBasics/listNameBasics" },
         template: { require: "text!components/nameBasics/listNameBasics.html" }
     });
+
+    ko.components.register("list-searchHistory", {
+        viewModel: { require: "components/searchHistory/listSearchHistory" },
+        template: { require: "text!components/searchHistory/listSearchHistory.html" }
+    });
 });
 
 
