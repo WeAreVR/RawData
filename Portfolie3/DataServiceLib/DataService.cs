@@ -272,14 +272,7 @@ namespace DataServiceLib
 
         }
 
-        public User GetUser(int id)
-        {
-            var ctx = new IMDBContext();
-
-            User result = ctx.Users.FirstOrDefault(x => x.Id == id);
-            return result;
-
-        }
+      
         public User CreateUser( string username, string password = null, string salt = null)
         {
             // Test meget vigtig

@@ -70,8 +70,9 @@ namespace WebService.Controllers
         [HttpGet()]
         public IActionResult GetSearchHistory([FromQuery] QueryString queryString)
         {
-            var user = Request.HttpContext.Items["User"] as User;
-            var searches = _dataService.GetSearchHistoryByUsername(user.Username, queryString);
+            var user = HttpContext.User.Identity.Name;
+            //var user = Request.HttpContext.Items["User"] as User;
+            var searches = _dataService.GetSearchHistoryByUsername("tobias", queryString);
 
             if (searches == null)
             {

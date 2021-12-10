@@ -41,8 +41,7 @@ namespace DataServiceLib
         //Users
         public User GetUser(string username);
         public User CreateUser(string username, string password = null, string salt = null);
-        public User GetUser(int id);
-
+     
         //Award CRUD
         public Award GetAward(string titleId, string award);
         public IList<Award> GetAwardsByTitleId(string titleId);

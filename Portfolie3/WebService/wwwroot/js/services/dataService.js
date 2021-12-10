@@ -55,9 +55,9 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let getSearchHistoryWithPageSize = (currentPage, pageSize) => searchHistoryApiUrl + "?page=" + currentPahe + "&pagesize=" + pageSize;
+    let getSearchHistoryWithPageSize = (currentPage, pageSize) => searchHistoryApiUrl + "?page=" + currentPage + "&pagesize=" + pageSize;
 
-    let getTitleBasicsWithPageSize = (searchInput, currentPage, pageSize) => titleBasicApiUrl + searchHistoryApiUrl + "?searchInput=" + searchInput + "&page=" + currentPahe + "&pagesize=" + pageSize;
+    let getTitleBasicsWithPageSize = (searchInput, currentPage, pageSize) => titleBasicApiUrl + searchHistoryApiUrl + "?searchInput=" + searchInput + "&page=" + currentPage + "&pagesize=" + pageSize;
 
 
     //http://localhost:5001/api/titlebasic/search?searchInput=5&page=1&pageSize=10

@@ -15,7 +15,7 @@ using WebService.Services;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/v3/users")]
+    [Route("api/users")]
     public class UsersController : ControllerBase
     {
         private readonly IDataService _dataService;
@@ -85,7 +85,7 @@ namespace WebService.Controllers
 
             var tokenDescription = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("username", user.Username.ToString()) }),
                 Expires = DateTime.Now.AddSeconds(45),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),

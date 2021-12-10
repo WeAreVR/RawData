@@ -36,7 +36,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let findSearchHistory = () => {
             console.log("findSearchHistory");
-            ds.getSearchHistory(selectId(), data => {
+            ds.getSearchHistory(data => {
                 console.log(data);
                 prev(data.prev),
                     next(data.next),
