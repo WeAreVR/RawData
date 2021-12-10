@@ -61,6 +61,8 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  
+
 }
 .footer {
   position: absolute;
@@ -80,3 +82,26 @@ body {
     padding: 2px;
     border-radius: 0.25rem;
 }
+#loginButton {
+    display: flex;
+    flex-direction: row-reverse;
+    }
+
+    #loginButton button {
+        background: none;
+        color: #ffa260;
+        border: 2px solid;
+        padding: .65em 1.2em;
+        margin-bottom: 1em;
+        font-size: 1em;
+        transition: all 0.2s;
+        background-color: #151b29;
+    }
+    #loginButton button:hover {
+        border-color: #f1f15c;
+        color: white;
+        box-shadow: 0 0.5em 0.5em -0.4em #f1f15c;
+        transform: translateY(0.25em);
+        cursor: pointer;
+    }
+
