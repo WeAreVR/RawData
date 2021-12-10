@@ -17,6 +17,11 @@ define(["knockout", "postman"], function (ko, postman) {
         currentView(menuItem.component)
     };
 
+    let loginPage = () => {
+        console.log("loginPage");
+        currentView("login")
+    };
+
     let isActive = menuItem => {
         return menuItem.component === currentView() ? "active" : "";
     }
@@ -29,6 +34,7 @@ define(["knockout", "postman"], function (ko, postman) {
         currentView,
         menuItems,
         changeContent,
-        isActive
+        isActive,
+        loginPage
     }
 });

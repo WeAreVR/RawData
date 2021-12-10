@@ -59,6 +59,33 @@ define([], () => {
 
     let getTitleBasicsWithPageSize = (searchInput, currentPage, pageSize) => titleBasicApiUrl + searchHistoryApiUrl + "?searchInput=" + searchInput + "&page=" + currentPage + "&pagesize=" + pageSize;
 
+    //login and register
+    let userRegister = (user, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        fetch("api/users/register", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
+    let userLogin = (user, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        fetch("api/users/login", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
 
     //http://localhost:5001/api/titlebasic/search?searchInput=5&page=1&pageSize=10
     return {
@@ -71,6 +98,8 @@ define([], () => {
         getSearchHistory,
         getSearchHistoryUrl,
         getSearchHistoryWithPageSize,
-        getTitleBasic
+        getTitleBasic,
+        userRegister,
+        userLogin,
     }
 });

@@ -31,12 +31,13 @@ namespace WebService.Controllers
         }
 
         //[Authorization]
-        [HttpGet("{username}", Name = nameof(GetBookmarks))]
+        [HttpGet(Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarks(string username, [FromQuery] QueryString queryString)
         {
 
-            //var user = Request.HttpContext.Items["User"] as User;
-      
+            var user = HttpContext.User.Identity.Name;
+            var searches = _dataService.GetSearchHistoryByUsername("tobias", queryString);
+
             var bookmarks = _dataService.GetBookmarks(username, queryString);
             
             if (bookmarks.Count() == 0)
@@ -48,7 +49,7 @@ namespace WebService.Controllers
 
             var items = bookmarks.Select(GetBookmarkViewModel);
             var result = CreateResultModel(queryString, numberOfBookmarks, items);
-            //BookmarkViewModel model = CreateBookmarkViewModel(bookmarks);
+
             return Ok(result);
         }  
             

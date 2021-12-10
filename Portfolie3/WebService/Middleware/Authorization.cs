@@ -55,7 +55,7 @@ namespace WebService.Middleware
                 if (claim != null)
                 {
                   var username = claim.Value.ToString();
-                    context.Items["User"] = _dataService.GetUser(username);
+                  context.Items["User"] = _dataService.GetUser(username);
                 }
             }
             catch { }
