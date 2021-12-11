@@ -14,7 +14,7 @@ using AutoMapper;
 namespace WebService.Controllers
 {
     [ApiController]
-    [Route("api/comment")]
+    [Route("api/comments")]
     public class CommentController : Controller
     {
 
@@ -29,7 +29,7 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("{titleId}", Name = nameof(GetComments))]
+        [HttpGet(Name = nameof(GetComments))]
         public IActionResult GetComments(string titleId, [FromQuery] QueryString queryString)
         {
             var comments = _dataService.GetCommentsByTitleId(titleId, queryString);
@@ -42,7 +42,7 @@ namespace WebService.Controllers
             var numberOfComments = comments.Count();
 
             var items = comments.Select(GetCommentViewModel);
-            var result = CreateResultModel(queryString, numberOfComments, items);
+            var result = CreateResultModel(titleId, queryString, numberOfComments, items);
 
             return Ok(result);
 
@@ -127,42 +127,42 @@ namespace WebService.Controllers
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetComments), new { comment.TitleId });
         }
 
-        private string GetUrl(int page, int pageSize)
+        private string GetUrl(string tid, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
                 nameof(GetComments),
-                new { page, pageSize });
+                new {tid, page, pageSize });
         }
 
 
-        private object CreateResultModel(QueryString queryString, int total, IEnumerable<CommentViewModel> model)
+        private object CreateResultModel(string tid, QueryString queryString, int total, IEnumerable<CommentViewModel> model)
         {
             return new
             {
                 total,
-                prev = CreateNextPageLink(queryString),
-                cur = CreateCurrentPageLink(queryString),
-                next = CreateNextPageLink(queryString, total),
+                prev = CreateNextPageLink(tid, queryString),
+                cur = CreateCurrentPageLink(tid, queryString),
+                next = CreateNextPageLink(tid, queryString, total),
                 items = model
             };
         }
 
-        private string CreateNextPageLink(QueryString queryString, int total)
+        private string CreateNextPageLink(string tid, QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetUrl(queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetUrl(tid, queryString.Page + 1, queryString.PageSize);
         }
 
 
-        private string CreateCurrentPageLink(QueryString queryString)
+        private string CreateCurrentPageLink(string tid, QueryString queryString)
         {
-            return GetUrl(queryString.Page, queryString.PageSize);
+            return GetUrl(tid, queryString.Page, queryString.PageSize);
         }
 
-        private string CreateNextPageLink(QueryString queryString)
+        private string CreateNextPageLink(string tid, QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetUrl(queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetUrl(tid, queryString.Page - 1, queryString.PageSize);
         }
 
         private static int GetLastPage(int pageSize, int total)
