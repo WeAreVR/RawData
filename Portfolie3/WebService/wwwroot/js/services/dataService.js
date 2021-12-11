@@ -2,6 +2,7 @@ define([], () => {
 
     const titleBasicApiUrl = "api/titlebasic/search/";
     const searchHistoryApiUrl = "api/searchHistory/";
+    const bookmarkApiUrl = "api/bookmark/";
 
     let getTitleEpisodes = (id,callback) => {
         fetch("api/titleepisode/allepisodes/"+ "?parentTitleId=" + id)
@@ -108,6 +109,29 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let createBookmark1= (bookmark, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(bookmark),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        fetch("api/bookmark", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
+    let createBookmark = id => {
+        fetch(bookmarkApiUrl + id, { method: "POST" })
+            .then(response => console.log(response.status))
+    }
+
+    let clearSearch = username => {
+        fetch(searchHistoryApiUrl + username, { method: "DELETE" })
+            .then(response => console.log(response.status))
+    }
+
 
     //http://localhost:5001/api/titlebasic/search?searchInput=5&page=1&pageSize=10
     return {
@@ -124,6 +148,8 @@ define([], () => {
         getTitleBasic,
         userRegister,
         userLogin,
-        getBookmarks
+        getBookmarks,
+        clearSearch,
+        createBookmark
     }
 });

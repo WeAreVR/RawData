@@ -61,14 +61,14 @@ namespace WebService.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult CreateBookMark(BookmarkViewModel model)
+        [HttpPost("{titleId}")]
+        public IActionResult CreateBookMark(string titleId)
         {
-            var bookmark = _mapper.Map<Bookmark>(model);
+            
 
-            _dataService.CreateBookmark(bookmark);
+            _dataService.CreateBookmark(titleId);
 
-            return Created(GetUrl(bookmark), GetBookmarkViewModel(bookmark));
+            return NoContent();
         }
 
 

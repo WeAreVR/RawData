@@ -43,13 +43,16 @@ namespace DataServiceLib
             return result.ToList();
         }
 
-        public bool DeleteSearchHistory(string username, DateTime timestamp)
+        public bool DeleteSearchHistory(string username)
         {
             var ctx = new IMDBContext();
-            SearchHistory searchHistory = new SearchHistory() { Username = username, TimeStamp = timestamp };
             
-            ctx.SearchHistories.Attach(searchHistory);
-            ctx.SearchHistories.Remove(ctx.SearchHistories.Find(username, timestamp));
+            ctx.Database
+                .ExecuteSqlInterpolated($"CALL clear_search_history({username})");
+
+           // var temp = GetSearchHistory(username);
+          //  ctx.SearchHistories.Attach(temp);
+           // ctx.SearchHistories.Remove(ctx.SearchHistories.Find(username));
 
             return ctx.SaveChanges() > 0;
         }
@@ -123,16 +126,45 @@ namespace DataServiceLib
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
-        public Bookmark CreateBookmark(string username, string titleId)
+        public Bookmark CreateBookmark(string titleId)
         {
             var ctx = new IMDBContext();
 
-            Bookmark bookmark = new Bookmark();
-            bookmark.TitleId = titleId;
-            bookmark.Username = username;
+            Bookmark bookmark = new Bookmark
+            {
+                TitleId = titleId,
+                Username = "tobias"
+            };
 
             ctx.Add(bookmark);
             ctx.SaveChanges();
+
+            return bookmark;
+        }
+
+        public Bookmark ToggleBookmark(string titleId)
+        {
+            var ctx = new IMDBContext();
+
+            Bookmark bookmark = new Bookmark
+            {
+                TitleId = titleId,
+                Username = "tobias"
+            };
+
+            //var bookmarks = GetBookmarks("tobias");
+
+            if (bookmarks.Contains(bookmark))
+            {
+                ctx.Remove(bookmark);
+            }
+
+
+            else
+            {
+                ctx.Add(bookmark);
+                ctx.SaveChanges();
+            }
 
             return bookmark;
         }
