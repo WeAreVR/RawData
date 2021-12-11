@@ -45,7 +45,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                     episodes(data.items);
             });
         }
-        let addComment = () => postman.publish("changeView", "list-addComments");
+        let addComment = () => postman.publish("changeView", "addComments");
         
 
 

@@ -34,6 +34,19 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let addComent = (comment, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(user),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        fetch("api/users/register", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     //nameBasics
     let getNameBasics = (searchInput, callback) => {
         fetch("api/namebasic/search/" + "?searchInput=" + searchInput)
