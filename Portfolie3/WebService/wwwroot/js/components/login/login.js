@@ -14,7 +14,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }, "list-titles");
 
         let userLogin = () => {
-            postman.publish("newUser", { uname: username(), psw: password() });
+            postman.publish("newUser", { username: username(), password: password() });
             console.log("postmanPublish");
             postman.publish("changeView", "list-titles");
         }

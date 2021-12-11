@@ -45,10 +45,9 @@ namespace WebService.Controllers
                 return NotFound();
             }
 
-            var numberOfBookmarks = bookmarks.Count();
-            Console.WriteLine(numberOfBookmarks);
+            var allBookmarks = _dataService.GetBookmarks("testuser");
             var items = bookmarks.Select(GetBookmarkViewModel);
-            var result = CreateResultModel(queryString, numberOfBookmarks, items);
+            var result = CreateResultModel(queryString, _dataService.NumberOfElements(allBookmarks), items);
 
             return Ok(result);
         }  

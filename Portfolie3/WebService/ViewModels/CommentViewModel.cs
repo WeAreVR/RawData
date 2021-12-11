@@ -15,8 +15,9 @@ namespace WebService.ViewModels
         public string Username { get; set; }
         public string PrimaryTitle { get; set; }
         public string Content { get; set; }
-      
+        public string TimeStamp { get; set; }
 
-        
+
+
     }
 }

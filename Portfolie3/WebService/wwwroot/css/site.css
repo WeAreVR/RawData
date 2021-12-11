@@ -105,3 +105,17 @@ body {
         cursor: pointer;
     }
 
+    @media (max-width: 550px){
+       
+        .container-fluid .table thead{
+            display: none;
+        }
+        .table, .table tbody, .table tr, table td{
+            display:block;
+            width: 100%;
+        }
+        .table tr{
+            margin-bottom: 32px;
+        }
+    }
+

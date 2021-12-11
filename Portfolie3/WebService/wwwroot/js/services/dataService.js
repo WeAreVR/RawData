@@ -27,9 +27,23 @@ define([], () => {
             .then(json => callback(json));
     };
 
-
+    //den er hardcodet indtil videre
     let getComments = (id, callback) => {
-        fetch("api/comment/" + id)
+        fetch("api/comments")
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
+    let addComment = (comment, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(comment),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(param)
+        fetch("api/comments", param)
             .then(response => response.json())
             .then(json => callback(json));
     };
@@ -101,6 +115,7 @@ define([], () => {
         getUrl,
         getTitleBasics,
         getComments,
+        addComment,
         getTitleBasicsWithPageSize,
         getNameBasics,
         getSearchHistory,

@@ -33,6 +33,10 @@ require(['knockout'], (ko) => {
         viewModel: { require: "components/comments/listComments" },
         template: { require: "text!components/comments/listComments.html" }
     });
+    ko.components.register("addComments", {
+        viewModel: { require: "components/comments/addComments" },
+        template: { require: "text!components/comments/addComments.html" }
+    });
 
     ko.components.register("list-bookmarks", {
         viewModel: { require: "components/bookmarks/listBookmarks" },
