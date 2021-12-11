@@ -32,6 +32,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             });
         }
 
+        let clearSearchHistory = () => {
+            console.log('ClearSearchHistory');
+            ds.clearSearch('tobias');
+            searchHistory([]);
+        }
+
+
         let enableNext = ko.observable(() => next() !== undefined);
 
         let findSearchHistory = () => {
@@ -52,6 +59,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             getSearchHistory(ds.getSearchHistoryWithPageSize(size));
         });
 
+       
+
 
         findSearchHistory();
 
@@ -67,7 +76,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentComponent,
             currentView,
             searchHistory,
-            findSearchHistory
+            findSearchHistory,
+            clearSearchHistory
         }
     };
 });

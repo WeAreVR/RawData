@@ -57,6 +57,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             var size = selectedPageSize()[0];
             searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
         });
+
+
+        /*postman.subscribe("newBookmark", bookmark => {
+            ds.createBookmark(bookmark, newBookmark)
+        }, "list-bookmarks");
+
+
+        let addBookmark = () => {
+            postman.publish("newBookmark", { titleId = 'tt8451992 ' });
+            // postman.publish("changeView", "list-categories");
+        }*/
+
+        let addBookmark = () => {
+            ds.createBookmark('tt0993846 ');
+        }
         
 
         return {
@@ -74,7 +89,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchTitleBasics,
             selectId,
             commentSection,
-            singleTitlePage
+            singleTitlePage,
+            addBookmark
         }
     };
 });

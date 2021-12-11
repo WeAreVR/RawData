@@ -72,7 +72,7 @@ namespace WebService.Controllers
         {
             //var user = HttpContext.User.Identity.UserName;
             var user = Request.HttpContext.Items["User"] as User;
-            var searches = _dataService.GetSearchHistoryByUsername(user.Username, queryString);
+            var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
             Console.WriteLine(user + "hello" + user + "hejsa");
 
             if (searches == null)
@@ -89,17 +89,12 @@ namespace WebService.Controllers
         }
 
         
-        [HttpDelete("{id}")]
-        public IActionResult DeleteSearchHistory(string id, DateTime date)
+        [HttpDelete("{username}")]
+        public IActionResult DeleteSearchHistory(string username)
         {
-            /*
-            if (!_dataService.DeleteTitleBasic(id))
-            {
-                return NotFound();
-            }
-            */
-            
-            _dataService.DeleteSearchHistory(id, date);
+           _dataService.DeleteSearchHistory(username);
+
+
             return NoContent();
         }
 

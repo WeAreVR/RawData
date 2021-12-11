@@ -37,6 +37,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             });
         }
 
+        
+
+
         getBookmarks();
         return {
             enablePrev,
@@ -46,7 +49,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentComponent,
             currentView,
             bookmarks,
-            getBookmarks
+            getBookmarks,
+            add
         }
     };
 });
