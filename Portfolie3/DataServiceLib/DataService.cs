@@ -141,6 +141,21 @@ namespace DataServiceLib
 
             return bookmark;
         }
+        public Bookmark CreateBookmark(string titleId,string username)
+        {
+            var ctx = new IMDBContext();
+
+            Bookmark bookmark = new Bookmark
+            {
+                TitleId = titleId,
+                Username = username
+            };
+
+            ctx.Add(bookmark);
+            ctx.SaveChanges();
+
+            return bookmark;
+        }
 
         public Bookmark ToggleBookmark(string titleId)
         {
@@ -152,7 +167,7 @@ namespace DataServiceLib
                 Username = "tobias"
             };
 
-            //var bookmarks = GetBookmarks("tobias");
+            var bookmarks = GetBookmarks("tobias");
 
             if (bookmarks.Contains(bookmark))
             {
@@ -216,6 +231,7 @@ namespace DataServiceLib
         public bool CreateComment(Comment comment)
         {
             var ctx = new IMDBContext();
+            comment.TimeStamp = DateTime.Now;
             ctx.Add(comment);
             return ctx.SaveChanges() > 0;
         }
@@ -228,7 +244,8 @@ namespace DataServiceLib
             comment.TitleId = titleId;
             comment.Username = username;
             comment.Content = content;
-            comment.TimeStamp = timestamp;
+            comment.TimeStamp = timestamp
+;
 
             ctx.Add(comment);
             ctx.SaveChanges();

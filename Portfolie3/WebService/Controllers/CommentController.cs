@@ -79,13 +79,12 @@ namespace WebService.Controllers
 
             _dataService.CreateComment(comment);
 
-            return Created(GetUrl(comment), GetCommentViewModel(comment));
+            return Created(GetUrl(comment), CreateCommentViewModel(comment));
         }
+       
 
 
-      
-
-        [HttpPut]
+            [HttpPut]
         public IActionResult UpdateComment(CommentViewModel model)
         {
             var comment = new Comment
