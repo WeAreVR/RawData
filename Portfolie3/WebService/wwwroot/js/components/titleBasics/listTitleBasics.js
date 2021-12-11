@@ -49,6 +49,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let commentSection = () => postman.publish("changeView", "list-comments");
 
+        let singleTitlePage = () => postman.publish("changeView", "single-title");
+
         
        
         selectedPageSize.subscribe(() => {
@@ -71,7 +73,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             titleBasics,
             searchTitleBasics,
             selectId,
-            commentSection
+            commentSection,
+            singleTitlePage
         }
     };
 });
