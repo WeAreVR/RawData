@@ -39,10 +39,14 @@ namespace WebService.Controllers
                 return NotFound();
             }
 
-            var numberOfComments = comments.Count();
+            var allComments = _dataService.GetCommentsByTitleId(titleId);
 
             var items = comments.Select(GetCommentViewModel);
+<<<<<<< Updated upstream
             var result = CreateResultModel(titleId, queryString, numberOfComments, items);
+=======
+            var result = CreateResultModel(queryString, _dataService.NumberOfElements(allComments), items);
+>>>>>>> Stashed changes
 
             return Ok(result);
 
