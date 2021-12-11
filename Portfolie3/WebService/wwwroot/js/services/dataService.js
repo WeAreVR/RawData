@@ -21,7 +21,7 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let getTitleBasicsUrl = (url, callback) => {
+    let getUrl = (url, callback) => {
         fetch(url)
             .then(response => response.json())
             .then(json => callback(json));
@@ -87,10 +87,18 @@ define([], () => {
     };
 
 
+    //Bookmark skal skrives om til at kunne tage username
+    let getBookmarks = (callback) => {
+        fetch("api/bookmark")
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
+
     //http://localhost:5001/api/titlebasic/search?searchInput=5&page=1&pageSize=10
     return {
         getTitleEpisodes,
-        getTitleBasicsUrl,
+        getUrl,
         getTitleBasics,
         getComments,
         getTitleBasicsWithPageSize,
@@ -101,5 +109,6 @@ define([], () => {
         getTitleBasic,
         userRegister,
         userLogin,
+        getBookmarks
     }
 });

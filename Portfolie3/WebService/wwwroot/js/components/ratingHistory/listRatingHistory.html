@@ -14,8 +14,6 @@
 
 
 <div>
-    <button data-bind="click: commentSection">Last page</button>
-</div>
-<div>
-    <button data-bind="click: searchTitleBasics">Next page</button>
+    <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
+    <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
 </div>

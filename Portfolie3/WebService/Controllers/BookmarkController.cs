@@ -36,9 +36,9 @@ namespace WebService.Controllers
         {
 
             var user = HttpContext.User.Identity.Name;
-            var searches = _dataService.GetSearchHistoryByUsername("tobias", queryString);
+            //var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
 
-            var bookmarks = _dataService.GetBookmarks(username, queryString);
+            var bookmarks = _dataService.GetBookmarks("testuser", queryString);
             
             if (bookmarks.Count() == 0)
             {
@@ -46,7 +46,7 @@ namespace WebService.Controllers
             }
 
             var numberOfBookmarks = bookmarks.Count();
-
+            Console.WriteLine(numberOfBookmarks);
             var items = bookmarks.Select(GetBookmarkViewModel);
             var result = CreateResultModel(queryString, numberOfBookmarks, items);
 

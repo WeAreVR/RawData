@@ -4,6 +4,12 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let currentView = ko.observable("list-titles");
         let ratings = ko.observableArray([]);
 
+        let prev = ko.observable();
+        let next = ko.observable();
+
+        let enablePrev = ko.observable(() => prev() !== undefined);
+        let enableNext = ko.observable(() => next() !== undefined);
+
         let getRatingHistory = () => {
             console.log("getRatingHistory");
             ds.getRatingHistory(data => {
@@ -12,9 +18,33 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             });
             currentView("list");
         }
+        let showNext = () => {
+            console.log(next());
+            ds.getUrl(next(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    episodes(data.items);
+            });
+        }
+        let showPrev = () => {
+            console.log(next());
+            ds.getUrl(prev(), data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    episodes(data.items);
+            });
+        }
 
 
         return {
+            enableNext,
+            enablePrev,
+            showNext,
+            showPrev,
+            prev,
+            next,
             currentComponent,
             currentView,
             ratings,

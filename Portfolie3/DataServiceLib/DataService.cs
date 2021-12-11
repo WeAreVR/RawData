@@ -75,7 +75,7 @@ namespace DataServiceLib
                     .Where(p => p.Username == username)
                     .Include(x => x.TitleBasic)
                     .AsEnumerable();
-
+         
             result = result
                 .Skip(queryString.Page * queryString.PageSize)
                 .Take(queryString.PageSize);

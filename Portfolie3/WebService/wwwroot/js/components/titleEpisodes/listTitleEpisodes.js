@@ -30,7 +30,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let showNext = () => {
             console.log(next());
-            ds.getTitleBasicsUrl(next(), data => {
+            ds.getUrl(next(), data => {
                 console.log(data);
                 prev(data.prev),
                 next(data.next),
@@ -39,7 +39,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
         let showPrev = () => {
             console.log(next());
-            ds.getTitleBasicsUrl(prev(), data => {
+            ds.getUrl(prev(), data => {
                 console.log(data);
                 prev(data.prev),
                 next(data.next),
