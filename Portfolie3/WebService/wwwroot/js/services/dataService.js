@@ -29,20 +29,21 @@ define([], () => {
 
     //den er hardcodet indtil videre
     let getComments = (id, callback) => {
-        fetch("api/comment/tt0312280")
+        fetch("api/comments")
             .then(response => response.json())
             .then(json => callback(json));
     };
 
-    let addComent = (comment, callback) => {
+    let addComment = (comment, callback) => {
         let param = {
             method: "POST",
-            body: JSON.stringify(user),
+            body: JSON.stringify(comment),
             headers: {
                 "Content-Type": "application/json"
             }
         }
-        fetch("api/users/register", param)
+        console.log(param)
+        fetch("api/comments", param)
             .then(response => response.json())
             .then(json => callback(json));
     };
@@ -114,6 +115,7 @@ define([], () => {
         getUrl,
         getTitleBasics,
         getComments,
+        addComment,
         getTitleBasicsWithPageSize,
         getNameBasics,
         getSearchHistory,

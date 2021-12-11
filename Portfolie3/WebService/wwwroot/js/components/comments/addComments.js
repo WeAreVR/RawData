@@ -8,16 +8,18 @@
             postman.publish("changeView", "list-comments");
         }
 
-        let add = () => {
-            postman.publish("newComment", { username: "testuser", titleId = "tt0312280", content: context()});
-            postman.publish("changeView", "list-comments");
-        }
-
         postman.subscribe("newComment", comment => {
-            ds.ddddd(user, newUser => {
+            ds.addComment(comment, newComment => {
                 console.log("postmanSubscribe")
             });
         }, "list-comments");
+
+        let add = () => {
+            console.log(context())
+            postman.publish("newComment", { username: "testuser", titleId : "tt0312280", content: context()});
+            postman.publish("changeView", "list-comments");
+        }
+
 
         return {
             context,
