@@ -2,10 +2,8 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-
         let currentView = ko.observable("list-titles");
 
-       // let imageUrl = ko.observable('https://i.pinimg.com/originals/bc/aa/70/bcaa7080c75edfe5ed77713d4eba5a3b.jpg');
         let posterUrl = ko.observable();
         let titleBasic = ko.observable();
         let selectId = ko.observable();
@@ -23,8 +21,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             selectId("");
         }
 
-        
+       
         let commentSection = () => postman.publish("changeView", "list-comments");
+
         getInfo();
 
         return {
@@ -33,7 +32,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             titleBasic,
             getInfo,
             commentSection,
-           // imageUrl,
             posterUrl
         }
     };
