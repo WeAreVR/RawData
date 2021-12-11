@@ -14,6 +14,9 @@ namespace DataServiceLib
         public bool DeleteBookmark(string username, string titleId);
         public bool CreateBookmark(Bookmark titleId);
         public Bookmark CreateBookmark(string username, string titleId);
+        public int NumberOfElements(IList<Bookmark> elements);
+        public IList<Bookmark> GetBookmarks(string username);
+
 
         // Comments
         public Comment GetComment(string username, string titleId, DateTime timeStamp);
@@ -23,6 +26,8 @@ namespace DataServiceLib
         public bool UpdateComment(Comment comment);
         public bool DeleteComment(string username, string titleId, DateTime timeStamp);
         public bool DeleteComment(Comment comment);
+        public int NumberOfElements(IList<Comment> elements);
+        public IList<Comment> GetCommentsByTitleId(string titleId);
 
 
         //RatingHistory

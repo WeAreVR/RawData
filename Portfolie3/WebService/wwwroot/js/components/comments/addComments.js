@@ -2,6 +2,7 @@
     return function (params) {
 
         let context = ko.observable();
+        let currentView = ko.observable("list-addComment");
 
         let cancel = () => {
             postman.publish("changeView", "list-comments");
@@ -14,6 +15,7 @@
 
         return {
             context,
+            currentView,
             add,
             cancel
         }

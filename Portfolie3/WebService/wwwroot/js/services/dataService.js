@@ -27,9 +27,9 @@ define([], () => {
             .then(json => callback(json));
     };
 
-
+    //den er hardcodet indtil videre
     let getComments = (id, callback) => {
-        fetch("api/comment/" + id)
+        fetch("api/comment/tt0312280")
             .then(response => response.json())
             .then(json => callback(json));
     };

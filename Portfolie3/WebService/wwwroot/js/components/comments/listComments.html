@@ -9,15 +9,22 @@
 <div data-bind="foreach: comments">
     <table class="table">
         <thead>
-            <tr><th>Id</th><th>Posted</th><th>Comment</th><th></th></tr>
+            <tr><th>User</th><th>Comment</th><th>Date</th><th></th></tr>
         </thead>
         <tbody data-bind="foreach: items">
             <tr>
-                <td data-bind="text: dateTime"></td>
+                <td data-bind="text: username"></td>
                 <td data-bind="text: content"></td>
+                <td data-bind="text: timeStamp"></td>
+
+
             </tr>
         </tbody>
     </table>
+</div>
+
+<div>
+    <button class="btn btn-primary" data-bind="click: addComment">Add a comment</button>
 </div>
 
 <div>

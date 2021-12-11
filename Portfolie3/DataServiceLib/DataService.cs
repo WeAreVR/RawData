@@ -83,6 +83,21 @@ namespace DataServiceLib
 
             return result.ToList();
         }
+        public int NumberOfElements(IList<Bookmark> elements)
+        {
+            return elements.Count();
+        }
+        public IList<Bookmark> GetBookmarks(string username)
+        {
+            var ctx = new IMDBContext();
+
+            var result = ctx.Bookmarks
+                    .Where(p => p.Username == username)
+                    .Include(x => x.TitleBasic)
+                    .AsEnumerable();
+
+            return result.ToList();
+        }
 
         public Bookmark GetBookmark(string username, string titleId) {
             var ctx = new IMDBContext();
@@ -133,6 +148,7 @@ namespace DataServiceLib
             return result;
         }
 
+
         public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString)
         {
             var ctx = new IMDBContext();
@@ -148,7 +164,22 @@ namespace DataServiceLib
 
             return result.ToList();
         }
+        public int NumberOfElements(IList<Comment> elements)
+        {
+            return elements.Count();
+        }
+        public IList<Comment> GetCommentsByTitleId(string titleId)
+        {
+            var ctx = new IMDBContext();
 
+            var result = ctx.Comments
+                    .Where(p => p.TitleId == titleId)
+                    .Include(x => x.TitleBasic)
+                    .AsEnumerable();
+
+           
+            return result.ToList();
+        }
 
         public bool CreateComment(Comment comment)
         {
