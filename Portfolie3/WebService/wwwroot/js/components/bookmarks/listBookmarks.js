@@ -24,7 +24,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 console.log(data);
                 prev(data.prev),
                     next(data.next),
-                    episodes(data.items);
+                    bookmarks(data.items);
             });
         }
         let showPrev = () => {
@@ -33,7 +33,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 console.log(data);
                 prev(data.prev),
                     next(data.next),
-                    episodes(data.items);
+                    bookmarks(data.items);
             });
         }
 

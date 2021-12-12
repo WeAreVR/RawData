@@ -14,6 +14,8 @@ namespace WebService.ViewModels.Profiles
         public CommentProfile()
         {
             CreateMap<Comment, CommentViewModel>();
+            CreateMap<CreateCommentViewModel, Comment>();
+
         }
     }
 }

@@ -13,14 +13,10 @@ namespace DataServiceLib
         public Bookmark GetBookmark(string username, string titleId);
         public bool DeleteBookmark(string username, string titleId);
         public bool CreateBookmark(Bookmark titleId);
-<<<<<<< Updated upstream
         public Bookmark CreateBookmark(string username, string titleId);
         public int NumberOfElements(IList<Bookmark> elements);
         public IList<Bookmark> GetBookmarks(string username);
-
-=======
         public Bookmark CreateBookmark(string titleId);
->>>>>>> Stashed changes
 
         // Comments
         public Comment GetComment(string username, string titleId, DateTime timeStamp);
