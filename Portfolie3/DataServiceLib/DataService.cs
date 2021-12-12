@@ -244,8 +244,7 @@ namespace DataServiceLib
             comment.TitleId = titleId;
             comment.Username = username;
             comment.Content = content;
-            comment.TimeStamp = timestamp
-;
+            comment.TimeStamp = timestamp;
 
             ctx.Add(comment);
             ctx.SaveChanges();
