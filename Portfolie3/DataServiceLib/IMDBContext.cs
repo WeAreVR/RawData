@@ -198,6 +198,7 @@ namespace DataServiceLib
             modelBuilder.Entity<RatingHistory>().Property(x => x.Username).HasColumnName("username");
             modelBuilder.Entity<RatingHistory>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<RatingHistory>().Property(x => x.Rating).HasColumnName("rating");
+            modelBuilder.Entity<RatingHistory>().Property(x => x.TimeStamp).HasColumnName("time_stamp");
             modelBuilder.Entity<RatingHistory>().HasKey(c => new { c.TitleId, c.Username });
             modelBuilder.Entity<RatingHistory>().HasOne<TitleBasic>(s => s.TitleBasic).WithMany(g => g.RatingHistories)
             .HasForeignKey(s => s.TitleId);

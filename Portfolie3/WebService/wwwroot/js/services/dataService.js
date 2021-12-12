@@ -49,6 +49,21 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    //addRating
+    let addRating = (rating, callback) => {
+        let param = {
+            method: "POST",
+            body: JSON.stringify(rating),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(param)
+        fetch("api/ratinghistory", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     //nameBasics
     let getNameBasics = (searchInput, callback) => {
         fetch("api/namebasic/search/" + "?searchInput=" + searchInput)
@@ -150,6 +165,7 @@ define([], () => {
         userLogin,
         getBookmarks,
         clearSearch,
+        addRating,
         createBookmark
     }
 });

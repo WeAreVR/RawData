@@ -320,6 +320,7 @@ namespace DataServiceLib
         public bool CreateRatingHistory(RatingHistory history) {
 
             var ctx = new IMDBContext();
+            history.TimeStamp = DateTime.Now;
 
             ctx.Add(history);
             return ctx.SaveChanges() > 0;

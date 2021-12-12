@@ -69,7 +69,7 @@ namespace WebService.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateRatingHistory(RatingHistory model)
+        public IActionResult CreateRatingHistory(CreateRatingHistoryViewModel model)
         {
             var rating = _mapper.Map<RatingHistory>(model);
 
