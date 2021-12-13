@@ -7,6 +7,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let posterUrl = ko.observable();
         let titleBasic = ko.observable();
         let selectId = ko.observable();
+        let setRating = ko.observable();
+
        
         
 
@@ -21,6 +23,19 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             selectId("");
         }
 
+
+        postman.subscribe("newRating", rating=> {
+            ds.addRating(rating, newRating => {
+                console.log("postmanSubscribe")
+            });
+        }, "list-titles");
+
+        let add = () => {
+            console.log(setRating())
+            postman.publish("newRating", { username: "testuser", titleId: "tt0312280", rating: setRating() });
+            postman.publish("changeView", "list-titles");
+        }
+
        
         let commentSection = () => postman.publish("changeView", "list-comments");
 
@@ -31,7 +46,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentView,
             titleBasic,
             getInfo,
+            add,
             commentSection,
+            setRating,
             posterUrl
         }
     };
