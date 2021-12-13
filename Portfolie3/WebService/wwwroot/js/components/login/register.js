@@ -8,8 +8,15 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let password = ko.observable();
 
 
-
         let userRegister = () => {
+            let user = {
+                username: name(),
+                password: password()
+            }
+
+        }
+
+        let userRegister1 = () => {
             postman.publish("newUser", { uname: username(), psw: password() });
             postman.publish("changeView", "login");
         }

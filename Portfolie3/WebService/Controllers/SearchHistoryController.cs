@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using WebService.ViewModels;
 using AutoMapper;
+using WebService.Attributes;
+using WebService.Models;
 
 namespace WebService.Controllers
 {
@@ -67,25 +69,32 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
+        [Authorization]
         [HttpGet]
         public IActionResult GetSearchHistory([FromQuery] QueryString queryString)
         {
-            //var user = HttpContext.User.Identity.UserName;
-            var user = Request.HttpContext.Items["User"] as User;
-            var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
-            Console.WriteLine(user + "hello" + user + "hejsa");
-
-            if (searches == null)
+            try
             {
-                return NotFound();
+                var user = Request.HttpContext.Items["User"] as User;
+                var searches = _dataService.GetSearchHistoryByUsername(user.Username, queryString);
+                Console.WriteLine(user + "hello" + user + "hejsa");
+
+               /* if (searches == null)
+                {
+                    return NotFound();
+                }*/
+
+                var numberOfSearches = searches.Count();
+
+                var items = searches.Select(GetSearchHistoryViewModel);
+                var result = CreateResultModel(queryString, numberOfSearches, items);
+
+                return Ok(result);
             }
-
-            var numberOfSearches = searches.Count();
-
-            var items = searches.Select(GetSearchHistoryViewModel);
-            var result = CreateResultModel(queryString, numberOfSearches, items);
-
-            return Ok(result);
+            catch (Exception)
+            {
+                return Unauthorized();
+            }
         }
 
         
