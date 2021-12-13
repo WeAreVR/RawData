@@ -49,10 +49,25 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let commentSection = () => postman.publish("changeView", "list-comments");
 
-        let singleTitlePage = () => postman.publish("changeView", "single-title");
+        postman.subscribe("getTitle", id => {
+            ds.getTitleBasics(id, getTitle => {
+                console.log("postmanSubscribe")
+            });
+        }, "single-title");
 
-        
-       
+
+        let singleTitlePage = (id) => {
+            console.log(id);
+            postman.publish("getInfo", id);
+            console.log("abe");
+
+        }
+
+        let changeSingleView = (id) => {
+            postman.publish("changeView", "single-title");
+            singleTitlePage(id);
+        }
+
         selectedPageSize.subscribe(() => {
             var size = selectedPageSize()[0];
             searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
@@ -76,6 +91,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         return {
             enableNext,
+            changeSingleView,
             enablePrev,
             showNext,
             showPrev,

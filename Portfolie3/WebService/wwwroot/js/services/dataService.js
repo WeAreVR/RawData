@@ -20,6 +20,7 @@ define([], () => {
         fetch("api/titlebasic/" + id)
             .then(response => response.json())
             .then(json => callback(json));
+
     };
 
     let getUrl = (url, callback) => {
@@ -49,6 +50,7 @@ define([], () => {
             .then(json => callback(json));
     };
 
+  
     //addRating
     let addRating = (rating, callback) => {
         let param = {
