@@ -48,13 +48,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let commentSection = () => postman.publish("changeView", "list-comments");
-
+        /*
         postman.subscribe("getTitle", id => {
             ds.getTitleBasics(id, getTitle => {
                 console.log("postmanSubscribe")
             });
         }, "single-title");
-
+*/
 
         let singleTitlePage = (id) => {
             console.log(id);

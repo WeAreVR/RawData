@@ -12,6 +12,8 @@
                 <td data-bind="text: t.primaryTitle"></td>
                 <td data-bind="text: t.startYear"></td>
                 <td data-bind="text: t.avgRating"></td>
+                                <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].changetoCommentView(t.id);}">Comments</button></td>
+
                 <!--<td><button class="btn btn-primary" data-bind="click: commentSection">Comments</button></td>-->
             </tr>
 
@@ -19,11 +21,12 @@
     </table>
 
     <div>
-        <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->    
+        <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
         <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
         <input type="number" data-bind="value: setRating" min="1" max="10" />
         <button data-bind="click: add"> Knap mig</button>
     </div>
+
 
 
 </div>

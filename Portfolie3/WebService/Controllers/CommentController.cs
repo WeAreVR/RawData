@@ -32,18 +32,18 @@ namespace WebService.Controllers
         [HttpGet(Name = nameof(GetComments))]
         public IActionResult GetComments(string titleId, [FromQuery] QueryString queryString)
         {
-            var comments = _dataService.GetCommentsByTitleId("tt0312280", queryString);
+            var comments = _dataService.GetCommentsByTitleId(titleId, queryString);
 
             if (comments.Count == 0)
             {
                 return NotFound();
             }
 
-            var allComments = _dataService.GetCommentsByTitleId("tt0312280");
+            var allComments = _dataService.GetCommentsByTitleId(titleId);
 
             var items = comments.Select(GetCommentViewModel);
 
-            var result = CreateResultModel("tt0312280", queryString, _dataService.NumberOfElements(allComments), items);
+            var result = CreateResultModel(titleId, queryString, _dataService.NumberOfElements(allComments), items);
 
             return Ok(result);
 

@@ -6,6 +6,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let comments = ko.observableArray([]);
         let selectId = ko.observable();
+        let titleId = ko.observable();
+
 
         let prev = ko.observable();
         let next = ko.observable();
@@ -18,15 +20,24 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             comments(data);
         });*/
 
-        let showComments = () => {
+       
+        let showComments = (id) =>
+        {
             console.log("showComments");
-            ds.getComments(selectId(), data => {
+            ds.getComments(id, data => {
                 console.log(data);
+                titleId(id);
                 comments(data);
             });
             currentView("list");
             selectId("");
         }
+            postman.subscribe("showComment", id => {
+                console.log(id)
+                showComments(id);
+            }, "list-comments");
+
+        
         let showNext = () => {
             console.log(next());
             ds.getUrl(next(), data => {
@@ -46,12 +57,25 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             });
         }
         let addComment = () => postman.publish("changeView", "addComments");
-        
 
+      
 
-        showComments();
+        let addCommentPage = (id) => {
+            console.log(id);
+            postman.publish("getTitleForAddComment", id);
+            console.log("abe");
+
+        }
+
+        let changetoCommentAddView = (id) => {
+            postman.publish("changeView", "addComments");
+            addCommentPage(id);
+        }
         return {
             currentComponent,
+            changetoCommentAddView,
+            titleId,
+            addCommentPage,
             addComment,
             enableNext,
             showNext,
