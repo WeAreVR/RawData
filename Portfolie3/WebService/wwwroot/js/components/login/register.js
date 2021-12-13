@@ -10,9 +10,11 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let userRegister = () => {
             let user = {
-                username: name(),
+                username: username(),
                 password: password()
-            }
+            };
+
+            ds.userRegister(user, data => console.log(data));
 
         }
 

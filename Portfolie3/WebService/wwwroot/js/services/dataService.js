@@ -4,12 +4,14 @@ define([], () => {
     const searchHistoryApiUrl = "api/searchHistory/";
     const bookmarkApiUrl = "api/bookmark/";
 
+    //TitleEpisodes
     let getTitleEpisodes = (id,callback) => {
         fetch("api/titleepisode/allepisodes/"+ "?parentTitleId=" + id)
             .then(response => response.json())
             .then(json => callback(json));
     };
 
+    //TitleBasics
     let getTitleBasics = (searchInput, callback) => {
         fetch("api/titlebasic/search/" + "?searchInput=" + searchInput)
             .then(response => response.json())
@@ -74,10 +76,20 @@ define([], () => {
 
 
     //searchHistory
-    let getSearchHistory = (callback) => {
-        fetch("api/searchhistory")
-            .then(response => response.json())
-            .then(json => callback(json));
+    let getSearchHistory = () => {
+        let param = {
+            method: "GET",
+            headers: {
+                "Authorization": "Barer " // token
+            }
+        }
+        return fetch("api/searchhistory", param)
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                response.json()
+            });
     };
 
     let getSearchHistoryUrl = (url, callback) => {
@@ -98,7 +110,7 @@ define([], () => {
             headers: {
                 "Content-Type": "application/json"
             }
-        }
+        };
         fetch("api/users/register", param)
             .then(response => response.json())
             .then(json => callback(json));
@@ -116,6 +128,9 @@ define([], () => {
             .then(response => response.json())
             .then(json => callback(json));
     };
+
+
+
 
 
     //Bookmark skal skrives om til at kunne tage username
