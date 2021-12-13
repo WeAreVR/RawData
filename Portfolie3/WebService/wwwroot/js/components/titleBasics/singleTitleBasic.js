@@ -8,20 +8,28 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let titleBasic = ko.observable();
         let selectId = ko.observable();
         let setRating = ko.observable();
+        let titleId = ko.observable();
 
        
         
 
-        let getInfo = () => {
+        let getInfo = (id) => {
             console.log("getInfo");
-            ds.getTitleBasic("tt11503082", data => {
+            ds.getTitleBasic(id, data => {
                 console.log(data);
                 titleBasic(data);
                 posterUrl(data.poster);
+                titleId(data.id);
+
             });
             currentView("list");
             selectId("");
         }
+
+        postman.subscribe("getInfo", id => {
+            console.log("postmanSubscribe")
+            getInfo(id);
+        }, "list-titles");
 
 
         postman.subscribe("newRating", rating=> {
@@ -32,22 +40,39 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let add = () => {
             console.log(setRating())
-            postman.publish("newRating", { username: "testuser", titleId: "tt0312280", rating: setRating() });
+            postman.publish("newRating", { username: "testuser", titleId: titleId(), rating: setRating() });
             postman.publish("changeView", "list-titles");
         }
 
        
-        let commentSection = () => postman.publish("changeView", "list-comments");
+        /*
+        postman.subscribe("getTitle", id => {
+            ds.getTitleBasics(id, getTitle => {
+                console.log("postmanSubscribe")
+            });
+        }, "single-title");
+        */
 
-        getInfo();
+        let commentPage = (id) => {
+            console.log(id);
+            postman.publish("showComment", id);
+            console.log("abe");
+
+        }
+
+        let changetoCommentView = (id) => {
+            postman.publish("changeView", "list-comments");
+            commentPage(id);
+        }
 
         return {
             currentComponent,
+            changetoCommentView,
+            commentPage,
             currentView,
             titleBasic,
             getInfo,
             add,
-            commentSection,
             setRating,
             posterUrl
         }

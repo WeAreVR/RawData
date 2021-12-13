@@ -20,6 +20,7 @@ define([], () => {
         fetch("api/titlebasic/" + id)
             .then(response => response.json())
             .then(json => callback(json));
+
     };
 
     let getUrl = (url, callback) => {
@@ -28,9 +29,8 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    //den er hardcodet indtil videre
     let getComments = (id, callback) => {
-        fetch("api/comments")
+        fetch("api/comments/" + "?titleId=" + id)
             .then(response => response.json())
             .then(json => callback(json));
     };
@@ -49,6 +49,7 @@ define([], () => {
             .then(json => callback(json));
     };
 
+  
     //addRating
     let addRating = (rating, callback) => {
         let param = {
