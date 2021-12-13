@@ -11,13 +11,20 @@
             postman.publish("changeView", "list-comments");
         }
        
-        postman.subscribe("getTitleAndContentForUpdateComment", (id,content) => {
+        postman.subscribe("getContentForUpdateComment", (content) => {
+            console.log("postmanSubscribe")
+            console.log("vi er her");            
+            console.log(content);
+            context(content);
+
+        }, "list-titles");
+
+        postman.subscribe("getTitleForUpdateComment", (id) => {
             console.log("postmanSubscribe")
             titleId = id;
             console.log("vi er her");
             console.log(id);
-            console.log(content);
-            context(content);
+            
 
         }, "list-titles");
 

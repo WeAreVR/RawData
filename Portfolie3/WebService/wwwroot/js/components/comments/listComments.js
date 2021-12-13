@@ -68,19 +68,26 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let changetoCommentAddView = (id) => {
+            console.log("virker den ehr asd?")
             postman.publish("changeView", "addComments");
             addCommentPage(id);
         }
 
         let updateCommentPage = (id,content) => {
-            postman.publish("getTitleAndContentForUpdateComment", (id,content));
+            postman.publish("getTitleForUpdateComment", id);
+            postman.publish("getContentForUpdateComment", content);
+            console.log(id);
+            console.log(content);
             console.log("abe");
 
         }
 
         let changetoCommentUpdateView = (id, content) => {
+            console.log("Et forsøg værd");
+            console.log(id);
+            console.log(content);
             postman.publish("changeView", "updateComments");
-            updateCommentPage(id,content);
+            updateCommentPage(id, content);
         }
         return {
             currentComponent,
