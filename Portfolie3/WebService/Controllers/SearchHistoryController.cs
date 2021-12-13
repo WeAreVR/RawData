@@ -67,7 +67,7 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        [HttpGet()]
+        [HttpGet]
         public IActionResult GetSearchHistory([FromQuery] QueryString queryString)
         {
             //var user = HttpContext.User.Identity.UserName;
