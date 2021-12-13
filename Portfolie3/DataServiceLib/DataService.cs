@@ -126,7 +126,7 @@ namespace DataServiceLib
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
-        public Bookmark CreateBookmark(string titleId)
+        public bool CreateBookmark(string titleId)
         {
             var ctx = new IMDBContext();
 
@@ -137,9 +137,8 @@ namespace DataServiceLib
             };
 
             ctx.Add(bookmark);
-            ctx.SaveChanges();
 
-            return bookmark;
+            return ctx.SaveChanges() > 0;
         }
         public Bookmark CreateBookmark(string titleId,string username)
         {
