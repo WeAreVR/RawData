@@ -71,8 +71,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             postman.publish("changeView", "addComments");
             addCommentPage(id);
         }
+
+        let updateCommentPage = (id,content) => {
+            postman.publish("getTitleAndContentForUpdateComment", (id,content));
+            console.log("abe");
+
+        }
+
+        let changetoCommentUpdateView = (id, content) => {
+            postman.publish("changeView", "updateComments");
+            updateCommentPage(id,content);
+        }
         return {
             currentComponent,
+            changetoCommentUpdateView,
+            updateCommentPage,
             changetoCommentAddView,
             titleId,
             addCommentPage,

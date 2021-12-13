@@ -84,7 +84,7 @@ namespace WebService.Controllers
        
 
 
-            [HttpPut]
+        [HttpPut]
         public IActionResult UpdateComment(CommentViewModel model)
         {
             var comment = new Comment

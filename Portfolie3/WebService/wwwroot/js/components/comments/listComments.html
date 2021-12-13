@@ -16,15 +16,16 @@
                 <td data-bind="text: username"></td>
                 <td data-bind="text: content"></td>
                 <td data-bind="text: timeStamp"></td>
-
-
+                <td>
+                    <button class="btn btn-primary" data-bind=" click:function(){$parents[1].changetoCommentUpdateView(titleId,content);}">Edit comment</button>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
 
 <div>
-    <button class="btn btn-primary" data-bind=" click:function(){changetoCommentAddView(titleId);}">Add Comments</button>
+    <button class="btn btn-primary" data-bind=" click:function(){changetoCommentAddView(titleId);}">Add comments</button>
 </div>
 
 <div>

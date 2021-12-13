@@ -37,6 +37,20 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let updateComment = (comment, callback) => {
+        let param = {
+            method: "PUT",
+            body: JSON.stringify(comment),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(param)
+        fetch("api/comments", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
     let addComment = (comment, callback) => {
         let param = {
             method: "POST",
@@ -182,6 +196,7 @@ define([], () => {
         getBookmarks,
         clearSearch,
         addRating,
-        createBookmark
+        createBookmark,
+        updateComment
     }
 });
