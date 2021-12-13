@@ -51,7 +51,7 @@ namespace WebService.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login(Login dto)
+        public IActionResult Login(LoginDto dto)
         {
             var user = _dataService.GetUser(dto.Username);
             if (user == null)

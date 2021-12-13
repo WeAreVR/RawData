@@ -7,13 +7,29 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let username = ko.observable();
         let password = ko.observable();
 
-        postman.subscribe("newUser", user => {
+       /* postman.subscribe("newUser", user => {
             ds.userLogin(user, newUser => {
                 console.log("postmanSubscribe")
             });
-        }, "list-titles");
+        }, "list-titles");*/
 
         let userLogin = () => {
+            let user = {
+                username: username(),
+                password: password()
+            };
+
+            localStorage.removeItem("username");
+            localStorage.removeItem("token");
+
+            ds.userLogin(user, data => {
+                console.log(data);
+                localStorage.setItem("username", data.username);
+                localStorage.setItem("token", data.token);
+            });
+        };
+
+        let userLogin1 = () => {
             postman.publish("newUser", { username: username(), password: password() });
             console.log("postmanPublish");
             postman.publish("changeView", "list-titles");

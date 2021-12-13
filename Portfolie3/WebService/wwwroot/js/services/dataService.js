@@ -94,15 +94,15 @@ define([], () => {
         let param = {
             method: "GET",
             headers: {
-                "Authorization": "Barer " // token
+                "Authorization": "Barer " + localStorage.getItem("token")
             }
-        }
+        };
         return fetch("api/searchhistory", param)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                response.json()
+                response.json();
             });
     };
 
@@ -111,6 +111,11 @@ define([], () => {
             .then(response => response.json())
             .then(json => callback(json));
     };
+
+    let clearSearch = username => {
+        fetch(searchHistoryApiUrl + username, { method: "DELETE" })
+            .then(response => console.log(response.status))
+    }
 
     let getSearchHistoryWithPageSize = (currentPage, pageSize) => searchHistoryApiUrl + "?page=" + currentPage + "&pagesize=" + pageSize;
 
@@ -169,11 +174,6 @@ define([], () => {
 
     let createBookmark = id => {
         fetch(bookmarkApiUrl + id, { method: "POST" })
-            .then(response => console.log(response.status))
-    }
-
-    let clearSearch = username => {
-        fetch(searchHistoryApiUrl + username, { method: "DELETE" })
             .then(response => console.log(response.status))
     }
 

@@ -14,9 +14,11 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 password: password()
             };
 
-            ds.userRegister(user, data => console.log(data));
-
-        }
+            ds.userRegister(user, data => {
+                console.log(data)
+                postman.publish("changeView", "login")
+            });
+        };
 
         let userRegister1 = () => {
             postman.publish("newUser", { uname: username(), psw: password() });

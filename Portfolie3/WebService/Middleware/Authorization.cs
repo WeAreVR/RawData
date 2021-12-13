@@ -53,7 +53,7 @@ namespace WebService.Middleware
                 var jwtToken = validatedToken as JwtSecurityToken;
                 var claim = jwtToken.Claims.FirstOrDefault(x => x.Type == "username");
                 if (claim != null)
-                {
+                { 
                   var username = claim.Value.ToString();
                   context.Items["User"] = _dataService.GetUser(username);
                 }

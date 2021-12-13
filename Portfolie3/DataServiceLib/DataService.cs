@@ -348,7 +348,6 @@ namespace DataServiceLib
             User result = ctx.Users.FirstOrDefault(x => x.Username == username);
 
             return result;
-
         }
 
       
@@ -356,17 +355,17 @@ namespace DataServiceLib
         {
             // Test meget vigtig
             var ctx = new IMDBContext();
-            User user = new User();
-            
-            user.Username = username;
-            user.Password = password;
-            user.Salt = salt;
-           
+            User user = new User
+            {
+                Username = username,
+                Password = password,
+                Salt = salt
+            };
+
             ctx.Add(user);
             ctx.SaveChanges();
 
             return user;
-           
         }
 
         //---------------------------Award CRUD----------------------------------
