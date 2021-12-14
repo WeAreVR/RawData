@@ -16,7 +16,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let showNext = () =>
         {
             console.log(next());
-            ds.getNameBasicsUrl(next(), data => {
+            ds.getUrl(next(), data => {
                 console.log(data);
                 prev(data.prev),
                 next(data.next),
@@ -25,7 +25,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
         let showPrev = () => {
             console.log(next());
-            ds.getNameBasicsUrl(prev(), data => {
+            ds.getUrl(prev(), data => {
                 console.log(data);
                 prev(data.prev),
                 next(data.next),
@@ -53,16 +53,25 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchNameBasics(ds.getNameBasicsWithPageSize(size));
         });
         
-        let temp = () => {
+        
+
+        let singleNamePage = (id) => {
+            console.log(id);
+            postman.publish("getInfo", id);
+            console.log("abe");
+
+        }
+
+        let changeSingleNameView = (id) => {
             postman.publish("changeView", "single-names");
-            postman.publish("getInfoForSingleName", "nm0000001 ");
-            console.log("det burde virke");
+           // singleTitlePage(id);
+            postman.publish("getInfoForSingleName", id);
 
         }
 
         return {
             enableNext,
-            temp,
+            changeSingleNameView,
             enablePrev,
             showNext,
             showPrev,

@@ -7,7 +7,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let comments = ko.observableArray([]);
         let selectId = ko.observable();
         let titleId = ko.observable();
-
+        let username = ko.observable();
+        let timeStamp = ko.observable();
 
         let prev = ko.observable();
         let next = ko.observable();
@@ -15,10 +16,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let enablePrev = ko.observable(() => prev() !== undefined);
         let enableNext = ko.observable(() => next() !== undefined);
 
-        /*ds.getTitleEpisodes(selectId, data => {
-            console.log(data);
-            comments(data);
-        });*/
 
        
         let showComments = (id) =>
@@ -27,7 +24,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.getComments(id, data => {
                 console.log(data);
                 titleId(id);
+                console.log(data);
                 comments(data);
+                prev(data.prev);
+                next(data.next);
+                console.log(data.items);
+
+
             });
             currentView("list");
             selectId("");
@@ -41,10 +44,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let showNext = () => {
             console.log(next());
             ds.getUrl(next(), data => {
-                console.log(data);
                 prev(data.prev),
                     next(data.next),
-                    episodes(data.items);
+                    comments(data);
             });
         }
         let showPrev = () => {
@@ -52,8 +54,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.getUrl(prev(), data => {
                 console.log(data);
                 prev(data.prev),
-                    next(data.next),
-                    episodes(data.items);
+                    next(data.next),    
+                    comments(data);
             });
         }
         let addComment = () => postman.publish("changeView", "addComments");
@@ -63,7 +65,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let addCommentPage = (id) => {
             console.log(id);
             postman.publish("getTitleForAddComment", id);
-            console.log("abe");
 
         }
 
@@ -74,24 +75,29 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let updateCommentPage = (id,content) => {
-            //postman.publish("getTitleForUpdateComment", id);
-            //postman.publish("getContentForUpdateComment", content);
             postman.publish("getTitleAndContentForUpdateComment", {id, content });
             console.log(id);
             console.log(content);
-            console.log("abe");
 
         }
 
         let changetoCommentUpdateView = (id, content) => {
-            console.log("Et forsøg værd");
             console.log(id);
             console.log(content);
             postman.publish("changeView", "updateComments");
             updateCommentPage(id, content);
         }
+
+        let del = comment => {
+           // comments.remove(comment);
+            ds.deleteComment(comment);
+        }
+
         return {
+            del,
             currentComponent,
+            username,
+            timeStamp,
             changetoCommentUpdateView,
             updateCommentPage,
             changetoCommentAddView,

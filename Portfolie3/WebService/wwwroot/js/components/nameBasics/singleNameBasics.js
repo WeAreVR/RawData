@@ -15,7 +15,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let getInfo = (id) => {
             console.log("getInfo");
-            ds.getNameBasic("nm0000001 ", data => {
+            ds.getNameBasic(id, data => {
                 console.log(data);
                 nameBasic(data);
                 birthYear(data.birthYear);

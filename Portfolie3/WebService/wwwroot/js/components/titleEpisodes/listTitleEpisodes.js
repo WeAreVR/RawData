@@ -17,6 +17,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let searchTitleEpisodes = () => {
             console.log("searchTitleEpisodes");
+
             ds.getTitleEpisodes(selectId(), data => {
                 console.log(data);
                 episodes(data.items);

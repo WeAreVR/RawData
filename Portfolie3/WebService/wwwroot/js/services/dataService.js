@@ -65,6 +65,19 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let deleteComment = comment => {
+        let param = {
+            method: "DELETE",
+            body: JSON.stringify(comment),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        console.log(param)
+        fetch("api/comments", param)
+            .then(response => console.log(response.status))
+    };
+
   
     //addRating
     let addRating = (rating, callback) => {
@@ -198,6 +211,7 @@ define([], () => {
         getTitleBasics,
         getComments,
         addComment,
+        deleteComment,
         getTitleBasicsWithPageSize,
         getNameBasics,
         getNameBasic,
