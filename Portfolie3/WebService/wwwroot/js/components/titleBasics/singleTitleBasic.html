@@ -4,6 +4,7 @@
     <p data-bind="text: t.runtime"></p>
 </div>
 
+<!--
 <div>
     <table class="table">
         <thead>
@@ -17,12 +18,12 @@
                 <td data-bind="text: t.avgRating"></td>
                 <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].changetoCommentView(t.id);}">Comments</button></td>
 
-                <!--<td><button class="btn btn-primary" data-bind="click: commentSection">Comments</button></td>-->
+               
             </tr>
 
         </tbody>
     </table>
-</div>
+</div> -->
 
 <div>
     <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
@@ -40,7 +41,7 @@
         <div class="col-sm-8">     
             <table data-bind="with: titleBasic, as: 't'">
                 <tr>
-                    <th>Primary title</th>
+                    <th >Primary title</th>
                     <td data-bind="text: t.primaryTitle"></td>
                 </tr>
                 <tr>
@@ -55,13 +56,19 @@
                     <th>Runtime (minutes)</th>
                     <td data-bind="text: t.runtime"></td>
                 </tr>
-                <tr></tr>
+                <tr>
+                    <th>Plot</th>
+                    <td data-bind="text: t.plot"></td>
+                </tr>
             </table>
 
         </div>
     </div>
-    <div class="col-sm-4">
-        <h3>Cast</h3>
+    
+    
+    
+    <div>
+        <h3>Comments</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
