@@ -54,6 +54,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
             currentView("list");
             selectId("");
+
+
+        }
+
+        let findSearchHistory1 = () => {
+            console.log("findSearchHistory");
+
+            ds.getSearchHistory(data => {
+                console.log(data);
+                prev(data.prev),
+                    next(data.next),
+                    searchHistory(data);
+            })
+            currentView("list");
+            selectId("");
         }
 
 
