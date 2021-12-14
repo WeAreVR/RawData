@@ -1043,8 +1043,10 @@ namespace DataServiceLib
         //-------------------------NameBasic CRUD--------------------------
         public NameBasic GetNameBasic(string nameId)
         {
+            var trim = nameId.Trim();
+
             var ctx = new IMDBContext();
-            NameBasic result = ctx.NameBasics.FirstOrDefault(x => x.Id == nameId);
+            NameBasic result = ctx.NameBasics.FirstOrDefault(x => x.Id == trim);
             return result;
         }
 
@@ -1058,20 +1060,25 @@ namespace DataServiceLib
 
             var searchResult = ctx.NameBasicSearchResults
                 .FromSqlInterpolated($"select * from name_search({searchInput})");
-
+          
             //searchResult = searchResult.OrderByDescending(x => x.rank);
             IEnumerable<NameBasic> result = new List<NameBasic>();
 
             foreach (var NameBasicSearchResult in searchResult)
             {
                 var temp = GetNameBasic(NameBasicSearchResult.Id);
+            
+
                 result = result.Append(temp);
+
+
             }
 
 
             result = result
                 .Skip(queryString.Page * queryString.PageSize)
                 .Take(queryString.PageSize);
+
             return result.ToList();
         }
 

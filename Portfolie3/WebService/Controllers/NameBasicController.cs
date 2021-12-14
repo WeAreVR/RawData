@@ -49,7 +49,7 @@ namespace WebService.Controllers
             var nameBasics = _dataService.GetNameBasicsBySearch(searchInput, queryString);
             var allNameBasics = _dataService.GetNameBasicsBySearch(searchInput);
 
-
+           
             if (searchInput == null)
             {
                 return NotFound();
@@ -65,7 +65,7 @@ namespace WebService.Controllers
         private NameBasicViewModel GetNameBasicViewModel(NameBasic nameBasic)
         {
             var model = _mapper.Map<NameBasicViewModel>(nameBasic);
-            
+
             model.Id = nameBasic.Id;
             model.PrimaryName = nameBasic.PrimaryName;
             model.BirthYear = nameBasic.BirthYear;
