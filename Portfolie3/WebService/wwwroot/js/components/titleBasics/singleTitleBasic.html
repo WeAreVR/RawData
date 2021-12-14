@@ -1,10 +1,10 @@
 ﻿<div data-bind="with: titleBasic, as: 't'">
     <h1 data-bind="text: t.primaryTitle"></h1>
-    <span data-bind="text: t.titleType"></span>
-    <span data-bind="text: t.runtime"></span> <span>minutes</span>
+    <p data-bind="text: t.titleType"></p>
+    <p data-bind="text: t.runtime"></p>
 </div>
-<
 
+<!--
 <div>
     <table class="table">
         <thead>
@@ -18,12 +18,12 @@
                 <td data-bind="text: t.avgRating"></td>
                 <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].changetoCommentView(t.id);}">Comments</button></td>
 
-                <!--<td><button class="btn btn-primary" data-bind="click: commentSection">Comments</button></td>-->
+               
             </tr>
 
         </tbody>
     </table>
-</div>
+</div> -->
 
 <div>
     <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
@@ -35,29 +35,42 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-4">
-            <h3>Information</h3>
-            <table class="table">
-                <thead>
-                    <tr><th>Primary Title</th><th>Release year</th><th></th></tr>
-                </thead>
-                <tbody data-bind="with: titleBasic, as: 't'">
-                    <tr>
-                        <td data-bind="text: t.primaryTitle"></td>
-                        <td data-bind="text: t.startYear"></td>
-                </tbody>
+        <div class="col-sm-4" data-bind="with: titleBasic, as: 't'">
+            <img data-bind="attr: { src: t.poster, alt: 'here is picture' }">
+        </div>
+        <div class="col-sm-8">     
+            <table data-bind="with: titleBasic, as: 't'">
+                <tr>
+                    <th >Primary title</th>
+                    <td data-bind="text: t.primaryTitle"></td>
+                </tr>
+                <tr>
+                    <th>Release year</th>
+                    <td data-bind="text: t.startYear"></td>
+                </tr>
+                <tr>
+                    <th>Rating</th>
+                    <td data-bind="text: t.avgRating"></td>
+                </tr>
+                <tr>
+                    <th>Runtime (minutes)</th>
+                    <td data-bind="text: t.runtime"></td>
+                </tr>
+                <tr>
+                    <th>Plot</th>
+                    <td data-bind="text: t.plot"></td>
+                </tr>
             </table>
+
         </div>
-        <div class="col-sm-4">
-            <h3>Column 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
-        <div class="col-sm-4">
-            <h3>Column 3</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
+    </div>
+    
+    
+    
+    <div>
+        <h3>Comments</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
 </div>
 
