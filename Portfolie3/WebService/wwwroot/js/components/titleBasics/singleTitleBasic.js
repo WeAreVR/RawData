@@ -65,6 +65,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             commentPage(id);
         }
 
+        getInfo("tt0304141");
+
         return {
             currentComponent,
             changetoCommentView,

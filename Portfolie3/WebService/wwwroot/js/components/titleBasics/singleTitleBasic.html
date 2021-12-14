@@ -19,16 +19,41 @@
 
         </tbody>
     </table>
-
-    <div>
-        <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
-        <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
-        <input type="number" data-bind="value: setRating" min="1" max="10" />
-        <button data-bind="click: add"> Knap mig</button>
-    </div>
-
-
-
 </div>
 
- 
+<div>
+    <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
+    <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
+    <input type="number" data-bind="value: setRating" min="1" max="10" />
+    <button data-bind="click: add"> Rate!</button>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>Information</h3>
+            <table class="table">
+                <thead>
+                    <tr><th>Primary Title</th><th>Release year</th><th></th></tr>
+                </thead>
+                <tbody data-bind="with: titleBasic, as: 't'">
+                    <tr>
+                        <td data-bind="text: t.primaryTitle"></td>
+                        <td data-bind="text: t.startYear"></td>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 2</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+        <div class="col-sm-4">
+            <h3>Column 3</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+    </div>
+</div>
+
