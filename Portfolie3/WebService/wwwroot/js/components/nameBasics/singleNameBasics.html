@@ -1,0 +1,21 @@
+﻿
+<h1 data-bind="text: nameBasic['primaryName']"></h1>
+
+<div>
+    <table class="table">
+        <thead>
+            </th><th>Full Name</th><th>Birthyear</th><th>DeathYear</th><th>Rating</th><th></th></tr>
+        </thead>
+        <tbody data-bind="with: nameBasic, as: 'n'">
+            <tr>
+                <td data-bind="text: n.primaryName"></td>
+                <td data-bind="text: n.birthYear"></td>
+                <td data-bind="text: n.deathYear"></td>
+                <td data-bind="text: n.rating"></td>
+            </tr>
+
+        </tbody>
+    </table
+</div>
+
+

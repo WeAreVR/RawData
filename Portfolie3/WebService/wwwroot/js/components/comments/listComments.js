@@ -74,8 +74,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let updateCommentPage = (id,content) => {
-            postman.publish("getTitleForUpdateComment", id);
-            postman.publish("getContentForUpdateComment", content);
+            //postman.publish("getTitleForUpdateComment", id);
+            //postman.publish("getContentForUpdateComment", content);
+            postman.publish("getTitleAndContentForUpdateComment", {id, content });
             console.log(id);
             console.log(content);
             console.log("abe");

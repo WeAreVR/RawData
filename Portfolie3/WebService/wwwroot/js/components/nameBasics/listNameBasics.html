@@ -6,7 +6,7 @@
     <button class="searchButton" data-bind="click: searchNameBasics">Search</button>
 </div>
 <div>
- Page size: <select data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
+    Page size: <select data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
 </div>
 <div data-bind="foreach: nameBasics">
     <table class="table">
@@ -25,9 +25,14 @@
 
 
 <div>
-    <button class="prevNextButton"data-bind="click: showPrev, enable: enablePrev">Previous page</button>
-    <button class="prevNextButton"data-bind="click: showNext, enable: enableNext">Next page</button>
+    <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
+    <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
 </div>
+
+<div>
+    <button class="prevNextButton" data-bind="click: temp">Hop direkte ind på en single title fordi vores kode ikke er vild god endnu</button>
+</div>
+
 
 
 

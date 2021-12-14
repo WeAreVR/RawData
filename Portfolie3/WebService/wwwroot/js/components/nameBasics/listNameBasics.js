@@ -53,9 +53,16 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchNameBasics(ds.getNameBasicsWithPageSize(size));
         });
         
+        let temp = () => {
+            postman.publish("changeView", "single-names");
+            postman.publish("getInfoForSingleName", "nm0000001 ");
+            console.log("det burde virke");
+
+        }
 
         return {
             enableNext,
+            temp,
             enablePrev,
             showNext,
             showPrev,

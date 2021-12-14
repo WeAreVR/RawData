@@ -8,25 +8,24 @@
         let currentView = ko.observable("addComment");
 
         let cancel = () => {
-            postman.publish("changeView", "list-comments");
+            console.log("id er");
+            console.log(titleId());
+
+            changetoCommentView(titleId());
+
         }
-       
-        postman.subscribe("getContentForUpdateComment", (content) => {
-            console.log("postmanSubscribe")
-            console.log("vi er her");            
-            console.log(content);
-            context(content);
 
+        //den her skal bruges
+        postman.subscribe("getTitleAndContentForUpdateComment", content => {
+            console.log("postmanSubscribe")
+            console.log(content.content);
+            context(content.content);
+            titleId(content.id);
+            console.log("vi er i title");
+            console.log(content.id);
         }, "list-titles");
 
-        postman.subscribe("getTitleForUpdateComment", (id) => {
-            console.log("postmanSubscribe")
-            titleId = id;
-            console.log("vi er her");
-            console.log(id);
-            
-
-        }, "list-titles");
+      
 
         // titel over bruger vi ikke?
         postman.subscribe("updateComment", comment => {

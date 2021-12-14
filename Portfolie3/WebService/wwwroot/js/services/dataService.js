@@ -88,6 +88,12 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let getNameBasic = (id, callback) => {
+        fetch("api/namebasic/" + id)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+
 
     //searchHistory
     let getSearchHistory = () => {
@@ -194,6 +200,7 @@ define([], () => {
         addComment,
         getTitleBasicsWithPageSize,
         getNameBasics,
+        getNameBasic,
         getSearchHistory,
         getSearchHistoryUrl,
         getSearchHistoryWithPageSize,

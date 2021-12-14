@@ -51,6 +51,10 @@ require(['knockout'], (ko) => {
         viewModel: { require: "components/nameBasics/listNameBasics" },
         template: { require: "text!components/nameBasics/listNameBasics.html" }
     });
+    ko.components.register("single-names", {
+        viewModel: { require: "components/nameBasics/singleNameBasics" },
+        template: { require: "text!components/nameBasics/singleNameBasics.html" }
+    });
 
     ko.components.register("list-searchHistory", {
         viewModel: { require: "components/searchHistory/listSearchHistory" },
