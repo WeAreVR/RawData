@@ -90,7 +90,7 @@ define([], () => {
 
 
     //searchHistory
-    let getSearchHistory = () => {
+    let getSearchHistory1 = () => {
         let param = {
             method: "GET",
             headers: {
@@ -106,6 +106,15 @@ define([], () => {
             });
     };
 
+    let getSearchHistory = () => {
+        return fetch("api/searchhistory/?username=k")
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                response.json();
+            });
+    };
     let getSearchHistoryUrl = (url, callback) => {
         fetch(url)
             .then(response => response.json())
