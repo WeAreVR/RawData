@@ -203,6 +203,7 @@ namespace DataServiceLib
                     .Where(p => p.TitleId == titleId)
                     .Include(x => x.TitleBasic)
                     .AsEnumerable();
+            result = result.OrderBy(x => x.TimeStamp);
 
             result = result
                 .Skip(queryString.Page * queryString.PageSize)

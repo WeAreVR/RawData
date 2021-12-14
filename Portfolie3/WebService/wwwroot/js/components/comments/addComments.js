@@ -6,7 +6,7 @@
         let currentView = ko.observable("addComment");
 
         let cancel = () => {
-            postman.publish("changeView", "list-comments");
+            changetoCommentView(titleId());
         }
        
        
@@ -43,6 +43,7 @@
         let changetoCommentView = (id) => {
             postman.publish("changeView", "list-comments");
             commentPage(id);
+
         }
 
 

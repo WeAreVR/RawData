@@ -15,7 +15,7 @@
         </thead>
         <tbody data-bind="foreach: items">
             <tr>
-                <td data-bind="text: id"></td>
+                <td><button data-bind="text: id, click: function(){ $parents[1].changeSingleNameView(id);}"></button></td>
                 <td data-bind="text: primaryName"></td>
                 <td data-bind="text: rating"></td>
             </tr>
@@ -29,9 +29,6 @@
     <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
 </div>
 
-<div>
-    <button class="prevNextButton" data-bind="click: temp">Hop direkte ind på en single title fordi vores kode ikke er vild god endnu</button>
-</div>
 
 
 

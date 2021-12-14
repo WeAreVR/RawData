@@ -52,6 +52,7 @@ namespace WebService.Controllers
         [HttpDelete]
         public IActionResult DeleteComment(Comment comment)
         {
+            Console.WriteLine("nu sker der noget mske");
             if (!_dataService.DeleteComment(comment))
             {
                 return NotFound();
@@ -127,42 +128,42 @@ namespace WebService.Controllers
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetComments), new { comment.TitleId });
         }
 
-        private string GetUrl(string tid, int page, int pageSize)
+        private string GetUrl(string titleId, int page, int pageSize)
         {
             return _linkGenerator.GetUriByName(
                 HttpContext,
                 nameof(GetComments),
-                new {tid, page, pageSize });
+                new { titleId, page, pageSize });
         }
 
 
-        private object CreateResultModel(string tid, QueryString queryString, int total, IEnumerable<CommentViewModel> model)
+        private object CreateResultModel(string titleId, QueryString queryString, int total, IEnumerable<CommentViewModel> model)
         {
             return new
             {
                 total,
-                prev = CreateNextPageLink(tid, queryString),
-                cur = CreateCurrentPageLink(tid, queryString),
-                next = CreateNextPageLink(tid, queryString, total),
+                prev = CreateNextPageLink(titleId, queryString),
+                cur = CreateCurrentPageLink(titleId, queryString),
+                next = CreateNextPageLink(titleId, queryString, total),
                 items = model
             };
         }
 
-        private string CreateNextPageLink(string tid, QueryString queryString, int total)
+        private string CreateNextPageLink(string titleId, QueryString queryString, int total)
         {
             var lastPage = GetLastPage(queryString.PageSize, total);
-            return queryString.Page >= lastPage ? null : GetUrl(tid, queryString.Page + 1, queryString.PageSize);
+            return queryString.Page >= lastPage ? null : GetUrl(titleId, queryString.Page + 1, queryString.PageSize);
         }
 
 
-        private string CreateCurrentPageLink(string tid, QueryString queryString)
+        private string CreateCurrentPageLink(string titleId, QueryString queryString)
         {
-            return GetUrl(tid, queryString.Page, queryString.PageSize);
+            return GetUrl(titleId, queryString.Page, queryString.PageSize);
         }
 
-        private string CreateNextPageLink(string tid, QueryString queryString)
+        private string CreateNextPageLink(string titleId, QueryString queryString)
         {
-            return queryString.Page <= 0 ? null : GetUrl(tid, queryString.Page - 1, queryString.PageSize);
+            return queryString.Page <= 0 ? null : GetUrl(titleId, queryString.Page - 1, queryString.PageSize);
         }
 
         private static int GetLastPage(int pageSize, int total)
