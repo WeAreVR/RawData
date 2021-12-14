@@ -70,7 +70,7 @@ namespace WebService.Controllers
             model.PrimaryName = nameBasic.PrimaryName;
             model.BirthYear = nameBasic.BirthYear;
             model.DeathYear = nameBasic.DeathYear;
-            model.Rating = nameBasic.Rating;
+            model.Rating = (float)nameBasic.Rating;
 
 
             return model;
