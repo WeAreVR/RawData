@@ -156,31 +156,30 @@ namespace DataServiceLib
             return bookmark;
         }
 
-        public Bookmark ToggleBookmark(string titleId)
+        public bool ToggleBookmark(string username, string titleId)
         {
             var ctx = new IMDBContext();
 
             Bookmark bookmark = new Bookmark
             {
                 TitleId = titleId,
-                Username = "tobias"
+                Username = "k"
             };
 
-            var bookmarks = GetBookmarks("tobias");
+            var bookmarks = GetBookmarks("k");
 
             if (bookmarks.Contains(bookmark))
             {
                 ctx.Remove(bookmark);
+                return ctx.SaveChanges() > 0;
             }
 
 
             else
             {
                 ctx.Add(bookmark);
-                ctx.SaveChanges();
+                return ctx.SaveChanges() > 0;
             }
-
-            return bookmark;
         }
 
         //---------------------------Comment ----------------------------------\\

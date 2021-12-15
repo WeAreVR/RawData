@@ -209,7 +209,7 @@ define([], () => {
     };
 
     let createBookmark = () => {
-        fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId= " + "tt0304141 ",
+        fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + "tt8690890 ",
             { method: "POST" })
             .then(response => console.log(response.status))
     }
