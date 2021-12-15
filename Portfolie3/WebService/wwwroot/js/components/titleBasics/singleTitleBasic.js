@@ -50,7 +50,23 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             setRating(parseInt(setRating()))
             postman.publish("newRating", { username: "testuser", titleId: titleId(), rating: setRating() });
             //postman.publish("changeView", "list-titles");
+            popUpFunction();
+
         }
+
+        let popUpFunction = () => {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+            setTimeout(function () { popUpHideFunction(); }, 1500);
+
+        }
+        let popUpHideFunction = () => {
+            var popup = document.getElementById("myPopup");
+            popup.classList.toggle("show");
+
+        }
+       
+
 
        
         /*
@@ -77,6 +93,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         return {
             currentComponent,
+            popUpFunction,
             changetoCommentView,
             commentPage,
             currentView,
