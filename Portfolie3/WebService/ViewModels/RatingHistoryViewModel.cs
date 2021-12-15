@@ -12,6 +12,6 @@ namespace WebService.ViewModels
 		public string Url { get; set; }
 		public string Username { get; set; }
 		public string PrimaryTitle { get; set; }
-		public float Rating { get; set; }
+		public int Rating { get; set; }
 	}
 }
