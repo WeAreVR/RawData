@@ -69,16 +69,22 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        [Authorization]
+        //[Authorization]
         [HttpGet]
-        public IActionResult GetSearchHistory(string currentUsername, [FromQuery] QueryString queryString)
+        public IActionResult GetSearchHistory(string username, [FromQuery] QueryString queryString)
         {
             try
             {
                 //    var user = Request.HttpContext.Items["User"] as User;
-                var searches = _dataService.GetSearchHistoryByUsername(currentUsername, queryString);
-                //     Console.WriteLine(user + "hello" + user.Username + "hejsa");
+                Console.WriteLine("UUUUUUUUUSER" + username);
+                Console.WriteLine("UUUUUUUUUSER" + username);
+                Console.WriteLine("UUUUUUUUUSER" + username);
+                Console.WriteLine("UUUUUUUUUSER" + username);
+                Console.WriteLine("UUUUUUUUUSER" + username);
+                Console.WriteLine("UUUUUUUUUSER" + username);
 
+                var searches = _dataService.GetSearchHistoryByUsername("k", queryString);
+           
                 if (searches == null)
                  {
                      return NotFound();

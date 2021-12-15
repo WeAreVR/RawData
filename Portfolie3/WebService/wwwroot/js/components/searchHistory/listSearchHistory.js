@@ -42,13 +42,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let enableNext = ko.observable(() => next() !== undefined);
 
         let findSearchHistory = () => {
+            ds.getSearchHistory3()
+                .then(data => searchHistory(data))
+                .catch(error => console.log(error));
+        }
+        
+
+
+        let findSearchHistory1 = () => {
             console.log("findSearchHistory");
 
             ds.getSearchHistory()
                 .then(data => {
                     console.log(data);
-                    prev(data.prev),
-                        next(data.next),
+                  //  prev(data.prev),
+                    //    next(data.next),
                         searchHistory(data);})
                 .catch(error => console.log(error));
 
@@ -58,7 +66,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         }
 
-        let findSearchHistory1 = () => {
+        let findSearchHistory2 = () => {
             console.log("findSearchHistory");
 
             ds.getSearchHistory(data => {

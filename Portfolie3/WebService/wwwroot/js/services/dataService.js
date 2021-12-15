@@ -109,11 +109,13 @@ define([], () => {
 
 
     //searchHistory
-    let getSearchHistory = () => {
+    let getSearchHistory3 = () => {
+        Console.log("USERRRRR" + localStorage.getItem("username");
         let param = {
             method: "GET",
             headers: {
-                "Authorization": "Barer " + localStorage.getItem("token")
+              //  "Authorization": "Barer " + localStorage.getItem("token"),
+                "username": localStorage.getItem("username")
             }
         };
         return fetch("api/searchhistory", param)
@@ -215,7 +217,7 @@ define([], () => {
         getTitleBasicsWithPageSize,
         getNameBasics,
         getNameBasic,
-        getSearchHistory,
+        getSearchHistory3,
         getSearchHistoryUrl,
         getSearchHistoryWithPageSize,
         getTitleBasic,
