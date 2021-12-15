@@ -38,14 +38,14 @@ namespace WebService.Controllers
             var user = HttpContext.User.Identity.Name;
             //var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
 
-            var bookmarks = _dataService.GetBookmarks("testuser", queryString);
+            var bookmarks = _dataService.GetBookmarks(username, queryString);
 
             if (bookmarks.Count() == 0)
             {
                 return NotFound();
             }
 
-            var allBookmarks = _dataService.GetBookmarks("testuser");
+            var allBookmarks = _dataService.GetBookmarks(username);
             var items = bookmarks.Select(GetBookmarkViewModel);
             var result = CreateResultModel(queryString, _dataService.NumberOfElements(allBookmarks), items);
 
