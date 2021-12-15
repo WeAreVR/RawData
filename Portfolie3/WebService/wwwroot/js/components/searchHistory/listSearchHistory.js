@@ -34,7 +34,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let clearSearchHistory = () => {
             console.log('ClearSearchHistory');
-            ds.clearSearch('tobias');
+            ds.clearSearch();
             searchHistory([]);
         }
 
@@ -43,47 +43,19 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
 
 
-/*
 
         let findSearchHistory = () => {
             ds.getSearchHistory()
-                .then(data => searchHistory(data))
-                .then(data => console.log(data))
-                .catch(error => console.log(error));
-            currentView("list");
-        }*/
-        
-
-
-        let findSearchHistory4 = () => {
-            console.log("findSearchHistory");
-
-            ds.getSearchHistory()
                 .then(data => {
                     console.log(data);
-                  //  prev(data.prev),
-                    //    next(data.next),
-                        searchHistory(data);})
-                .catch(error => console.log(error));
-
-            currentView("list");
-            selectId("");
-
-
-        }
-
-        let findSearchHistory2 = () => {
-            console.log("findSearchHistory");
-
-            ds.getSearchHistory(data => {
-                console.log(data);
-                prev(data.prev),
-                    next(data.next),
+                      prev(data.prev),
+                       next(data.next),
                     searchHistory(data);
-            })
+                })
+                .catch(error => console.log(error));
             currentView("list");
-            selectId("");
         }
+        
 
 
         selectedPageSize.subscribe(() => {
@@ -91,13 +63,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             getSearchHistory(ds.getSearchHistoryWithPageSize(size));
         });
 
-       
 
-
-        ds.getSearchHistory()
-            .then(data => searchHistory(data))
-            .catch(error => console.log(error));
-       // findSearchHistory();
+        findSearchHistory();
 
         return {
             enableNext,

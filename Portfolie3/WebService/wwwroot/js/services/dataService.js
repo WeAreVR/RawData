@@ -142,8 +142,8 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let clearSearch = username => {
-        fetch(searchHistoryApiUrl + username, { method: "DELETE" })
+    let clearSearch = () => {
+        fetch(searchHistoryApiUrl + localStorage.getItem("username"), { method: "DELETE" })
             .then(response => console.log(response.status))
     }
 
