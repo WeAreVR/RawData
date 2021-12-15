@@ -342,9 +342,18 @@ namespace DataServiceLib
         public bool UpdateRating(RatingHistory rating)
         {
             var ctx = new IMDBContext();
+           // RatingHistory temp = ctx.RatingHistories.Find(rating.TitleId, rating.Username);
+            //temp.Rating = rating.Rating;
+            //return ctx.SaveChanges() > 0;
+
+
+            RatingHistory ratingHistory = new RatingHistory() { Username = rating.Username, TitleId = rating.TitleId };
+
+            ctx.RatingHistories.Attach(ratingHistory);
             RatingHistory temp = ctx.RatingHistories.Find(rating.TitleId, rating.Username);
-            Console.WriteLine("er vi her nu");
+            //ctx.RatingHistories.Remove(ctx.RatingHistories.Find(rating.Username, rating.TitleId));
             temp.Rating = rating.Rating;
+            temp.TimeStamp = rating.TimeStamp;
             return ctx.SaveChanges() > 0;
         }
 

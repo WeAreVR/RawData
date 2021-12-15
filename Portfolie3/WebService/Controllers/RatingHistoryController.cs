@@ -90,6 +90,9 @@ namespace WebService.Controllers
                 Rating = model.Rating,
                 TimeStamp = DateTime.Now
             };
+            Console.WriteLine(rating.Username);
+            Console.WriteLine(rating.TitleId);
+            Console.WriteLine(rating.Rating);
 
             if (!_dataService.UpdateRating(rating))
             {
