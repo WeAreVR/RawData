@@ -38,7 +38,8 @@ namespace DataServiceLib
             optionsBuilder.EnableSensitiveDataLogging();
 
             //Localhost
-            //optionsBuilder.UseNpgsql("host=localhost;db=university;uid=postgres;pwd=nfd49s39");      
+            //optionsBuilder.UseNpgsql("host=localhost;db=university;uid=postgres;pwd=nfd49s39");
+            
             //RUC host
            optionsBuilder.UseNpgsql("host=rawdata.ruc.dk;db=raw2;uid=raw2;pwd=OKaSaRYv");
         }

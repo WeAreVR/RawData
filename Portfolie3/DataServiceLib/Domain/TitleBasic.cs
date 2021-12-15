@@ -11,7 +11,7 @@ namespace DataServiceLib.Domain
 	{
         public TitleBasic()
         {
-			TitleRating = new TitleRating();
+			//TitleRating = new TitleRating();
 
         }
 

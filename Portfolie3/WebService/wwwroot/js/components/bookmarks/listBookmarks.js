@@ -49,8 +49,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentComponent,
             currentView,
             bookmarks,
-            getBookmarks,
-            add
+            getBookmarks
         }
     };
 });

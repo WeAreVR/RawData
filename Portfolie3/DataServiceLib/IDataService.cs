@@ -88,6 +88,7 @@ namespace DataServiceLib
         //titleGenre CRUD
         public TitleGenre GetTitleGenre(string titleId, string genre);
         public IList<TitleGenre> GetTitleGenresByTitleId(string titleId);
+        public IList<string> GetTitleGenresByTitleId1(string titleId);
         public bool CreateTitleGenre(TitleGenre genre);
         public TitleGenre CreateTitleGenre(string titleId, string genre);
         public bool UpdateTitleGenre(TitleGenre genre);

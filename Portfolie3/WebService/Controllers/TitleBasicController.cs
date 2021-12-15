@@ -66,9 +66,13 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<TitleBasicViewModel>(titleBasic);
 
-            model.Awards = titleBasic.Awards;
+           // model.Awards = titleBasic.Awards;
             model.AvgRating = titleBasic.TitleRating.AvgRating;
-            model.TitleGenres = titleBasic.TitleGenres;
+            model.TitleGenres = (ICollection<TitleGenre>)_dataService.GetTitleGenresByTitleId("tt0304141");
+            Console.WriteLine(_dataService.GetTitleGenresByTitleId("tt0304141"));
+            //model.TitleGenres = _dataService.GetTitleGenresByTitleId(titleBasic.Id);
+
+            Console.WriteLine("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELLO" + model.TitleGenres);
             //model.TitleAkas = titleBasic.TitleAkas;
             //model.TitlePrincipals = titleBasic.TitlePrincipals;
 

@@ -724,15 +724,38 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             var titleGenres = ctx.TitleGenres
-                       .Include(x => x.TitleBasic)
+                      // .Include(x => x.TitleBasic)
                        .Where(y => y.TitleId == titleId)
                        .ToList();
+            
+
+            Console.WriteLine("THIS IS BULLSHIIIIIIIIIIIIIIIIIIIT");
 
             return titleGenres;
         }
 
+        public IList<string> GetTitleGenresByTitleId1(string titleId)
+        {
+            var ctx = new IMDBContext();
 
-        public bool CreateTitleGenre(TitleGenre titleGenre)
+            var titleGenres = ctx.TitleGenres
+                       // .Include(x => x.TitleBasic)
+                       .Where(y => y.TitleId == titleId)
+                       .ToList();
+
+            IList<string> result = new List<string>();
+            foreach (TitleGenre t in titleGenres)
+            {
+                var temp = t.Genre;
+                result.Add(temp);
+            }
+
+
+            return result;
+        }
+
+
+            public bool CreateTitleGenre(TitleGenre titleGenre)
         {
             var ctx = new IMDBContext();
             
@@ -744,9 +767,11 @@ namespace DataServiceLib
         {
             var ctx = new IMDBContext();
 
-            TitleGenre titlegenre = new TitleGenre();
-            titlegenre.TitleId = titleId;
-            titlegenre.Genre = genre;
+            TitleGenre titlegenre = new TitleGenre
+            {
+                TitleId = titleId,
+                Genre = genre
+            };
 
             ctx.Add(titlegenre);
             ctx.SaveChanges();
@@ -952,10 +977,10 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             TitleBasic result = ctx.TitleBasics
                 .Include(x => x.TitleRating)
-                .Include(x => x.Awards)
-                //.Include(x => x.TitleAkas)
-                //.Include(x => x.TitleGenres)
-                //.Include(x => x.TitlePrincipals)
+               /* .Include(x => x.Awards)
+                .Include(x => x.TitleAkas)
+                .Include(x => x.TitleGenres)
+                .Include(x => x.TitlePrincipals)*/
                 .FirstOrDefault(x => x.Id == trim);
             return result;
         }
