@@ -110,7 +110,7 @@ define([], () => {
 
     //searchHistory
     let getSearchHistory3 = () => {
-        Console.log("USERRRRR" + localStorage.getItem("username");
+        Console.log("USERRRRR" + localStorage.getItem("username"));
         let param = {
             method: "GET",
             headers: {
