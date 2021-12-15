@@ -195,6 +195,16 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    //skal finde ud af hvordan vi returner dens værdi til den anden function
+    let checkBookmarks = (id, callback) => {
+        console.log(id);
+        console.log(localStorage.getItem("username"));
+
+        fetch("api/bookmark/check/?username=" + localStorage.getItem("username") + "&titleid=" + id)
+            .then(response => console.log(response.json()))
+            .then(json => callback.json());
+    };
+
     let createBookmark1= (bookmark, callback) => {
         let param = {
             method: "POST",
@@ -209,7 +219,8 @@ define([], () => {
     };
 
     let createBookmark = (id) => {
-        if ((bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + id)) {
+        if (checkBookmarks(id) == false)
+        {
             console.log("bookmark created!");
             fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + id,
                 { method: "POST" })
@@ -232,6 +243,7 @@ define([], () => {
         getUrl,
         getTitleBasics,
         getComments,
+        checkBookmarks,
         addComment,
         deleteComment,
         getTitleBasicsWithPageSize,

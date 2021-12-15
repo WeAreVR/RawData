@@ -159,25 +159,34 @@ namespace DataServiceLib
         public bool BookmarkedAlready(string username, string titleId)
         {
             var ctx = new IMDBContext();
-
-            Bookmark bookmark = new Bookmark
+            var trim = titleId.Trim();
+            Bookmark bookmark = new Bookmark ()
             {
-                TitleId = titleId,
+                TitleId = trim,
                 Username = username
             };
+            Console.WriteLine(titleId);
+            Console.WriteLine(username);
+            //var bookmarks = GetBookmarks(username);
+            Bookmark temp = ctx.Bookmarks.Find(trim, username);
 
-            var bookmarks = GetBookmarks(username);
-
-            if (bookmarks.Contains(bookmark))
+            if (temp != null)
             {
+                Console.WriteLine("true");
+
                 return true;
             }
 
             else
             {
+                Console.WriteLine("false");
+
                 return false;
             }
         }
+      
+
+           
 
         //---------------------------Comment ----------------------------------\\
 
