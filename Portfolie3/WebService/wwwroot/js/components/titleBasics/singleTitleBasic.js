@@ -40,6 +40,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let add = () => {
             console.log(setRating())
+            setRating(parseInt(setRating()))
             postman.publish("newRating", { username: "testuser", titleId: titleId(), rating: setRating() });
             postman.publish("changeView", "list-titles");
         }

@@ -82,7 +82,7 @@ define([], () => {
     //addRating
     let addRating = (rating, callback) => {
         let param = {
-            method: "POST",
+            method: "PUT",
             body: JSON.stringify(rating),
             headers: {
                 "Content-Type": "application/json"

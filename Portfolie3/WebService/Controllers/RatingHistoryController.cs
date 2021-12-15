@@ -78,6 +78,27 @@ namespace WebService.Controllers
             return Created(GetUrl(rating), CreateRatingHistoryViewModel(rating));
 
         }
+        [HttpPut]
+        public IActionResult UpdateRatingHistory(CreateRatingHistoryViewModel model)
+        {
+
+            Console.WriteLine("Er vi her?");
+            var rating = new RatingHistory
+            {
+                Username = model.Username,
+                TitleId = model.TitleId,
+                Rating = model.Rating,
+                TimeStamp = DateTime.Now
+            };
+
+            if (!_dataService.UpdateRating(rating))
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+
+        }
 
         private RatingHistoryViewModel GetRatingHistoryViewModel(RatingHistory ratingHistory)
         {

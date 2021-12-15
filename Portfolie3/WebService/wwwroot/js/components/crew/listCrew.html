@@ -1,0 +1,34 @@
+<h1>Crew</h1>
+
+<div class="col-6">
+    Search: <input class="form-control" data-bind="value: selectId" required />
+    <button data-bind="click: showComments">Search</button>
+</div>
+
+<div data-bind="foreach: titleBasics">
+    <table class="table">
+        <thead>
+            <tr><th>User</th><th>Comment</th><th>Date</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: titlePrincipals">
+            <tr>
+                <td data-bind="text: nameId"></td>
+                <td data-bind="text: category"></td>
+                <td data-bind="text: job"></td>         
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <button class="btn btn-primary" data-bind=" click:function(){changetoCommentAddView(titleId);}">Add comments</button>
+</div>
+
+<div>
+    <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
+    <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
+</div>
+
+
+
+

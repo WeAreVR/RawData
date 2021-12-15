@@ -339,6 +339,14 @@ namespace DataServiceLib
 
             return ratingHistory;
         }
+        public bool UpdateRating(RatingHistory rating)
+        {
+            var ctx = new IMDBContext();
+            RatingHistory temp = ctx.RatingHistories.Find(rating.TitleId, rating.Username);
+            Console.WriteLine("er vi her nu");
+            temp.Rating = rating.Rating;
+            return ctx.SaveChanges() > 0;
+        }
 
         //---------------------------Users ----------------------------------\\
 

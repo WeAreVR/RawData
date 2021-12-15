@@ -35,6 +35,8 @@ namespace DataServiceLib
         public bool DeleteRatingHistory(string username, string titleId);
         public bool CreateRatingHistory(RatingHistory history);
         public RatingHistory CreateRatingHistory(string username, string titleId, int rating);
+        public bool UpdateRating(RatingHistory rating);
+
 
         // SearchHistory
         public SearchHistory GetSearchHistory(string searchInput);
