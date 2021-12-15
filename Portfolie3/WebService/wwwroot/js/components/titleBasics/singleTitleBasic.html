@@ -44,7 +44,7 @@
         <div class="table">     
             <table data-bind="with: titleBasic, as: 't'">
                 <tr>
-                    <th >Primary title</th>
+                    <th>Primary title</th>
                     <td data-bind="text: t.primaryTitle"></td>
                 </tr>
                 <tr>
@@ -63,6 +63,9 @@
                     <th>Plot</th>
                     <td data-bind="text: t.plot"></td>
                 </tr>
+                <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button></td>
+
+
             </table>
 
         </div>

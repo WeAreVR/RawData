@@ -208,16 +208,16 @@ define([], () => {
             .then(json => callback(json));
     };
 
-    let createBookmark = () => {
-        if ((bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + "tt8690890 ")) {
+    let createBookmark = (id) => {
+        if ((bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + id)) {
             console.log("bookmark created!");
-            fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + "tt8690890 ",
+            fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + id,
                 { method: "POST" })
                 .then(response => console.log(response.status))
         }
         else {
             console.log("bookmark deleted!");
-            fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + "tt8690890 ",
+            fetch(bookmarkApiUrl + "?username=" + localStorage.getItem("username") + "&titleId=" + id,
                 { method: "DELETE" })
                 .then(response => console.log(response.status))
 

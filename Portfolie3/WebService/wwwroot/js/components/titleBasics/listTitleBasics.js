@@ -73,20 +73,22 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
         });
 
-
-        /*postman.subscribe("newBookmark", bookmark => {
+        /*
+        postman.subscribe("newBookmark", bookmark => {
             ds.createBookmark(bookmark, newBookmark)
         }, "list-bookmarks");
 
 
         let addBookmark = () => {
             postman.publish("newBookmark", { titleId = 'tt8451992 ' });
-            // postman.publish("changeView", "list-categories");
-        }*/
-
-        let addBookmark = () => {
-            ds.createBookmark();
+            postman.publish("changeView", "list-categories");
         }
+        */
+
+        let addBookmark = (id) => {
+            ds.createBookmark(id);
+        }
+        
         
 
         return {

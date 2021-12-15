@@ -65,7 +65,11 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             popup.classList.toggle("show");
 
         }
-       
+        let addBookmark = (id) => {
+            console.log(id);
+            ds.createBookmark(id);
+        }
+
 
 
        
@@ -94,6 +98,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         return {
             currentComponent,
             popUpFunction,
+            addBookmark,
             changetoCommentView,
             commentPage,
             currentView,
