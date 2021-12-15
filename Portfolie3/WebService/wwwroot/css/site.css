@@ -120,12 +120,7 @@ html {
         .container-fluid .table thead{
             display: none;
         }
-        .table, .table tbody, .table tr, table td{
-            display:block;
-            width: 100%;
-            vertical-align: top;
-
-        }
+    
         .table tr{
             margin-bottom: 32px;
         }

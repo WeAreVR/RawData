@@ -1055,30 +1055,23 @@ namespace DataServiceLib
         {
             var ctx = new IMDBContext();
 
-            string[] searchWords = searchInput.Split(" ");
-            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
-
-
             var searchResult = ctx.NameBasicSearchResults
                 .FromSqlInterpolated($"select * from name_search({searchInput})");
-          
-            //searchResult = searchResult.OrderByDescending(x => x.rank);
+
             IEnumerable<NameBasic> result = new List<NameBasic>();
 
             foreach (var NameBasicSearchResult in searchResult)
             {
                 var temp = GetNameBasic(NameBasicSearchResult.Id);
-            
-
                 result = result.Append(temp);
-
-
             }
 
 
             result = result
                 .Skip(queryString.Page * queryString.PageSize)
                 .Take(queryString.PageSize);
+
+            result = result.OrderByDescending(x => x.Rating);
 
             return result.ToList();
         }
@@ -1088,14 +1081,10 @@ namespace DataServiceLib
         {
             var ctx = new IMDBContext();
 
-            string[] searchWords = searchInput.Split(" ");
-            var finalSearch = "'" + string.Join("', '", searchWords) + "'";
-
-
             var searchResult = ctx.NameBasicSearchResults
-                .FromSqlInterpolated($"select * from name_search({finalSearch})");
+                .FromSqlInterpolated($"select * from name_search({searchInput})");
 
-            //searchResult = searchResult.OrderByDescending(x => x.rank);
+            
             IEnumerable<NameBasic> result = new List<NameBasic>();
 
             foreach (var NameBasicSearchResult in searchResult)
