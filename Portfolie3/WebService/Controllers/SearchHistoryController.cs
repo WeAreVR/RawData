@@ -69,7 +69,7 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        //[Authorization]
+        [Authorization]
         [HttpGet]
         public IActionResult GetSearchHistory(string username, [FromQuery] QueryString queryString)
         {
@@ -83,7 +83,7 @@ namespace WebService.Controllers
                 Console.WriteLine("UUUUUUUUUSER" + username);
                 Console.WriteLine("UUUUUUUUUSER" + username);
 
-                var searches = _dataService.GetSearchHistoryByUsername("k", queryString);
+                var searches = _dataService.GetSearchHistoryByUsername(username, queryString);
            
                 if (searches == null)
                  {

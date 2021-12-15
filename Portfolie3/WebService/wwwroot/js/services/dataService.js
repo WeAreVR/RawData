@@ -108,24 +108,26 @@ define([], () => {
     };
 
 
-    //searchHistory
-    let getSearchHistory3 = () => {
-        Console.log("USERRRRR" + localStorage.getItem("username"));
-        let param = {
+    //searchHistory;
+    let getSearchHistory = () => {
+        let params = {
             method: "GET",
             headers: {
-              //  "Authorization": "Barer " + localStorage.getItem("token"),
-                "username": localStorage.getItem("username")
+                "Authorization": "Barer " + localStorage.getItem("token")
+               // "username": localStorage.getItem("username")
             }
         };
-        return fetch("api/searchhistory", param)
+        return fetch("api/searchhistory/?username=" + localStorage.getItem("username"), params)
             .then(response => {
                 if (!response.ok) {
                     throw Error(response.statusText);
                 }
-                response.json();
+                return response.json();
             });
-    };
+    }
+
+
+
 
     let getSearchHistory1 = (callback) => {
         return fetch("api/searchhistory/?username=" + localStorage.getItem("username"))
@@ -217,7 +219,7 @@ define([], () => {
         getTitleBasicsWithPageSize,
         getNameBasics,
         getNameBasic,
-        getSearchHistory3,
+        getSearchHistory,
         getSearchHistoryUrl,
         getSearchHistoryWithPageSize,
         getTitleBasic,
