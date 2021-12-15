@@ -22,6 +22,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 titleId(data.id);
 
             });
+            ds.getRating("testuser",id, data => {
+                console.log(data);
+                console.log(data.setRating);
+
+                setRating(data.rating);
+
+            });
             currentView("list");
             selectId("");
         }
@@ -42,7 +49,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             console.log(setRating())
             setRating(parseInt(setRating()))
             postman.publish("newRating", { username: "testuser", titleId: titleId(), rating: setRating() });
-            postman.publish("changeView", "list-titles");
+            //postman.publish("changeView", "list-titles");
         }
 
        

@@ -79,7 +79,7 @@ define([], () => {
     };
 
   
-    //addRating
+    //Rating
     let addRating = (rating, callback) => {
         let param = {
             method: "PUT",
@@ -90,6 +90,12 @@ define([], () => {
         }
         console.log(param)
         fetch("api/ratinghistory", param)
+            .then(response => response.json())
+            .then(json => callback(json));
+    };
+    
+    let getRating = (username, id, callback) => {
+        fetch("api/ratinghistory/" + "?username=" + username + "&titleId=" + id)
             .then(response => response.json())
             .then(json => callback(json));
     };
@@ -228,6 +234,7 @@ define([], () => {
         getBookmarks,
         clearSearch,
         addRating,
+        getRating,
         createBookmark,
         updateComment
     }

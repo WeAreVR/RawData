@@ -27,7 +27,7 @@ namespace WebService.Controllers
             _linkGenerator = linkGenerator;
             _mapper = mapper;
         }
-        [HttpGet("{username}/{titleId}")]
+        [HttpGet]
         public IActionResult GetRatingHistory(string username, string titleId)
         {
             var ratingHistory = _dataService.GetRatingHistory(username, titleId);
@@ -82,7 +82,6 @@ namespace WebService.Controllers
         public IActionResult UpdateRatingHistory(CreateRatingHistoryViewModel model)
         {
 
-            Console.WriteLine("Er vi her?");
             var rating = new RatingHistory
             {
                 Username = model.Username,
@@ -90,9 +89,6 @@ namespace WebService.Controllers
                 Rating = model.Rating,
                 TimeStamp = DateTime.Now
             };
-            Console.WriteLine(rating.Username);
-            Console.WriteLine(rating.TitleId);
-            Console.WriteLine(rating.Rating);
 
             if (!_dataService.UpdateRating(rating))
             {
@@ -110,7 +106,7 @@ namespace WebService.Controllers
                 Url = GetUrl(ratingHistory),
                 Rating = ratingHistory.Rating,
                 Username = ratingHistory.Username,
-                PrimaryTitle = ratingHistory.TitleBasic.PrimaryTitle
+                //PrimaryTitle = ratingHistory.TitleBasic.PrimaryTitle
             };
         }
 
