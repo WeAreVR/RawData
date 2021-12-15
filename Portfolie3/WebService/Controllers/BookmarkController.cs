@@ -39,7 +39,7 @@ namespace WebService.Controllers
             //var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
 
             var bookmarks = _dataService.GetBookmarks("testuser", queryString);
-            
+
             if (bookmarks.Count() == 0)
             {
                 return NotFound();
@@ -50,14 +50,20 @@ namespace WebService.Controllers
             var result = CreateResultModel(queryString, _dataService.NumberOfElements(allBookmarks), items);
 
             return Ok(result);
-        }  
+        }
+
+        [HttpGet("{check}")]
+        public IActionResult CheckBookmark(string username, string titleId) {
+            var result = _dataService.BookmarkedAlready(username, titleId);
+            return Ok(result);
+        }
             
            
 
-        [HttpDelete("{username}/{titleId}")]
+        [HttpDelete()]
         public IActionResult DeleteBookMark(string username, string titleId)
         {
-            _dataService.DeleteBookmark(username,titleId);
+            _dataService.DeleteBookmark(username, titleId);
             return NoContent();
         }
 
@@ -65,7 +71,7 @@ namespace WebService.Controllers
         public IActionResult CreateBookMark(string username, string titleId)
         {
             Console.WriteLine("IDDDDDDDDDDDDD" + titleId);
-            _dataService.ToggleBookmark(username, titleId);
+            _dataService.CreateBookmark(username, titleId);
 
             return NoContent();
         }

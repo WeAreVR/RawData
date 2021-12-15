@@ -16,7 +16,8 @@ namespace DataServiceLib
         public Bookmark CreateBookmark(string username, string titleId);
         public int NumberOfElements(IList<Bookmark> elements);
         public IList<Bookmark> GetBookmarks(string username);
-        public bool ToggleBookmark(string username, string titleId);
+        public bool BookmarkedAlready(string username, string titleId);
+
 
         // Comments
         public Comment GetComment(string username, string titleId, DateTime timeStamp);
