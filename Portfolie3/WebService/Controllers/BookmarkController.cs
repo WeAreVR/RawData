@@ -61,12 +61,10 @@ namespace WebService.Controllers
             return NoContent();
         }
 
-        [HttpPost("{titleId}")]
-        public IActionResult CreateBookMark(string titleId)
+        [HttpPost]
+        public IActionResult CreateBookMark(string username, string titleId)
         {
-            
-
-            _dataService.CreateBookmark(titleId);
+            _dataService.CreateBookmark(username, titleId);
 
             return NoContent();
         }

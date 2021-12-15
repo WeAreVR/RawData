@@ -140,7 +140,7 @@ namespace DataServiceLib
 
             return ctx.SaveChanges() > 0;
         }
-        public Bookmark CreateBookmark(string titleId,string username)
+        public Bookmark CreateBookmark(string username, string titleId)       
         {
             var ctx = new IMDBContext();
 

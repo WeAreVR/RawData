@@ -85,7 +85,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }*/
 
         let addBookmark = () => {
-            ds.createBookmark('tt0992907 ');
+            ds.createBookmark();
         }
         
 
