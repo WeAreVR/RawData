@@ -2,6 +2,7 @@
     <h1 data-bind="text: t.primaryTitle"></h1>
     <p data-bind="text: t.titleType"></p>
     <p data-bind="text: t.runtime"></p>
+    <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button>
 </div>
 
 <!--
@@ -26,7 +27,6 @@
 </div> -->
 
 <div>
-    <!-- man kan snyde ved at skrive i text feltet    OOOOOOOOOOGGG    vi kan ikke sende et tal forei det bliver string (det skal være int) skal fixes i backend-->
     <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
     <input type="number" data-bind="value: setRating" min="1" max="10" />
     <div class="popup">
@@ -38,10 +38,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="mytable" data-bind="with: titleBasic, as: 't'">
+        <div class="col-sm-4" data-bind="with: titleBasic, as: 't'">
             <img data-bind="attr: { src: t.poster, alt: 'here is picture' }">
         </div>
-        <div class="table">     
+        <div class="col-sm-7">
             <table data-bind="with: titleBasic, as: 't'">
                 <tr>
                     <th>Primary title</th>
@@ -63,12 +63,14 @@
                     <th>Plot</th>
                     <td data-bind="text: t.plot"></td>
                 </tr>
-                <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button></td>
-
-
-            </table>
-
-        </div>
+                <tr data-bind="foreach: t.titleGenres">
+                    <th>Genre</th>
+                   
+                    <td data-bind="text: genre"></td>
+               
+                </tr>
+        </table>
+    </div>
     </div>
     
     
