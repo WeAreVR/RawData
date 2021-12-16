@@ -68,13 +68,16 @@ namespace WebService.Controllers
 
            // model.Awards = titleBasic.Awards;
             model.AvgRating = titleBasic.TitleRating.AvgRating;
-            model.TitleGenres = (ICollection<TitleGenre>)_dataService.GetTitleGenresByTitleId("tt0304141");
+            //model.Genres = titleBasic.TitleGenres.Select(x => x.Genre).ToList();
+            //model.TitleAkas = titleBasic.TitleAkas;
+            //model.TitlePrincipals = titleBasic.TitlePrincipals;
+
+
+            // model.TitleGenres = (ICollection<TitleGenre>)_dataService.GetTitleGenresByTitleId("tt0304141");
+
             Console.WriteLine(_dataService.GetTitleGenresByTitleId("tt0304141"));
             //model.TitleGenres = _dataService.GetTitleGenresByTitleId(titleBasic.Id);
 
-            Console.WriteLine("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEELLO" + model.TitleGenres);
-            //model.TitleAkas = titleBasic.TitleAkas;
-            //model.TitlePrincipals = titleBasic.TitlePrincipals;
 
             return model;
         }

@@ -55,7 +55,11 @@ namespace WebService.Controllers
         [HttpGet("{check}")]
         public IActionResult CheckBookmark(string username, string titleId) {
             var result = _dataService.BookmarkedAlready(username, titleId);
-            return Ok(result);
+            if (result) {
+                return Ok();
+            }
+            
+            return BadRequest();
         }
             
            

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DataServiceLib.Domain
@@ -33,6 +34,7 @@ namespace DataServiceLib.Domain
 		public ICollection<RatingHistory>? RatingHistories { get; set; }
 		public ICollection<TitleAka>? TitleAkas { get; set; }
 		public ICollection<TitleEpisode>? TitleEpisodes { get; set; }
+		[JsonIgnore]
 		public ICollection<TitleGenre>? TitleGenres { get; set; }
 		public ICollection<TitlePrincipal>? TitlePrincipals { get; set; }
 		public TitleRating? TitleRating { get; set; }

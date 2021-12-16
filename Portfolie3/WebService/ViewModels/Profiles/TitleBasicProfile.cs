@@ -13,8 +13,10 @@ namespace WebService.ViewModels.Profiles
     {
         public TitleBasicProfile()
         {
-            CreateMap<TitleBasic, TitleBasicViewModel>();
-            CreateMap<TitleBasicViewModel, TitleBasic>();
+            CreateMap<TitleBasic, TitleBasicViewModel>()
+                .ForMember(src => src.Genres, dst => dst.MapFrom(x => x.TitleGenres.Select(g => g.Genre)));
+            
+                CreateMap<TitleBasicViewModel, TitleBasic>();
             CreateMap<CreateTitleBasicViewModel, TitleBasic>();
         }
     }

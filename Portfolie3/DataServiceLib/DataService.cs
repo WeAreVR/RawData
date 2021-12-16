@@ -986,10 +986,10 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             TitleBasic result = ctx.TitleBasics
                 .Include(x => x.TitleRating)
-               /* .Include(x => x.Awards)
-                .Include(x => x.TitleAkas)
+               // .Include(x => x.Awards)
+               // .Include(x => x.TitleAkas)
                 .Include(x => x.TitleGenres)
-                .Include(x => x.TitlePrincipals)*/
+               // .Include(x => x.TitlePrincipals)
                 .FirstOrDefault(x => x.Id == trim);
             return result;
         }

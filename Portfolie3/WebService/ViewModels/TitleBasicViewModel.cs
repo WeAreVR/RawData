@@ -23,7 +23,7 @@ namespace WebService.ViewModels
 		public decimal AvgRating { get; set; }
 		public ICollection<Award> Awards { get; set; }
 		public ICollection<TitleAka> TitleAkas {get; set;}
-		public ICollection<TitleGenre> TitleGenres { get; set; }
+		public ICollection<string> Genres { get; set; }
 		public ICollection<TitlePrincipal> TitlePrincipals { get; set; }
 
 	}

@@ -201,8 +201,12 @@ define([], () => {
         console.log(localStorage.getItem("username"));
 
         fetch("api/bookmark/check/?username=" + localStorage.getItem("username") + "&titleid=" + id)
-            .then(response => console.log(response.json()))
-            .then(json => callback.json());
+            .then(response => {
+                if (response.ok) {
+                    return callback(true)
+                }
+                return callback(false)
+            });
     };
 
     let createBookmark1= (bookmark, callback) => {
