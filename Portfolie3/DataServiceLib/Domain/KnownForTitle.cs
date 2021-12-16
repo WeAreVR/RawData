@@ -11,7 +11,7 @@ namespace DataServiceLib.Domain
 	{
 		public string NameId { get; set; }
 		public string TitleId { get; set; }
-		public NameBasic Namebasic { get; set; }
+		public NameBasic NameBasic { get; set; }
 		public TitleBasic TitleBasic { get; set; }
 
 	}

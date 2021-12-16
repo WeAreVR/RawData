@@ -13,7 +13,11 @@ namespace WebService.ViewModels.Profiles
     {
         public NameBasicProfile()
         {
-            CreateMap<NameBasic, NameBasicViewModel>();
+            CreateMap<NameBasic, NameBasicViewModel>()
+                .ForMember(src => src.ListProfessions, dst => dst.MapFrom(x => x.Professions.Select(p => p.ProfessionName)))
+                .ForMember(src => src.ListKnownForTitles, dst => dst.MapFrom(x => x.KnownForTitles.Select(p => p.TitleId)));
+
+            CreateMap<NameBasicViewModel, NameBasic>();
         }
     }
 }

@@ -22,7 +22,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 titleId(data.id);
 
             });
-            ds.getRating("testuser",id, data => {
+            ds.getRating(localStorage.getItem("username"),id, data => {
                 console.log(data);
                 console.log(data.setRating);
 
@@ -48,7 +48,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let add = () => {
             console.log(setRating())
             setRating(parseInt(setRating()))
-            postman.publish("newRating", { username: "testuser", titleId: titleId(), rating: setRating() });
+            postman.publish("newRating", { username: localStorage.getItem("username"), titleId: titleId(), rating: setRating() });
             //postman.publish("changeView", "list-titles");
             popUpFunction();
 

@@ -1,32 +1,10 @@
 ﻿<div data-bind="with: titleBasic, as: 't'">
     <h1 data-bind="text: t.primaryTitle"></h1>
-    <p data-bind="text: t.titleType"></p>
-    <p data-bind="text: t.runtime"></p>
     <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button>
 </div>
 
-<!--
+
 <div>
-    <table class="table">
-        <thead>
-            <tr><th></th><th>Primary Title</th><th>Release Year</th><th>Rating</th><th></th></tr>
-        </thead>
-        <tbody data-bind="with: titleBasic, as: 't'">
-            <tr>
-                <td><img data-bind="attr: { src: t.poster, alt: 'here is picture' }"></td>
-                <td data-bind="text: t.primaryTitle"></td>
-                <td data-bind="text: t.startYear"></td>
-                <td data-bind="text: t.avgRating"></td>
-                <td> <button class="btn btn-primary" data-bind=" click:function(){$parents[0].changetoCommentView(t.id);}">Comments</button></td>
-
-               
-            </tr>
-
-        </tbody>
-    </table>
-</div> -->
-
-<div varalign: right>
     <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
     <input type="number" data-bind="value: setRating" min="1" max="10" />
     <div class="popup">
@@ -64,20 +42,21 @@
                     <td data-bind="text: t.plot"></td>
                 </tr>
                 <tr>
-                    <th>Genre</th>                   
+                    <th>Genre</th>
                     <td data-bind="text: t.genres"></td>
-               
+
                 </tr>
-        </table>
+            </table>
+        </div>
     </div>
-    </div>
-    
-    
-    
-    <div>
+
+    <button class="btn btn-primary" onclick="toggleComments()">Comments</button>
+    <div id="commentSection" class="hidden">
         <h3>Comments</h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
         <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
     </div>
 </div>
+
+
 

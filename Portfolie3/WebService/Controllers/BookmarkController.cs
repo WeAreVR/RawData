@@ -36,7 +36,6 @@ namespace WebService.Controllers
         {
 
             var user = HttpContext.User.Identity.Name;
-            //var searches = _dataService.GetSearchHistoryByUsername("testuser", queryString);
 
             var bookmarks = _dataService.GetBookmarks(username, queryString);
 

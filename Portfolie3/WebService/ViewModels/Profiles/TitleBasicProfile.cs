@@ -17,7 +17,7 @@ namespace WebService.ViewModels.Profiles
                 .ForMember(src => src.Genres, dst => dst.MapFrom(x => x.TitleGenres.Select(g => g.Genre)))
                 .ForMember(src => src.Akas, dst => dst.MapFrom(x => x.TitleAkas.Select(g => g.Title)));
             
-                CreateMap<TitleBasicViewModel, TitleBasic>();
+            CreateMap<TitleBasicViewModel, TitleBasic>();
             CreateMap<CreateTitleBasicViewModel, TitleBasic>();
         }
     }

@@ -37,7 +37,7 @@
 
         let update = () => {
             console.log(context())
-            postman.publish("updateComment", { username: "testuser", titleId: titleId(), content: context() });
+            postman.publish("updateComment", { username: localStorage.getItem("username"), titleId: titleId(), content: context() });
             changetoCommentView(titleId());
         }
 

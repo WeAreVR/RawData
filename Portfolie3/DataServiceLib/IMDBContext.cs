@@ -92,7 +92,7 @@ namespace DataServiceLib
             .HasForeignKey(s => s.ParentTitleId);
 
 
-            modelBuilder.Entity<KnownForTitle>().ToTable("know_for_titles");
+            modelBuilder.Entity<KnownForTitle>().ToTable("known_for_titles");
             modelBuilder.Entity<KnownForTitle>().Property(x => x.NameId).HasColumnName("name_id");
             modelBuilder.Entity<KnownForTitle>().Property(x => x.TitleId).HasColumnName("title_id");
             modelBuilder.Entity<KnownForTitle>().HasKey(c => new { c.TitleId, c.NameId });
@@ -130,6 +130,10 @@ namespace DataServiceLib
                 .HasForeignKey(e => e.TitleId);
             modelBuilder.Entity<TitleBasic>().HasMany(a => a.TitleGenres).WithOne(x => x.TitleBasic)
                 .HasForeignKey(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.KnownForTitles).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
+            modelBuilder.Entity<TitleBasic>().HasMany(a => a.Plays).WithOne(x => x.TitleBasic)
+                .HasForeignKey(e => e.TitleId);
 
 
             modelBuilder.Entity<NameBasic>().ToTable("name_basics");
@@ -139,6 +143,12 @@ namespace DataServiceLib
             modelBuilder.Entity<NameBasic>().Property(x => x.DeathYear).HasColumnName("death_year");
             modelBuilder.Entity<NameBasic>().Property(x => x.Rating).HasColumnName("rating");
             modelBuilder.Entity<NameBasic>().HasMany(a => a.TitlePrincipals).WithOne(x => x.NameBasic)
+                .HasForeignKey(e => e.NameId);
+            modelBuilder.Entity<NameBasic>().HasMany(a => a.Professions).WithOne(x => x.NameBasic)
+                .HasForeignKey(e => e.NameId);
+            modelBuilder.Entity<NameBasic>().HasMany(a => a.Plays).WithOne(x => x.NameBasic)
+                .HasForeignKey(e => e.NameId);
+            modelBuilder.Entity<NameBasic>().HasMany(a => a.KnownForTitles).WithOne(x => x.NameBasic)
                 .HasForeignKey(e => e.NameId);
 
 

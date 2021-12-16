@@ -15,9 +15,9 @@ namespace WebService.ViewModels
 		public string BirthYear { get; set; }
 		public string DeathYear { get; set; }
 		public float Rating { get; set; }
-		public ICollection<KnownForTitle> KnownForTitles { get; set; }
-		public ICollection<Plays> Plays { get; set; }
-		public ICollection<Profession> Professions { get; set; }
+		public ICollection<string> ListKnownForTitles { get; set; }
+		public ICollection<PlaysViewModel> ListPlays { get; set; }
+		public ICollection<string> ListProfessions { get; set; }
 
     }
 }

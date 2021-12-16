@@ -66,12 +66,20 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<NameBasicViewModel>(nameBasic);
 
-            model.Id = nameBasic.Id;
+            List<PlaysViewModel> test = new List<PlaysViewModel>();
+            
+            foreach (Plays p in nameBasic.Plays) {
+                var temp = _mapper.Map<PlaysViewModel>(p);
+                test.Add(temp);
+            }
+            
+            /*model.Id = nameBasic.Id;
             model.PrimaryName = nameBasic.PrimaryName;
             model.BirthYear = nameBasic.BirthYear;
             model.DeathYear = nameBasic.DeathYear;
             model.Rating = (float)nameBasic.Rating;
-
+            */
+            model.ListPlays = test;
 
             return model;
         }

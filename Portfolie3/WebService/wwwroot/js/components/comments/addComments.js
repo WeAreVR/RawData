@@ -29,7 +29,7 @@
 
         let add = () => {
             console.log(context())
-            postman.publish("newComment", { username: "testuser", titleId: titleId(), content: context() });
+            postman.publish("newComment", { username: localStorage.getItem("username"), titleId: titleId(), content: context() });
             changetoCommentView(titleId());
         }
 

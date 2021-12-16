@@ -24,7 +24,7 @@ namespace WebService.ViewModels
 		//public ICollection<string> Awards { get; set; }
 		public ICollection<string> Akas {get; set;}
 		public ICollection<string> Genres { get; set; }
-		public ICollection<TitlePrincipal> TitlePrincipals { get; set; }
+		public ICollection<TitlePrincipalViewModel> ListTitlePrincipals { get; set; }
 
 	}
 }

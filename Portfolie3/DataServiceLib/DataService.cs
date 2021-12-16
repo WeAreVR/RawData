@@ -127,7 +127,8 @@ namespace DataServiceLib
             ctx.Add(bookmark);
             return ctx.SaveChanges() > 0;
         }
-        public bool CreateBookmark(string titleId)
+
+        /*public bool CreateBookmark(string titleId)
         {
             var ctx = new IMDBContext();
 
@@ -140,7 +141,8 @@ namespace DataServiceLib
             ctx.Add(bookmark);
 
             return ctx.SaveChanges() > 0;
-        }
+        }*/
+
         public Bookmark CreateBookmark(string username, string titleId)       
         {
             var ctx = new IMDBContext();
@@ -541,7 +543,7 @@ namespace DataServiceLib
 
             var plays = ctx.Plays
                        .Include(x => x.NameBasic)
-                       .Where(p => p.NameId == nameId)
+                       .Where(y => y.NameId == nameId)
                        .ToList();
             return plays;
         }
@@ -661,7 +663,7 @@ namespace DataServiceLib
 
             var professions = ctx.Professions
                        .Include(x => x.NameBasic)
-                       .Where(p => p.NameId == nameId)
+                       .Where(a => a.NameId == nameId)
                        .ToList();
             return professions;
         }
@@ -673,7 +675,7 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             //FIX THIS
             profession.Ordering = ctx.Professions
-                .Where(p => p.NameId == profession.NameId && p.Ordering == profession.Ordering)
+                .Where(a => a.NameId == profession.NameId && a.Ordering == profession.Ordering)
                 .Max(x => x.Ordering) + 1;
 
             ctx.Add(profession);
@@ -688,7 +690,7 @@ namespace DataServiceLib
             Profession profession = new Profession();
             profession.NameId = nameId;
             profession.Ordering = ctx.Professions
-                .Where(p => p.NameId == profession.NameId && p.Ordering == profession.Ordering)
+                .Where(b => b.NameId == profession.NameId && b.Ordering == profession.Ordering)
                 .Max(x => x.Ordering) + 1;
 
             profession.ProfessionName = professionName;
@@ -835,7 +837,7 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
       
             titlePrincipal.Ordering = ctx.TitlePrincipals
-               .Where(p => p.NameId == titlePrincipal.NameId && p.Ordering == titlePrincipal.Ordering && p.TitleId == titlePrincipal.TitleId)
+               .Where(x => x.NameId == titlePrincipal.NameId && x.Ordering == titlePrincipal.Ordering && x.TitleId == titlePrincipal.TitleId)
                .Max(x => x.Ordering) + 1;
 
             ctx.Add(titlePrincipal);
@@ -850,7 +852,7 @@ namespace DataServiceLib
             titlePrincipal.TitleId = titleId;
 
             titlePrincipal.Ordering = ctx.TitlePrincipals
-               .Where(p => p.NameId == titlePrincipal.NameId && p.Ordering == titlePrincipal.Ordering && p.TitleId == titlePrincipal.TitleId)
+               .Where(c => c.NameId == titlePrincipal.NameId && c.Ordering == titlePrincipal.Ordering && c.TitleId == titlePrincipal.TitleId)
                .Max(x => x.Ordering) + 1;
 
             titlePrincipal.NameId = nameId;
@@ -990,7 +992,7 @@ namespace DataServiceLib
                // .Include(x => x.Awards)
                 .Include(x => x.TitleAkas)
                 .Include(x => x.TitleGenres)
-               // .Include(x => x.TitlePrincipals)
+                .Include(x => x.TitlePrincipals)
                 .FirstOrDefault(x => x.Id == trim);
             return result;
         }
@@ -1110,7 +1112,11 @@ namespace DataServiceLib
             var trim = nameId.Trim();
 
             var ctx = new IMDBContext();
-            NameBasic result = ctx.NameBasics.FirstOrDefault(x => x.Id == trim);
+            NameBasic result = ctx.NameBasics
+                .Include(x => x.Professions)
+                .Include(x => x.KnownForTitles)
+                .Include(x => x.Plays)
+                .FirstOrDefault(x => x.Id == trim);
             return result;
         }
 

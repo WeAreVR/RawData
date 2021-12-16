@@ -70,14 +70,17 @@ namespace WebService.Controllers
             model.AvgRating = titleBasic.TitleRating.AvgRating;
             //model.Genres = titleBasic.TitleGenres.Select(x => x.Genre).ToList();
             //model.TitleAkas = titleBasic.TitleAkas;
-           // model.TitlePrincipals = titleBasic.TitlePrincipals;
-
-
-            // model.TitleGenres = (ICollection<TitleGenre>)_dataService.GetTitleGenresByTitleId("tt0304141");
-
-            Console.WriteLine(_dataService.GetTitleGenresByTitleId("tt0304141"));
+            // model.TitlePrincipals = titleBasic.TitlePrincipals;
             //model.TitleGenres = _dataService.GetTitleGenresByTitleId(titleBasic.Id);
+            List<TitlePrincipalViewModel> test = new List<TitlePrincipalViewModel>();
 
+            foreach (TitlePrincipal t in titleBasic.TitlePrincipals)
+            {
+                var temp = _mapper.Map<TitlePrincipalViewModel>(t);
+                test.Add(temp);
+            }
+
+            model.ListTitlePrincipals = test;
 
             return model;
         }
