@@ -70,7 +70,7 @@ namespace WebService.Controllers
             model.AvgRating = titleBasic.TitleRating.AvgRating;
             //model.Genres = titleBasic.TitleGenres.Select(x => x.Genre).ToList();
             //model.TitleAkas = titleBasic.TitleAkas;
-            model.TitlePrincipals = titleBasic.TitlePrincipals;
+           // model.TitlePrincipals = titleBasic.TitlePrincipals;
 
 
             // model.TitleGenres = (ICollection<TitleGenre>)_dataService.GetTitleGenresByTitleId("tt0304141");

@@ -26,7 +26,7 @@
     </table>
 </div> -->
 
-<div>
+<div varalign: right>
     <input type="range" data-bind="value: setRating, valueUpdate: 'input'" min="1" max="10" />
     <input type="number" data-bind="value: setRating" min="1" max="10" />
     <div class="popup">
@@ -63,10 +63,9 @@
                     <th>Plot</th>
                     <td data-bind="text: t.plot"></td>
                 </tr>
-                <tr data-bind="foreach: t.titleGenres">
-                    <th>Genre</th>
-                   
-                    <td data-bind="text: genre"></td>
+                <tr>
+                    <th>Genre</th>                   
+                    <td data-bind="text: t.genres"></td>
                
                 </tr>
         </table>
