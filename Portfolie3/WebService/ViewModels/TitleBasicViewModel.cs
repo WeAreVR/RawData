@@ -21,8 +21,8 @@ namespace WebService.ViewModels
 		public string Plot { get; set; }
 		public string Poster { get; set; }
 		public decimal AvgRating { get; set; }
-		public ICollection<Award> Awards { get; set; }
-		public ICollection<TitleAka> TitleAkas {get; set;}
+		//public ICollection<string> Awards { get; set; }
+		public ICollection<string> Akas {get; set;}
 		public ICollection<string> Genres { get; set; }
 		public ICollection<TitlePrincipal> TitlePrincipals { get; set; }
 
