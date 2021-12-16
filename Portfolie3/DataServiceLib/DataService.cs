@@ -112,6 +112,7 @@ namespace DataServiceLib
         {
 
             var ctx = new IMDBContext();
+
             Bookmark bookmark = new Bookmark() { Username = username, TitleId = titleId };
             ctx.Bookmarks.Attach(bookmark);
 

@@ -196,19 +196,20 @@ define([], () => {
     };
 
     //skal finde ud af hvordan vi returner dens værdi til den anden function
-    let checkBookmarks = (id, callback) => {
+    /*let checkBookmarks =  (id, callback) => {
         console.log(id);
         console.log(localStorage.getItem("username"));
 
-        fetch("api/bookmark/check/?username=" + localStorage.getItem("username") + "&titleid=" + id)
-            .then(response => {
+         fetch("api/bookmark/check/?username=" + localStorage.getItem("username") + "&titleid=" + id)
+            .then( response => {
                 if (response.ok) {
-                    return callback(true)
+                    return true
                 }
-                return callback(false)
+                return false
             });
     };
 
+    */
     let createBookmark1= (bookmark, callback) => {
         let param = {
             method: "POST",
@@ -222,7 +223,17 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    let toggleBookmark = (id) => {
+        console.log(id);
+        console.log(localStorage.getItem("username"));
+
+            console.log("bookmark createdddd!");
+            fetch("api/bookmark/toggle/?username=" + localStorage.getItem("username") + "&titleid=" + id)
+            .then(response => console.log(response.status))
+        }
+
     let createBookmark = (id) => {
+        console.log(checkBookmarks(id));
         if (checkBookmarks(id) == false)
         {
             console.log("bookmark created!");
@@ -247,7 +258,6 @@ define([], () => {
         getUrl,
         getTitleBasics,
         getComments,
-        checkBookmarks,
         addComment,
         deleteComment,
         getTitleBasicsWithPageSize,
@@ -264,6 +274,7 @@ define([], () => {
         addRating,
         getRating,
         createBookmark,
+        toggleBookmark,
         updateComment
     }
 });

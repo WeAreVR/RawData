@@ -85,14 +85,15 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
         */
 
-        let addBookmark = (id) => {
-            ds.createBookmark(id);
+        let toggleBookmark = (id) => {
+            ds.toggleBookmark(id);
         }
         
         
 
         return {
             enableNext,
+            toggleBookmark,
             changeSingleView,
             enablePrev,
             showNext,
@@ -107,8 +108,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchTitleBasics,
             selectId,
             commentSection,
-            singleTitlePage,
-            addBookmark
+            singleTitlePage
         }
     };
 });

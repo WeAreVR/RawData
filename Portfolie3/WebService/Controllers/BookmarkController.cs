@@ -52,21 +52,28 @@ namespace WebService.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{check}")]
-        public IActionResult CheckBookmark(string username, string titleId) {
+        [HttpGet("{toggle}")]
+        public IActionResult ToggleBookmark(string username, string titleId) {
+
             var result = _dataService.BookmarkedAlready(username, titleId);
-            if (result) {
+
+            if (!result) {
+                Console.WriteLine(result);
+                _dataService.CreateBookmark(username, titleId);
                 return Ok();
             }
-            
-            return BadRequest();
+
+            Console.WriteLine(result);
+            _dataService.DeleteBookmark(username, titleId);
+            return Ok();
         }
-            
-           
+
+
 
         [HttpDelete()]
         public IActionResult DeleteBookMark(string username, string titleId)
         {
+
             _dataService.DeleteBookmark(username, titleId);
             return NoContent();
         }
