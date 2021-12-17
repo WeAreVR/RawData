@@ -70,6 +70,10 @@ require(['knockout'], (ko) => {
         viewModel: { require: "components/login/register" },
         template: { require: "text!components/login/register.html" }
     });
+    ko.components.register("list-crew", {
+        viewModel: { require: "components/crew/listCrew" },
+        template: { require: "text!components/crew/listCrew.html" }
+    });
 });
 
 

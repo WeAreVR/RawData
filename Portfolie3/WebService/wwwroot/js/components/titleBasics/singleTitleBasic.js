@@ -2,7 +2,7 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-        let currentView = ko.observable("list-titles");
+        let currentView = ko.observable("single-title");
 
         let posterUrl = ko.observable();
         let titleBasic = ko.observable();
@@ -70,6 +70,20 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.createBookmark(id);
         }
 
+        let crewPage = () => {
+            console.log(id);
+            postman.publish("getInfo", titleId());
+            console.log("abe");
+
+        }
+
+        let crewView = () => {
+            postman.publish("changeView", "list-crew");
+            //singleTitlePage(id);
+            postman.publish("getCrewInfo", titleId());
+
+
+        }
 
 
        
@@ -97,6 +111,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         return {
             currentComponent,
+            crewPage,
+            crewView,
             popUpFunction,
             addBookmark,
             changetoCommentView,
