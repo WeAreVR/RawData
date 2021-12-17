@@ -1,6 +1,9 @@
 ﻿<div data-bind="with: titleBasic, as: 't'">
     <h1 data-bind="text: t.primaryTitle"></h1>
-    <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button>
+    <hr>
+    <div id="Buttons">
+        <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button>
+    </div>
 </div>
 
 
@@ -50,17 +53,20 @@
         </div>
     </div>
 
-    <button data-bind="click: crewView">Entire Crew</button>
-
-
-
-    <button class="btn btn-primary" onclick="toggleComments()">Comments</button>
-    <div id="commentSection" class="hidden">
-        <h3>Comments</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    <div id="Buttons">
+        <button data-bind="click: crewView">Entire Crew</button>
     </div>
-</div>
+
+
+    <div id="Buttons">
+        <button class="btn btn-primary" onclick="toggleComments()">Comments</button>
+        </div>
+        <div id="commentSection" class="hidden">
+            <h3>Comments</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+        </div>
+    </div>
 
 
 

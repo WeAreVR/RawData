@@ -1,12 +1,15 @@
 ﻿
 <h1>Titles</h1>
+<hr />
 
 <div class="col-6">
     Search: <input class="form-control" data-bind="value: selectId" required />
-    <button class="searchButton" data-bind="click: searchTitleBasics">Search</button>
+            <div id="Buttons">
+                <button id="Buttons" class="searchButton" data-bind="click: searchTitleBasics">Search</button>
+            </div>
 </div>
-<div>
-    Page size: <select data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
+<div >
+    Page size: <select  data-bind="options: pageSize, selectedOptions: selectedPageSize">  </select>
 </div>
 <div data-bind="foreach: titleBasics">
     <table class="table">
@@ -15,10 +18,14 @@
         </thead>
         <tbody data-bind="foreach: items">
             <tr>
-                <td><button data-bind="text: primaryTitle, click: function(){ $parents[1].changeSingleView(id);}"></button></td>
+                <td id="Buttons" ><button data-bind="text: primaryTitle, click: function(){ $parents[1].changeSingleView(id);}"></button></td>
                 <td data-bind="text: startYear"></td>
                 <td data-bind="text: avgRating"></td>
+<<<<<<< Updated upstream
                 <td><button id="showWhenLoggedIn" class="btn btn-primary" data-bind="click: function(){$parents[1].toggleBookmark(id)}">Bookmark</button></td>
+=======
+                <td id="Buttons"><button  class="btn btn-primary" data-bind="click: function(){$parents[1].toggleBookmark(id)}">Bookmark</button></td>
+>>>>>>> Stashed changes
 
             </tr>
         </tbody>
@@ -26,7 +33,7 @@
 </div>
 
 
-<div>
+<div id="Buttons" >
     <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
     <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
 </div>

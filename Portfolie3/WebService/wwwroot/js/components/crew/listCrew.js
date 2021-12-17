@@ -74,7 +74,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let goBack = () => {
             postman.publish("changeView", "single-title");
 
-            postman.publish("getInfo", titleId);
+            postman.publish("getInfo", titleId());
 
         }
 

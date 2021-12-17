@@ -94,10 +94,34 @@ html {
 }
 
 
+#Buttons {
+    display: flex;
+    flex-direction: row;
+    }
+
+#Buttons button {
+    background: none;
+    color: #ffa260;
+    border: 2px solid;
+    padding: .65em 1.2em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    transition: all 0.2s;
+    background-color: #151b29;
+}
+
+    #Buttons button:hover {
+        border-color: #f1f15c;
+        color: white;
+        box-shadow: 0 0.5em 0.5em -0.4em #f1f15c;
+        transform: translateY(0.25em);
+        cursor: pointer;
+    }
+
 #loginButton {
     display: flex;
     flex-direction: row-reverse;
-    }
+}
 
     #loginButton button {
         background: none;
@@ -116,11 +140,23 @@ html {
         transform: translateY(0.25em);
         cursor: pointer;
     }
+        #Buttons button:hover {
+            border-color: #f1f15c;
+            color: white;
+            box-shadow: 0 0.5em 0.5em -0.4em #f1f15c;
+            transform: translateY(0.25em);
+            cursor: pointer;
+        }
 
     @media (max-width: 550px){
        
         .container-fluid .table thead{
             display: none;
+        }
+
+        .table, .table tbody, .table tr, table td {
+            display: block;
+            width: 100%;
         }
     
         .table tr{
@@ -140,6 +176,25 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    }
+
+.popup button {
+    background: none;
+    color: #ffa260;
+    border: 2px solid;
+    padding: .65em 1.2em;
+    margin-bottom: 1em;
+    font-size: 1em;
+    transition: all 0.2s;
+    background-color: #151b29;
+}
+
+.popup button:hover{
+    border-color: #f1f15c;
+    color: white;
+    box-shadow: 0 0.5em 0.5em -0.4em #f1f15c;
+    transform: translateY(0.25em);
+    cursor: pointer;
 }
 
     /* The actual popup */
@@ -223,4 +278,10 @@ html {
         opacity: 0;
     }
 }
+
+body {
+    background-color: aquamarine;
+}
+
+
 
