@@ -18,6 +18,7 @@ namespace WebService.ViewModels
 		public ICollection<string> ListKnownForTitles { get; set; }
 		public ICollection<PlaysViewModel> ListPlays { get; set; }
 		public ICollection<string> ListProfessions { get; set; }
+		public ICollection<TitlePrincipalViewModel> ListTitlePrincipals { get; set; }
 
-    }
+	}
 }

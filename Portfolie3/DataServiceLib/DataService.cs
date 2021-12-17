@@ -1116,6 +1116,7 @@ namespace DataServiceLib
                 .Include(x => x.Professions)
                 .Include(x => x.KnownForTitles)
                 .Include(x => x.Plays)
+                .Include(x => x.TitlePrincipals)
                 .FirstOrDefault(x => x.Id == trim);
             return result;
         }

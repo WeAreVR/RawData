@@ -65,8 +65,7 @@ html {
 
 
 .table, .table tbody, .table tr, table td {
-    display: block;
-    width: 100%;
+   
     vertical-align: top;
 }
     body {
