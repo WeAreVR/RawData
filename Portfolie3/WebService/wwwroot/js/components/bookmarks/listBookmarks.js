@@ -39,13 +39,17 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let checkLogin = () => {
-            isLoggedIn = loggedIn();
+            if (localStorage.getItem("username") === null) {
+                console.log("nеееееh nеееh");
+                    return false;
+                }
+                return true;
         }
 
-        
-
-
+        showWhenLoggedIn();
+        hideWhenLoggedIn();
         getBookmarks();
+
         return {
             enablePrev,
             enableNext,

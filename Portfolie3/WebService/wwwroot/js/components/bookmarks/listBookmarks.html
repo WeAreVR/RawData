@@ -1,22 +1,34 @@
 <h1>Bookmarks</h1>
 
-<p>You are not logged in yet!</p>
+<script>
+    if (checkLogin()) {
+        <p>You are not logged in yet!</p>
+        console.log("hejsaaaa");
+    }
 
-<table class="table">
-    <thead>
-        <tr><th>Id</th><th>Timestamp</th><th></th></tr>
-    </thead>
-    <tbody data-bind="foreach: bookmarks">
-        <tr>
-            <td data-bind="text: titleId"></td>
-            <td data-bind="text: primaryTitle"></td>
-        </tr>
-    </tbody>
-</table>
+    
+</script>
 
-<div>
-    <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
-    <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
+<p id="hideWhenLoggedIn"> You are not logged in yet!</p>
+
+<div id="showWhenLoggedIn">
+    <table class="table">
+        <thead>
+            <tr><th>Id</th><th>Timestamp</th><th></th></tr>
+        </thead>
+        <tbody data-bind="foreach: bookmarks">
+            <tr>
+                <td data-bind="text: titleId"></td>
+                <td data-bind="text: primaryTitle"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>
+        <button class="prevNextButton" data-bind="click: showNext, enable: enableNext">Next page</button>
+    </div>
+
 </div>
 
 

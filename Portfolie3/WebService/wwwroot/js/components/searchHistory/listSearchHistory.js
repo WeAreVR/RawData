@@ -63,7 +63,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             getSearchHistory(ds.getSearchHistoryWithPageSize(size));
         });
 
-
+        showWhenLoggedIn();
+        hideWhenLoggedIn();
         findSearchHistory();
 
         return {

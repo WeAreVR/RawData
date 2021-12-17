@@ -9,17 +9,29 @@ function toggleComments() {
 }
 
 function loggedIn() {
-    if (localStorage.getItem("username") !== null) {
-        return true;
+    if (localStorage.getItem("username") === null) {
+        console.log("user not logged in");
+        return false;
     }
-    return false;
+    console.log("user logged in");
+    return true;
+
 }
 
-function showWhenLoggedIn() {
-    var x = document.getElementById("loginButton");
-    if (localStorage.getItem("username") != null) {
+function hideWhenLoggedIn() {
+    var x = document.getElementById("hideWhenLoggedIn");
+    if (localStorage.getItem("username") === null) {
         x.style.display = "block";
     } else {
         x.style.display = "none";
     } 
+}
+
+function showWhenLoggedIn() {
+    var x = document.getElementById("showWhenLoggedIn");
+    if (localStorage.getItem("username") !== null) {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
 }
