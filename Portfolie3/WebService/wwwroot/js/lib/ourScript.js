@@ -35,3 +35,12 @@ function showWhenLoggedIn() {
         x.style.display = "none";
     }
 }
+
+function showWhenUsernameSame(username) {
+    var x = document.getElementById("showWhenLoggedIn");
+    if (localStorage.getItem("username") === username) {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
