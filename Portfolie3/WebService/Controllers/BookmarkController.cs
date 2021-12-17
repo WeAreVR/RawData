@@ -30,7 +30,7 @@ namespace WebService.Controllers
             _mapper = mapper;
         }
 
-        //[Authorization]
+        [Authorization]
         [HttpGet(Name = nameof(GetBookmarks))]
         public IActionResult GetBookmarks(string username, [FromQuery] QueryString queryString)
         {

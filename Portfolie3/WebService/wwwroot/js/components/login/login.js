@@ -27,6 +27,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 localStorage.setItem("username", data.username);
                 localStorage.setItem("token", data.token);
             });
+
+            postman.publish("changeView", "list-titles");
         };
 
         let userLogin1 = () => {

@@ -9,8 +9,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let selectId = ko.observable();
         let setRating = ko.observable();
         let titleId = ko.observable();
-
-       
         
 
         let getInfo = (id) => {
@@ -106,8 +104,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             postman.publish("changeView", "list-comments");
             commentPage(id);
         }
-
-        getInfo("tt0304141");
 
         return {
             currentComponent,

@@ -31,6 +31,8 @@ define([], () => {
             .then(json => callback(json));
     };
 
+    //Comments
+
     let getComments = (id, callback) => {
         fetch("api/comments/" + "?titleId=" + id)
             .then(response => response.json())
@@ -133,15 +135,6 @@ define([], () => {
     }
 
 
-
-
-    let getSearchHistory1 = (callback) => {
-        return fetch("api/searchhistory/?username=" + localStorage.getItem("username"))
-            .then(response => response.json())
-            .then(json => callback(json));
-            };
-    
-
     let getSearchHistoryUrl = (url, callback) => {
         fetch(url)
             .then(response => response.json())
@@ -189,11 +182,27 @@ define([], () => {
 
 
     //Bookmark skal skrives om til at kunne tage username
-    let getBookmarks = (callback) => {
+    let getBookmarks2 = (callback) => {
         fetch("api/bookmark")
             .then(response => response.json())
             .then(json => callback(json));
     };
+
+    let getBookmarks = () => {
+        let params = {
+            method: "GET",
+            headers: {
+                "Authorization": "Barer " + localStorage.getItem("token")
+            }
+        };
+        return fetch("api/bookmark/?username=" + localStorage.getItem("username"), params)
+            .then(response => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response.json();
+            });
+    }
 
     //skal finde ud af hvordan vi returner dens værdi til den anden function
     /*let checkBookmarks =  (id, callback) => {

@@ -8,11 +8,18 @@ function toggleComments() {
     }
 }
 
+function loggedIn() {
+    if (localStorage.getItem("username") !== null) {
+        return true;
+    }
+    return false;
+}
+
 function showWhenLoggedIn() {
-    var x = document.getElementById("testId");
+    var x = document.getElementById("loginButton");
     if (localStorage.getItem("username") != null) {
         x.style.display = "block";
     } else {
         x.style.display = "none";
-    }
+    } 
 }

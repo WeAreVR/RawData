@@ -1,20 +1,11 @@
 define(["knockout", "postman"], function (ko, postman) {
 
-    let menuItemsLoggedIn = [
-        { title: "Find titles", component: "list-titles" },
-        { title: "Find people", component: "list-names" },
-        { title: "Bookmark", component: "list-bookmarks" },
-        { title: "Search history", component: "list-searchHistory" },
-        { title: "TEST", component: "single-title" }
-    ];
-
     let menuItems = [
         { title: "Find titles", component: "list-titles" },
         { title: "Find people", component: "list-names" },
-        { title: "TEST", component: "single-title" }
+        { title: "Bookmark", component: "list-bookmarks" },
+        { title: "Search history", component: "list-searchHistory" }
     ];
-
-
 
     let currentView = ko.observable(menuItems[0].component);
 
