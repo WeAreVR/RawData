@@ -2,8 +2,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
         let currentView = ko.observable("list-bookmarks");
-        let titleBascis = ko.observableArray([]);
+
+        let titleBasic = ko.observableArray([]);
         let titlePrincipals = ko.observableArray([]);
+        let titleId = ko.observable();
+        let selectId = ko.observable();
+        let crewName = ko.observableArray([]);
+
 
 
         let prev = ko.observable();
@@ -12,14 +17,26 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let enablePrev = ko.observable(() => prev() !== undefined);
         let enableNext = ko.observable(() => next() !== undefined);
 
-        let getTitleBascis = () => {
-            console.log("getBookmarks");
-            ds.getBookmarks(data => {
+        let getCrewInfo = (id) => {
+            console.log("getInfo");
+            ds.getTitleBasic(id, data => {
                 console.log(data);
-                bookmarks(data.items);
+                titleBasic(data);
+                titlePrincipals(data.listTitlePrincipals);
+                titleId(data.id);
+
+            });
+            ds.getTitleBasic(localStorage.getItem("username"), id, data => {
+                console.log(data);
+                console.log(data.setRating);
+
+                setRating(data.rating);
+
             });
             currentView("list");
+            selectId("");
         }
+
         let showNext = () => {
             console.log(next());
             ds.getUrl(next(), data => {
@@ -40,18 +57,38 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         
+        console.log(titleId());
 
+        postman.subscribe("getCrewInfo", id => {
+            console.log("postmanSubscribe")
+            getCrewInfo(id);
+        }, "list-titles");
 
-        getBookmarks();
+        let commentPage = (id) => {
+            console.log(id);
+            postman.publish("showComment", id);
+            console.log("abe");
+
+        }
+
+        let goBack = () => {
+            postman.publish("changeView", "single-title");
+
+            postman.publish("getInfo", titleId);
+
+        }
+
         return {
             enablePrev,
+            goBack,
+            crewName,
+            titleBasic,
             enableNext,
             showPrev,
             showNext,
             currentComponent,
-            currentView,
-            getBookmarks,
-            add
+            titlePrincipals,
+            currentView
         }
     };
 });
