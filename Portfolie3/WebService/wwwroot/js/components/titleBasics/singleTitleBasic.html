@@ -1,8 +1,11 @@
 ﻿<div data-bind="with: titleBasic, as: 't'">
     <h1 data-bind="text: t.primaryTitle"></h1>
     <hr>
-    <div id="Buttons">
-        <button class="btn btn-primary" data-bind=" click:function(){$parents[0].addBookmark(t.id);}">Bookmark</button>
+
+    <div class="popup" id="Buttons">
+        <button class="btn btn-primary" data-bind=" click:function(){$parents[0].toggleBookmark(t.id);}">Bookmark</button>
+        <span class="popuptext" id="myPopup2">You updated your bookmark</span>
+
     </div>
 </div>
 
@@ -12,9 +15,10 @@
     <input type="number" data-bind="value: setRating" min="1" max="10" />
     <div class="popup">
         <button data-bind="click: add"> Rate!</button>
-        <span class="popuptext" id="myPopup">You voted!</span>
+        <span class="popuptext" id="myPopup1">You voted!</span>
     </div>
 </div>
+
 
 
 <div class="container">
@@ -60,13 +64,29 @@
 
     <div id="Buttons">
         <button class="btn btn-primary" onclick="toggleComments()">Comments</button>
-        </div>
-        <div id="commentSection" class="hidden">
-            <h3>Comments</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-        </div>
     </div>
+    <div id="commentSection" class="hidden">
+        <div data-bind="foreach: comments">
+            <table class="table">
+                <thead>
+                    <tr><th>User</th><th>Comment</th><th>Date</th><th></th></tr>
+                </thead>
+                <tbody data-bind="foreach: items">
+                    <tr>
+                        <td data-bind="text: username"></td>
+                        <td data-bind="text: content"></td>
+                        <td data-bind="text: timeStamp"></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="btn btn-primary" data-bind="click: function(){changetoCommentView(titleId)}">See all comments</button>
+
+    </div>
+
+
+</div>
 
 
 

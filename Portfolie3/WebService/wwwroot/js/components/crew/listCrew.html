@@ -11,7 +11,8 @@
 
     <tbody data-bind="foreach: titlePrincipals">
         <tr>
-            <td data-bind="text: name"></td>
+            <td id="Buttons"><button data-bind="text: name, click: function(){ $parents[0].changeNameView(nameId);}"></button></td>
+
             <td data-bind="text: category"></td>
             <td data-bind="text: job"></td>
         </tr>

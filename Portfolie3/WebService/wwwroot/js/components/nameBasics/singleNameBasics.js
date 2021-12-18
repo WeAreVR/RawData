@@ -35,7 +35,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             getInfo(id);
         }, "list-titles");
 
-
+        //hvad sker der her
         let searchNameBasics = () => {
             console.log("searchNameBasics");
             ds.getNameBasics(selectId(), data => {

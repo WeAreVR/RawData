@@ -33,23 +33,17 @@
             changetoCommentView(titleId());
         }
 
-        let commentPage = (id) => {
-            console.log(id);
-            postman.publish("showComment", id);
-            console.log("abe");
-
-        }
+       
 
         let changetoCommentView = (id) => {
             postman.publish("changeView", "list-comments");
-            commentPage(id);
+            postman.publish("showComment", id);
 
         }
 
 
         return {
             context,
-            commentPage,
             changetoCommentView,
             titleId,
             currentView,

@@ -64,12 +64,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             getCrewInfo(id);
         }, "list-titles");
 
-        let commentPage = (id) => {
-            console.log(id);
-            postman.publish("showComment", id);
-            console.log("abe");
-
-        }
 
         let goBack = () => {
             postman.publish("changeView", "single-title");
@@ -78,8 +72,15 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         }
 
+        let changeNameView = (id) => {
+            postman.publish("changeView", "single-names");
+            console.log(id);
+            postman.publish("getInfoForSingleName", id);
+        }
+
         return {
             enablePrev,
+            changeNameView,
             goBack,
             crewName,
             titleBasic,

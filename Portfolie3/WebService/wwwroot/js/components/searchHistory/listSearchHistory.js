@@ -1,4 +1,3 @@
-
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");

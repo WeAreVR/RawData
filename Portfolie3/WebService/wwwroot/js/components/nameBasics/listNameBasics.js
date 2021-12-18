@@ -9,6 +9,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let next = ko.observable();
 
         let nameBasics = ko.observableArray([]);
+
         let selectId = ko.observable();
       
         let enablePrev = ko.observable(() => prev() !== undefined);
@@ -21,6 +22,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 prev(data.prev),
                 next(data.next),
                 nameBasics(data);
+
             });
         }
         let showPrev = () => {
@@ -42,6 +44,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 prev(data.prev),
                 next(data.next),
                 nameBasics(data);
+
             });
             currentView("list");
             selectId("");

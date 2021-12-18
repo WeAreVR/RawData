@@ -93,6 +93,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.deleteComment(comment);
         }
 
+        //showWhenUsernameSame();
         return {
             del,
             currentComponent,

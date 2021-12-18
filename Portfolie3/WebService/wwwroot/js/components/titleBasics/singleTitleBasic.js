@@ -9,7 +9,10 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let selectId = ko.observable();
         let setRating = ko.observable();
         let titleId = ko.observable();
-        
+        let comments = ko.observableArray([]);
+
+
+       
 
         let getInfo = (id) => {
             console.log("getInfo");
@@ -18,13 +21,21 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 titleBasic(data);
                 posterUrl(data.poster);
                 titleId(data.id);
+                console.log(titleId());
+
 
             });
             ds.getRating(localStorage.getItem("username"),id, data => {
                 console.log(data);
                 console.log(data.setRating);
-
+                comments(data);
                 setRating(data.rating);
+
+            });
+            ds.getComments(id, data => {
+                console.log(data);
+                comments(data);
+
 
             });
             currentView("list");
@@ -48,24 +59,25 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             setRating(parseInt(setRating()))
             postman.publish("newRating", { username: localStorage.getItem("username"), titleId: titleId(), rating: setRating() });
             //postman.publish("changeView", "list-titles");
-            popUpFunction();
+            popUpFunction(1);
 
         }
 
-        let popUpFunction = () => {
-            var popup = document.getElementById("myPopup");
+        let popUpFunction = (id) => {
+            var popup = document.getElementById("myPopup"+id);
             popup.classList.toggle("show");
-            setTimeout(function () { popUpHideFunction(); }, 1500);
+            setTimeout(function () { popUpHideFunction(id); }, 1500);
 
         }
-        let popUpHideFunction = () => {
-            var popup = document.getElementById("myPopup");
+        let popUpHideFunction = (id) => {
+            var popup = document.getElementById("myPopup"+id);
             popup.classList.toggle("show");
 
         }
         let addBookmark = (id) => {
             console.log(id);
             ds.createBookmark(id);
+
         }
 
         let crewPage = () => {
@@ -84,6 +96,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
 
+
        
         /*
         postman.subscribe("getTitle", id => {
@@ -96,18 +109,25 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let commentPage = (id) => {
             console.log(id);
             postman.publish("showComment", id);
-            console.log("abe");
 
         }
 
         let changetoCommentView = (id) => {
             postman.publish("changeView", "list-comments");
-            commentPage(id);
+            postman.publish("showComment", id());
+
+        }
+        let toggleBookmark = (id) => {
+            ds.toggleBookmark(id);
+            popUpFunction(2);
+
         }
 
         return {
             currentComponent,
+            toggleBookmark,
             crewPage,
+            titleId,
             crewView,
             popUpFunction,
             addBookmark,
@@ -117,6 +137,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             titleBasic,
             getInfo,
             add,
+            comments,
             setRating,
             posterUrl
         }

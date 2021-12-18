@@ -37,7 +37,7 @@ function showWhenLoggedIn() {
 }
 
 function showWhenUsernameSame(username) {
-    var x = document.getElementById("showWhenLoggedIn");
+    var x = document.getElementById("showWhenUsernameSame");
     if (localStorage.getItem("username") === username) {
         x.style.display = "block";
     } else {
