@@ -15,7 +15,7 @@
 
         }
 
-        //den her skal bruges
+        
         postman.subscribe("getTitleAndContentForUpdateComment", content => {
             console.log("postmanSubscribe")
             console.log(content.content);
@@ -27,7 +27,7 @@
 
       
 
-        // titel over bruger vi ikke?
+       
         postman.subscribe("updateComment", comment => {
             ds.updateComment(comment, updateComment => {
                 console.log("postmanSubscribe")

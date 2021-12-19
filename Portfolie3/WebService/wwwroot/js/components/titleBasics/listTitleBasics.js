@@ -1,8 +1,7 @@
 ﻿
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
-        let currentComponent = ko.observable("list");
-        let pageSize = [5, 10, 15, 100];
+        let currentComponent = ko.observable("list");       
         let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-titles");
         let prev = ko.observable();
@@ -48,13 +47,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let commentSection = () => postman.publish("changeView", "list-comments");
-        /*
-        postman.subscribe("getTitle", id => {
-            ds.getTitleBasics(id, getTitle => {
-                console.log("postmanSubscribe")
-            });
-        }, "single-title");
-*/
+        
 
         let singleTitlePage = (id) => {
             console.log(id);
@@ -73,17 +66,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
         });
 
-        /*
-        postman.subscribe("newBookmark", bookmark => {
-            ds.createBookmark(bookmark, newBookmark)
-        }, "list-bookmarks");
-
-
-        let addBookmark = () => {
-            postman.publish("newBookmark", { titleId = 'tt8451992 ' });
-            postman.publish("changeView", "list-categories");
-        }
-        */
+        
 
         let toggleBookmark = (id) => {
             ds.toggleBookmark(id);

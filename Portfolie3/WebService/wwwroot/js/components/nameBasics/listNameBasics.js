@@ -2,7 +2,6 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-        let pageSize = [5, 10, 15, 100];
         let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-names");
         let prev = ko.observable();
@@ -58,16 +57,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         
         
 
-        let singleNamePage = (id) => {
-            console.log(id);
-            postman.publish("getInfo", id);
-            console.log("abe");
-
-        }
 
         let changeSingleNameView = (id) => {
             postman.publish("changeView", "single-names");
-           // singleTitlePage(id);
             postman.publish("getInfoForSingleName", id);
 
         }

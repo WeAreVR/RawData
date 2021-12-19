@@ -3,7 +3,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let currentComponent = ko.observable("list");
         let currentView = ko.observable("list-bookmarks");
         let bookmarks = ko.observableArray([]);
-        let isLoggedIn = ko.observable();
 
         let prev = ko.observable();
         let next = ko.observable();
@@ -40,7 +39,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         let checkLogin = () => {
             if (localStorage.getItem("username") === null) {
-                console.log("nеееееh nеееh");
                     return false;
                 }
                 return true;

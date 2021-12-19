@@ -58,8 +58,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             console.log(setRating())
             setRating(parseInt(setRating()))
             postman.publish("newRating", { username: localStorage.getItem("username"), titleId: titleId(), rating: setRating() });
-            //postman.publish("changeView", "list-titles");
-            popUpFunction(1);
+           popUpFunction(1);
 
         }
 
@@ -83,13 +82,12 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let crewPage = () => {
             console.log(id);
             postman.publish("getInfo", titleId());
-            console.log("abe");
+            
 
         }
 
         let crewView = () => {
             postman.publish("changeView", "list-crew");
-            //singleTitlePage(id);
             postman.publish("getCrewInfo", titleId());
 
 
@@ -98,13 +96,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
 
        
-        /*
-        postman.subscribe("getTitle", id => {
-            ds.getTitleBasics(id, getTitle => {
-                console.log("postmanSubscribe")
-            });
-        }, "single-title");
-        */
+      
 
         let commentPage = (id) => {
             console.log(id);

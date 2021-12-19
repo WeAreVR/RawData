@@ -10,8 +10,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let next = ko.observable();
 
 
-        let toEpisodeList = () => postman.publish("changeView", "list-episodes");
-
         let enablePrev = ko.observable(() => prev() !== undefined);
         let enableNext = ko.observable(() => next() !== undefined);
 

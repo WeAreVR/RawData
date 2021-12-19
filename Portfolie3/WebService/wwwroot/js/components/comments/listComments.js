@@ -69,7 +69,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let changetoCommentAddView = (id) => {
-            console.log("virker den ehr asd?")
             postman.publish("changeView", "addComments");
             addCommentPage(id);
         }
@@ -89,11 +88,11 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         let del = comment => {
-           // comments.remove(comment);
+           
             ds.deleteComment(comment);
         }
 
-        //showWhenUsernameSame();
+        
         return {
             del,
             currentComponent,

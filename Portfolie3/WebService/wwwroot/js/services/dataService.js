@@ -122,7 +122,7 @@ define([], () => {
             method: "GET",
             headers: {
                 "Authorization": "Barer " + localStorage.getItem("token")
-               // "username": localStorage.getItem("username")
+               
             }
         };
         return fetch("api/searchhistory/?username=" + localStorage.getItem("username"), params)
@@ -180,14 +180,6 @@ define([], () => {
 
 
 
-
-    //Bookmark skal skrives om til at kunne tage username
-    let getBookmarks2 = (callback) => {
-        fetch("api/bookmark")
-            .then(response => response.json())
-            .then(json => callback(json));
-    };
-
     let getBookmarks = () => {
         let params = {
             method: "GET",
@@ -204,33 +196,7 @@ define([], () => {
             });
     }
 
-    //skal finde ud af hvordan vi returner dens værdi til den anden function
-    /*let checkBookmarks =  (id, callback) => {
-        console.log(id);
-        console.log(localStorage.getItem("username"));
-
-         fetch("api/bookmark/check/?username=" + localStorage.getItem("username") + "&titleid=" + id)
-            .then( response => {
-                if (response.ok) {
-                    return true
-                }
-                return false
-            });
-    };
-
-    */
-    let createBookmark1= (bookmark, callback) => {
-        let param = {
-            method: "POST",
-            body: JSON.stringify(bookmark),
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        fetch("api/bookmark", param)
-            .then(response => response.json())
-            .then(json => callback(json));
-    };
+   
 
     let toggleBookmark = (id) => {
         console.log(id);

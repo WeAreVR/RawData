@@ -1,14 +1,12 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-        let pageSize = [5, 10, 15, 100];
         let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-searchHistory");
         let prev = ko.observable();
         let next = ko.observable();
 
         let searchHistory = ko.observableArray([]);
-        let selectId = ko.observable();
 
         let enablePrev = ko.observable(() => prev() !== undefined);
 
@@ -78,7 +76,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentComponent,
             currentView,
             searchHistory,
-           // findSearchHistory,
             clearSearchHistory
         }
     };
