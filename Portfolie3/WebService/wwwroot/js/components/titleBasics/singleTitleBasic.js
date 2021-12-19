@@ -89,10 +89,13 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let crewView = () => {
             postman.publish("changeView", "list-crew");
             postman.publish("getCrewInfo", titleId());
-
-
         }
 
+        let episodeView = () => {
+            postman.publish("changeView", "list-episodes");
+            //singleTitlePage(id);
+            postman.publish("getsearchTitleEpisodes", titleId());
+        }
 
 
        
@@ -117,6 +120,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         return {
             currentComponent,
+            episodeView,
             toggleBookmark,
             crewPage,
             titleId,
