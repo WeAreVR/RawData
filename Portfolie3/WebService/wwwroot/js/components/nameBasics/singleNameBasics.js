@@ -11,6 +11,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let birthYear = ko.observable();
         let deathYear = ko.observable();
         let nameId = ko.observable();
+        let name = ko.observable();
+
 
 
         let getInfo = (id) => {
@@ -18,6 +20,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.getNameBasic(id, data => {
                 console.log(data);
                 nameBasic(data);
+                name(data.primaryName);
                 birthYear(data.birthYear);
                 deathYear(data.deathYear);
                 setRating(data.rating);
@@ -47,8 +50,11 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             currentView("list");
             selectId("");
         }
+        let changetoListPlays= (id) => {
+            postman.publish("changeView", "list-plays");
+            postman.publish("getInfoForPlays", id());
 
-        
+        }
         selectedPageSize.subscribe(() => {
             var size = selectedPageSize()[0];
             searchNameBasics(ds.getNameBasicsWithPageSize(size));
@@ -58,8 +64,10 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         return {
           
             selectedPageSize,
+            changetoListPlays,
             setRating,
             birthYear,
+            name,
             deathYear,
             nameId,
             currentComponent,
