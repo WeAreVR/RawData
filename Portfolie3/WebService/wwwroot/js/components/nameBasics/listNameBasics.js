@@ -2,7 +2,6 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-        let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-names");
         let prev = ko.observable();
         let next = ko.observable();
@@ -50,12 +49,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         }
 
         
-        selectedPageSize.subscribe(() => {
-            var size = selectedPageSize()[0];
-            searchNameBasics(ds.getNameBasicsWithPageSize(size));
-        });
-        
-        
+       
 
 
         let changeSingleNameView = (id) => {
@@ -72,8 +66,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             showPrev,
             prev,
             next,
-            selectedPageSize,
-            pageSize,
             currentComponent,
             currentView,
             nameBasics,

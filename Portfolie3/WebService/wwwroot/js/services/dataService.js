@@ -13,7 +13,7 @@ define([], () => {
 
     //TitleBasics
     let getTitleBasics = (searchInput, callback) => {
-        fetch("api/titlebasic/search/" + "?searchInput=" + searchInput)
+        fetch("api/titlebasic/search/" + "?searchInput=" + searchInput +"&username=" + localStorage.getItem("username"))
             .then(response => response.json())
             .then(json => callback(json));
     };

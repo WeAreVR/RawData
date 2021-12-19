@@ -979,19 +979,22 @@ namespace DataServiceLib
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch + ")");
 
+            
+
             searchResult = searchResult.OrderBy(x => x.rank);
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 
-
+            
             foreach (var TitleBasicSearchResult in searchResult)
             {
                 var temp = GetTitleBasic(TitleBasicSearchResult.Id);
                 result = result.Append(temp);
             }
+            
             return result.ToList();
         }
 
-        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString)
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, string username, QueryString queryString)
         {
             var ctx = new IMDBContext();
 
@@ -1001,6 +1004,9 @@ namespace DataServiceLib
 
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch+ ")");
+            Console.Write(username);
+            ctx.Database
+                .ExecuteSqlInterpolated($"INSERT INTO search_history(username, search_input, time_stamp) VALUES({username}, {searchInput}, CURRENT_TIMESTAMP)");
 
             searchResult = searchResult.OrderByDescending(x => x.rank);
             IEnumerable<TitleBasic> result = new List<TitleBasic>();

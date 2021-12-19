@@ -120,7 +120,7 @@ namespace DataServiceLib
         public bool UpdateTitleBasic(TitleBasic titleBasic);
         public bool DeleteTitleBasic(string titleId);
         public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput);
-        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, QueryString queryString);
+        public IList<TitleBasic> GetTitleBasicsBySearch(string searchInput, string username, QueryString queryString);
 
         //NameBasic CRUD
         public NameBasic GetNameBasic(string nameId);

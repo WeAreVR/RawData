@@ -44,9 +44,9 @@ namespace WebService.Controllers
         }
 
         [HttpGet("search", Name = nameof(GetTitleBasicsSearch))]
-        public IActionResult GetTitleBasicsSearch(string searchInput, [FromQuery] QueryString queryString)
+        public IActionResult GetTitleBasicsSearch(string searchInput,string username, [FromQuery] QueryString queryString)
         {
-            var titleBasics = _dataService.GetTitleBasicsBySearch(searchInput, queryString);
+            var titleBasics = _dataService.GetTitleBasicsBySearch(searchInput, username, queryString);
             var allTitleBasics = _dataService.GetTitleBasicsBySearch(searchInput);
 
 

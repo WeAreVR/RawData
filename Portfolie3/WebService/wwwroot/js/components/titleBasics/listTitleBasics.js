@@ -84,7 +84,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             prev,
             next,
             selectedPageSize,
-            pageSize,
             currentComponent,
             currentView,
             titleBasics,
