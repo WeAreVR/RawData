@@ -21,23 +21,24 @@
 
 
 <div class="col-sm-7" data-bind="with: nameBasic, as: 'n'">
-    <table data-bind="foreach: listPlays">
+    <b>Played these characters</b>
+    <table data-bind="foreach: n.listPlays">
         <tr>
-            <th>Played these characters</th>
             <td data-bind="text: titleId"></td>
             <td data-bind="text: character"></td>
         </tr>
-     </table>
+    </table>
 </div>
 
 <div class="col-sm-7" data-bind="with: nameBasic, as: 'n'">
     <table>
         <tr>
             <th>Known for</th>
-            <td data-bind="text: listKnownForTitles"></td>
+            <td data-bind="text: n.listKnownForTitles"></td>
         </tr>
     </table>
 </div>
+<button class="btn btn-primary" data-bind="click: function(){changetoListPlays(nameId)}">See every movie they worked on</button>
 
 <!--
     <div>
