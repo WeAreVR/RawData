@@ -1,17 +1,11 @@
 ﻿
 <h1 data-bind="text: name"></h1>
 
+
 <div>
     <table class="table">
         <thead>
-            </th>
-        <th>Full Name</th>
-        <th>Birthyear</th>
-        <th>DeathYear</th>
-        <th>Rating</th>
-        <th>Known for</th>
-        <th>In these movies</th></tr>
-
+            <tr><th>Full Name</th><th>Birth Year</th><th>Death Year</th><th>Rating</th></tr>
         </thead>
         <tbody data-bind="with: nameBasic, as: 'n'">
             <tr>
@@ -19,17 +13,63 @@
                 <td data-bind="text: n.birthYear"></td>
                 <td data-bind="text: n.deathYear"></td>
                 <td data-bind="text: n.rating"></td>
-                <td data-bind="text: n.listKnownForTitles"></td>
-
-                <td data-bind="text: n.listPlays"></td>
-
             </tr>
-
         </tbody>
-
     </table>
 </div>
-<button class="btn btn-primary" data-bind="click: function(){changetoListPlays(nameId)}">See every movie they worked on</button>
 
 
 
+<div class="col-sm-7" data-bind="with: nameBasic, as: 'n'">
+    <table data-bind="foreach: listPlays">
+        <tr>
+            <th>Played these characters</th>
+            <td data-bind="text: titleId"></td>
+            <td data-bind="text: character"></td>
+        </tr>
+     </table>
+</div>
+
+<div class="col-sm-7" data-bind="with: nameBasic, as: 'n'">
+    <table>
+        <tr>
+            <th>Known for</th>
+            <td data-bind="text: listKnownForTitles"></td>
+        </tr>
+    </table>
+</div>
+
+<!--
+    <div>
+        <table class="table">
+            <thead>
+                </th>
+            <th>Full Name</th>
+            <th>Birthyear</th>
+            <th>DeathYear</th>
+            <th>Rating</th>
+            <th>Known for</th>
+            <th>In these movies</th></tr>
+
+            </thead>
+            <tbody data-bind="with: nameBasic, as: 'n'">
+                <tr>
+                    <td data-bind="text: n.primaryName"></td>
+                    <td data-bind="text: n.birthYear"></td>
+                    <td data-bind="text: n.deathYear"></td>
+                    <td data-bind="text: n.rating"></td>
+                    <td data-bind="text: n.listKnownForTitles"></td>
+
+                    <td data-bind="text: n.listPlays"></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    <button class="btn btn-primary" data-bind="click: function(){changetoListPlays(nameId)}">See every movie they worked on</button>
+
+
+
+    -->

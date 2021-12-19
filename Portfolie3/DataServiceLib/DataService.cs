@@ -310,6 +310,9 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             history.TimeStamp = DateTime.Now;
 
+            ctx.Database
+                .ExecuteSqlInterpolated($"CALL rate({history.TitleId}, {history.Rating}, {history.Username});");
+
             ctx.Add(history);
             return ctx.SaveChanges() > 0;
         }
