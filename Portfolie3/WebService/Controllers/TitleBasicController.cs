@@ -66,15 +66,19 @@ namespace WebService.Controllers
         {
             var model = _mapper.Map<TitleBasicViewModel>(titleBasic);
 
+            if (titleBasic.TitleRating != null) { 
             model.AvgRating = titleBasic.TitleRating.AvgRating;
-    
+            }
+
             List<TitlePrincipalViewModel> test = new List<TitlePrincipalViewModel>();
 
             foreach (TitlePrincipal t in titleBasic.TitlePrincipals)
             {
                 var temp = _mapper.Map<TitlePrincipalViewModel>(t);
                 var tempName = _dataService.GetNameBasic(t.NameId);
+                if(tempName != null) { 
                 temp.Name = tempName.PrimaryName;
+                }
                 test.Add(temp);
             }
 

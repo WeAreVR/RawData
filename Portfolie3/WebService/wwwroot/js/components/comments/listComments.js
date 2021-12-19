@@ -54,8 +54,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.getUrl(prev(), data => {
                 console.log(data);
                 prev(data.prev),
-                    next(data.next),    
-                    comments(data);
+                next(data.next),    
+                comments(data);
             });
         }
         let addComment = () => postman.publish("changeView", "addComments");
