@@ -24,7 +24,7 @@
     <b>Played these characters</b>
     <table data-bind="foreach: n.listPlays">
         <tr>
-            <td data-bind="text: titleId"></td>
+            <td id="Buttons"><button data-bind="text: titleId, click: function(){$parents[1].changeSingleView(titleId);}"></button></td>
             <td data-bind="text: character"></td>
         </tr>
     </table>
@@ -40,37 +40,3 @@
 </div>
 <button class="btn btn-primary" data-bind="click: function(){changetoListPlays(nameId)}">See every movie they worked on</button>
 
-<!--
-    <div>
-        <table class="table">
-            <thead>
-                </th>
-            <th>Full Name</th>
-            <th>Birthyear</th>
-            <th>DeathYear</th>
-            <th>Rating</th>
-            <th>Known for</th>
-            <th>In these movies</th></tr>
-
-            </thead>
-            <tbody data-bind="with: nameBasic, as: 'n'">
-                <tr>
-                    <td data-bind="text: n.primaryName"></td>
-                    <td data-bind="text: n.birthYear"></td>
-                    <td data-bind="text: n.deathYear"></td>
-                    <td data-bind="text: n.rating"></td>
-                    <td data-bind="text: n.listKnownForTitles"></td>
-
-                    <td data-bind="text: n.listPlays"></td>
-
-                </tr>
-
-            </tbody>
-
-        </table>
-    </div>
-    <button class="btn btn-primary" data-bind="click: function(){changetoListPlays(nameId)}">See every movie they worked on</button>
-
-
-
-    -->

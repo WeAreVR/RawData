@@ -59,12 +59,18 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             var size = selectedPageSize()[0];
             searchNameBasics(ds.getNameBasicsWithPageSize(size));
         });
-        
+
+        let changeSingleView = (id) => {
+            postman.publish("changeView", "single-title");
+            postman.publish("getInfo", id);
+
+        }
 
         return {
           
             selectedPageSize,
             changetoListPlays,
+            changeSingleView,
             setRating,
             birthYear,
             name,

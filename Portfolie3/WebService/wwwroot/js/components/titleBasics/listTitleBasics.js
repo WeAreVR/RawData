@@ -52,13 +52,14 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let singleTitlePage = (id) => {
             console.log(id);
             postman.publish("getInfo", id);
-            console.log("abe");
 
         }
 
         let changeSingleView = (id) => {
             postman.publish("changeView", "single-title");
-            singleTitlePage(id);
+            //singleTitlePage(id);
+            postman.publish("getInfo", id);
+
         }
 
         selectedPageSize.subscribe(() => {
