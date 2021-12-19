@@ -14,10 +14,6 @@ namespace WebService.ViewModels.Profiles
         public PlaysProfile()
         {
             CreateMap<Plays, PlaysViewModel>();
-             /*   .ForMember(src => src.TitleId, dst => dst.MapFrom(x => x.Plays.Select(p => p.ProfessionName)))
-                .ForMember(src => src.ListKnownForTitles, dst => dst.MapFrom(x => x.KnownForTitles.Select(p => p.TitleId)));*/
-
-           // CreateMap<NameBasicViewModel, NameBasic>();
         }
     }
 }

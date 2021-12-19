@@ -52,7 +52,7 @@ namespace WebService.Controllers
         [HttpDelete]
         public IActionResult DeleteComment(Comment comment)
         {
-            Console.WriteLine("nu sker der noget mske");
+            
             if (!_dataService.DeleteComment(comment))
             {
                 return NotFound();
@@ -106,8 +106,6 @@ namespace WebService.Controllers
 
 
         //Helper methods
-
-
         private CommentViewModel GetCommentViewModel(Comment comment)
         {
             var model = _mapper.Map<CommentViewModel>(comment);

@@ -27,10 +27,10 @@ namespace WebService.Controllers
             _linkGenerator = linkGenerator;
             _mapper = mapper;
         }
-        [HttpGet]
-        public IActionResult GetTitleRating()
+        [HttpGet("{id}")]
+        public IActionResult GetTitleRating(string id)
         {
-            var titleRating = _dataService.GetTitleRating("tt10850888");
+            var titleRating = _dataService.GetTitleRating(id);
 
             if (titleRating == null)
             {
@@ -42,19 +42,7 @@ namespace WebService.Controllers
             return Ok(model);
         }
 
-        
-
-        /*[HttpPost]
-        public IActionResult CreateTitleRating(TitleRating model)
-        {
-            var rating = _mapper.Map<TitleRating>(model);
-
-            _dataService.CreateTitleRating(rating);
-
-            return Created(GetUrl(rating), CreateTitleRatingViewModel(rating));
-
-        }*/
-
+     
         private TitleRatingViewModel GetTitleRatingViewModel(TitleRating titleRating)
         {
             return new TitleRatingViewModel
@@ -63,16 +51,9 @@ namespace WebService.Controllers
                 AvgRating = titleRating.AvgRating,
                 NumVotes = titleRating.NumVotes,
                 TitleId = titleRating.TitleId
-
-                //CategoryId = product.CategoryId
             };
         }
-       /* private TitleRatingViewModel CreateTitleRatingViewModel(TitleRating titleRating)
-        {
-            var model = _mapper.Map<TitleRatingViewModel>(titleRating);
-            //model.Rating = titleRating.Rating;
-            return model;
-        }*/
+       
         private string GetUrl(TitleRating titleRating)
         {
             return _linkGenerator.GetUriByName(HttpContext, nameof(GetTitleRating), new { titleRating.TitleId });

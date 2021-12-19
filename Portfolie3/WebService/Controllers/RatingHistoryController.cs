@@ -105,8 +105,7 @@ namespace WebService.Controllers
             {
                 Url = GetUrl(ratingHistory),
                 Rating = ratingHistory.Rating,
-                Username = ratingHistory.Username,
-                //PrimaryTitle = ratingHistory.TitleBasic.PrimaryTitle
+                Username = ratingHistory.Username
             };
         }
 

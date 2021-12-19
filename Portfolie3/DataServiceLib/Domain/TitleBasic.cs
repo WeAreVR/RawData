@@ -10,11 +10,7 @@ namespace DataServiceLib.Domain
 {
 	public class TitleBasic
 	{
-        public TitleBasic()
-        {
-			//TitleRating = new TitleRating();
-
-        }
+       
 
         public string Id { get; set; }
 		public string? TitleType { get; set; }

@@ -56,7 +56,6 @@ namespace WebService.Controllers
             var user = _dataService.GetUser(dto.Username);
             if (user == null)
             {
-                Console.WriteLine("USER ER NULL");
                 return BadRequest();
             }
 

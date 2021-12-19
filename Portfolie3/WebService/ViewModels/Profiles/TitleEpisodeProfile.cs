@@ -14,7 +14,6 @@ namespace WebService.ViewModels.Profiles
         public TitleEpisodeProfile()
         {
             CreateMap<TitleEpisode, TitleEpisodeViewModel>();
-            //CreateMap<CreateTitleBasicViewModel, TitleBasic>();
         }
     }
 }

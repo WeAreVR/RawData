@@ -80,7 +80,6 @@ namespace WebService.Controllers
         [HttpPost]
         public IActionResult CreateBookMark(string username, string titleId)
         {
-            Console.WriteLine("IDDDDDDDDDDDDD" + titleId);
             _dataService.CreateBookmark(username, titleId);
 
             return NoContent();

@@ -75,8 +75,6 @@ namespace WebService.Controllers
         {
             try
             {
-                //    var user = Request.HttpContext.Items["User"] as User;
-
                 var searches = _dataService.GetSearchHistoryByUsername(username, queryString);
            
                 if (searches == null)

@@ -50,19 +50,13 @@ namespace DataServiceLib
             ctx.Database
                 .ExecuteSqlInterpolated($"CALL clear_search_history({username})");
 
-           // var temp = GetSearchHistory(username);
-          //  ctx.SearchHistories.Attach(temp);
-           // ctx.SearchHistories.Remove(ctx.SearchHistories.Find(username));
-
+          
             return ctx.SaveChanges() > 0;
         }
         public bool CreateSearchHistory(SearchHistory searchHistory)
         {
                 var ctx = new IMDBContext();
-            /*
-                searchHistory.TitleId = ctx.Bookmarks.Max(x => x.TitleId) + 1;
-                ctx.Add(bookmark);
-            */
+            
                 return ctx.SaveChanges() > 0;
         }
 
@@ -128,20 +122,7 @@ namespace DataServiceLib
             return ctx.SaveChanges() > 0;
         }
 
-        /*public bool CreateBookmark(string titleId)
-        {
-            var ctx = new IMDBContext();
-
-            Bookmark bookmark = new Bookmark
-            {
-                TitleId = titleId,
-                Username = "tobias"
-            };
-
-            ctx.Add(bookmark);
-
-            return ctx.SaveChanges() > 0;
-        }*/
+       
 
         public Bookmark CreateBookmark(string username, string titleId)       
         {
@@ -169,8 +150,7 @@ namespace DataServiceLib
                 Username = username
             };
             Console.WriteLine(titleId);
-            Console.WriteLine(username);
-            //var bookmarks = GetBookmarks(username);
+            Console.WriteLine(username);            
             Bookmark temp = ctx.Bookmarks.Find(trim, username);
 
             if (temp != null)
@@ -350,9 +330,6 @@ namespace DataServiceLib
         public bool UpdateRating(RatingHistory rating)
         {
             var ctx = new IMDBContext();
-            // RatingHistory temp = ctx.RatingHistories.Find(rating.TitleId, rating.Username);
-            //temp.Rating = rating.Rating;
-            //return ctx.SaveChanges() > 0;
             var trim = rating.TitleId.Trim();
 
 
@@ -366,7 +343,6 @@ namespace DataServiceLib
                 ctx.RatingHistories.Attach(ratingHistory);
 
                 RatingHistory temp1 = ctx.RatingHistories.Find(trim, rating.Username);
-                //ctx.RatingHistories.Remove(ctx.RatingHistories.Find(rating.Username, rating.TitleId));
                 Console.WriteLine(temp1.TitleId);   
             
                 temp1.Rating = rating.Rating;
@@ -394,7 +370,7 @@ namespace DataServiceLib
       
         public User CreateUser( string username, string password = null, string salt = null)
         {
-            // Test meget vigtig
+            
             var ctx = new IMDBContext();
             User user = new User
             {
@@ -673,7 +649,6 @@ namespace DataServiceLib
         public bool CreateProfession(Profession profession)
         {
             var ctx = new IMDBContext();
-            //FIX THIS
             profession.Ordering = ctx.Professions
                 .Where(a => a.NameId == profession.NameId && a.Ordering == profession.Ordering)
                 .Max(x => x.Ordering) + 1;
@@ -736,12 +711,8 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             var titleGenres = ctx.TitleGenres
-                      // .Include(x => x.TitleBasic)
                        .Where(y => y.TitleId == titleId)
                        .ToList();
-            
-
-            Console.WriteLine("THIS IS BULLSHIIIIIIIIIIIIIIIIIIIT");
 
             return titleGenres;
         }
@@ -751,7 +722,6 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
 
             var titleGenres = ctx.TitleGenres
-                       // .Include(x => x.TitleBasic)
                        .Where(y => y.TitleId == titleId)
                        .ToList();
 
@@ -976,11 +946,6 @@ namespace DataServiceLib
 
 
 
-
-
-
-
-
         //---------------------------Title Basic CRUD----------------------------------
         public TitleBasic GetTitleBasic(string titleId)
         {
@@ -989,7 +954,6 @@ namespace DataServiceLib
             var ctx = new IMDBContext();
             TitleBasic result = ctx.TitleBasics
                 .Include(x => x.TitleRating)
-               // .Include(x => x.Awards)
                 .Include(x => x.TitleAkas)
                 .Include(x => x.TitleGenres)
                 .Include(x => x.TitlePrincipals)
@@ -1101,7 +1065,6 @@ namespace DataServiceLib
             TitleBasic titlebasic = new TitleBasic() { Id = titleId };
             ctx.TitleBasics.Attach(titlebasic);
             ctx.TitleBasics.Remove(ctx.TitleBasics.Find(titleId));
-            //ctx.SaveChanges();
 
             return ctx.SaveChanges() > 0;
         }

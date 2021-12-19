@@ -8,18 +8,17 @@ namespace DataServiceLib
     public interface IDataService
     {
 
-        // Bookmark
+        // Bookmark CRUD
         public IList<Bookmark> GetBookmarks(string username, QueryString queryString);
         public Bookmark GetBookmark(string username, string titleId);
         public bool DeleteBookmark(string username, string titleId);
-        //public bool CreateBookmark(string titleId);
         public Bookmark CreateBookmark(string username, string titleId);
         public int NumberOfElements(IList<Bookmark> elements);
         public IList<Bookmark> GetBookmarks(string username);
         public bool BookmarkedAlready(string username, string titleId);
 
 
-        // Comments
+        // Comments CRUD
         public Comment GetComment(string username, string titleId, DateTime timeStamp);
         public IList<Comment> GetCommentsByTitleId(string titleId, QueryString queryString);
         public bool CreateComment(Comment comment);
@@ -31,7 +30,7 @@ namespace DataServiceLib
         public IList<Comment> GetCommentsByTitleId(string titleId);
 
 
-        //RatingHistory
+        //RatingHistory CRUD
         public RatingHistory GetRatingHistory(string username, string titleId);
         public IList<RatingHistory> GetRatingHistoryByUsername(string username, QueryString queryString);
         public bool DeleteRatingHistory(string username, string titleId);
@@ -40,17 +39,17 @@ namespace DataServiceLib
         public bool UpdateRating(RatingHistory rating);
 
 
-        // SearchHistory
+        // SearchHistory CRD
         public SearchHistory GetSearchHistory(string searchInput);
         public IList<SearchHistory> GetSearchHistoryByUsername(string username, QueryString queryString);
         public bool DeleteSearchHistory(string username);
         public bool CreateSearchHistory(SearchHistory searchHistory);
 
-        //Users
+        //Users CR
         public User GetUser(string username);
         public User CreateUser(string username, string password = null, string salt = null);
-     
-        //Award CRUD
+
+        //Award  R
         public Award GetAward(string titleId, string award);
         public IList<Award> GetAwardsByTitleId(string titleId);
 
@@ -61,7 +60,7 @@ namespace DataServiceLib
         public bool UpdateTitleAka(TitleAka titleAka);
         public bool DeleteTitleAka(string titleId, int ordering);
 
-        //Plays CRUD
+        //Plays  CRUD
         public Plays GetPlays(string titleId, string nameId, string character);
         public IList<Plays> GetPlaysByNameId(string nameId);
         public bool CreatePlays(Plays plays);
@@ -77,7 +76,7 @@ namespace DataServiceLib
         public bool UpdateKnownForTitle(KnownForTitle knownForTitle);
         public bool DeleteKnownForTitle(string titleId, string nameId);
 
-        //Profession
+        //Profession CRUD
         public Profession GetProfession(string nameId, int ordering);
         public IList<Profession> GetProfessionsByNameId(string nameId);
         public bool CreateProfession(Profession ordering);
@@ -133,7 +132,7 @@ namespace DataServiceLib
         public IList<NameBasic> GetNameBasicsBySearch(string searchInput);
        
 
-        //TitleRating CRUD
+        //TitleRating R
         public TitleRating GetTitleRating(string titleId);
 
 

@@ -10,7 +10,6 @@ namespace WebService.ViewModels
 	public class CreateRatingHistoryViewModel
 	{
 		public string Url { get; set; }
-
 		public string Username { get; set; }
 		public string TitleId { get; set; }
 		public int Rating { get; set; }
