@@ -11,7 +11,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         let enableNext = ko.observable(() => next() !== undefined);
 
      
-
+       
         let findBookmark = () => {
             ds.getBookmarks()
                 .then(data => {
@@ -20,7 +20,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                         next(data.next),
                         bookmarks(data.items);
                 })
-                .catch(error => console.log(error));
+                //.catch(error => console.log(error));
             currentView("list");
         }
 
@@ -50,12 +50,14 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 }
                 return true;
         }
-
         let toggleBookmark = (id) => {
-            console.log("VIKER DET FJEWHRJE HER ")
+            console.log("hey");
+
             ds.toggleBookmark(id);
 
         }
+
+      
 
         findBookmark();
         showWhenLoggedIn();
@@ -69,8 +71,8 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             showNext,
             currentComponent,
             currentView,
-            toggleBookmark,
             bookmarks,
+            toggleBookmark,
             findBookmark,
             checkLogin
         }
