@@ -20,7 +20,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                         next(data.next),
                         bookmarks(data.items);
                 })
-                //.catch(error => console.log(error));
+                .catch(error => console.log(error));
             currentView("list");
         }
 
@@ -51,9 +51,9 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
                 return true;
         }
         let toggleBookmark = (id) => {
-            console.log("hey");
 
             ds.toggleBookmark(id);
+            postman.publish("changeView", "list-bookmarks");
 
         }
 
