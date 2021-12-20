@@ -179,7 +179,7 @@ define([], () => {
 
 
 
-
+//bookmark
     let getBookmarks = () => {
         let params = {
             method: "GET",
