@@ -6,6 +6,10 @@
     <button data-bind="click: showComments">Search</button>
 </div>
 
+<div>
+    <button class="btn btn-primary" data-bind=" click:function(){changeSingleView();}">Back</button>
+</div>
+
 <div data-bind="foreach: comments">
     <table class="table">
         <thead>
@@ -26,6 +30,7 @@
 <div>
     <button class="btn btn-primary" data-bind=" click:function(){changetoCommentAddView(titleId);}">Add comments</button>
 </div>
+
 
 <div>
     <button class="prevNextButton" data-bind="click: showPrev, enable: enablePrev">Previous page</button>

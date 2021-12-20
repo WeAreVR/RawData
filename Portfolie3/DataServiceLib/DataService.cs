@@ -1008,9 +1008,11 @@ namespace DataServiceLib
             var searchResult = ctx.TitleBasicSearchResults
                 .FromSqlRaw("select * from bestmatch(" + finalSearch+ ")");
             Console.Write(username);
-            ctx.Database
+            if (username != null)
+            {
+                ctx.Database
                 .ExecuteSqlInterpolated($"INSERT INTO search_history(username, search_input, time_stamp) VALUES({username}, {searchInput}, CURRENT_TIMESTAMP)");
-
+            }
             searchResult = searchResult.OrderByDescending(x => x.rank);
             IEnumerable<TitleBasic> result = new List<TitleBasic>();
 

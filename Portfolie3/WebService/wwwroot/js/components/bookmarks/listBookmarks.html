@@ -16,13 +16,15 @@
 <div id="showWhenLoggedIn">
     <table class="table">
         <thead>
-            <tr><th>Id</th><th>Timestamp</th><th></th></tr>
+            <tr><th>Title</th></tr>
         </thead>
         <tbody data-bind="foreach: bookmarks">
             <tr>
-                <td data-bind="text: titleId"></td>
                 <td data-bind="text: primaryTitle"></td>
+                <td id="Buttons"><button class="btn btn-primary" data-bind="click:function(){$parents[1].toggleBookmark(titleId)">Remove</button></td>
+                <button class="btn btn-primary" data-bind=" click:function(){$parents[0].toggleBookmark(t.id);}">Bookmark</button>
             </tr>
+            
         </tbody>
     </table>
 

@@ -1,8 +1,7 @@
 ﻿
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
-        let currentComponent = ko.observable("list");       
-        let selectedPageSize = ko.observableArray([10]);
+        let currentComponent = ko.observable("list");
         let currentView = ko.observable("list-titles");
         let prev = ko.observable();
         let next = ko.observable();
@@ -62,12 +61,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
 
         }
 
-        selectedPageSize.subscribe(() => {
-            var size = selectedPageSize()[0];
-            searchTitleBasics(ds.getTitleBasicsWithPageSize(size));
-        });
-
-        
+               
 
         let toggleBookmark = (id) => {
             ds.toggleBookmark(id);
@@ -84,7 +78,6 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             showPrev,
             prev,
             next,
-            selectedPageSize,
             currentComponent,
             currentView,
             titleBasics,

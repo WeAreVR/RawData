@@ -92,6 +92,12 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             ds.deleteComment(comment);
         }
 
+        let changeSingleView = () => {
+            postman.publish("changeView", "single-title");
+            postman.publish("getInfo", titleId());
+
+        }
+
         
         return {
             del,
@@ -102,6 +108,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             updateCommentPage,
             changetoCommentAddView,
             titleId,
+            changeSingleView,
             addCommentPage,
             addComment,
             enableNext,

@@ -1,7 +1,6 @@
 define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
     return function (params) {
         let currentComponent = ko.observable("list");
-        let selectedPageSize = ko.observableArray([10]);
         let currentView = ko.observable("list-searchHistory");
         let prev = ko.observable();
         let next = ko.observable();
@@ -55,11 +54,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
         
 
 
-        selectedPageSize.subscribe(() => {
-            var size = selectedPageSize()[0];
-            getSearchHistory(ds.getSearchHistoryWithPageSize(size));
-        });
-
+        
         showWhenLoggedIn();
         hideWhenLoggedIn();
         findSearchHistory();
@@ -70,9 +65,7 @@ define(['knockout', 'dataService', 'postman'], function (ko, ds, postman) {
             showNext,
             showPrev,
             prev,
-            next,
-            selectedPageSize,
-            pageSize,
+            next,            
             currentComponent,
             currentView,
             searchHistory,
